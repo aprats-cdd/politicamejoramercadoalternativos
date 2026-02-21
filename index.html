@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Memorándum de Política Pública · Mercado de Capitales Alternativos · Chile 2026</title>
+<meta name="description" content="Memorándum de política pública: reforma regulatoria para el mercado de capitales alternativos en Chile. Separación funcional entre gestión, administración y custodia.">
+<meta name="author" content="Andrés Prats">
+<meta property="og:title" content="Memorándum de Política Pública · Mercado de Capitales Alternativos · Chile 2026">
+<meta property="og:description" content="Chile tiene USD 400.000M en ahorro administrado y cero Fund Administrators independientes. Este memorándum propone la reforma regulatoria para crear el mercado de capitales alternativos que Chile necesita.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Memorándum de Política Pública · Mercado de Capitales Alternativos">
+<meta name="twitter:description" content="Reforma regulatoria para el mercado de capitales alternativos en Chile. Separación funcional entre gestión, administración y custodia.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230E1117'/><text x='50' y='68' font-family='serif' font-size='56' font-weight='700' fill='white' text-anchor='middle'>M</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -28,8 +38,9 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  ::selection { background: var(--accent-mid); color: white; }
 
-  html { font-size: 16px; scroll-behavior: smooth; }
+  html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 64px; }
 
   body {
     font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -38,6 +49,19 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--accent-mid);
+    z-index: 200;
+    width: 0%;
+    transition: width 0.1s linear;
+    pointer-events: none;
   }
 
   /* ── COVER ── */
@@ -184,11 +208,10 @@
   .stat-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.04em;
     color: rgba(255,255,255,0.4);
-    text-transform: uppercase;
-    line-height: 1.4;
-    max-width: 160px;
+    line-height: 1.5;
+    max-width: 180px;
   }
 
   .cover-footer {
@@ -227,6 +250,61 @@
     transition: color 0.2s;
   }
   .cover-nav a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ── EXECUTIVE SUMMARY ── */
+  .exec-summary {
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+  }
+  .exec-summary .section { padding: 48px 64px; }
+  .exec-summary-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .exec-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 48px;
+  }
+  .exec-summary-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .exec-summary-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent-mid);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .exec-summary-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .exec-summary-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ── DOC REF BADGE ── */
+  .doc-ref {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.10em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 3px 8px;
+    display: inline-block;
+    margin-top: 8px;
+  }
 
   /* ── GENERAL LAYOUT ── */
   .section {
@@ -397,9 +475,32 @@
     justify-content: center;
     align-items: center;
     height: 28px;
-    color: var(--rule);
-    font-size: 18px;
   }
+  .flow-arrow::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--rule);
+    border-bottom: 2px solid var(--rule);
+    transform: rotate(45deg);
+  }
+
+  /* ── FOOTNOTE REFERENCES ── */
+  .fn-ref {
+    font-size: 0.7em;
+    vertical-align: super;
+    line-height: 0;
+    color: var(--accent-mid);
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    cursor: pointer;
+  }
+  .fn-ref:hover { color: var(--accent); text-decoration: underline; }
+  .cover .fn-ref, .stat-label .fn-ref { color: rgba(255,255,255,0.45); font-size: 8px; }
+  .cover .fn-ref:hover, .stat-label .fn-ref:hover { color: rgba(255,255,255,0.7); }
+  .sartor-section .fn-ref { color: rgba(255,255,255,0.45); }
+  .sartor-section .fn-ref:hover { color: rgba(255,255,255,0.75); }
 
   /* ── SARTOR BOX ── */
   .sartor-section {
@@ -746,6 +847,34 @@
   .compare-card-text.col-chile { color: var(--danger); font-weight: 500; }
   .compare-card-text.col-ok { color: var(--accent); }
 
+  /* ── FOOTNOTES SECTION ── */
+  .footnotes-section {
+    background: var(--paper-warm);
+    border-top: 1px solid var(--rule);
+  }
+  .footnotes-section .section { padding: 48px 64px; }
+  .footnotes-list {
+    list-style: none;
+    max-width: 680px;
+  }
+  .footnote-item {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--ink-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule-light);
+    display: flex;
+    gap: 12px;
+  }
+  .footnote-item:last-child { border-bottom: none; }
+  .footnote-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-mid);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
   /* ── CLOSING ── */
   .closing {
     background: var(--ink);
@@ -876,6 +1005,120 @@
     transition: color 0.2s;
   }
   .sticky-nav-links a:hover { color: rgba(255,255,255,0.8); }
+  .sticky-nav-links a.active { color: rgba(255,255,255,0.9); }
+
+  /* ── PANEL CIUDADANO ── */
+  .ciudadano-trigger {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 90;
+    background: var(--ink);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 12px 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .ciudadano-trigger:hover { background: var(--accent); transform: translateY(-2px); }
+  .ciudadano-overlay {
+    position: fixed; inset: 0;
+    background: rgba(14,17,23,0.6);
+    z-index: 500;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .ciudadano-overlay.open { opacity: 1; visibility: visible; }
+  .ciudadano-panel {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    z-index: 501;
+    background: var(--white);
+    border-top: 2px solid var(--ink);
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .ciudadano-panel.open { transform: translateY(0); }
+  .ciudadano-handle {
+    display: flex; justify-content: center; padding: 12px; cursor: grab;
+  }
+  .ciudadano-handle::after {
+    content: ''; width: 40px; height: 4px;
+    background: var(--rule); border-radius: 2px;
+  }
+  .ciudadano-header { padding: 0 32px 24px; border-bottom: 1px solid var(--rule); }
+  .ciudadano-header-top {
+    display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;
+  }
+  .ciudadano-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 600; color: var(--ink); line-height: 1.3;
+  }
+  .ciudadano-close {
+    background: none; border: 1px solid var(--rule);
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 16px; color: var(--ink-muted); flex-shrink: 0;
+  }
+  .ciudadano-close:hover { background: var(--paper-warm); }
+  .ciudadano-subtitle {
+    font-size: 14px; color: var(--ink-muted); line-height: 1.6; max-width: 560px;
+  }
+  .ciudadano-tabs {
+    display: flex; gap: 0; padding: 0 32px; border-bottom: 1px solid var(--rule);
+  }
+  .ciudadano-tab {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 14px 20px; cursor: pointer; color: var(--ink-muted);
+    border-bottom: 2px solid transparent;
+    background: none; border-top: none; border-left: none; border-right: none;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .ciudadano-tab:hover { color: var(--ink); }
+  .ciudadano-tab.active { color: var(--ink); border-bottom-color: var(--accent-mid); }
+  .ciudadano-content { padding: 32px; }
+  .ciudadano-tab-content { display: none; }
+  .ciudadano-tab-content.active { display: block; }
+  .ciudadano-cards {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .ciudadano-card {
+    border: 1px solid var(--rule); padding: 20px; background: var(--paper);
+  }
+  .ciudadano-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted); margin-bottom: 8px;
+  }
+  .ciudadano-card-title {
+    font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.4;
+  }
+  .ciudadano-card-text {
+    font-size: 12px; color: var(--ink-muted); line-height: 1.6;
+  }
+  .ciudadano-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--rule); margin-top: 24px; border: 1px solid var(--rule);
+  }
+  .ciudadano-stat {
+    background: var(--white); padding: 20px; text-align: center;
+  }
+  .ciudadano-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 4px;
+  }
+  .ciudadano-stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px; letter-spacing: 0.1em; color: var(--ink-muted); line-height: 1.5;
+  }
 
   /* ── ANIMATIONS ── */
   .reveal {
@@ -922,6 +1165,9 @@
     .section-title { font-size: 32px !important; }
     .compare-table { font-size: 11px !important; }
     .compare-table th, .compare-table td { padding: 10px 12px !important; }
+    .progress-bar, .ciudadano-trigger, .ciudadano-overlay, .ciudadano-panel { display: none !important; }
+    .exec-summary { page-break-after: avoid; }
+    .footnotes-section { page-break-before: always; break-before: page; }
   }
 
   /* ── RESPONSIVE 1200 ── */
@@ -960,6 +1206,14 @@
     /* Table: stack as cards */
     .compare-table { display: none; }
     .compare-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+    .exec-summary-grid { grid-template-columns: 1fr; }
+    .exec-summary .section { padding: 40px 32px; }
+    .ciudadano-cards { grid-template-columns: 1fr; }
+    .ciudadano-stats { grid-template-columns: 1fr; }
+    .ciudadano-content { padding: 24px; }
+    .ciudadano-header { padding: 0 24px 20px; }
+    .ciudadano-tabs { padding: 0 24px; }
+    .footnotes-section .section { padding: 48px 32px; }
   }
 
   /* ── MOBILE 480px ── */
@@ -1011,10 +1265,24 @@
     .closing-footer { padding-top: 28px; }
     .closing-footer-brand { font-size: 9px; }
     .closing-footer-disclaimer { font-size: 9px; }
+    .exec-summary .section { padding: 32px 20px; }
+    .ciudadano-trigger { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 10px; }
+    .ciudadano-header { padding: 0 20px 16px; }
+    .ciudadano-title { font-size: 18px; }
+    .ciudadano-tabs { padding: 0 20px; }
+    .ciudadano-tab { padding: 12px 14px; font-size: 10px; }
+    .ciudadano-content { padding: 20px; }
+    .ciudadano-card { padding: 16px; }
+    .ciudadano-stat { padding: 16px; }
+    .ciudadano-stat-value { font-size: 20px; }
+    .footnotes-section .section { padding: 32px 20px; }
   }
 </style>
 </head>
 <body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar"></div>
 
 <!-- STICKY NAV -->
 <nav class="sticky-nav" id="stickyNav">
@@ -1031,7 +1299,10 @@
 <!-- COVER -->
 <section class="cover">
   <div class="cover-header">
-    <div class="cover-logo">Memorándum de Política Pública</div>
+    <div class="cover-logo">
+      Memorándum de Política Pública
+      <div class="doc-ref">MPP-2026-001 · Para discusión</div>
+    </div>
     <div class="cover-meta">
       Andrés Prats<br>
       15 años · Mercados Privados y Alternativos<br>
@@ -1046,16 +1317,16 @@
       <em>Pero no donde más falta.</em>
     </h1>
     <p class="cover-thesis">
-      Chile tiene más de <strong>USD 400.000M en ahorro administrado</strong>, un sistema bancario que financia al 83% de la economía, y un mercado de capitales alternativos que aún no existe funcionalmente. La separación funcional entre gestión, administración y custodia es la infraestructura que conecta ambos — y que Chile todavía no tiene.
+      Chile tiene más de <strong>USD 400.000M en ahorro administrado</strong><a href="#fn1" class="fn-ref">1</a>, un sistema bancario que financia al 83% de la economía<a href="#fn2" class="fn-ref">2</a>, y un mercado de capitales alternativos que aún no existe funcionalmente. La separación funcional entre gestión, administración y custodia es la infraestructura que conecta ambos — y que Chile todavía no tiene.
     </p>
     <div class="cover-stats">
       <div class="stat-item">
         <div class="stat-number">USD 5.000M</div>
-        <div class="stat-label">Deuda privada en Chile. Un mercado real sin verificación independiente.</div>
+        <div class="stat-label">Deuda privada en Chile<a href="#fn3" class="fn-ref">3</a>. Un mercado real sin verificación independiente.</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">83%</div>
-        <div class="stat-label">Del financiamiento empresarial concentrado en banca. Los alternativos son aún de nicho.</div>
+        <div class="stat-label">Del financiamiento empresarial concentrado en banca<a href="#fn2" class="fn-ref">2</a>. Los alternativos son aún de nicho.</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">0</div>
@@ -1075,6 +1346,31 @@
   </div>
 </section>
 
+<!-- ── EXECUTIVE SUMMARY ── -->
+<section class="exec-summary">
+  <div class="section">
+    <div class="exec-summary-label">Resumen ejecutivo</div>
+    <div class="exec-summary-grid">
+      <div class="exec-summary-item">
+        <span class="exec-summary-num">01</span>
+        <div class="exec-summary-text"><strong>El problema.</strong> Chile tiene USD 400.000M en ahorro administrado y cero Fund Administrators independientes. El gestor de activos alternativos es árbitro único de su propio cumplimiento.</div>
+      </div>
+      <div class="exec-summary-item">
+        <span class="exec-summary-num">02</span>
+        <div class="exec-summary-text"><strong>La evidencia.</strong> El caso Sartor (+CLP 100.000MM en créditos a partes relacionadas) demostró cada falla que la separación funcional habría prevenido — sin excepción.</div>
+      </div>
+      <div class="exec-summary-item">
+        <span class="exec-summary-num">03</span>
+        <div class="exec-summary-text"><strong>La solución.</strong> Separación funcional entre gestión (GP), administración (Fund Admin) y custodia (Custodio Regulado) — el estándar que Luxemburgo, EE.UU. y UK ya tienen.</div>
+      </div>
+      <div class="exec-summary-item">
+        <span class="exec-summary-num">04</span>
+        <div class="exec-summary-text"><strong>La ruta.</strong> Ejecutable sin Congreso, en 9–15 meses, por CMF y Superintendencia de Pensiones. Primero crear el mercado, luego codificar lo que ya funciona.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── ACTO I ── -->
 <hr class="section-divider">
 <section id="acto1">
@@ -1083,15 +1379,15 @@
       <span class="act-number">I</span>
       La falla silenciosa del mercado de capitales chileno
     </div>
-    <h2 class="section-title reveal">El ahorro llega.<br>Pero no donde más falta.</h2>
+    <h2 class="section-title reveal">El canal que Chile<br><em>nunca construyó.</em></h2>
     <p class="section-subtitle reveal">"El sistema financiero chileno es sólido. Y aun así, no cumple su función más básica."</p>
 
     <div class="act1-grid">
       <div>
         <div class="prose reveal">
-          <p>Chile tiene uno de los sistemas de ahorro previsional más robustos de América Latina. Las AFPs administran más de USD 200.000M. El sistema bancario es profundo y bien capitalizado. Y sin embargo, existe una falla estructural que rara vez se nombra con precisión: <strong>el ahorro chileno no llega eficientemente al mundo real</strong>.</p>
+          <p>Chile tiene uno de los sistemas de ahorro previsional más robustos de América Latina. Las AFPs administran más de USD 200.000M<a href="#fn1" class="fn-ref">1</a>. El sistema bancario es profundo y bien capitalizado. Y sin embargo, existe una falla estructural que rara vez se nombra con precisión: <strong>el ahorro chileno no llega eficientemente al mundo real</strong>.</p>
 
-          <p>La banca concentra el 83% del financiamiento empresarial porque es el único canal de intermediación disponible. Que los alternativos sean de nicho es la consecuencia directa de esa ausencia — no una decisión del mercado.</p>
+          <p>La banca concentra el 83% del financiamiento empresarial<a href="#fn2" class="fn-ref">2</a> porque es el único canal de intermediación disponible. Que los alternativos sean de nicho es la consecuencia directa de esa ausencia — no una decisión del mercado.</p>
 
           <p>Los gestores de activos alternativos — deuda privada, capital privado, infraestructura, real estate — son exactamente el tipo de intermediario diseñado para cubrir esas partes de la cadena que la banca no puede o no quiere cubrir por diseño prudencial. <strong>Pero en Chile, esa industria es todavía de nicho</strong> — no por falta de demanda, sino porque opera sin la infraestructura jurídica que los mercados desarrollados construyeron hace una década.</p>
 
@@ -1109,25 +1405,25 @@
           <div class="flow-node-title">USD 400.000M+ administrado</div>
           <div class="flow-node-desc">AFPs, aseguradoras, family offices, inversionistas institucionales.</div>
         </div>
-        <div class="flow-arrow">↓</div>
+        <div class="flow-arrow"></div>
         <div class="flow-node">
           <div class="flow-node-label">Canal principal</div>
           <div class="flow-node-title">Sistema bancario (83%)</div>
           <div class="flow-node-desc">Profundo, sólido, regulado. Por diseño prudencial: crédito de corto plazo, garantías reales, ratings formales.</div>
         </div>
-        <div class="flow-arrow">↓</div>
+        <div class="flow-arrow"></div>
         <div class="flow-node flow-gap">
           <div class="flow-node-label">Gap estructural</div>
           <div class="flow-node-title">Lo que la banca no puede cubrir</div>
           <div class="flow-node-desc">Pymes en crecimiento · Infraestructura regional · Deuda de largo plazo · Real estate no residencial · Capital de riesgo.</div>
         </div>
-        <div class="flow-arrow">↓</div>
+        <div class="flow-arrow"></div>
         <div class="flow-node flow-gap">
           <div class="flow-node-label">Canal alternativo · Estado actual</div>
           <div class="flow-node-title">Activos alternativos: USD 5.000M (nicho)</div>
           <div class="flow-node-desc">Sin Fund Admins independientes. Sin custodio regulado. Sin circuito de verificación. El gestor es árbitro único de su propio cumplimiento.</div>
         </div>
-        <div class="flow-arrow">↓</div>
+        <div class="flow-arrow"></div>
         <div class="flow-node">
           <div class="flow-node-label">Economía real</div>
           <div class="flow-node-title">Demanda insatisfecha</div>
@@ -1150,7 +1446,7 @@
     <p class="section-subtitle reveal">"El mercado no despega porque no tiene la infraestructura operativa que los inversionistas institucionales exigen como condición de entrada."</p>
 
     <div class="prose reveal">
-      <p>El mercado de deuda privada en Chile tiene aproximadamente USD 5.000M en activos bajo gestión. Para una economía de USD 320.000M de PIB con el sistema previsional más maduro de la región, ese número no refleja falta de demanda. Refleja la ausencia de la infraestructura que convierte el apetito en capital desplegado.</p>
+      <p>El mercado de deuda privada en Chile tiene aproximadamente USD 5.000M en activos bajo gestión<a href="#fn3" class="fn-ref">3</a>. Para una economía de USD 320.000M de PIB<a href="#fn4" class="fn-ref">4</a> con el sistema previsional más maduro de la región, ese número no refleja falta de demanda. Refleja la ausencia de la infraestructura que convierte el apetito en capital desplegado.</p>
 
       <p>Las AFPs tienen mandato de inversión en alternativos, los family offices buscan retorno descorrelacionado, y hay capital institucional internacional disponible para mercados emergentes con institucionalidad sólida. Todos ellos exigen, como condición de entrada, una infraestructura operativa que Chile todavía no tiene: un circuito independiente de verificación que permita desplegar capital con los estándares de due diligence que sus propios reguladores les exigen.</p>
 
@@ -1329,9 +1625,9 @@
     <p class="section-subtitle reveal">"El argumento es sobre no pagarlo de nuevo."</p>
 
     <div class="prose reveal">
-      <p>El caso Sartor es la consecuencia documentada del modelo concentrado — la CMF lo registró con una precisión que raramente se ve en expedientes sancionatorios. Entre 2020 y 2024, Sartor AGF canalizó <strong>+CLP 100.000MM en créditos hacia empresas relacionadas</strong> con sus propios directores y controladores, a través de fondos públicos administrados bajo la LUF. Los estados financieros de Sartor Leasing y Sartor Táctico fueron falsificados durante cuatro períodos consecutivos. Las pérdidas superaron el <strong>85% del valor patrimonial</strong> de algunos fondos, según auditorías de PwC y Deloitte.</p>
+      <p>El caso Sartor es la consecuencia documentada del modelo concentrado — la CMF lo registró con una precisión que raramente se ve en expedientes sancionatorios. Entre 2020 y 2024, Sartor AGF canalizó <strong>+CLP 100.000MM en créditos hacia empresas relacionadas</strong><a href="#fn5" class="fn-ref">5</a> con sus propios directores y controladores, a través de fondos públicos administrados bajo la LUF. Los estados financieros de Sartor Leasing y Sartor Táctico fueron falsificados durante cuatro períodos consecutivos. Las pérdidas superaron el <strong>85% del valor patrimonial</strong> de algunos fondos, según auditorías de PwC y Deloitte<a href="#fn7" class="fn-ref">7</a>.</p>
 
-      <p>La CMF aplicó la sanción más severa de su historia — 367.500 UF y revocación de existencia — y derivó el caso al Ministerio Público bajo la Ley de Delitos Económicos 21.595. El caso Sartor es útil como referencia regulatoria no por su tamaño — +CLP 100.000MM es la cifra, pero el mercado chileno ha visto otras pérdidas — sino porque la CMF documentó cada falla con precisión inusual. Lo que falló no fue la supervisión. Fue que no existía la arquitectura que habría hecho la supervisión posible: cada una de las fallas que la separación funcional habría prevenido ocurrió — sin excepción.</p>
+      <p>La CMF aplicó la sanción más severa de su historia — 367.500 UF y revocación de existencia<a href="#fn5" class="fn-ref">5</a> — y derivó el caso al Ministerio Público bajo la Ley de Delitos Económicos 21.595<a href="#fn6" class="fn-ref">6</a>. El caso Sartor es útil como referencia regulatoria no por su tamaño — +CLP 100.000MM es la cifra, pero el mercado chileno ha visto otras pérdidas — sino porque la CMF documentó cada falla con precisión inusual. Lo que falló no fue la supervisión. Fue que no existía la arquitectura que habría hecho la supervisión posible: cada una de las fallas que la separación funcional habría prevenido ocurrió — sin excepción.</p>
     </div>
 
     <div class="sartor-grid reveal">
@@ -1522,6 +1818,43 @@
   </div>
 </section>
 
+<!-- ── FUENTES ── -->
+<section class="footnotes-section" id="fuentes">
+  <div class="section">
+    <div class="act-label">Fuentes y referencias</div>
+    <ol class="footnotes-list">
+      <li class="footnote-item" id="fn1">
+        <span class="footnote-num">[1]</span>
+        <span>Superintendencia de Pensiones, Estadísticas del Sistema de Pensiones. Cifras a diciembre 2025. Incluye AFPs, compañías de seguros e inversores institucionales regulados.</span>
+      </li>
+      <li class="footnote-item" id="fn2">
+        <span class="footnote-num">[2]</span>
+        <span>CMF, Informe de Estabilidad Financiera, segundo semestre 2025. Créditos bancarios a empresas como proporción del financiamiento total empresarial.</span>
+      </li>
+      <li class="footnote-item" id="fn3">
+        <span class="footnote-num">[3]</span>
+        <span>ACAFI, Informe Trimestral de Inversiones Alternativas en Chile, Q4 2025. Incluye deuda privada, capital privado, infraestructura y real estate.</span>
+      </li>
+      <li class="footnote-item" id="fn4">
+        <span class="footnote-num">[4]</span>
+        <span>Banco Central de Chile, Cuentas Nacionales, PIB nominal 2025.</span>
+      </li>
+      <li class="footnote-item" id="fn5">
+        <span class="footnote-num">[5]</span>
+        <span>CMF, Procedimiento Sancionatorio Sartor AGF S.A., 2024. Incluye resolución sancionatoria, revocación de existencia y derivación al Ministerio Público.</span>
+      </li>
+      <li class="footnote-item" id="fn6">
+        <span class="footnote-num">[6]</span>
+        <span>Ley N° 21.595, Ley de Delitos Económicos, Diario Oficial, 17 de agosto de 2023.</span>
+      </li>
+      <li class="footnote-item" id="fn7">
+        <span class="footnote-num">[7]</span>
+        <span>PwC Chile y Deloitte Chile, auditorías independientes encargadas por la CMF sobre fondos administrados por Sartor AGF, 2024.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
 <!-- ── CLOSING ── -->
 <section class="closing">
   <div class="section">
@@ -1545,6 +1878,105 @@
   </div>
 </section>
 
+<!-- ── PANEL CIUDADANO ── -->
+<button class="ciudadano-trigger" id="ciudadanoTrigger">
+  <span class="ciudadano-trigger-icon">&#9776;</span>
+  Por qué te importa
+</button>
+<div class="ciudadano-overlay" id="ciudadanoOverlay"></div>
+<div class="ciudadano-panel" id="ciudadanoPanel">
+  <div class="ciudadano-handle"></div>
+  <div class="ciudadano-header">
+    <div class="ciudadano-header-top">
+      <div class="ciudadano-title">Por qué esta reforma te importa</div>
+      <button class="ciudadano-close" id="ciudadanoClose">&#10005;</button>
+    </div>
+    <div class="ciudadano-subtitle">El memorándum es técnico. El impacto no lo es. Elige tu perspectiva.</div>
+  </div>
+  <div class="ciudadano-tabs">
+    <button class="ciudadano-tab active" data-tab="tab-afp">Si administras una AFP</button>
+    <button class="ciudadano-tab" data-tab="tab-legislador">Si eres legislador</button>
+  </div>
+  <div class="ciudadano-content">
+    <div class="ciudadano-tab-content active" id="tab-afp">
+      <div class="ciudadano-cards">
+        <div class="ciudadano-card">
+          <div class="ciudadano-card-label">Hoy</div>
+          <div class="ciudadano-card-title">Sin verificación independiente</div>
+          <div class="ciudadano-card-text">El gestor calcula el NAV, registra aportantes y declara existencia de activos. Tu due diligence depende de la palabra del GP.</div>
+        </div>
+        <div class="ciudadano-card">
+          <div class="ciudadano-card-label">Con la reforma</div>
+          <div class="ciudadano-card-title">Circuito independiente</div>
+          <div class="ciudadano-card-text">Fund Admin calcula el NAV. Custodio verifica activos. Tres actores con responsabilidades acotadas y asegurables.</div>
+        </div>
+        <div class="ciudadano-card">
+          <div class="ciudadano-card-label">Riesgo actual</div>
+          <div class="ciudadano-card-title">Riesgo Sartor es sistémico</div>
+          <div class="ciudadano-card-text">Sin Fund Admin, no puedes verificar cumplimiento del reglamento interno. El riesgo no es idiosincrático — es estructural.</div>
+        </div>
+        <div class="ciudadano-card">
+          <div class="ciudadano-card-label">Beneficio directo</div>
+          <div class="ciudadano-card-title">Infraestructura operativa estándar</div>
+          <div class="ciudadano-card-text">Acceso a la infraestructura que tus pares internacionales exigen como condición de entrada a cualquier fondo alternativo.</div>
+        </div>
+      </div>
+      <div class="ciudadano-stats">
+        <div class="ciudadano-stat">
+          <div class="ciudadano-stat-value">0</div>
+          <div class="ciudadano-stat-label">Fund Admins hoy</div>
+        </div>
+        <div class="ciudadano-stat">
+          <div class="ciudadano-stat-value">USD 5.000M</div>
+          <div class="ciudadano-stat-label">Sin verificación</div>
+        </div>
+        <div class="ciudadano-stat">
+          <div class="ciudadano-stat-value">83%</div>
+          <div class="ciudadano-stat-label">Concentrado en banca</div>
+        </div>
+      </div>
+    </div>
+    <div class="ciudadano-tab-content" id="tab-legislador">
+      <div class="ciudadano-cards">
+        <div class="ciudadano-card">
+          <div class="ciudadano-card-label">Costo fiscal</div>
+          <div class="ciudadano-card-title">$0 de presupuesto público</div>
+          <div class="ciudadano-card-text">La reforma no requiere presupuesto público. Los Fund Admins son entidades privadas que cobran por sus servicios.</div>
+        </div>
+        <div class="ciudadano-card">
+          <div class="ciudadano-card-label">Vía regulatoria</div>
+          <div class="ciudadano-card-title">Sin Congreso (primera fase)</div>
+          <div class="ciudadano-card-text">La Capa B es ejecutable por CMF y Superintendencia de Pensiones en 9–15 meses. Solo normativa infralegal.</div>
+        </div>
+        <div class="ciudadano-card">
+          <div class="ciudadano-card-label">Estándar internacional</div>
+          <div class="ciudadano-card-title">Lo que ya existe en el mundo</div>
+          <div class="ciudadano-card-text">Luxemburgo (2013), EE.UU. (2009), UK (2013). Chile sería el primero en América Latina con separación funcional completa.</div>
+        </div>
+        <div class="ciudadano-card">
+          <div class="ciudadano-card-label">Post-Sartor</div>
+          <div class="ciudadano-card-title">Prevención, no reacción</div>
+          <div class="ciudadano-card-text">367.500 UF de sanción, +CLP 100.000MM en pérdidas. La arquitectura que habría prevenido cada falla documentada.</div>
+        </div>
+      </div>
+      <div class="ciudadano-stats">
+        <div class="ciudadano-stat">
+          <div class="ciudadano-stat-value">9–15</div>
+          <div class="ciudadano-stat-label">Meses para Capa B</div>
+        </div>
+        <div class="ciudadano-stat">
+          <div class="ciudadano-stat-value">$0</div>
+          <div class="ciudadano-stat-label">Costo fiscal</div>
+        </div>
+        <div class="ciudadano-stat">
+          <div class="ciudadano-stat-value">367.500 UF</div>
+          <div class="ciudadano-stat-label">Sanción Sartor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   // Sticky nav on scroll
   const nav = document.getElementById('stickyNav');
@@ -1556,6 +1988,32 @@
     { threshold: 0.1 }
   );
   observer.observe(cover);
+
+  // Progress bar
+  const progressBar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
+  }, { passive: true });
+
+  // Active nav tracking
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.sticky-nav-links a');
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '-60px 0px -50% 0px' }
+  );
+  sections.forEach(section => sectionObserver.observe(section));
 
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
@@ -1571,6 +2029,43 @@
     { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
   reveals.forEach(el => revealObserver.observe(el));
+
+  // Panel Ciudadano
+  const trigger = document.getElementById('ciudadanoTrigger');
+  const overlay = document.getElementById('ciudadanoOverlay');
+  const panel = document.getElementById('ciudadanoPanel');
+  const closeBtn = document.getElementById('ciudadanoClose');
+  const tabs = document.querySelectorAll('.ciudadano-tab');
+  const tabContents = document.querySelectorAll('.ciudadano-tab-content');
+
+  function openPanel() {
+    overlay.classList.add('open');
+    panel.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePanel() {
+    overlay.classList.remove('open');
+    panel.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  trigger.addEventListener('click', openPanel);
+  overlay.addEventListener('click', closePanel);
+  closeBtn.addEventListener('click', closePanel);
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => t.classList.toggle('active', t === tab));
+      tabContents.forEach(tc => tc.classList.toggle('active', tc.id === target));
+    });
+  });
+
+  // Swipe to close
+  let startY = 0;
+  panel.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
+  panel.addEventListener('touchmove', (e) => {
+    if (e.touches[0].clientY - startY > 80) closePanel();
+  }, { passive: true });
 </script>
 </body>
 </html>
