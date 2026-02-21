@@ -25,11 +25,19 @@
     --paper: #FAFAF8;
     --paper-warm: #F4F2ED;
     --white: #FFFFFF;
+    /* ── NAVBAR TOKENS (editable) ── */
+    --navbar-h: 72px;
+    --navbar-h-mobile: 56px;
+    --navbar-font: 10px;
+    --navbar-letter-spacing: 0.14em;
+    --navbar-bg: #FFFFFF;
+    --navbar-border: #E8EAEE;
+    --navbar-shadow: 0 1px 3px rgba(0,0,0,0.06);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { font-size: 16px; scroll-behavior: smooth; }
+  html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: calc(var(--navbar-h) + 8px); }
 
   body {
     font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -831,51 +839,225 @@
     line-height: 1.6;
   }
 
-  /* Sticky nav */
-  .sticky-nav {
+  /* ── NAVBAR ── */
+  .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(14,17,23,0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 0 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 52px;
+    background: var(--navbar-bg);
+    border-bottom: 1px solid transparent;
     transform: translateY(-100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .sticky-nav.visible { transform: translateY(0); }
+  .navbar.visible {
+    transform: translateY(0);
+    border-bottom-color: var(--navbar-border);
+    box-shadow: var(--navbar-shadow);
+  }
 
-  .sticky-nav-brand {
+  .navbar-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 64px;
+    height: var(--navbar-h);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .navbar-brand {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.4);
+    color: var(--ink-muted);
     text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
-  .sticky-nav-links {
+  .navbar-links {
     display: flex;
     gap: 28px;
     list-style: none;
+    flex: 1;
+    justify-content: flex-end;
   }
 
-  .sticky-nav-links a {
+  .navbar-links a {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.4);
+    font-size: var(--navbar-font);
+    letter-spacing: var(--navbar-letter-spacing);
+    color: var(--ink-muted);
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.2s;
+    padding: 4px 0;
+    position: relative;
+    white-space: nowrap;
   }
-  .sticky-nav-links a:hover { color: rgba(255,255,255,0.8); }
+
+  .navbar-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+  }
+
+  .navbar-links a:hover { color: var(--ink); }
+  .navbar-links a.active { color: var(--accent); }
+  .navbar-links a.active::after { transform: scaleX(1); }
+
+  .navbar-top {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--rule-light);
+    background: none;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .navbar-top:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .navbar-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    height: 18px;
+    position: relative;
+    flex-shrink: 0;
+    padding: 0;
+  }
+
+  .navbar-hamburger span {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--ink-soft);
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+
+  .navbar-hamburger span:nth-child(1) { top: 0; }
+  .navbar-hamburger span:nth-child(2) { top: 8px; }
+  .navbar-hamburger span:nth-child(3) { top: 16px; }
+
+  .navbar-hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .navbar-hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .navbar-hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .navbar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(14,17,23,0.4);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .navbar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 280px;
+    max-width: 80vw;
+    background: var(--white);
+    z-index: 101;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--navbar-h-mobile);
+  }
+
+  .navbar-drawer.open { transform: translateX(0); }
+
+  .navbar-drawer-links {
+    list-style: none;
+    padding: 24px 0;
+    margin: 0;
+    flex: 1;
+  }
+
+  .navbar-drawer-links a {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-left: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  .navbar-drawer-links a:hover,
+  .navbar-drawer-links a:focus { background: var(--paper); color: var(--ink); }
+
+  .navbar-drawer-links a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  .navbar-drawer-top {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    padding: 20px 32px;
+    border: none;
+    border-top: 1px solid var(--rule-light);
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.2s;
+    width: 100%;
+  }
+
+  .navbar-drawer-top:hover { color: var(--accent); }
+
+  /* Navbar focus styles */
+  .navbar-links a:focus-visible,
+  .navbar-top:focus-visible,
+  .navbar-hamburger:focus-visible,
+  .navbar-drawer-links a:focus-visible,
+  .navbar-drawer-top:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 
   /* ── ANIMATIONS ── */
   .reveal {
@@ -892,11 +1074,11 @@
   @media print {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1 !important; transform: none !important; }
-    .sticky-nav, .cover-nav { display: none !important; }
+    .navbar, .navbar-overlay, .navbar-drawer, .cover-nav { display: none !important; }
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     html, body { width: 210mm; margin: 0; padding: 0; }
     .cover { height: 297mm; min-height: unset; page-break-after: always; break-after: page; background: var(--ink) !important; }
-    #acto1, #acto2, #acto3, #acto4 { page-break-before: always; break-before: page; }
+    #la-falla, #infraestructura, #sartor, #la-reforma { page-break-before: always; break-before: page; }
     .closing { background: var(--ink) !important; page-break-before: always; break-before: page; height: 297mm; display: flex; flex-direction: column; justify-content: center; }
     .sartor-section { background: var(--ink) !important; color: white !important; }
     .roadmap-section { background: var(--paper-warm) !important; }
@@ -929,6 +1111,7 @@
     .cover-header, .cover-body, .cover-footer { padding-left: 48px; padding-right: 48px; }
     .section { padding: 80px 48px; }
     .cover-headline { font-size: clamp(34px, 4vw, 56px); }
+    .navbar-inner { padding: 0 48px; }
   }
 
   /* ── RESPONSIVE 900 ── */
@@ -950,8 +1133,11 @@
     .roadmap-grid { grid-template-columns: 1fr; }
     .roadmap-capa { border-right: none; border-bottom: 1px solid var(--rule); }
     .roadmap-capa:last-child { border-bottom: none; }
-    .sticky-nav { padding: 0 24px; }
-    .sticky-nav-links { gap: 16px; }
+    .navbar-inner { padding: 0 32px; height: var(--navbar-h-mobile); }
+    .navbar-links { display: none; }
+    .navbar-top { display: none; }
+    .navbar-hamburger { display: block; }
+    html { scroll-padding-top: calc(var(--navbar-h-mobile) + 8px); }
     .cover-stats { grid-template-columns: 1fr; gap: 0; width: 100%; }
     .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 0; margin-right: 0; }
     .stat-item:last-child { border-bottom: none; }
@@ -1001,9 +1187,9 @@
     .roadmap-capa-title { font-size: 16px; }
     /* Infra cells */
     .infra-cell { padding: 24px 20px; }
-    /* Sticky nav: hide links on very small screens */
-    .sticky-nav-links { display: none; }
-    .sticky-nav { padding: 0 20px; }
+    .navbar-inner { padding: 0 20px; }
+    .navbar-drawer-links a { padding: 12px 24px; font-size: 11px; }
+    .navbar-drawer-top { padding: 16px 24px; }
     /* Closing */
     .closing .section { padding: 48px 20px; }
     .closing-title { font-size: clamp(22px, 6vw, 36px); }
@@ -1016,17 +1202,36 @@
 </head>
 <body>
 
-<!-- STICKY NAV -->
-<nav class="sticky-nav" id="stickyNav">
-  <span class="sticky-nav-brand">Memorándum de Política Pública · 2026</span>
-  <ul class="sticky-nav-links">
-    <li><a href="#acto1">I · La falla</a></li>
-    <li><a href="#acto2">II · Infraestructura</a></li>
-    <li><a href="#acto3">III · Sartor</a></li>
-    <li><a href="#acto4">IV · La reforma</a></li>
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar" aria-label="Navegación principal del memorándum">
+  <div class="navbar-inner">
+    <span class="navbar-brand">Memorándum · 2026</span>
+    <ul class="navbar-links">
+      <li><a href="#la-falla">I · La falla</a></li>
+      <li><a href="#infraestructura">II · Infraestructura</a></li>
+      <li><a href="#sartor">III · Sartor</a></li>
+      <li><a href="#la-reforma">IV · La reforma</a></li>
+      <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
+    </ul>
+    <button class="navbar-top" id="backToTop" aria-label="Volver arriba">↑ Inicio</button>
+    <button class="navbar-hamburger" id="navbarToggle"
+            aria-expanded="false" aria-controls="navbarDrawer"
+            aria-label="Abrir menú de navegación">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="navbar-overlay" id="navbarOverlay"></div>
+<aside class="navbar-drawer" id="navbarDrawer" aria-label="Menú de navegación">
+  <ul class="navbar-drawer-links">
+    <li><a href="#la-falla">I · La falla</a></li>
+    <li><a href="#infraestructura">II · Infraestructura</a></li>
+    <li><a href="#sartor">III · Sartor</a></li>
+    <li><a href="#la-reforma">IV · La reforma</a></li>
     <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
   </ul>
-</nav>
+  <button class="navbar-drawer-top" id="drawerBackToTop">↑ Volver arriba</button>
+</aside>
 
 <!-- COVER -->
 <section class="cover">
@@ -1067,17 +1272,17 @@
   <div class="cover-footer">
     <div class="cover-footer-left">Memorándum de Política Pública · CMF · Superintendencia de Pensiones</div>
     <ul class="cover-nav">
-      <li><a href="#acto1">La Falla</a></li>
-      <li><a href="#acto2">Infraestructura</a></li>
-      <li><a href="#acto3">Sartor</a></li>
-      <li><a href="#acto4">La Reforma</a></li>
+      <li><a href="#la-falla">La Falla</a></li>
+      <li><a href="#infraestructura">Infraestructura</a></li>
+      <li><a href="#sartor">Sartor</a></li>
+      <li><a href="#la-reforma">La Reforma</a></li>
     </ul>
   </div>
 </section>
 
 <!-- ── ACTO I ── -->
 <hr class="section-divider">
-<section id="acto1">
+<section id="la-falla">
   <div class="section">
     <div class="act-label">
       <span class="act-number">I</span>
@@ -1140,7 +1345,7 @@
 
 <!-- ── ACTO II ── -->
 <hr class="section-divider">
-<section id="acto2">
+<section id="infraestructura">
   <div class="section">
     <div class="act-label">
       <span class="act-number">II</span>
@@ -1319,7 +1524,7 @@
 </section>
 
 <!-- ── ACTO III — SARTOR ── -->
-<section id="acto3" class="sartor-section">
+<section id="sartor" class="sartor-section">
   <div class="section">
     <div class="act-label">
       <span class="act-number">III</span>
@@ -1376,7 +1581,7 @@
 
 <!-- ── ACTO IV ── -->
 <hr class="section-divider">
-<section id="acto4">
+<section id="la-reforma">
   <div class="section">
     <div class="act-label">
       <span class="act-number">IV</span>
@@ -1546,31 +1751,131 @@
 </section>
 
 <script>
-  // Sticky nav on scroll
-  const nav = document.getElementById('stickyNav');
-  const cover = document.querySelector('.cover');
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      nav.classList.toggle('visible', !entry.isIntersecting);
-    },
+(function() {
+  // Elements
+  var navbar = document.getElementById('navbar');
+  var cover = document.querySelector('.cover');
+  var toggle = document.getElementById('navbarToggle');
+  var drawer = document.getElementById('navbarDrawer');
+  var overlay = document.getElementById('navbarOverlay');
+  var backToTop = document.getElementById('backToTop');
+  var drawerBackToTop = document.getElementById('drawerBackToTop');
+  var navLinks = document.querySelectorAll('.navbar-links a');
+  var drawerLinks = document.querySelectorAll('.navbar-drawer-links a');
+  var sections = document.querySelectorAll('#la-falla, #infraestructura, #sartor, #la-reforma, #hoja-de-ruta');
+
+  // Navbar visibility — show after scrolling past cover
+  var coverObs = new IntersectionObserver(
+    function(entries) { navbar.classList.toggle('visible', !entries[0].isIntersecting); },
     { threshold: 0.1 }
   );
-  observer.observe(cover);
+  coverObs.observe(cover);
 
   // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
+  var reveals = document.querySelectorAll('.reveal');
+  var revealObs = new IntersectionObserver(
+    function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
+          revealObs.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
-  reveals.forEach(el => revealObserver.observe(el));
+  reveals.forEach(function(el) { revealObs.observe(el); });
+
+  // Scrollspy — throttled with rAF
+  function getNavbarHeight() {
+    return window.innerWidth <= 900 ? 56 : 72;
+  }
+
+  function setActiveLink(id) {
+    navLinks.forEach(function(a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+    drawerLinks.forEach(function(a) { a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
+  }
+
+  var scrollTick = false;
+  function updateScrollspy() {
+    var offset = getNavbarHeight() + 40;
+    var scrollPos = window.scrollY + offset;
+    var current = '';
+    sections.forEach(function(section) {
+      if (section.offsetTop <= scrollPos) { current = section.id; }
+    });
+    if (current) setActiveLink(current);
+    scrollTick = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!scrollTick) {
+      requestAnimationFrame(updateScrollspy);
+      scrollTick = true;
+    }
+  }, { passive: true });
+
+  // Smooth scroll with offset for all nav links
+  function handleNavClick(e) {
+    var href = e.currentTarget.getAttribute('href');
+    if (href && href.charAt(0) === '#') {
+      e.preventDefault();
+      var target = document.querySelector(href);
+      if (target) {
+        var top = target.getBoundingClientRect().top + window.pageYOffset - getNavbarHeight();
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+      closeDrawer();
+    }
+  }
+
+  navLinks.forEach(function(a) { a.addEventListener('click', handleNavClick); });
+  drawerLinks.forEach(function(a) { a.addEventListener('click', handleNavClick); });
+  document.querySelectorAll('.cover-nav a').forEach(function(a) { a.addEventListener('click', handleNavClick); });
+
+  // Drawer open / close
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggle.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+  });
+
+  overlay.addEventListener('click', closeDrawer);
+
+  // Esc key closes drawer
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeDrawer();
+      toggle.focus();
+    }
+  });
+
+  // Close drawer on resize to desktop
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 900 && drawer.classList.contains('open')) { closeDrawer(); }
+  });
+
+  // Back to top
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeDrawer();
+  }
+
+  backToTop.addEventListener('click', scrollToTop);
+  drawerBackToTop.addEventListener('click', scrollToTop);
+})();
 </script>
 </body>
 </html>
