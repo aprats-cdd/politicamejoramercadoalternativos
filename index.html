@@ -38,12 +38,22 @@
     --paper: #FAFAF8;
     --paper-warm: #F4F2ED;
     --white: #FFFFFF;
+    /* ── Navbar tokens ── */
+    --nav-h: 72px;
+    --nav-h-mobile: 60px;
+    --nav-bg: #FFFFFF;
+    --nav-border: #E8EAEE;
+    --nav-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    --nav-link: #5A6070;
+    --nav-link-hover: #1A3A6B;
+    --nav-link-active: #0E1117;
+    --nav-accent-bar: #2E5FAA;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   ::selection { background: var(--accent-mid); color: white; }
 
-  html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 64px; }
+  html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 80px; }
 
   body {
     font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
@@ -1167,52 +1177,264 @@
     line-height: 1.6;
   }
 
-  /* Sticky nav */
-  .sticky-nav {
+  /* ── MAIN NAV (INSTITUTIONAL) ── */
+  .main-nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    background: rgba(14,17,23,0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 0 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 52px;
+    height: var(--nav-h);
+    background: var(--nav-bg);
+    border-bottom: 1px solid transparent;
     transform: translateY(-100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .main-nav.visible {
+    transform: translateY(0);
+    border-bottom-color: var(--nav-border);
+  }
+  .main-nav.scrolled {
+    box-shadow: var(--nav-shadow);
   }
 
-  .sticky-nav.visible { transform: translateY(0); }
+  .main-nav-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 64px;
+    gap: 24px;
+  }
 
-  .sticky-nav-brand {
+  .main-nav-brand {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.4);
+    color: var(--nav-link);
     text-transform: uppercase;
-  }
-
-  .sticky-nav-links {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-  }
-
-  .sticky-nav-links a {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.4);
     text-decoration: none;
-    text-transform: uppercase;
+    flex-shrink: 0;
+    white-space: nowrap;
     transition: color 0.2s;
   }
-  .sticky-nav-links a:hover { color: rgba(255,255,255,0.8); }
-  .sticky-nav-links a.active { color: rgba(255,255,255,0.9); }
+  .main-nav-brand:hover { color: var(--nav-link-active); }
+
+  .main-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .main-nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.10em;
+    color: var(--nav-link);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0 14px;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .main-nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--nav-accent-bar);
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+  }
+  .main-nav-links a:hover { color: var(--nav-link-hover); }
+  .main-nav-links a:hover::after { transform: scaleX(1); }
+  .main-nav-links a.active { color: var(--nav-link-active); font-weight: 500; }
+  .main-nav-links a.active::after { transform: scaleX(1); }
+
+  /* Focus visible for keyboard navigation */
+  .main-nav-brand:focus-visible,
+  .main-nav-links a:focus-visible,
+  .main-nav-top:focus-visible,
+  .main-nav-toggle:focus-visible,
+  .nav-drawer-close:focus-visible,
+  .nav-drawer-links a:focus-visible,
+  .nav-drawer-top:focus-visible {
+    outline: 2px solid var(--nav-accent-bar);
+    outline-offset: 2px;
+  }
+
+  /* Back-to-top button (in navbar, right side) */
+  .main-nav-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--nav-link);
+    background: none;
+    border: 1px solid var(--nav-border);
+    padding: 6px 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s, border-color 0.2s, opacity 0.3s;
+    opacity: 0.4;
+  }
+  .main-nav-top:hover {
+    color: var(--nav-link-active);
+    border-color: var(--nav-link);
+    opacity: 1;
+  }
+  .main-nav.scrolled-deep .main-nav-top { opacity: 0.8; }
+
+  /* Hamburger toggle (hidden on desktop) */
+  .main-nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .main-nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--nav-link);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .main-nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .main-nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .main-nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── LATERAL DRAWER (MOBILE) ── */
+  .nav-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(14,17,23,0.35);
+    z-index: 150;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .nav-drawer-overlay.open { opacity: 1; visibility: visible; }
+
+  .nav-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    max-width: 85vw;
+    z-index: 160;
+    background: var(--nav-bg);
+    border-left: 1px solid var(--nav-border);
+    box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-drawer.open { transform: translateX(0); }
+
+  .nav-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--nav-border);
+    flex-shrink: 0;
+  }
+  .nav-drawer-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--nav-link);
+  }
+  .nav-drawer-close {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--nav-border);
+    cursor: pointer;
+    color: var(--nav-link);
+    font-size: 14px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-drawer-close:hover { background: var(--paper-warm); color: var(--nav-link-active); }
+
+  .nav-drawer-links {
+    list-style: none;
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+  }
+  .nav-drawer-links a {
+    display: flex;
+    align-items: center;
+    padding: 14px 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.10em;
+    color: var(--nav-link);
+    text-decoration: none;
+    text-transform: uppercase;
+    min-height: 48px;
+    border-left: 3px solid transparent;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+  }
+  .nav-drawer-links a:hover {
+    color: var(--nav-link-active);
+    background: var(--paper-warm);
+  }
+  .nav-drawer-links a.active {
+    color: var(--nav-link-active);
+    border-left-color: var(--nav-accent-bar);
+    font-weight: 500;
+  }
+
+  .nav-drawer-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--nav-border);
+    flex-shrink: 0;
+  }
+  .nav-drawer-top {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--nav-link);
+    background: var(--paper);
+    border: 1px solid var(--nav-border);
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-drawer-top:hover { color: var(--nav-link-active); border-color: var(--nav-link); }
 
   /* ── PANEL CIUDADANO ── */
   .ciudadano-trigger {
@@ -1350,7 +1572,7 @@
   @media print {
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .reveal { opacity: 1 !important; transform: none !important; }
-    .sticky-nav, .cover-nav { display: none !important; }
+    .main-nav, .nav-drawer, .nav-drawer-overlay, .cover-nav { display: none !important; }
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     html, body { width: 210mm; margin: 0; padding: 0; }
     .cover { height: 297mm; min-height: unset; page-break-after: always; break-after: page; background: var(--ink) !important; }
@@ -1381,7 +1603,7 @@
     .section-title { font-size: 32px !important; }
     .compare-table { font-size: 11px !important; }
     .compare-table th, .compare-table td { padding: 10px 12px !important; }
-    .progress-bar, .ciudadano-trigger, .ciudadano-overlay, .ciudadano-panel { display: none !important; }
+    .progress-bar, .ciudadano-trigger, .ciudadano-overlay, .ciudadano-panel, .main-nav-top { display: none !important; }
     .exec-summary { page-break-after: avoid; }
     .footnotes-section { page-break-before: always; break-before: page; }
     [data-source]::after { display: none !important; }
@@ -1414,8 +1636,11 @@
     .roadmap-grid { grid-template-columns: 1fr; }
     .roadmap-capa { border-right: none; border-bottom: 1px solid var(--rule); }
     .roadmap-capa:last-child { border-bottom: none; }
-    .sticky-nav { padding: 0 24px; }
-    .sticky-nav-links { gap: 16px; }
+    .main-nav-inner { padding: 0 24px; }
+    .main-nav-links { display: none; }
+    .main-nav-top { display: none; }
+    .main-nav-toggle { display: flex; }
+    .main-nav { height: var(--nav-h-mobile); }
     .cover-stats { grid-template-columns: 1fr; gap: 0; width: 100%; }
     .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 0; margin-right: 0; }
     .stat-item:last-child { border-bottom: none; }
@@ -1477,9 +1702,8 @@
     .roadmap-capa-title { font-size: 16px; }
     /* Infra cells */
     .infra-cell { padding: 24px 20px; }
-    /* Sticky nav: hide links on very small screens */
-    .sticky-nav-links { display: none; }
-    .sticky-nav { padding: 0 20px; }
+    .main-nav-inner { padding: 0 20px; }
+    .nav-drawer { width: 280px; }
     /* Closing */
     .closing .section { padding: 48px 20px; }
     .closing-title { font-size: clamp(22px, 6vw, 36px); }
@@ -1511,88 +1735,11 @@
     .proportion-bar-seg { font-size: 8px; }
   }
 
-  /* ── MOBILE HAMBURGER MENU ── */
-  .mobile-menu-btn {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 44px;
-    height: 44px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    flex-shrink: 0;
-  }
-  .mobile-menu-btn span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: rgba(255,255,255,0.5);
-    transition: transform 0.3s, opacity 0.3s;
-  }
-  .mobile-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
-  .mobile-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .mobile-nav-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(14,17,23,0.5);
-    z-index: 99;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .mobile-nav-overlay.open { display: block; opacity: 1; }
-
-  .mobile-nav-drawer {
-    display: none;
-    position: fixed;
-    top: 52px;
-    left: 0;
-    right: 0;
-    z-index: 101;
-    background: rgba(14,17,23,0.98);
-    backdrop-filter: blur(12px);
-    list-style: none;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-  }
-  .mobile-nav-drawer.open { display: block; transform: translateY(0); }
-  .mobile-nav-drawer li { border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .mobile-nav-drawer li:last-child { border-bottom: none; }
-  .mobile-nav-drawer a {
-    display: block;
-    padding: 14px 24px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.2s, background 0.2s;
-    min-height: 44px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-  }
-  .mobile-nav-drawer a:hover,
-  .mobile-nav-drawer a:active { color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.04); }
-
-  @media (max-width: 480px) {
-    .mobile-menu-btn { display: flex; }
-  }
-
   /* ── PRINT / PDF FIXES ── */
   @page { margin: 0; }
 
   @media print {
-    .mobile-menu-btn, .mobile-nav-overlay, .mobile-nav-drawer { display: none !important; }
+    .nav-drawer, .nav-drawer-overlay { display: none !important; }
     .exec-summary { page-break-before: avoid; }
     .context-bars, .proportion-bar { page-break-before: avoid; page-break-after: auto; }
   }
@@ -1615,11 +1762,20 @@
       --paper: #0E1117;
       --paper-warm: #141820;
       --white: #1A1E28;
+      /* Nav dark mode tokens */
+      --nav-bg: #141820;
+      --nav-border: #2C3140;
+      --nav-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      --nav-link: #8A8E9A;
+      --nav-link-hover: #7AAAF0;
+      --nav-link-active: #E8EAEE;
+      --nav-accent-bar: #5B8FDB;
     }
     body { -webkit-font-smoothing: auto; }
     ::selection { background: var(--accent-mid); color: #0E1117; }
     .cover { background: #080A0F; }
-    .sticky-nav { background: rgba(8,10,15,0.95); }
+    .main-nav { background: var(--nav-bg); }
+    .main-nav-toggle span { background: var(--nav-link); }
     .sartor-section { background: #080A0F; }
     .closing { background: #080A0F; }
     .flow-node { background: var(--white); }
@@ -1657,10 +1813,34 @@
 <!-- PROGRESS BAR -->
 <div class="progress-bar" id="progressBar"></div>
 
-<!-- STICKY NAV -->
-<nav class="sticky-nav" id="stickyNav">
-  <span class="sticky-nav-brand">Memorándum de Política Pública · 2026</span>
-  <ul class="sticky-nav-links">
+<!-- MAIN NAV -->
+<nav class="main-nav" id="mainNav" aria-label="Navegación principal del memorándum">
+  <div class="main-nav-inner">
+    <a href="#" class="main-nav-brand" id="navBrand">Memorándum · 2026</a>
+    <ul class="main-nav-links" role="list">
+      <li><a href="#acto1">I · La falla</a></li>
+      <li><a href="#acto2">II · Infraestructura</a></li>
+      <li><a href="#acto3">III · Sartor</a></li>
+      <li><a href="#acto4">IV · La reforma</a></li>
+      <li><a href="#objeciones">Objeciones</a></li>
+      <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
+    </ul>
+    <button class="main-nav-top" id="backToTop" aria-label="Volver al inicio de la página" title="Volver arriba">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 10V2M6 2L2 6M6 2l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Inicio
+    </button>
+    <button class="main-nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Abrir menú de navegación">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-drawer-overlay" id="navDrawerOverlay"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-label="Menú de navegación" aria-modal="true">
+  <div class="nav-drawer-header">
+    <span class="nav-drawer-title">Navegación</span>
+    <button class="nav-drawer-close" id="navDrawerClose" aria-label="Cerrar menú">&#10005;</button>
+  </div>
+  <ul class="nav-drawer-links" role="list">
     <li><a href="#acto1">I · La falla</a></li>
     <li><a href="#acto2">II · Infraestructura</a></li>
     <li><a href="#acto3">III · Sartor</a></li>
@@ -1668,19 +1848,10 @@
     <li><a href="#objeciones">Objeciones</a></li>
     <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
   </ul>
-  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
-<ul class="mobile-nav-drawer" id="mobileNavDrawer">
-  <li><a href="#acto1">I · La falla</a></li>
-  <li><a href="#acto2">II · Infraestructura</a></li>
-  <li><a href="#acto3">III · Sartor</a></li>
-  <li><a href="#acto4">IV · La reforma</a></li>
-  <li><a href="#objeciones">Objeciones</a></li>
-  <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
-</ul>
+  <div class="nav-drawer-footer">
+    <button class="nav-drawer-top" id="drawerBackToTop">&#8593; Volver arriba</button>
+  </div>
+</aside>
 
 <!-- COVER -->
 <section class="cover">
@@ -2556,44 +2727,130 @@
 </div>
 
 <script>
-  // Sticky nav on scroll
-  const nav = document.getElementById('stickyNav');
+  /* ── MAIN NAV: show/hide on scroll past cover ── */
+  const mainNav = document.getElementById('mainNav');
   const cover = document.querySelector('.cover');
-  const observer = new IntersectionObserver(
+  const coverObserver = new IntersectionObserver(
     ([entry]) => {
-      nav.classList.toggle('visible', !entry.isIntersecting);
+      mainNav.classList.toggle('visible', !entry.isIntersecting);
     },
-    { threshold: 0.1 }
+    { threshold: 0.05 }
   );
-  observer.observe(cover);
+  coverObserver.observe(cover);
 
-  // Progress bar
+  /* ── SHADOW + DEEP SCROLL STATE ── */
   const progressBar = document.getElementById('progressBar');
+  let ticking = false;
   window.addEventListener('scroll', () => {
-    const scrollTop = document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        // Progress bar
+        progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
+        // Shadow when scrolled past cover
+        mainNav.classList.toggle('scrolled', scrollTop > 100);
+        // Back-to-top emphasis after 40% scroll
+        mainNav.classList.toggle('scrolled-deep', scrollTop / scrollHeight > 0.4);
+        ticking = false;
+      });
+      ticking = true;
+    }
   }, { passive: true });
 
-  // Active nav tracking
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.sticky-nav-links a');
+  /* ── SCROLLSPY: active section tracking ── */
+  const allSections = document.querySelectorAll('section[id]');
+  const desktopLinks = document.querySelectorAll('.main-nav-links a');
+  const drawerLinks = document.querySelectorAll('.nav-drawer-links a');
+
+  function setActiveLink(id) {
+    const href = '#' + id;
+    desktopLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === href));
+    drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === href));
+  }
+
   const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-          });
+          setActiveLink(entry.target.getAttribute('id'));
         }
       });
     },
-    { threshold: 0.15, rootMargin: '-60px 0px -50% 0px' }
+    { threshold: 0.1, rootMargin: '-80px 0px -55% 0px' }
   );
-  sections.forEach(section => sectionObserver.observe(section));
+  allSections.forEach(s => sectionObserver.observe(s));
 
-  // Reveal on scroll
+  /* ── BACK TO TOP ── */
+  function scrollToTop(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.getElementById('backToTop').addEventListener('click', scrollToTop);
+  document.getElementById('drawerBackToTop').addEventListener('click', (e) => {
+    scrollToTop(e);
+    closeDrawer();
+  });
+  document.getElementById('navBrand').addEventListener('click', scrollToTop);
+
+  /* ── LATERAL DRAWER ── */
+  const navToggle = document.getElementById('navToggle');
+  const navDrawer = document.getElementById('navDrawer');
+  const navDrawerOverlay = document.getElementById('navDrawerOverlay');
+  const navDrawerClose = document.getElementById('navDrawerClose');
+
+  function openDrawer() {
+    navToggle.setAttribute('aria-expanded', 'true');
+    navDrawer.classList.add('open');
+    navDrawerOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Focus the close button for keyboard accessibility
+    requestAnimationFrame(() => navDrawerClose.focus());
+  }
+
+  function closeDrawer() {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navDrawer.classList.remove('open');
+    navDrawerOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    navToggle.focus();
+  }
+
+  navToggle.addEventListener('click', () => {
+    navDrawer.classList.contains('open') ? closeDrawer() : openDrawer();
+  });
+  navDrawerOverlay.addEventListener('click', closeDrawer);
+  navDrawerClose.addEventListener('click', closeDrawer);
+
+  // Close drawer on link click (smooth scroll handled by CSS)
+  navDrawer.querySelectorAll('.nav-drawer-links a').forEach(link => {
+    link.addEventListener('click', closeDrawer);
+  });
+
+  // Keyboard: trap focus inside drawer when open
+  navDrawer.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeDrawer(); return; }
+    if (e.key !== 'Tab') return;
+    const focusable = navDrawer.querySelectorAll('a, button');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  // Swipe right to close drawer
+  let drawerStartX = 0;
+  navDrawer.addEventListener('touchstart', (e) => { drawerStartX = e.touches[0].clientX; }, { passive: true });
+  navDrawer.addEventListener('touchmove', (e) => {
+    if (e.touches[0].clientX - drawerStartX > 60) closeDrawer();
+  }, { passive: true });
+
+  /* ── REVEAL ON SCROLL ── */
   const reveals = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver(
     (entries) => {
@@ -2608,7 +2865,7 @@
   );
   reveals.forEach(el => revealObserver.observe(el));
 
-  // Panel Ciudadano
+  /* ── PANEL CIUDADANO ── */
   const trigger = document.getElementById('ciudadanoTrigger');
   const overlay = document.getElementById('ciudadanoOverlay');
   const panel = document.getElementById('ciudadanoPanel');
@@ -2629,7 +2886,6 @@
   trigger.addEventListener('click', openPanel);
   overlay.addEventListener('click', closePanel);
   closeBtn.addEventListener('click', closePanel);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -2639,37 +2895,22 @@
     });
   });
 
-  // Swipe to close
+  // Swipe to close ciudadano panel
   let startY = 0;
   panel.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
   panel.addEventListener('touchmove', (e) => {
     if (e.touches[0].clientY - startY > 80) closePanel();
   }, { passive: true });
 
-  // Mobile hamburger menu
-  const menuBtn = document.getElementById('mobileMenuBtn');
-  const navOverlay = document.getElementById('mobileNavOverlay');
-  const navDrawer = document.getElementById('mobileNavDrawer');
-
-  function openMobileNav() {
-    menuBtn.classList.add('open');
-    navOverlay.classList.add('open');
-    navDrawer.classList.add('open');
-  }
-  function closeMobileNav() {
-    menuBtn.classList.remove('open');
-    navOverlay.classList.remove('open');
-    navDrawer.classList.remove('open');
-  }
-  menuBtn.addEventListener('click', () => {
-    navDrawer.classList.contains('open') ? closeMobileNav() : openMobileNav();
-  });
-  navOverlay.addEventListener('click', closeMobileNav);
-  navDrawer.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMobileNav);
+  /* ── GLOBAL ESCAPE KEY ── */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (navDrawer.classList.contains('open')) closeDrawer();
+      else closePanel();
+    }
   });
 
-  // Touch fallback for [data-source] tooltips
+  /* ── TOUCH TOOLTIPS ── */
   document.querySelectorAll('[data-source]').forEach(el => {
     el.setAttribute('tabindex', '0');
     el.addEventListener('touchstart', function(e) {
