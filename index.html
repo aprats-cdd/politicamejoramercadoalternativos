@@ -536,6 +536,11 @@
   .sartor-section .section-subtitle { color: rgba(255,255,255,0.5); }
   .sartor-section .prose { color: rgba(255,255,255,0.7); }
   .sartor-section .prose strong { color: #FFFFFF; }
+  .sartor-section .pull-quote {
+    border-color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.7);
+    margin-top: 48px;
+  }
 
   .sartor-grid {
     display: grid;
@@ -649,6 +654,14 @@
   .infra-cell.infra-problem { background: var(--danger-light); }
   .infra-cell.infra-solution { background: var(--accent-light); }
   .infra-cell.infra-solution .infra-cell-title { color: var(--accent); }
+
+  /* Architecture diagram */
+  .arch-diagram { margin-top: 64px; }
+  .arch-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .arch-gp { background: var(--accent-light); }
+  .arch-gp .infra-cell-label,
+  .arch-gp .infra-cell-title { color: var(--accent); }
+  .arch-custodio { background: var(--paper-warm); }
 
   /* ── ACT IV — Efectos ── */
   .effects-grid {
@@ -794,6 +807,7 @@
   .compare-table .col-chile { color: var(--danger); font-weight: 500; }
   .compare-table .col-ok { color: var(--accent); }
   .compare-table .col-dim { font-weight: 600; color: var(--ink); }
+  .compare-wrapper { margin-top: 64px; }
 
   /* ── COMPARE CARDS (mobile alternative to table) ── */
   .compare-cards { display: none; }
@@ -1131,6 +1145,14 @@
     transform: none;
   }
 
+  /* ── REDUCED MOTION ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; }
+    .progress-bar { transition: none; }
+  }
+
   /* ── PRINT / PDF STYLES ── */
   @media print {
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -1293,6 +1315,7 @@
     <li><a href="#acto3">III · Sartor</a></li>
     <li><a href="#acto4">IV · La reforma</a></li>
     <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
+    <li><a href="#fuentes">Fuentes</a></li>
   </ul>
 </nav>
 
@@ -1342,6 +1365,7 @@
       <li><a href="#acto2">Infraestructura</a></li>
       <li><a href="#acto3">Sartor</a></li>
       <li><a href="#acto4">La Reforma</a></li>
+      <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
     </ul>
   </div>
 </section>
@@ -1479,7 +1503,7 @@
     </div>
 
     <!-- Tabla comparativa -->
-    <div style="margin-top: 64px;">
+    <div class="compare-wrapper">
       <div class="act-label reveal">
         Análisis comparado · Chile · Luxemburgo · EE.UU.
       </div>
@@ -1664,7 +1688,7 @@
       </div>
     </div>
 
-    <blockquote class="pull-quote" style="border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); margin-top: 48px;">
+    <blockquote class="pull-quote">
       "Sartor no fue un caso de regulación insuficiente. Fue un caso de arquitectura ausente. La CMF sancionó lo que pudo, una vez el daño estaba consumado. La separación funcional opera ex-ante."
     </blockquote>
   </div>
@@ -1684,7 +1708,7 @@
     <div class="prose reveal">
       <p>Cuando la CMF emite la NCG de responsabilidad diferenciada, la cadena de consecuencias es directa. Los Fund Administrators independientes pueden cotizar servicios en Chile porque existe una asignación de responsabilidad que sus aseguradoras pueden modelar. <strong>Apex Group, Alter Domus e IQ-EQ</strong> — que ya operan en Colombia, Perú y México — pueden instalar operaciones en Chile en 60 días. Los gestores internacionales de private debt que hoy excluyen Chile de sus mandatos porque no pueden replicar su estructura operativa estándar, comienzan a considerarlo.</p>
 
-      <p>Cuando las AFPs incorporan la separación funcional en sus manuales de riesgo — orientadas por el oficio conjunto CMF-SP — todos los gestores que quieren acceder al capital previsional adoptan el modelo. sin que la CMF tenga que exigirlo.</p>
+      <p>Cuando las AFPs incorporan la separación funcional en sus manuales de riesgo — orientadas por el oficio conjunto CMF-SP — todos los gestores que quieren acceder al capital previsional adoptan el modelo. Sin que la CMF tenga que exigirlo.</p>
     </div>
 
     <div class="effects-grid reveal">
@@ -1795,12 +1819,12 @@
     </div>
 
     <!-- Architectural diagram -->
-    <div style="margin-top: 64px;">
+    <div class="arch-diagram">
       <div class="act-label reveal">Arquitectura · Tres entidades · Responsabilidades separadas</div>
-      <div class="infra-grid reveal" style="grid-template-columns: 1fr 1fr 1fr;">
-        <div class="infra-cell" style="background: var(--accent-light);">
-          <div class="infra-cell-label" style="color: var(--accent);">GP · Gestor</div>
-          <div class="infra-cell-title" style="color: var(--accent);">Decisiones de inversión</div>
+      <div class="infra-grid arch-grid reveal">
+        <div class="infra-cell arch-gp">
+          <div class="infra-cell-label">GP · Gestor</div>
+          <div class="infra-cell-title">Decisiones de inversión</div>
           <div class="infra-cell-text">Construcción de cartera · Gestión de riesgos · Responsabilidad fiduciaria indelegable · Cumplimiento del mandato prometido.<br><br><strong>Responsabilidad: plena e indelegable.</strong></div>
         </div>
         <div class="infra-cell">
@@ -1808,7 +1832,7 @@
           <div class="infra-cell-title">Administración operacional</div>
           <div class="infra-cell-text">Cálculo del NAV · Registro de aportantes · Distribuciones · Contabilidad · Verifica Reglamento Interno · Reporta a CMF en su perímetro.<br><br><strong>Responsabilidad: acotada y asegurable.</strong></div>
         </div>
-        <div class="infra-cell" style="background: var(--paper-warm);">
+        <div class="infra-cell arch-custodio">
           <div class="infra-cell-label">Custodio Regulado · Nuevo en Chile</div>
           <div class="infra-cell-title">Verificación independiente</div>
           <div class="infra-cell-text">Verifica existencia de activos · Verifica titularidad y estado · Supervisa flujos de efectivo · Reporta autónomamente a CMF sin consultar al GP ni al Fund Admin.<br><br><strong>Independencia verificadora · Reporte autónomo.</strong></div>
@@ -2051,6 +2075,7 @@
   trigger.addEventListener('click', openPanel);
   overlay.addEventListener('click', closePanel);
   closeBtn.addEventListener('click', closePanel);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
