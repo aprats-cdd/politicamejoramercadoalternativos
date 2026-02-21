@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #0E1117;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: #2E5FAA;
+  }
+  .tag {
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  h1 {
+    font-size: 52px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.15;
+    max-width: 800px;
+    margin-bottom: 40px;
+  }
+  h1 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+  }
+  .stats {
+    display: flex;
+    gap: 48px;
+    margin-top: auto;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-num {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-lbl {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.35);
+    max-width: 160px;
+  }
+  .brand {
+    position: absolute;
+    bottom: 40px;
+    right: 100px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="tag">Memorándum de Política Pública · Chile 2026</div>
+  <h1>USD 400.000M en ahorro administrado.<br><em>Cero infraestructura alternativa.</em></h1>
+  <div class="stats">
+    <div>
+      <div class="stat-num">83%</div>
+      <div class="stat-lbl">Financiamiento concentrado en banca</div>
+    </div>
+    <div>
+      <div class="stat-num">0</div>
+      <div class="stat-lbl">Fund Administrators independientes</div>
+    </div>
+    <div>
+      <div class="stat-num">9–15</div>
+      <div class="stat-lbl">Meses para implementar sin Congreso</div>
+    </div>
+  </div>
+  <div class="brand">Andrés Prats · Mercado de Capitales Alternativos</div>
+</body>
+</html>

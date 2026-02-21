@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0E1117"/>
+  <rect width="1200" height="4" fill="#2E5FAA"/>
+  <text x="100" y="140" font-family="Helvetica Neue,Arial,sans-serif" font-size="13" letter-spacing="3" fill="rgba(255,255,255,0.35)" text-transform="uppercase">MEMORANDUM DE POLITICA PUBLICA . CHILE 2026</text>
+  <text x="100" y="220" font-family="Georgia,serif" font-size="48" font-weight="600" fill="#FFFFFF">USD 400.000M en ahorro</text>
+  <text x="100" y="278" font-family="Georgia,serif" font-size="48" font-weight="600" fill="#FFFFFF">administrado.</text>
+  <text x="100" y="348" font-family="Georgia,serif" font-size="48" font-weight="600" fill="rgba(255,255,255,0.6)" font-style="italic">Cero infraestructura alternativa.</text>
+  <line x1="100" y1="430" x2="1100" y2="430" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="100" y="482" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#FFFFFF">83%</text>
+  <text x="100" y="504" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" fill="rgba(255,255,255,0.35)">Financiamiento concentrado en banca</text>
+  <text x="380" y="482" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#FFFFFF">0</text>
+  <text x="380" y="504" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" fill="rgba(255,255,255,0.35)">Fund Administrators independientes</text>
+  <text x="660" y="482" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#FFFFFF">9-15</text>
+  <text x="660" y="504" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" fill="rgba(255,255,255,0.35)">Meses para implementar sin Congreso</text>
+  <text x="1100" y="590" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" letter-spacing="2" fill="rgba(255,255,255,0.2)" text-anchor="end">ANDRES PRATS . MERCADO DE CAPITALES ALTERNATIVOS</text>
+</svg>
