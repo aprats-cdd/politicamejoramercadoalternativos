@@ -77,23 +77,10 @@
   .cover::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background:
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 79px,
-        rgba(255,255,255,0.03) 79px,
-        rgba(255,255,255,0.03) 80px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 79px,
-        rgba(255,255,255,0.03) 79px,
-        rgba(255,255,255,0.03) 80px
-      );
-    pointer-events: none;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent-mid);
+    z-index: 2;
   }
 
   .cover-header {
@@ -212,6 +199,29 @@
     color: rgba(255,255,255,0.4);
     line-height: 1.5;
     max-width: 180px;
+  }
+
+  .stat-item.stat-hero .stat-number {
+    font-size: 54px;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-source {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.02em;
+    color: rgba(255,255,255,0.2);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .cover-prepared {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+    margin-bottom: 12px;
   }
 
   .cover-footer {
@@ -449,25 +459,27 @@
   }
 
   .flow-node.flow-gap {
-    background: var(--danger-light);
-    border-color: #D4A5A5;
+    background: var(--white);
+    border-color: var(--rule);
+    border-left: 3px solid var(--danger);
   }
 
   .flow-node.flow-gap .flow-node-title {
-    color: var(--danger);
+    color: var(--ink);
   }
 
   .flow-node.flow-gap .flow-node-label {
-    color: #C06060;
+    color: var(--danger);
   }
 
   .flow-node.flow-ok {
-    background: var(--accent-light);
-    border-color: #A5BEDD;
+    background: var(--white);
+    border-color: var(--rule);
+    border-left: 3px solid var(--accent-mid);
   }
 
   .flow-node.flow-ok .flow-node-title {
-    color: var(--accent);
+    color: var(--ink);
   }
 
   .flow-arrow {
@@ -1173,6 +1185,7 @@
     .cover-stats { grid-template-columns: repeat(3, auto) !important; }
     .stat-item { border-right: 1px solid rgba(255,255,255,0.12) !important; border-bottom: none !important; padding: 24px 40px 24px 0 !important; margin-right: 40px !important; }
     .stat-item:last-child { border-right: none !important; margin-right: 0 !important; }
+    .stat-item.stat-hero .stat-number { font-size: 48px !important; }
     .sartor-grid { grid-template-columns: 1fr 1fr !important; }
     .sartor-numbers { grid-template-columns: repeat(3, 1fr) !important; }
     .infra-grid { grid-template-columns: 1fr 1fr !important; }
@@ -1248,6 +1261,7 @@
     .cover-headline { font-size: clamp(30px, 8vw, 42px); margin-bottom: 28px; }
     .cover-thesis { font-size: 15px; padding-left: 16px; margin-bottom: 40px; }
     .stat-number { font-size: 30px; }
+    .stat-item.stat-hero .stat-number { font-size: 42px; }
     .stat-label { font-size: 9px; max-width: 100%; }
     .cover-footer { padding: 20px 20px; flex-direction: column; gap: 12px; align-items: flex-start; }
     .cover-footer-left { font-size: 9px; }
@@ -1334,24 +1348,27 @@
   </div>
 
   <div class="cover-body">
-    <div class="cover-tag">Mercado de Capitales Alternativos · Reforma Regulatoria</div>
+    <div class="cover-prepared">Preparado para · CMF · Superintendencia de Pensiones</div>
+    <div class="cover-tag">Mercado de Capitales Alternativos · Reforma Regulatoria · Chile 2026</div>
     <h1 class="cover-headline">
-      El ahorro llega.<br>
-      <em>Pero no donde más falta.</em>
+      USD 400.000M en ahorro administrado.<br>
+      <em>Cero infraestructura alternativa.</em>
     </h1>
     <p class="cover-thesis">
-      Chile tiene más de <strong>USD 400.000M en ahorro administrado</strong><a href="#fn1" class="fn-ref">1</a>, un sistema bancario que financia al 83% de la economía<a href="#fn2" class="fn-ref">2</a>, y un mercado de capitales alternativos que aún no existe funcionalmente. La separación funcional entre gestión, administración y custodia es la infraestructura que conecta ambos — y que Chile todavía no tiene.
+      Chile tiene el sistema de ahorro previsional más maduro de América Latina<a href="#fn1" class="fn-ref">1</a>, un sistema bancario que concentra el 83% del financiamiento empresarial<a href="#fn2" class="fn-ref">2</a>, y un mercado de capitales alternativos que aún no existe funcionalmente. La separación funcional entre gestión, administración y custodia es la infraestructura que conecta ambos — y que Chile todavía no tiene.
     </p>
     <div class="cover-stats">
       <div class="stat-item">
         <div class="stat-number">USD 5.000M</div>
-        <div class="stat-label">Deuda privada en Chile<a href="#fn3" class="fn-ref">3</a>. Un mercado real sin verificación independiente.</div>
+        <div class="stat-label">Deuda privada en Chile. Un mercado real sin verificación independiente.</div>
+        <div class="stat-source">ACAFI, Q4 2025</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">83%</div>
-        <div class="stat-label">Del financiamiento empresarial concentrado en banca<a href="#fn2" class="fn-ref">2</a>. Los alternativos son aún de nicho.</div>
+        <div class="stat-label">Del financiamiento empresarial concentrado en banca. Los alternativos son aún de nicho.</div>
+        <div class="stat-source">CMF, IEF 2S 2025</div>
       </div>
-      <div class="stat-item">
+      <div class="stat-item stat-hero">
         <div class="stat-number">0</div>
         <div class="stat-label">Fund Administrators independientes autorizados en Chile hoy.</div>
       </div>
@@ -1403,7 +1420,7 @@
       <span class="act-number">I</span>
       La falla silenciosa del mercado de capitales chileno
     </div>
-    <h2 class="section-title reveal">El canal que Chile<br><em>nunca construyó.</em></h2>
+    <h2 class="section-title reveal">83% por un solo canal.<br><em>El resto no tiene infraestructura.</em></h2>
     <p class="section-subtitle reveal">"El sistema financiero chileno es sólido. Y aun así, no cumple su función más básica."</p>
 
     <div class="act1-grid">
