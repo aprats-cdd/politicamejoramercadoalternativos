@@ -997,6 +997,57 @@
     background: var(--paper-warm);
   }
 
+  .roadmap-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 48px;
+    padding: 0 16px;
+  }
+  .roadmap-timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .roadmap-timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--rule);
+    border: 2px solid var(--paper-warm);
+    box-shadow: 0 0 0 2px var(--rule);
+  }
+  .roadmap-timeline-item--active .roadmap-timeline-dot {
+    background: var(--accent-mid);
+    box-shadow: 0 0 0 2px var(--accent-mid);
+  }
+  .roadmap-timeline-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .roadmap-timeline-item--active .roadmap-timeline-label { color: var(--accent-mid); }
+  .roadmap-timeline-desc {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .roadmap-timeline-line {
+    flex: 1;
+    height: 2px;
+    background: var(--rule);
+    min-width: 40px;
+    margin: 0 16px;
+    margin-bottom: 40px;
+  }
+
   .roadmap-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -1102,58 +1153,6 @@
   .compare-table .col-dim { font-weight: 600; color: var(--ink); }
   .compare-wrapper { margin-top: 64px; }
 
-  /* ── COMPARE CARDS (mobile alternative to table) ── */
-  .compare-cards { display: none; }
-
-  .compare-card {
-    border: 1px solid var(--rule);
-    background: var(--white);
-    overflow: hidden;
-  }
-
-  .compare-card-dim {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--ink-muted);
-    background: var(--paper-warm);
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .compare-card-row {
-    display: grid;
-    grid-template-columns: 72px 1fr;
-    border-bottom: 1px solid var(--rule-light);
-  }
-  .compare-card-row:last-child { border-bottom: none; }
-
-  .compare-card-country {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    padding: 12px 10px;
-    border-right: 1px solid var(--rule-light);
-    background: var(--paper-warm);
-    display: flex;
-    align-items: flex-start;
-    line-height: 1.4;
-  }
-
-  .compare-card-text {
-    font-size: 12px;
-    line-height: 1.55;
-    padding: 12px 14px;
-    color: var(--ink-soft);
-  }
-
-  .compare-card-text.col-chile { color: var(--danger); font-weight: 500; }
-  .compare-card-text.col-ok { color: var(--accent); }
-
   /* ── FOOTNOTES SECTION ── */
   .footnotes-section {
     background: var(--paper-warm);
@@ -1187,6 +1186,25 @@
     background: var(--paper-warm);
   }
   .glossary-section .section { padding: 48px 64px; }
+  .glossary-toggle { width: 100%; }
+  .glossary-summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .glossary-summary::-webkit-details-marker { display: none; }
+  .glossary-toggle-hint {
+    font-weight: 400;
+    font-size: 10px;
+    color: var(--accent-mid);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .glossary-summary:hover .glossary-toggle-hint { opacity: 1; }
+  .glossary-toggle[open] .glossary-toggle-hint { display: none; }
+  .glossary-toggle[open] .glossary-grid { margin-top: 24px; }
   .glossary-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1970,6 +1988,10 @@
     .sartor-numbers { grid-template-columns: repeat(3, 1fr); }
     .infra-grid { grid-template-columns: 1fr; gap: 2px; }
     .effects-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .roadmap-timeline { margin-bottom: 32px; }
+    .roadmap-timeline-label { font-size: 11px; }
+    .roadmap-timeline-desc { font-size: 9px; }
+    .roadmap-timeline-line { min-width: 24px; margin: 0 8px; margin-bottom: 36px; }
     .roadmap-grid { grid-template-columns: 1fr; }
     .roadmap-capa { border-right: none; border-bottom: 1px solid var(--rule); }
     .roadmap-capa:last-child { border-bottom: none; }
@@ -1990,7 +2012,7 @@
     .compare-table { font-size: 12px; display: table; }
     .compare-table th, .compare-table td { padding: 10px 12px; }
     .compare-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 40px; }
-    .compare-cards { display: none; }
+
     .exec-summary-grid { grid-template-columns: 1fr; }
     .tldr .section { padding: 32px 32px; }
     .tldr-item { flex-direction: column; gap: 6px; }
@@ -2057,6 +2079,11 @@
     .effect-num { font-size: 36px; margin-bottom: 10px; }
     .effect-card { padding: 22px; }
     /* Roadmap */
+    .roadmap-timeline { margin-bottom: 24px; padding: 0 8px; }
+    .roadmap-timeline-dot { width: 10px; height: 10px; }
+    .roadmap-timeline-label { font-size: 10px; }
+    .roadmap-timeline-desc { font-size: 8px; }
+    .roadmap-timeline-line { min-width: 16px; margin: 0 4px; margin-bottom: 32px; }
     .roadmap-capa { padding: 24px 20px; }
     .roadmap-capa-title { font-size: 16px; }
     /* Infra cells */
@@ -2104,9 +2131,8 @@
     .ciudadano-screen--prose p, .ciudadano-screen--close p { font-size: 15px; }
     /* Missing overrides for narrow screens */
     .context-bar-item { grid-template-columns: 52px 1fr 36px; gap: 6px; }
-    .compare-table-scroll { display: none; }
-    .compare-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
-    .compare-card-row { grid-template-columns: 56px 1fr; }
+    .compare-table { font-size: 11px; }
+    .compare-table th, .compare-table td { padding: 8px 10px; }
     .footnote-item { gap: 8px; }
     .infra-cell-title { font-size: 14px; }
     .infra-cell-text { font-size: 12px; }
@@ -2153,7 +2179,7 @@
     .closing { background: #080A0F; }
     .flow-node { background: var(--white); }
     .effect-card { background: var(--white); }
-    .compare-card { background: var(--white); }
+
     .infra-cell { border-color: var(--rule); }
     .infra-cell.infra-problem { background: var(--danger-light); }
     .infra-cell.infra-solution { background: var(--accent-light); }
@@ -2177,8 +2203,7 @@
     .compare-table th { background: var(--paper-warm); color: var(--ink); border-color: var(--rule); }
     .compare-table td { border-color: var(--rule); }
     .compare-table tr:hover td { background: var(--paper-warm); }
-    .compare-card-dim { background: var(--paper-warm); border-color: var(--rule); }
-    .compare-card-country { background: var(--paper-warm); border-color: var(--rule); }
+
     .ciudadano-trigger { background: #1A1E28; border-color: var(--rule); }
     .ciudadano-screen--hero { background: #0a0c12; }
     .ciudadano-screen--data { background: var(--accent-light); }
@@ -2364,22 +2389,14 @@
       Tres problemas que en mercados públicos no existen
     </div>
     <h2 class="section-title reveal">Valor estimado. Activos no verificados.<br><em>Flujos sin monitoreo.</em></h2>
-    <p class="section-subtitle reveal">"Los tres problemas que definen a los mercados privados — y que Chile no ha resuelto."</p>
+    <p class="section-subtitle reveal">Los tres problemas que definen a los mercados privados — y que Chile no ha resuelto.</p>
 
     <div class="act1-grid">
       <div>
         <div class="prose reveal">
-          <p>Un mercado de capitales — público o privado — canaliza ahorro hacia inversión. La diferencia está en una sola restricción: en mercados públicos, los activos se transan en bolsa. En mercados privados, no. Esa restricción tiene tres consecuencias directas que definen todo lo que sigue.</p>
+          <p>En mercados privados no hay precio de bolsa, no hay depósito central de valores y no hay cámara de compensación. Alguien tiene que estimar el valor de activos que no se transan, verificar que esos activos existan, y monitorear que los flujos correspondan al mandato del fondo. En mercados desarrollados, tres actores independientes resuelven esos tres problemas: el Fund Administrator estima valor, el Custodio Regulado verifica activos, y ambos reportan autónomamente al regulador. En Chile, un solo actor — la AGF — cumple las tres funciones sobre sí mismo.</p>
 
-          <p><strong>Valorización.</strong> En mercados públicos, el precio es la última transacción entre comprador y vendedor. Es un hecho observable. En mercados privados, no hay transacción recurrente. Alguien tiene que estimar el valor de activos que no se transan — y esa estimación determina las comisiones que cobra el gestor, los retornos que se reportan a los aportantes, y las decisiones de rescate que toman los inversionistas.</p>
-
-          <p><strong>Existencia del activo.</strong> En mercados públicos, los valores están en registro electrónico del DCV, verificables en tiempo real. En mercados privados, el activo es un contrato — un pagaré, un crédito, una participación, un inmueble. Alguien tiene que verificar que ese contrato existe, que el fondo es titular, y en qué estado se encuentra.</p>
-
-          <p><strong>Flujos de caja.</strong> En mercados públicos, la cámara de compensación liquida transacciones con margin diario. En mercados privados, los flujos son capital calls, distribuciones, pagos de interés, rescates. Alguien tiene que monitorear que los flujos correspondan a lo que el fondo prometió.</p>
-
-          <p>En mercados desarrollados, tres actores independientes resuelven estos tres problemas: el Fund Administrator estima valor, el Custodio Regulado verifica activos, y ambos reportan autónomamente al regulador. En Chile, un solo actor — la AGF — cumple las tres funciones sobre sí mismo.</p>
-
-          <p>¿Por qué importa? Porque la banca concentra el 83% del financiamiento empresarial<a href="#fn2" class="fn-ref">2</a> y los mercados privados son el canal diseñado para cubrir lo que la banca no puede cubrir por diseño prudencial: pymes en crecimiento, infraestructura regional, deuda de largo plazo. Las AFPs administran más de USD 200.000M<a href="#fn1" class="fn-ref">1</a> y tienen mandato de inversión en activos privados. Pero ese canal no funciona sin los tres actores que lo hacen verificable. Los beneficiarios de la reforma son los aportantes, las empresas que necesitan financiamiento, y la economía real que los conecta.</p>
+          <p>¿Por qué importa? Porque la banca concentra el 83% del financiamiento empresarial<a href="#fn2" class="fn-ref">2</a> y los mercados privados son el canal diseñado para cubrir lo que la banca no puede cubrir por diseño prudencial: pymes en crecimiento, infraestructura regional, deuda de largo plazo. Las AFPs administran más de USD 200.000M<a href="#fn1" class="fn-ref">1</a> — más de la mitad del USD 400.000M en ahorro institucional total — y tienen mandato de inversión en activos privados. Pero ese canal no funciona sin los tres actores que lo hacen verificable.</p>
         </div>
 
         <blockquote class="pull-quote reveal">
@@ -2443,16 +2460,12 @@
       El problema de infraestructura
     </div>
     <h2 class="section-title reveal">No es falta de capital.<br>Es falta de arquitectura.</h2>
-    <p class="section-subtitle reveal">"El mercado no despega porque no tiene la infraestructura operativa que los inversionistas institucionales exigen como condición de entrada."</p>
+    <p class="section-subtitle reveal">El mercado no despega porque no tiene la infraestructura operativa que los inversionistas institucionales exigen como condición de entrada.</p>
 
     <div class="prose reveal">
-      <p>Los tres problemas del Acto I tienen una solución conocida. Luxemburgo, Estados Unidos y Reino Unido la implementaron hace más de una década. La diferencia entre Chile y esos mercados no es de sofisticación financiera — es que ellos construyeron los actores independientes que resuelven valorización, existencia de activos y flujos de caja, y Chile no. El mercado de deuda privada en Chile tiene aproximadamente USD 5.000M en activos bajo gestión<a href="#fn3" class="fn-ref">3</a>. Para una economía de USD 320.000M de PIB<a href="#fn4" class="fn-ref">4</a> con el sistema previsional más maduro de la región, ese número no refleja falta de demanda. Refleja la ausencia de los tres actores que convierten el apetito en capital desplegado.</p>
+      <p>El mercado de deuda privada en Chile tiene aproximadamente USD 5.000M en activos bajo gestión<a href="#fn3" class="fn-ref">3</a>. Para una economía de USD 320.000M de PIB<a href="#fn4" class="fn-ref">4</a> con el sistema previsional más maduro de la región, ese número no refleja falta de demanda — refleja la ausencia de infraestructura. Luxemburgo, EE.UU. y UK construyeron los actores independientes que resuelven valorización, existencia de activos y flujos de caja. Chile no. La solución tiene un nombre preciso: <strong>separación funcional entre gestión, administración y custodia</strong>.</p>
 
-      <p>Las AFPs tienen mandato de inversión en activos privados, los family offices buscan retorno descorrelacionado, y hay capital institucional internacional disponible para mercados emergentes con institucionalidad sólida. Todos ellos exigen, como condición de entrada, una infraestructura operativa que Chile todavía no tiene: un circuito independiente de verificación que permita desplegar capital con los estándares de due diligence que sus propios reguladores les exigen.</p>
-
-      <p>Esa infraestructura tiene un nombre preciso en todos los mercados donde la industria funciona: <strong>separación funcional entre gestión, administración y custodia</strong>. El mecanismo que hace posible que un inversionista institucional entregue capital a un gestor que no conoce, sobre activos que no puede observar directamente, con confianza de que existe un circuito independiente de verificación.</p>
-
-      <p>Hoy en Chile ese circuito no existe. La misma AGF que toma la decisión de inversión calcula el NAV sobre el que cobra comisiones, registra los aportantes, verifica su propio cumplimiento, y declara la existencia de los activos subyacentes. El capital institucional sofisticado no entra al mercado chileno en la escala que debería, y el capital local que sí entra lo hace asumiendo un riesgo estructural que nadie puede cuantificar, porque no existe el actor que podría hacerlo.</p>
+      <p>Hoy la AGF toma decisiones de inversión, calcula el NAV sobre el que cobra comisiones, registra los aportantes y declara la existencia de los activos subyacentes. El capital institucional sofisticado — AFPs, seguros, GPs internacionales — no entra al mercado chileno en la escala que debería, porque no existe el circuito independiente que sus propios reguladores les exigen como condición de entrada.</p>
     </div>
 
     <div class="infra-grid reveal">
@@ -2533,106 +2546,6 @@
       </table>
       </div>
 
-      <!-- Mobile cards (fallback for very narrow screens) -->
-      <div class="compare-cards">
-
-        <div class="compare-card">
-          <div class="compare-card-dim">Gestor de inversiones</div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Chile</div>
-            <div class="compare-card-text col-chile">AGF todo-en-uno. Gestión + administración + custodia concentradas.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Lux.</div>
-            <div class="compare-card-text col-ok">AFM autorizado CSSF. Separación funcional obligatoria.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">EE.UU.</div>
-            <div class="compare-card-text col-ok">Investment Adviser registrado SEC. Investment Advisers Act 1940.</div>
-          </div>
-        </div>
-
-        <div class="compare-card">
-          <div class="compare-card-dim">Administración operacional</div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Chile</div>
-            <div class="compare-card-text col-chile">No existe como entidad independiente. Cero Fund Admins autorizados.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Lux.</div>
-            <div class="compare-card-text col-ok">Fund Admin delegatario del AFM bajo CSSF Circular 22/811.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">EE.UU.</div>
-            <div class="compare-card-text col-ok">Fund Administrators y Transfer Agents. Industria desarrollada.</div>
-          </div>
-        </div>
-
-        <div class="compare-card">
-          <div class="compare-card-dim">Custodia y verificación</div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Chile</div>
-            <div class="compare-card-text col-chile">No existe. Ningún actor verifica existencia o estado de activos.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Lux.</div>
-            <div class="compare-card-text col-ok">Depositario obligatorio. AIFMD art. 21. Responsabilidad objetiva.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">EE.UU.</div>
-            <div class="compare-card-text col-ok">Qualified Custodian. Custody Rule 206(4)-2. Examen sorpresa PCAOB.</div>
-          </div>
-        </div>
-
-        <div class="compare-card">
-          <div class="compare-card-dim">Verificación del mandato</div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Chile</div>
-            <div class="compare-card-text col-chile">AGF verifica su propio cumplimiento. Sin circuito independiente.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Lux.</div>
-            <div class="compare-card-text col-ok">Depositario verifica cada operación contra prospecto. Art. 21(9).</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">EE.UU.</div>
-            <div class="compare-card-text col-ok">Custodio + examen sorpresa anual auditor PCAOB.</div>
-          </div>
-        </div>
-
-        <div class="compare-card">
-          <div class="compare-card-dim">Reporte autónomo</div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Chile</div>
-            <div class="compare-card-text col-chile">No existe. CMF supervisa AGF como entidad. Sin interlocutor independiente.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Lux.</div>
-            <div class="compare-card-text col-ok">Depositario reporta a CSSF autónomamente sin consultar al gestor.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">EE.UU.</div>
-            <div class="compare-card-text col-ok">Custodio comunica directamente a inversores. Auditor PCAOB reporta a SEC.</div>
-          </div>
-        </div>
-
-        <div class="compare-card">
-          <div class="compare-card-dim">Peers LatAm</div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Colombia</div>
-            <div class="compare-card-text col-ok">3 Fund Admins autorizados por SFC (Deceval, Fiduciaria Bancolombia, Cititrust). Separación parcial.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Perú</div>
-            <div class="compare-card-text" style="color: var(--ink-muted);">SBS permite delegación parcial de funciones operacionales. Sin separación completa.</div>
-          </div>
-          <div class="compare-card-row">
-            <div class="compare-card-country">Chile</div>
-            <div class="compare-card-text col-chile">Sin separación funcional. Sin categoría jurídica de Fund Admin.</div>
-          </div>
-        </div>
-
-      </div><!-- /compare-cards -->
     </div>
 
     <!-- Chile en contexto: visualizaciones comparativas -->
@@ -2711,12 +2624,10 @@
       La consecuencia predecible de un sistema incompleto
     </div>
     <h2 class="section-title reveal">Sartor: cada falla corresponde<br>a un problema sin resolver.</h2>
-    <p class="section-subtitle reveal">"Cada falla que la CMF documentó corresponde exactamente a un problema que la separación funcional resuelve."</p>
+    <p class="section-subtitle reveal">Cada falla que la CMF documentó corresponde exactamente a un problema que la separación funcional resuelve.</p>
 
     <div class="prose reveal">
-      <p>El caso Sartor es la consecuencia documentada del modelo concentrado — la CMF lo registró con una precisión que raramente se ve en expedientes sancionatorios. Entre 2020 y 2024, Sartor AGF canalizó <strong>+CLP 100.000MM en créditos hacia empresas relacionadas</strong><a href="#fn5" class="fn-ref">5</a> con sus propios directores y controladores, a través de fondos públicos administrados bajo la LUF. Los estados financieros de Sartor Leasing y Sartor Táctico fueron falsificados durante cuatro períodos consecutivos. Las pérdidas superaron el <strong>85% del valor patrimonial</strong> de algunos fondos, según auditorías de PwC y Deloitte<a href="#fn7" class="fn-ref">7</a>.</p>
-
-      <p>La CMF aplicó la sanción más severa de su historia — 367.500 UF y revocación de existencia<a href="#fn5" class="fn-ref">5</a> — y derivó el caso al Ministerio Público bajo la Ley de Delitos Económicos 21.595<a href="#fn6" class="fn-ref">6</a>. El caso Sartor es útil como referencia regulatoria no por su tamaño — +CLP 100.000MM es la cifra, pero el mercado chileno ha visto otras pérdidas — sino porque la CMF documentó cada falla con precisión inusual. Lo que falló no fue la supervisión. Fue que no existía la arquitectura que habría hecho la supervisión posible: cada una de las fallas que la separación funcional habría prevenido ocurrió — sin excepción.</p>
+      <p>Entre 2020 y 2024, Sartor AGF canalizó <strong>+CLP 100.000MM en créditos hacia empresas relacionadas</strong><a href="#fn5" class="fn-ref">5</a> a través de fondos públicos. Estados financieros falsificados durante cuatro períodos consecutivos. Pérdidas superiores al <strong>85% del valor patrimonial</strong> en algunos fondos<a href="#fn7" class="fn-ref">7</a>. La CMF aplicó la sanción más severa de su historia — 367.500 UF y revocación de existencia<a href="#fn5" class="fn-ref">5</a> — y derivó el caso al Ministerio Público bajo la Ley 21.595<a href="#fn6" class="fn-ref">6</a>. Lo que falló no fue la supervisión. Fue que no existía la arquitectura que habría hecho posible detectar cada una de estas fallas antes de que el daño fuera consumado.</p>
     </div>
 
     <div class="sartor-grid reveal">
@@ -2753,9 +2664,6 @@
       </div>
     </div>
 
-    <blockquote class="pull-quote">
-      "Sartor no fue un accidente. Fue la consecuencia predecible de un sistema donde el mismo actor estima valor, declara existencia de activos y controla los flujos — sin que nadie lo verifique."
-    </blockquote>
   </div>
 </section>
 
@@ -2768,7 +2676,7 @@
       La reforma como habilitador de industria
     </div>
     <h2 class="section-title reveal">No es compliance.<br>Es construcción de mercado.</h2>
-    <p class="section-subtitle reveal">"La reforma construye los tres actores independientes que resuelven los tres problemas que definen a los mercados privados."</p>
+    <p class="section-subtitle reveal">La reforma construye los tres actores independientes que resuelven los tres problemas que definen a los mercados privados.</p>
 
     <div class="prose reveal">
       <p>Cuando la CMF emite la NCG de responsabilidad diferenciada, la cadena de consecuencias es directa. Los Fund Administrators independientes pueden cotizar servicios en Chile porque existe una asignación de responsabilidad que sus aseguradoras pueden modelar. <strong>Apex Group, Alter Domus e IQ-EQ</strong><a href="#fn12" class="fn-ref">12</a> — que ya operan en Colombia, Perú y México — pueden instalar operaciones en Chile en 60 días<a href="#fn13" class="fn-ref">13</a>. Los gestores internacionales de private debt que hoy excluyen Chile de sus mandatos porque no pueden replicar su estructura operativa estándar, comienzan a considerarlo.</p>
@@ -2776,13 +2684,15 @@
       <p>Cuando las AFPs incorporan la separación funcional en sus manuales de riesgo — orientadas por el oficio conjunto CMF-SP — todos los gestores que quieren acceder al capital previsional adoptan el modelo. Sin que la CMF tenga que exigirlo.</p>
 
       <p><strong>El costo y el retorno.</strong> Un Fund Admin global cobra entre 3 y 7 puntos base sobre AUM (benchmark EFAMA/Monterone Partners, 2024). Para un fondo chileno de USD 100M, el costo anual es de USD 30.000–70.000 — comparable al costo de una posición de back-office internalizada. A cambio, la industria desbloquea la entrada de capital institucional que hoy se excluye: si Chile capturara el 1% del capital global en mercados privados que busca LatAm, eso representaría USD 8.000–12.000M adicionales en la próxima década<a href="#fn14" class="fn-ref">14</a>.</p>
+
+      <p>El resultado neto: una industria de mercados privados funcionalmente robusta que canaliza capital previsional hacia pymes, infraestructura regional y proyectos de largo plazo — los segmentos donde la banca no entra y donde el impacto económico es mayor.</p>
     </div>
 
     <div class="effects-grid reveal">
       <div class="effect-card">
         <div class="effect-num">01</div>
-        <div class="effect-title">Entrada de Fund Admins globales</div>
-        <div class="effect-text">Apex, Alter Domus e IQ-EQ operan en toda América Latina. Con pasaporte expedito de 60 días, presencia operativa en Chile en el primer año post-Registro. Competencia inmediata en precio y calidad.</div>
+        <div class="effect-title">Entrada de Fund Admins globales + controles por oposición</div>
+        <div class="effect-text">Apex, Alter Domus e IQ-EQ operan en toda América Latina. Con pasaporte expedito de 60 días, presencia operativa en Chile en el primer año. El Fund Admin tiene incentivo económico para rechazar instrucciones del GP que contradicen el reglamento — el fraude se vuelve más difícil sin que la CMF tenga que detectarlo.</div>
       </div>
       <div class="effect-card">
         <div class="effect-num">02</div>
@@ -2796,18 +2706,8 @@
       </div>
       <div class="effect-card">
         <div class="effect-num">04</div>
-        <div class="effect-title">Mayor especialización en cada capa</div>
-        <div class="effect-text">Roles y fronteras claras generan especialización real. El GP se concentra en originar y gestionar crédito. El Fund Admin en operar con precisión. El custodio en verificar. Cada actor compite en su perímetro.</div>
-      </div>
-      <div class="effect-card">
-        <div class="effect-num">05</div>
-        <div class="effect-title">Controles por oposición generados por el mercado</div>
-        <div class="effect-text">El Fund Admin tiene incentivo económico para rechazar instrucciones del GP que contradicen el reglamento del fondo — porque responde por errores en su perímetro. El fraude se vuelve más difícil sin que la CMF tenga que detectarlo.</div>
-      </div>
-      <div class="effect-card">
-        <div class="effect-num">06</div>
-        <div class="effect-title">Ahorro fluye hacia la economía real</div>
-        <div class="effect-text">Una industria de mercados privados funcionalmente robusta canaliza capital previsional hacia pymes, infraestructura regional y proyectos de largo plazo — los segmentos donde la banca no entra y donde el impacto económico es mayor.</div>
+        <div class="effect-title">Especialización real en cada capa</div>
+        <div class="effect-text">El GP se concentra en originar y gestionar. El Fund Admin en operar con precisión. El custodio en verificar. Cada actor compite en su perímetro. Roles claros generan competencia en precio y calidad.</div>
       </div>
     </div>
   </div>
@@ -2821,7 +2721,7 @@
       Objeciones previsibles · Y sus respuestas
     </div>
     <h2 class="section-title reveal">Cada objeción previsible.<br><em>Y lo que responde la evidencia.</em></h2>
-    <p class="section-subtitle reveal">"Un argumento que no aborda sus críticas no merece ser tomado en serio."</p>
+    <p class="section-subtitle reveal">Un argumento que no aborda sus críticas no merece ser tomado en serio.</p>
 
     <div class="effects-grid grid-2col reveal">
       <div class="effect-card">
@@ -2879,7 +2779,27 @@
       Hoja de ruta · Sin Congreso primero
     </div>
     <h2 class="section-title reveal">Tres capas normativas.<br>Una sola dirección.</h2>
-    <p class="section-subtitle reveal">"Primero crear el mercado, luego codificar lo que ya funciona."</p>
+    <p class="section-subtitle reveal">Primero crear el mercado, luego codificar lo que ya funciona.</p>
+
+    <div class="roadmap-timeline reveal">
+      <div class="roadmap-timeline-item roadmap-timeline-item--active">
+        <div class="roadmap-timeline-dot"></div>
+        <div class="roadmap-timeline-label">9–15 meses</div>
+        <div class="roadmap-timeline-desc">Sin Congreso</div>
+      </div>
+      <div class="roadmap-timeline-line"></div>
+      <div class="roadmap-timeline-item">
+        <div class="roadmap-timeline-dot"></div>
+        <div class="roadmap-timeline-label">24–36 meses</div>
+        <div class="roadmap-timeline-desc">Congreso codifica</div>
+      </div>
+      <div class="roadmap-timeline-line"></div>
+      <div class="roadmap-timeline-item">
+        <div class="roadmap-timeline-dot"></div>
+        <div class="roadmap-timeline-label">36–48 meses</div>
+        <div class="roadmap-timeline-desc">Arquitectura completa</div>
+      </div>
+    </div>
 
     <div class="roadmap-grid reveal">
       <!-- Capa B -->
@@ -2971,7 +2891,8 @@
 <hr class="section-divider">
 <section id="definiciones" class="glossary-section">
   <div class="section">
-    <div class="act-label">Definiciones · Lenguaje del memorándum</div>
+    <details class="glossary-toggle">
+      <summary class="act-label glossary-summary">Definiciones · Lenguaje del memorándum <span class="glossary-toggle-hint">Expandir</span></summary>
     <div class="glossary-grid">
       <div class="glossary-item">
         <div class="glossary-term">Mercado de capitales privados</div>
@@ -3002,6 +2923,7 @@
         <div class="glossary-def">Entidad regulada por la CMF bajo la LUF 20.712 que en Chile concentra gestión, administración, cálculo de NAV, registro de aportantes y declaración de existencia de activos. Es el modelo que esta reforma propone separar.</div>
       </div>
     </div>
+    </details>
   </div>
 </section>
 
