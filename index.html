@@ -71,7 +71,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 3px;
+    height: 4px;
     background: var(--accent-mid);
     z-index: 200;
     width: 0%;
@@ -223,7 +223,7 @@
 
   .stat-source {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.02em;
     color: rgba(255,255,255,0.2);
     margin-top: 6px;
@@ -321,7 +321,7 @@
   /* ── DOC REF BADGE ── */
   .doc-ref {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.10em;
     color: rgba(255,255,255,0.3);
     text-transform: uppercase;
@@ -374,7 +374,7 @@
     height: 22px;
     border: 1px solid var(--rule);
     border-radius: 50%;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 500;
     color: var(--ink-muted);
   }
@@ -453,7 +453,7 @@
 
   .flow-node-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -530,7 +530,7 @@
   }
   .context-bars-title {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -580,7 +580,7 @@
   }
   .context-bar-source {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     color: var(--ink-muted);
     margin-top: 8px;
     opacity: 0.6;
@@ -627,7 +627,7 @@
   }
   .proportion-bar-legend span {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     color: var(--ink-muted);
     letter-spacing: 0.04em;
   }
@@ -779,7 +779,7 @@
     background: #8B1A1A;
     color: white;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.12em;
     padding: 3px 8px;
   }
@@ -846,7 +846,7 @@
 
   .infra-cell-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -941,7 +941,7 @@
 
   .roadmap-capa-badge {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     display: inline-block;
@@ -981,7 +981,7 @@
 
   .roadmap-measure-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -1004,7 +1004,7 @@
     text-align: left;
     padding: 12px 16px;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -1041,7 +1041,7 @@
 
   .compare-card-dim {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 500;
@@ -1060,7 +1060,7 @@
 
   .compare-card-country {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.10em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -1624,7 +1624,7 @@
   }
   .ciudadano-card-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ink-muted); margin-bottom: 8px;
   }
   .ciudadano-card-title {
@@ -1646,7 +1646,7 @@
   }
   .ciudadano-stat-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 0.1em; color: var(--ink-muted); line-height: 1.5;
+    font-size: 10px; letter-spacing: 0.1em; color: var(--ink-muted); line-height: 1.5;
   }
 
   /* ── CIUDADANO SCREENS (narrative tabs) ── */
@@ -1772,6 +1772,45 @@
   /* Tab label variants */
   .ciudadano-tab-short { display: none; }
 
+  /* ── MOBILE FAB BACK-TO-TOP ── */
+  .mobile-top-fab {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 90;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-top-fab.visible { opacity: 0.8; }
+  .mobile-top-fab:active { opacity: 1; }
+
+  /* ── SECTION INDICATOR (mobile nav) ── */
+  .main-nav-section {
+    display: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--nav-link);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+  }
+  .main-nav.scrolled .main-nav-section { opacity: 1; }
+
   /* ── ANIMATIONS ── */
   .reveal {
     opacity: 0;
@@ -1861,13 +1900,16 @@
     .roadmap-capa { border-right: none; border-bottom: 1px solid var(--rule); }
     .roadmap-capa:last-child { border-bottom: none; }
     .main-nav-inner { padding: 0 24px; }
+    .mobile-top-fab { display: flex; }
+    .main-nav-section { display: block; }
     .main-nav-links { display: none; }
     .main-nav-top { display: none; }
     .main-nav-toggle { display: flex; }
     .main-nav { height: var(--nav-h-mobile); }
-    .cover-stats { grid-template-columns: 1fr; gap: 0; width: 100%; }
-    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 0; margin-right: 0; }
-    .stat-item:last-child { border-bottom: none; }
+    .cover-stats { grid-template-columns: repeat(3, 1fr); gap: 0; width: 100%; }
+    .stat-item { border-right: 1px solid rgba(255,255,255,0.08); padding: 16px 12px 16px 0; margin-right: 12px; }
+    .stat-item:last-child { border-right: none; margin-right: 0; }
+    .stat-peers { gap: 6px; }
     .closing-footer { flex-direction: column; gap: 16px; align-items: flex-start; }
     .closing-footer-disclaimer { text-align: left; max-width: 100%; }
     /* Table: stack as cards */
@@ -1885,11 +1927,13 @@
     .footnotes-section .section { padding: 48px 32px; }
     .glossary-grid { grid-template-columns: 1fr; gap: 16px; }
     .glossary-section .section { padding: 48px 32px; }
-    .flow-split-row { grid-template-columns: 1fr; }
-    .flow-split-col.flow-split-gap { border-left: 3px solid var(--danger); border-top: 1px solid var(--rule-light); }
+    .flow-split-row { grid-template-columns: 1fr 1fr; }
+    .flow-split-col { padding: 10px 12px; }
+    .flow-split-col .flow-node-title { font-size: 10px; }
+    .flow-split-col .flow-node-desc { font-size: 10px; line-height: 1.4; }
     .context-bar-item { grid-template-columns: 64px 1fr 40px; gap: 8px; }
     .stat-peers { gap: 12px; }
-    .proportion-bar-seg { font-size: 9px; }
+    .proportion-bar-seg { font-size: 10px; }
   }
 
   /* ── MOBILE 480px ── */
@@ -1898,26 +1942,32 @@
     .cover-logo { font-size: 10px; letter-spacing: 0.12em; }
     .cover-meta { font-size: 10px; }
     .cover-body { padding: 36px 20px; }
-    .cover-tag { font-size: 9px; margin-bottom: 20px; }
+    .cover-tag { font-size: 10px; margin-bottom: 20px; }
     .cover-headline { font-size: clamp(30px, 8vw, 42px); margin-bottom: 28px; }
-    .cover-thesis { font-size: 15px; padding-left: 16px; margin-bottom: 40px; }
-    .stat-number { font-size: 30px; }
-    .stat-item.stat-hero .stat-number { font-size: 42px; }
-    .stat-label { font-size: 9px; max-width: 100%; }
+    .cover-thesis { font-size: 16px; padding-left: 16px; margin-bottom: 40px; color: rgba(255,255,255,0.75); font-weight: 400; border-left-color: rgba(255,255,255,0.35); }
+    .stat-number { font-size: 24px; }
+    .stat-item.stat-hero .stat-number { font-size: 32px; }
+    .stat-item { padding: 12px 8px 12px 0; margin-right: 8px; }
+    .stat-source { font-size: 8px; }
+    .stat-peers { flex-wrap: nowrap; gap: 4px; }
+    .stat-label { font-size: 10px; max-width: 100%; }
     .cover-footer { padding: 20px 20px; flex-direction: column; gap: 12px; align-items: flex-start; }
-    .cover-footer-left { font-size: 9px; }
+    .cover-footer-left { font-size: 10px; }
     .cover-nav { gap: 12px; }
-    .cover-nav a { font-size: 9px; }
+    .cover-nav a { font-size: 10px; }
     .section { padding: 48px 20px; }
     .section-title { font-size: clamp(24px, 6vw, 36px); }
     .section-subtitle { font-size: 15px; margin-bottom: 32px; }
     .prose { font-size: 15px; }
     .prose p { margin-bottom: 20px; }
     .pull-quote { font-size: clamp(16px, 4.5vw, 20px); padding-left: 16px; margin: 32px 0; }
-    .act-label { font-size: 9px; }
+    .act-label { font-size: 10px; }
     /* Flow chain */
-    .flow-node { padding: 16px 18px; }
-    .flow-node-title { font-size: 13px; }
+    .flow-node { padding: 12px 14px; }
+    .flow-node-title { font-size: 12px; }
+    .flow-split-col { padding: 8px 10px; }
+    .flow-split-col .flow-node-title { font-size: 10px; }
+    .flow-split-col .flow-node-desc { font-size: 9px; line-height: 1.35; }
     /* Sartor */
     .sartor-numbers { grid-template-columns: 1fr; gap: 1px; }
     .sartor-num-value { font-size: 28px; }
@@ -1940,14 +1990,15 @@
     .closing-title { font-size: clamp(22px, 6vw, 36px); }
     .closing-text { font-size: 14px; }
     .closing-footer { padding-top: 28px; }
-    .closing-footer-brand { font-size: 9px; }
-    .closing-footer-disclaimer { font-size: 9px; }
+    .closing-footer-brand { font-size: 10px; }
+    .closing-footer-disclaimer { font-size: 10px; }
     .glossary-section .section { padding: 32px 20px; }
     .glossary-item { padding: 16px 18px; }
     .glossary-term { font-size: 11px; }
     .glossary-def { font-size: 12px; }
     .exec-summary .section { padding: 32px 20px; }
     .ciudadano-trigger { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 10px; }
+    .mobile-top-fab { bottom: 16px; left: 16px; width: 40px; height: 40px; }
     .ciudadano-header { padding: 0 20px 16px; }
     .ciudadano-title { font-size: 18px; }
     .ciudadano-tabs { padding: 0 20px; }
@@ -1977,7 +2028,7 @@
     .infra-cell-title { font-size: 14px; }
     .infra-cell-text { font-size: 12px; }
     .stat-peers { gap: 10px; flex-wrap: wrap; }
-    .proportion-bar-seg { font-size: 9px; }
+    .proportion-bar-seg { font-size: 10px; }
   }
 
   /* ── PRINT / PDF FIXES ── */
@@ -2049,6 +2100,8 @@
     .ciudadano-screen--data { background: var(--accent-light); }
     .ciudadano-share { background: #1A1E28; }
     .ciudadano-share:hover { background: var(--accent); }
+    .mobile-top-fab { background: #1A1E28; border-color: var(--rule); }
+    .closing-action-btn--primary { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
     .ciudadano-trigger:hover { background: var(--accent); }
     .ciudadano-panel { background: var(--paper); border-color: var(--rule); }
     .ciudadano-card { border-color: var(--rule); background: var(--white); }
@@ -2078,6 +2131,7 @@
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 10V2M6 2L2 6M6 2l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Inicio
     </button>
+    <span class="main-nav-section" id="navSection"></span>
     <button class="main-nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Abrir menú de navegación">
       <span></span><span></span><span></span>
     </button>
@@ -2935,6 +2989,11 @@
   </div>
 </section>
 
+<!-- ── MOBILE FAB BACK-TO-TOP ── -->
+<button class="mobile-top-fab" id="mobileTopFab" aria-label="Volver arriba">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M8 3L3 8M8 3l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
 <!-- ── PANEL CIUDADANO ── -->
 <button class="ciudadano-trigger" id="ciudadanoTrigger">
   <span class="ciudadano-trigger-icon">&#9776;</span>
@@ -3114,31 +3173,47 @@
   );
   coverObserver.observe(cover);
 
-  /* ── PROGRESS BAR + DEEP SCROLL STATE ── */
+  /* ── PROGRESS BAR + DEEP SCROLL STATE + MOBILE FAB ── */
   const progressBar = document.getElementById('progressBar');
+  const mobileTopFab = document.getElementById('mobileTopFab');
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
         const scrollTop = document.documentElement.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
-        mainNav.classList.toggle('scrolled-deep', scrollTop / scrollHeight > 0.4);
+        const pct = scrollTop / scrollHeight;
+        progressBar.style.width = pct * 100 + '%';
+        mainNav.classList.toggle('scrolled-deep', pct > 0.4);
+        mobileTopFab.classList.toggle('visible', pct > 0.15);
         ticking = false;
       });
       ticking = true;
     }
   }, { passive: true });
+  mobileTopFab.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   /* ── SCROLLSPY: active section tracking ── */
   const allSections = document.querySelectorAll('section[id]');
   const desktopLinks = document.querySelectorAll('.main-nav-links a');
   const drawerLinks = document.querySelectorAll('.nav-drawer-links a');
 
+  const navSection = document.getElementById('navSection');
+  const sectionLabels = {
+    'acto1': 'I · El sistema',
+    'acto2': 'II · Infraestructura',
+    'acto3': 'III · Sartor',
+    'acto4': 'IV · La reforma',
+    'objeciones': 'Objeciones',
+    'hoja-de-ruta': 'Hoja de ruta'
+  };
   function setActiveLink(id) {
     const href = '#' + id;
     desktopLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === href));
     drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === href));
+    if (sectionLabels[id]) navSection.textContent = sectionLabels[id];
   }
 
   const sectionObserver = new IntersectionObserver(
