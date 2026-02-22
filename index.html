@@ -318,6 +318,49 @@
     font-weight: 600;
   }
 
+  /* ── TL;DR ── */
+  .tldr {
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+  }
+  .tldr .section { padding: 40px 64px; }
+  .tldr-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--accent-mid);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .tldr-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .tldr-item {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+  }
+  .tldr-item-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    flex-shrink: 0;
+    width: 120px;
+  }
+  .tldr-item-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .tldr-item-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
   /* ── DOC REF BADGE ── */
   .doc-ref {
     font-family: 'IBM Plex Mono', monospace;
@@ -1865,7 +1908,7 @@
     .section-title { font-size: 32px !important; }
     .compare-table { font-size: 11px !important; }
     .compare-table th, .compare-table td { padding: 10px 12px !important; }
-    .progress-bar, .ciudadano-trigger, .ciudadano-overlay, .ciudadano-panel, .main-nav-top { display: none !important; }
+    .progress-bar, .ciudadano-trigger, .ciudadano-overlay, .ciudadano-panel, .main-nav-top, .tldr, .mobile-top-fab, .closing-actions { display: none !important; }
     .exec-summary { page-break-after: avoid; }
     .footnotes-section { page-break-before: always; break-before: page; }
     [data-source]::after { display: none !important; }
@@ -1916,6 +1959,9 @@
     .compare-table { display: none; }
     .compare-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
     .exec-summary-grid { grid-template-columns: 1fr; }
+    .tldr .section { padding: 32px 32px; }
+    .tldr-item { flex-direction: column; gap: 6px; }
+    .tldr-item-label { width: auto; }
     .exec-summary .section { padding: 40px 32px; }
     .ciudadano-cards { grid-template-columns: 1fr; }
     .ciudadano-stats { grid-template-columns: repeat(3, 1fr); }
@@ -1997,6 +2043,8 @@
     .glossary-term { font-size: 11px; }
     .glossary-def { font-size: 12px; }
     .exec-summary .section { padding: 32px 20px; }
+    .tldr .section { padding: 28px 20px; }
+    .tldr-item-text { font-size: 14px; }
     .ciudadano-trigger { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 10px; }
     .mobile-top-fab { bottom: 16px; left: 16px; width: 40px; height: 40px; }
     .ciudadano-header { padding: 0 20px 16px; }
@@ -2081,6 +2129,7 @@
     .footnotes-section { background: var(--paper-warm); }
     .glossary-section { background: var(--paper-warm); }
     .glossary-item { background: var(--white); border-color: var(--rule); }
+    .tldr { background: var(--white); }
     .exec-summary { background: var(--white); }
     .roadmap-section { background: var(--paper-warm); }
     .badge-a1 { background: #5A5E6A; color: white; }
@@ -2219,6 +2268,27 @@
       <li><a href="#objeciones">Objeciones</a></li>
       <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
     </ul>
+  </div>
+</section>
+
+<!-- ── TL;DR ── -->
+<section class="tldr">
+  <div class="section">
+    <div class="tldr-label">En 30 segundos</div>
+    <div class="tldr-items">
+      <div class="tldr-item">
+        <div class="tldr-item-label">El problema</div>
+        <div class="tldr-item-text">El gestor estima valor, verifica activos y registra flujos — <strong>sobre sí mismo</strong>. Sin verificación independiente. El caso Sartor demostró cada falla que esto produce.</div>
+      </div>
+      <div class="tldr-item">
+        <div class="tldr-item-label">La solución</div>
+        <div class="tldr-item-text">Separación funcional: <strong>GP · Fund Admin · Custodio</strong>. El estándar que Luxemburgo, EE.UU. y UK ya tienen. Chile sería el primero en América Latina.</div>
+      </div>
+      <div class="tldr-item">
+        <div class="tldr-item-label">La ruta</div>
+        <div class="tldr-item-text"><strong>9–15 meses. Sin Congreso. Costo fiscal cero.</strong> Ejecutable por CMF y Superintendencia de Pensiones con facultades que ya tienen.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2708,9 +2778,9 @@
 <section id="objeciones">
   <div class="section">
     <div class="act-label">
-      Objeciones previsibles · Y por qué no invalidan la propuesta
+      Objeciones previsibles · Y sus respuestas
     </div>
-    <h2 class="section-title reveal">Lo que dirán los que se oponen.<br><em>Y lo que responde la evidencia.</em></h2>
+    <h2 class="section-title reveal">Cada objeción previsible.<br><em>Y lo que responde la evidencia.</em></h2>
     <p class="section-subtitle reveal">"Un argumento que no aborda sus críticas no merece ser tomado en serio."</p>
 
     <div class="effects-grid grid-2col reveal">
