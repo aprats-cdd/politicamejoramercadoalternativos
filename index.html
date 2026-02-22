@@ -11,21 +11,23 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="es_CL">
 <meta property="og:image" content="https://aprats-cdd.github.io/politicamejoramercadoalternativos/og-cover.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://aprats-cdd.github.io/politicamejoramercadoalternativos/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="500.000 empresas en Chile. Tu pensión invierte en 250.">
 <meta name="twitter:description" content="Chile tiene más de USD 200.000 millones en ahorro. Falta una pieza de infraestructura para conectar ese capital con la economía real — y con tu pensión.">
 <meta name="twitter:image" content="https://aprats-cdd.github.io/politicamejoramercadoalternativos/og-cover.svg">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230E1117'/><text x='50' y='68' font-family='serif' font-size='56' font-weight='700' fill='white' text-anchor='middle'>M</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230E1117'/><text x='50' y='68' font-family='Georgia,serif' font-size='56' font-weight='700' fill='white' text-anchor='middle'>M</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <style>
   :root {
     --ink: #0E1117;
     --ink-soft: #2C3140;
-    --ink-muted: #5A6070;
+    --ink-muted: #4D5366;
     --rule: #C8CAD0;
     --rule-light: #E8EAEE;
     --accent: #1A3A6B;
@@ -64,12 +66,29 @@
     overflow-x: hidden;
   }
 
+  /* ── SKIP TO CONTENT ── */
+  .skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 999;
+    background: var(--accent-mid);
+    color: white;
+    padding: 12px 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+  }
+  .skip-to-content:focus {
+    left: 0;
+  }
+
   /* ── PROGRESS BAR ── */
   .progress-bar {
     position: fixed;
     top: 0;
     left: 0;
-    height: 3px;
+    height: 4px;
     background: var(--accent-mid);
     z-index: 200;
     width: 0%;
@@ -169,7 +188,7 @@
   .cover-thesis {
     max-width: 640px;
     font-size: 17px;
-    font-weight: 300;
+    font-weight: 400;
     color: rgba(255,255,255,0.6);
     line-height: 1.75;
     border-left: 2px solid rgba(255,255,255,0.2);
@@ -221,7 +240,7 @@
 
   .stat-source {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.02em;
     color: rgba(255,255,255,0.2);
     margin-top: 6px;
@@ -316,10 +335,53 @@
     font-weight: 600;
   }
 
+  /* ── TL;DR ── */
+  .tldr {
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+  }
+  .tldr .section { padding: 40px 64px; }
+  .tldr-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--accent-mid);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .tldr-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .tldr-item {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+  }
+  .tldr-item-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    flex-shrink: 0;
+    width: 120px;
+  }
+  .tldr-item-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .tldr-item-text strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
   /* ── DOC REF BADGE ── */
   .doc-ref {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.10em;
     color: rgba(255,255,255,0.3);
     text-transform: uppercase;
@@ -372,7 +434,7 @@
     height: 22px;
     border: 1px solid var(--rule);
     border-radius: 50%;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 500;
     color: var(--ink-muted);
   }
@@ -451,7 +513,7 @@
 
   .flow-node-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -528,7 +590,7 @@
   }
   .context-bars-title {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -578,7 +640,7 @@
   }
   .context-bar-source {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     color: var(--ink-muted);
     margin-top: 8px;
     opacity: 0.6;
@@ -625,7 +687,7 @@
   }
   .proportion-bar-legend span {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     color: var(--ink-muted);
     letter-spacing: 0.04em;
   }
@@ -689,12 +751,24 @@
     visibility: visible;
   }
   /* Light background variant */
-  .prose [data-source] { border-bottom-color: var(--rule); }
+  .prose [data-source] { border-bottom: 1px dotted var(--rule); }
   .prose [data-source]::after {
     background: var(--white);
     color: var(--ink-soft);
     border-color: var(--rule);
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  /* On mobile: tooltip below element to avoid viewport overflow */
+  @media (max-width: 900px) {
+    [data-source]::after {
+      bottom: auto;
+      top: calc(100% + 6px);
+      left: 0;
+      right: auto;
+      max-width: 260px;
+      white-space: normal;
+      line-height: 1.4;
+    }
   }
 
   /* ── FOOTNOTE REFERENCES ── */
@@ -777,7 +851,7 @@
     background: #8B1A1A;
     color: white;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.12em;
     padding: 3px 8px;
   }
@@ -844,7 +918,7 @@
 
   .infra-cell-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -939,7 +1013,7 @@
 
   .roadmap-capa-badge {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     display: inline-block;
@@ -979,7 +1053,7 @@
 
   .roadmap-measure-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -1002,7 +1076,7 @@
     text-align: left;
     padding: 12px 16px;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -1039,7 +1113,7 @@
 
   .compare-card-dim {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 500;
@@ -1058,7 +1132,7 @@
 
   .compare-card-country {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.10em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -1194,6 +1268,39 @@
     line-height: 1.75;
     margin-bottom: 56px;
   }
+
+  .closing-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+  .closing-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .closing-action-btn--primary {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .closing-action-btn--primary:hover { background: rgba(255,255,255,0.18); }
+  .closing-action-btn--primary.copied { background: rgba(26,92,42,0.5); border-color: rgba(26,92,42,0.7); }
+  .closing-action-btn--secondary {
+    background: none;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .closing-action-btn--secondary:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.25); }
 
   .closing-footer {
     width: 100%;
@@ -1589,7 +1696,7 @@
   }
   .ciudadano-card-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--ink-muted); margin-bottom: 8px;
   }
   .ciudadano-card-title {
@@ -1611,7 +1718,7 @@
   }
   .ciudadano-stat-label {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 9px; letter-spacing: 0.1em; color: var(--ink-muted); line-height: 1.5;
+    font-size: 10px; letter-spacing: 0.1em; color: var(--ink-muted); line-height: 1.5;
   }
 
   /* ── CIUDADANO SCREENS (narrative tabs) ── */
@@ -1737,6 +1844,45 @@
   /* Tab label variants */
   .ciudadano-tab-short { display: none; }
 
+  /* ── MOBILE FAB BACK-TO-TOP ── */
+  .mobile-top-fab {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 90;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-top-fab.visible { opacity: 0.8; }
+  .mobile-top-fab:active { opacity: 1; }
+
+  /* ── SECTION INDICATOR (mobile nav) ── */
+  .main-nav-section {
+    display: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--nav-link);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+  }
+  .main-nav.scrolled .main-nav-section { opacity: 1; }
+
   /* ── ANIMATIONS ── */
   .reveal {
     opacity: 0;
@@ -1791,7 +1937,7 @@
     .section-title { font-size: 32px !important; }
     .compare-table { font-size: 11px !important; }
     .compare-table th, .compare-table td { padding: 10px 12px !important; }
-    .progress-bar, .ciudadano-trigger, .ciudadano-overlay, .ciudadano-panel, .main-nav-top { display: none !important; }
+    .progress-bar, .ciudadano-trigger, .ciudadano-overlay, .ciudadano-panel, .main-nav-top, .tldr, .mobile-top-fab, .closing-actions { display: none !important; }
     .exec-summary { page-break-after: avoid; }
     .footnotes-section { page-break-before: always; break-before: page; }
     [data-source]::after { display: none !important; }
@@ -1826,19 +1972,27 @@
     .roadmap-capa { border-right: none; border-bottom: 1px solid var(--rule); }
     .roadmap-capa:last-child { border-bottom: none; }
     .main-nav-inner { padding: 0 24px; }
+    .mobile-top-fab { display: flex; }
+    .main-nav-section { display: block; }
     .main-nav-links { display: none; }
     .main-nav-top { display: none; }
     .main-nav-toggle { display: flex; }
     .main-nav { height: var(--nav-h-mobile); }
-    .cover-stats { grid-template-columns: 1fr; gap: 0; width: 100%; }
-    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 0; margin-right: 0; }
-    .stat-item:last-child { border-bottom: none; }
+    .cover-stats { grid-template-columns: repeat(3, 1fr); gap: 0; width: 100%; }
+    .stat-item { border-right: 1px solid rgba(255,255,255,0.08); padding: 16px 12px 16px 0; margin-right: 12px; }
+    .stat-item:last-child { border-right: none; margin-right: 0; }
+    .stat-peers { gap: 6px; }
     .closing-footer { flex-direction: column; gap: 16px; align-items: flex-start; }
     .closing-footer-disclaimer { text-align: left; max-width: 100%; }
     /* Table: stack as cards */
-    .compare-table { display: none; }
-    .compare-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+    .compare-table { font-size: 12px; display: table; }
+    .compare-table th, .compare-table td { padding: 10px 12px; }
+    .compare-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 40px; }
+    .compare-cards { display: none; }
     .exec-summary-grid { grid-template-columns: 1fr; }
+    .tldr .section { padding: 32px 32px; }
+    .tldr-item { flex-direction: column; gap: 6px; }
+    .tldr-item-label { width: auto; }
     .exec-summary .section { padding: 40px 32px; }
     .ciudadano-cards { grid-template-columns: 1fr; }
     .ciudadano-stats { grid-template-columns: repeat(3, 1fr); }
@@ -1850,11 +2004,13 @@
     .footnotes-section .section { padding: 48px 32px; }
     .glossary-grid { grid-template-columns: 1fr; gap: 16px; }
     .glossary-section .section { padding: 48px 32px; }
-    .flow-split-row { grid-template-columns: 1fr; }
-    .flow-split-col.flow-split-gap { border-left: 3px solid var(--danger); border-top: 1px solid var(--rule-light); }
+    .flow-split-row { grid-template-columns: 1fr 1fr; }
+    .flow-split-col { padding: 10px 12px; }
+    .flow-split-col .flow-node-title { font-size: 10px; }
+    .flow-split-col .flow-node-desc { font-size: 10px; line-height: 1.4; }
     .context-bar-item { grid-template-columns: 64px 1fr 40px; gap: 8px; }
     .stat-peers { gap: 12px; }
-    .proportion-bar-seg { font-size: 9px; }
+    .proportion-bar-seg { font-size: 10px; }
   }
 
   /* ── MOBILE 480px ── */
@@ -1863,26 +2019,32 @@
     .cover-logo { font-size: 10px; letter-spacing: 0.12em; }
     .cover-meta { font-size: 10px; }
     .cover-body { padding: 36px 20px; }
-    .cover-tag { font-size: 9px; margin-bottom: 20px; }
+    .cover-tag { font-size: 10px; margin-bottom: 20px; }
     .cover-headline { font-size: clamp(30px, 8vw, 42px); margin-bottom: 28px; }
-    .cover-thesis { font-size: 15px; padding-left: 16px; margin-bottom: 40px; }
-    .stat-number { font-size: 30px; }
-    .stat-item.stat-hero .stat-number { font-size: 42px; }
-    .stat-label { font-size: 9px; max-width: 100%; }
+    .cover-thesis { font-size: 16px; padding-left: 16px; margin-bottom: 40px; color: rgba(255,255,255,0.75); font-weight: 400; border-left-color: rgba(255,255,255,0.35); }
+    .stat-number { font-size: 24px; }
+    .stat-item.stat-hero .stat-number { font-size: 32px; }
+    .stat-item { padding: 12px 8px 12px 0; margin-right: 8px; }
+    .stat-source { font-size: 8px; }
+    .stat-peers { flex-wrap: nowrap; gap: 4px; }
+    .stat-label { font-size: 10px; max-width: 100%; }
     .cover-footer { padding: 20px 20px; flex-direction: column; gap: 12px; align-items: flex-start; }
-    .cover-footer-left { font-size: 9px; }
+    .cover-footer-left { font-size: 10px; }
     .cover-nav { gap: 12px; }
-    .cover-nav a { font-size: 9px; }
+    .cover-nav a { font-size: 10px; }
     .section { padding: 48px 20px; }
     .section-title { font-size: clamp(24px, 6vw, 36px); }
     .section-subtitle { font-size: 15px; margin-bottom: 32px; }
     .prose { font-size: 15px; }
     .prose p { margin-bottom: 20px; }
     .pull-quote { font-size: clamp(16px, 4.5vw, 20px); padding-left: 16px; margin: 32px 0; }
-    .act-label { font-size: 9px; }
+    .act-label { font-size: 10px; }
     /* Flow chain */
-    .flow-node { padding: 16px 18px; }
-    .flow-node-title { font-size: 13px; }
+    .flow-node { padding: 12px 14px; }
+    .flow-node-title { font-size: 12px; }
+    .flow-split-col { padding: 8px 10px; }
+    .flow-split-col .flow-node-title { font-size: 10px; }
+    .flow-split-col .flow-node-desc { font-size: 9px; line-height: 1.35; }
     /* Sartor */
     .sartor-numbers { grid-template-columns: 1fr; gap: 1px; }
     .sartor-num-value { font-size: 28px; }
@@ -1905,14 +2067,17 @@
     .closing-title { font-size: clamp(22px, 6vw, 36px); }
     .closing-text { font-size: 14px; }
     .closing-footer { padding-top: 28px; }
-    .closing-footer-brand { font-size: 9px; }
-    .closing-footer-disclaimer { font-size: 9px; }
+    .closing-footer-brand { font-size: 10px; }
+    .closing-footer-disclaimer { font-size: 10px; }
     .glossary-section .section { padding: 32px 20px; }
     .glossary-item { padding: 16px 18px; }
     .glossary-term { font-size: 11px; }
     .glossary-def { font-size: 12px; }
     .exec-summary .section { padding: 32px 20px; }
+    .tldr .section { padding: 28px 20px; }
+    .tldr-item-text { font-size: 14px; }
     .ciudadano-trigger { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 10px; }
+    .mobile-top-fab { bottom: 16px; left: 16px; width: 40px; height: 40px; }
     .ciudadano-header { padding: 0 20px 16px; }
     .ciudadano-title { font-size: 18px; }
     .ciudadano-tabs { padding: 0 20px; }
@@ -1937,12 +2102,14 @@
     .ciudadano-screen--prose p, .ciudadano-screen--close p { font-size: 15px; }
     /* Missing overrides for narrow screens */
     .context-bar-item { grid-template-columns: 52px 1fr 36px; gap: 6px; }
+    .compare-table-scroll { display: none; }
+    .compare-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
     .compare-card-row { grid-template-columns: 56px 1fr; }
     .footnote-item { gap: 8px; }
     .infra-cell-title { font-size: 14px; }
     .infra-cell-text { font-size: 12px; }
     .stat-peers { gap: 10px; flex-wrap: wrap; }
-    .proportion-bar-seg { font-size: 9px; }
+    .proportion-bar-seg { font-size: 10px; }
   }
 
   /* ── PRINT / PDF FIXES ── */
@@ -1995,6 +2162,7 @@
     .footnotes-section { background: var(--paper-warm); }
     .glossary-section { background: var(--paper-warm); }
     .glossary-item { background: var(--white); border-color: var(--rule); }
+    .tldr { background: var(--white); }
     .exec-summary { background: var(--white); }
     .roadmap-section { background: var(--paper-warm); }
     .badge-a1 { background: #5A5E6A; color: white; }
@@ -2014,6 +2182,8 @@
     .ciudadano-screen--data { background: var(--accent-light); }
     .ciudadano-share { background: #1A1E28; }
     .ciudadano-share:hover { background: var(--accent); }
+    .mobile-top-fab { background: #1A1E28; border-color: var(--rule); }
+    .closing-action-btn--primary { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
     .ciudadano-trigger:hover { background: var(--accent); }
     .ciudadano-panel { background: var(--paper); border-color: var(--rule); }
     .ciudadano-card { border-color: var(--rule); background: var(--white); }
@@ -2023,6 +2193,7 @@
 </style>
 </head>
 <body>
+<a href="#contenido" class="skip-to-content">Saltar al contenido</a>
 
 <!-- PROGRESS BAR -->
 <div class="progress-bar" id="progressBar"></div>
@@ -2043,6 +2214,7 @@
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 10V2M6 2L2 6M6 2l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Inicio
     </button>
+    <span class="main-nav-section" id="navSection"></span>
     <button class="main-nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Abrir menú de navegación">
       <span></span><span></span><span></span>
     </button>
@@ -2130,6 +2302,29 @@
       <li><a href="#objeciones">Objeciones</a></li>
       <li><a href="#hoja-de-ruta">Hoja de ruta</a></li>
     </ul>
+  </div>
+</section>
+
+<main id="contenido">
+
+<!-- ── TL;DR ── -->
+<section class="tldr">
+  <div class="section">
+    <div class="tldr-label">En 30 segundos</div>
+    <div class="tldr-items">
+      <div class="tldr-item">
+        <div class="tldr-item-label">El problema</div>
+        <div class="tldr-item-text">El gestor estima valor, verifica activos y registra flujos — <strong>sobre sí mismo</strong>. Sin verificación independiente. El caso Sartor demostró cada falla que esto produce.</div>
+      </div>
+      <div class="tldr-item">
+        <div class="tldr-item-label">La solución</div>
+        <div class="tldr-item-text">Separación funcional: <strong>GP · Fund Admin · Custodio</strong>. El estándar que Luxemburgo, EE.UU. y UK ya tienen. Chile sería el primero en América Latina.</div>
+      </div>
+      <div class="tldr-item">
+        <div class="tldr-item-label">La ruta</div>
+        <div class="tldr-item-text"><strong>9–15 meses. Sin Congreso. Costo fiscal cero.</strong> Ejecutable por CMF y Superintendencia de Pensiones con facultades que ya tienen.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2286,6 +2481,7 @@
       <div class="act-label reveal">
         Análisis comparado · Chile · Luxemburgo · EE.UU.
       </div>
+      <div class="compare-table-scroll">
       <table class="compare-table reveal">
         <thead>
           <tr>
@@ -2333,8 +2529,9 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
-      <!-- Mobile cards (shown only on <900px via CSS) -->
+      <!-- Mobile cards (fallback for very narrow screens) -->
       <div class="compare-cards">
 
         <div class="compare-card">
@@ -2619,9 +2816,9 @@
 <section id="objeciones">
   <div class="section">
     <div class="act-label">
-      Objeciones previsibles · Y por qué no invalidan la propuesta
+      Objeciones previsibles · Y sus respuestas
     </div>
-    <h2 class="section-title reveal">Lo que dirán los que se oponen.<br><em>Y lo que responde la evidencia.</em></h2>
+    <h2 class="section-title reveal">Cada objeción previsible.<br><em>Y lo que responde la evidencia.</em></h2>
     <p class="section-subtitle reveal">"Un argumento que no aborda sus críticas no merece ser tomado en serio."</p>
 
     <div class="effects-grid grid-2col reveal">
@@ -2881,10 +3078,15 @@
     <p class="closing-text">
       La infraestructura que Luxemburgo construyó en 2013, que EE.UU. formalizó post-Madoff, y que Colombia y Perú están comenzando a ensayar — Chile puede implementarla con las facultades normativas que la CMF ya tiene. No como reacción a Sartor. Como decisión de construir el mercado de capitales que el ahorro chileno necesita y merece.
     </p>
+    <div class="closing-actions">
+      <button class="closing-action-btn closing-action-btn--primary" id="closingShare">&#8599; Compartir este memorándum</button>
+      <button class="closing-action-btn closing-action-btn--secondary" id="closingPdf">&#8615; Descargar PDF</button>
+    </div>
     <div class="closing-footer">
       <div class="closing-footer-brand">
         Andrés Prats<br>
-        Santiago de Chile · Febrero 2026
+        Santiago de Chile · Febrero 2026<br>
+        Disponible para presentar este análisis ante CMF, SP o comisiones legislativas
       </div>
       <div class="closing-footer-disclaimer">
         Profesional con 15 años en mercados privados y alternativos<br>
@@ -2895,13 +3097,20 @@
   </div>
 </section>
 
+</main>
+
+<!-- ── MOBILE FAB BACK-TO-TOP ── -->
+<button class="mobile-top-fab" id="mobileTopFab" aria-label="Volver arriba">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M8 3L3 8M8 3l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
 <!-- ── PANEL CIUDADANO ── -->
 <button class="ciudadano-trigger" id="ciudadanoTrigger">
   <span class="ciudadano-trigger-icon">&#9776;</span>
   Por qué te importa
 </button>
 <div class="ciudadano-overlay" id="ciudadanoOverlay"></div>
-<div class="ciudadano-panel" id="ciudadanoPanel">
+<div class="ciudadano-panel" id="ciudadanoPanel" role="dialog" aria-modal="true" aria-label="Por qué esta reforma te importa">
   <div class="ciudadano-handle"></div>
   <div class="ciudadano-header">
     <div class="ciudadano-header-top">
@@ -2910,16 +3119,16 @@
     </div>
     <div class="ciudadano-subtitle">El memorándum es técnico. El impacto no lo es. Elige tu perspectiva.</div>
   </div>
-  <div class="ciudadano-tabs">
-    <button class="ciudadano-tab active" data-tab="tab-pensionado"><span class="ciudadano-tab-full">Si estás jubilado o próximo</span><span class="ciudadano-tab-short">Pensiones</span></button>
-    <button class="ciudadano-tab" data-tab="tab-empresa"><span class="ciudadano-tab-full">Si buscas financiamiento</span><span class="ciudadano-tab-short">Empresa</span></button>
-    <button class="ciudadano-tab" data-tab="tab-afp"><span class="ciudadano-tab-full">Si administras una AFP</span><span class="ciudadano-tab-short">AFP</span></button>
-    <button class="ciudadano-tab" data-tab="tab-legislador"><span class="ciudadano-tab-full">Si legislas o regulas</span><span class="ciudadano-tab-short">Regulador</span></button>
+  <div class="ciudadano-tabs" role="tablist">
+    <button class="ciudadano-tab active" data-tab="tab-pensionado" role="tab" aria-selected="true" id="btn-pensionado" aria-controls="tab-pensionado"><span class="ciudadano-tab-full">Si estás jubilado o próximo</span><span class="ciudadano-tab-short">Pensiones</span></button>
+    <button class="ciudadano-tab" data-tab="tab-empresa" role="tab" aria-selected="false" id="btn-empresa" aria-controls="tab-empresa"><span class="ciudadano-tab-full">Si buscas financiamiento</span><span class="ciudadano-tab-short">Empresa</span></button>
+    <button class="ciudadano-tab" data-tab="tab-afp" role="tab" aria-selected="false" id="btn-afp" aria-controls="tab-afp"><span class="ciudadano-tab-full">Si administras una AFP</span><span class="ciudadano-tab-short">AFP</span></button>
+    <button class="ciudadano-tab" data-tab="tab-legislador" role="tab" aria-selected="false" id="btn-legislador" aria-controls="tab-legislador"><span class="ciudadano-tab-full">Si legislas o regulas</span><span class="ciudadano-tab-short">Regulador</span></button>
   </div>
   <div class="ciudadano-content">
 
     <!-- ── TAB: PENSIONADO ── -->
-    <div class="ciudadano-tab-content active" id="tab-pensionado">
+    <div class="ciudadano-tab-content active" id="tab-pensionado" role="tabpanel" aria-labelledby="btn-pensionado">
       <div class="ciudadano-screens">
         <div class="ciudadano-screen ciudadano-screen--hero">
           <div class="ciudadano-screen--hero-text">
@@ -2950,7 +3159,7 @@
     </div>
 
     <!-- ── TAB: EMPRESA ── -->
-    <div class="ciudadano-tab-content" id="tab-empresa">
+    <div class="ciudadano-tab-content" id="tab-empresa" role="tabpanel" aria-labelledby="btn-empresa">
       <div class="ciudadano-screens">
         <div class="ciudadano-screen ciudadano-screen--hero">
           <div class="ciudadano-screen--hero-text">
@@ -2981,7 +3190,7 @@
     </div>
 
     <!-- ── TAB: AFP ── -->
-    <div class="ciudadano-tab-content" id="tab-afp">
+    <div class="ciudadano-tab-content" id="tab-afp" role="tabpanel" aria-labelledby="btn-afp">
       <div class="ciudadano-cards">
         <div class="ciudadano-card">
           <div class="ciudadano-card-label">Hoy</div>
@@ -3018,8 +3227,9 @@
           <div class="ciudadano-stat-label">Concentrado en banca</div>
         </div>
       </div>
+      <button class="ciudadano-share" data-share="afp">&#8599; Compartir</button>
     </div>
-    <div class="ciudadano-tab-content" id="tab-legislador">
+    <div class="ciudadano-tab-content" id="tab-legislador" role="tabpanel" aria-labelledby="btn-legislador">
       <div class="ciudadano-cards">
         <div class="ciudadano-card">
           <div class="ciudadano-card-label">Costo fiscal</div>
@@ -3056,6 +3266,7 @@
           <div class="ciudadano-stat-label">Sanción Sartor</div>
         </div>
       </div>
+      <button class="ciudadano-share" data-share="legislador">&#8599; Compartir</button>
     </div>
   </div>
 </div>
@@ -3072,31 +3283,47 @@
   );
   coverObserver.observe(cover);
 
-  /* ── PROGRESS BAR + DEEP SCROLL STATE ── */
+  /* ── PROGRESS BAR + DEEP SCROLL STATE + MOBILE FAB ── */
   const progressBar = document.getElementById('progressBar');
+  const mobileTopFab = document.getElementById('mobileTopFab');
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (!ticking) {
       requestAnimationFrame(() => {
         const scrollTop = document.documentElement.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
-        mainNav.classList.toggle('scrolled-deep', scrollTop / scrollHeight > 0.4);
+        const pct = scrollTop / scrollHeight;
+        progressBar.style.width = pct * 100 + '%';
+        mainNav.classList.toggle('scrolled-deep', pct > 0.4);
+        mobileTopFab.classList.toggle('visible', pct > 0.15);
         ticking = false;
       });
       ticking = true;
     }
   }, { passive: true });
+  mobileTopFab.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   /* ── SCROLLSPY: active section tracking ── */
   const allSections = document.querySelectorAll('section[id]');
   const desktopLinks = document.querySelectorAll('.main-nav-links a');
   const drawerLinks = document.querySelectorAll('.nav-drawer-links a');
 
+  const navSection = document.getElementById('navSection');
+  const sectionLabels = {
+    'acto1': 'I · El sistema',
+    'acto2': 'II · Infraestructura',
+    'acto3': 'III · Sartor',
+    'acto4': 'IV · La reforma',
+    'objeciones': 'Objeciones',
+    'hoja-de-ruta': 'Hoja de ruta'
+  };
   function setActiveLink(id) {
     const href = '#' + id;
     desktopLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === href));
     drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === href));
+    if (sectionLabels[id]) navSection.textContent = sectionLabels[id];
   }
 
   const sectionObserver = new IntersectionObserver(
@@ -3223,7 +3450,11 @@
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.tab;
-      tabs.forEach(t => t.classList.toggle('active', t === tab));
+      tabs.forEach(t => {
+        const isActive = t === tab;
+        t.classList.toggle('active', isActive);
+        t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
       tabContents.forEach(tc => tc.classList.toggle('active', tc.id === target));
     });
   });
@@ -3238,14 +3469,16 @@
   // Share buttons
   const shareMessages = {
     pensionado: 'Tu pensión está invertida como si necesitaras la plata mañana. Pero no la necesitas mañana. Eso tiene un costo.',
-    empresa: 'En Chile hay 500.000 empresas. El mercado de capitales cubre 250. El resto depende del banco.'
+    empresa: 'En Chile hay 500.000 empresas. El mercado de capitales cubre 250. El resto depende del banco.',
+    afp: 'Chile tiene 0 Fund Administrators independientes. Tu due diligence sobre fondos privados depende de la palabra del gestor.',
+    legislador: 'La reforma de mercados privados cuesta $0 al fisco y no requiere Congreso. Ejecutable en 9–15 meses por CMF y SP.'
   };
   document.querySelectorAll('.ciudadano-share').forEach(btn => {
     btn.addEventListener('click', async () => {
       const key = btn.dataset.share;
       const msg = shareMessages[key];
       const url = window.location.href.split('#')[0];
-      const full = msg + ' ' + url;
+      const full = msg + '\n\n' + url;
       if (navigator.share) {
         try { await navigator.share({ text: full }); } catch (e) { /* cancelled */ }
       } else {
@@ -3287,6 +3520,29 @@
       document.querySelectorAll('[data-source].tooltip-open').forEach(t => t.classList.remove('tooltip-open'));
     }
   }, { passive: true });
+
+  /* ── CLOSING ACTIONS ── */
+  const closingShareBtn = document.getElementById('closingShare');
+  const closingPdfBtn = document.getElementById('closingPdf');
+  const closingMsg = 'Memorándum de Política Pública: mercados privados de capital en Chile. 500.000 empresas, tu pensión invierte en 250. Separación funcional, sin Congreso, en 9 meses.';
+  closingShareBtn.addEventListener('click', async () => {
+    const url = window.location.href.split('#')[0];
+    const full = closingMsg + '\n\n' + url;
+    if (navigator.share) {
+      try { await navigator.share({ title: document.title, text: full }); } catch (e) {}
+    } else {
+      try {
+        await navigator.clipboard.writeText(full);
+        closingShareBtn.classList.add('copied');
+        closingShareBtn.textContent = '\u2713 Copiado al portapapeles';
+        setTimeout(() => {
+          closingShareBtn.classList.remove('copied');
+          closingShareBtn.innerHTML = '&#8599; Compartir este memorándum';
+        }, 2500);
+      } catch (e) {}
+    }
+  });
+  closingPdfBtn.addEventListener('click', () => { window.print(); });
 </script>
 </body>
 </html>
