@@ -2,7 +2,7 @@
 <html lang="es-CL">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Memorándum de Política Pública · Mercado de Capitales Alternativos · Chile 2026</title>
 <meta name="description" content="Memorándum de política pública: reforma regulatoria para el mercado de capitales alternativos en Chile. Separación funcional entre gestión, administración y custodia.">
 <meta name="author" content="Andrés Prats">
@@ -1471,6 +1471,7 @@
     align-items: center;
     gap: 8px;
     transition: background 0.2s, transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
   }
   .ciudadano-trigger:hover { background: var(--accent); transform: translateY(-2px); }
   .ciudadano-overlay {
@@ -1488,8 +1489,12 @@
     border-top: 2px solid var(--ink);
     max-height: 85vh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transform: translateY(100%);
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   .ciudadano-panel.open { transform: translateY(0); }
   .ciudadano-handle {
@@ -1877,7 +1882,7 @@
     <div class="cover-meta">
       Andrés Prats<br>
       15 años · Mercados Privados y Alternativos<br>
-      Ex-Sartor · Ex-LarrainVial · Deuda Privada<br>
+      Socio Fundador Cordada Asset Manager · Ex-LarrainVial · Deuda Privada<br>
       Sujeto a revisión legal · Febrero 2026
     </div>
   </div>
@@ -2634,7 +2639,7 @@
       </div>
       <div class="closing-footer-disclaimer">
         Profesional con 15 años en mercados privados y alternativos<br>
-        Ex-Sartor · Ex-LarrainVial · Estructuración de deuda privada<br>
+        Socio Fundador Cordada Asset Manager · Ex-LarrainVial · Estructuración de deuda privada<br>
         Documento preparado a título personal · Sujeto a revisión legal
       </div>
     </div>
@@ -2888,6 +2893,8 @@
     overlay.classList.add('open');
     panel.classList.add('open');
     document.body.style.overflow = 'hidden';
+    // Force repaint on iOS Safari to render panel content
+    requestAnimationFrame(() => { panel.scrollTop = 0; });
   }
   function closePanel() {
     overlay.classList.remove('open');
