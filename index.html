@@ -1383,7 +1383,7 @@
     font-size: 14px;
     transition: background 0.2s, color 0.2s;
   }
-  .nav-drawer-close:hover { background: var(--paper-warm); color: var(--nav-link-active); }
+  .nav-drawer-close:hover { background: var(--rule-light); color: var(--nav-link-active); }
 
   .nav-drawer-links {
     list-style: none;
@@ -1407,7 +1407,7 @@
   }
   .nav-drawer-links a:hover {
     color: var(--nav-link-active);
-    background: var(--paper-warm);
+    background: var(--rule-light);
   }
   .nav-drawer-links a.active {
     color: var(--nav-link-active);
@@ -1774,8 +1774,6 @@
     body { -webkit-font-smoothing: auto; }
     ::selection { background: var(--accent-mid); color: #0E1117; }
     .cover { background: #080A0F; }
-    .main-nav { background: var(--nav-bg); }
-    .main-nav-toggle span { background: var(--nav-link); }
     .sartor-section { background: #080A0F; }
     .closing { background: #080A0F; }
     .flow-node { background: var(--white); }
@@ -2782,9 +2780,10 @@
   allSections.forEach(s => sectionObserver.observe(s));
 
   /* ── BACK TO TOP ── */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   function scrollToTop(e) {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion.matches ? 'auto' : 'smooth' });
   }
   document.getElementById('backToTop').addEventListener('click', scrollToTop);
   document.getElementById('drawerBackToTop').addEventListener('click', (e) => {
