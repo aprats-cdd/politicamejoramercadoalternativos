@@ -873,6 +873,10 @@
     gap: 24px;
     margin-top: 56px;
   }
+  .effects-grid.grid-2col {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 40px;
+  }
 
   .effect-card {
     padding: 28px;
@@ -888,6 +892,8 @@
     line-height: 1;
     margin-bottom: 16px;
   }
+  .effect-num.effect-num--obj { font-size: 32px; color: var(--danger); }
+  .effect-num.effect-num--resp { font-size: 32px; color: var(--accent); }
 
   .effect-title {
     font-size: 14px;
@@ -1513,6 +1519,7 @@
   }
   .ciudadano-tabs {
     display: flex; gap: 0; padding: 0 32px; border-bottom: 1px solid var(--rule);
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
   }
   .ciudadano-tab {
     font-family: 'IBM Plex Mono', monospace;
@@ -1521,6 +1528,7 @@
     border-bottom: 2px solid transparent;
     background: none; border-top: none; border-left: none; border-right: none;
     transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap; flex-shrink: 0;
   }
   .ciudadano-tab:hover { color: var(--ink); }
   .ciudadano-tab.active { color: var(--ink); border-bottom-color: var(--accent-mid); }
@@ -1619,6 +1627,7 @@
     .footnotes-section { page-break-before: always; break-before: page; }
     [data-source]::after { display: none !important; }
     .context-bars, .proportion-bar { break-inside: avoid; page-break-inside: avoid; }
+    .nav-drawer, .nav-drawer-overlay { display: none !important; }
   }
 
   /* ── RESPONSIVE 1200 ── */
@@ -1663,7 +1672,7 @@
     .exec-summary-grid { grid-template-columns: 1fr; }
     .exec-summary .section { padding: 40px 32px; }
     .ciudadano-cards { grid-template-columns: 1fr; }
-    .ciudadano-stats { grid-template-columns: 1fr; }
+    .ciudadano-stats { grid-template-columns: repeat(3, 1fr); }
     .ciudadano-content { padding: 24px; }
     .ciudadano-header { padding: 0 24px 20px; }
     .ciudadano-tabs { padding: 0 24px; }
@@ -1705,7 +1714,7 @@
     .sartor-falla { padding: 20px 18px; }
     .sartor-falla-title { font-size: 13px; }
     /* Effects */
-    .effects-grid { grid-template-columns: 1fr; gap: 12px; }
+    .effects-grid, .effects-grid.grid-2col { grid-template-columns: 1fr; gap: 12px; }
     .effect-num { font-size: 36px; margin-bottom: 10px; }
     .effect-card { padding: 22px; }
     /* Roadmap */
@@ -1713,6 +1722,7 @@
     .roadmap-capa-title { font-size: 16px; }
     /* Infra cells */
     .infra-cell { padding: 24px 20px; }
+    html { scroll-padding-top: 68px; }
     .main-nav-inner { padding: 0 20px; }
     .nav-drawer { width: 280px; }
     /* Closing */
@@ -1732,6 +1742,7 @@
     .ciudadano-card { padding: 16px; }
     .ciudadano-stat { padding: 16px; }
     .ciudadano-stat-value { font-size: 20px; }
+    .ciudadano-stats { grid-template-columns: 1fr; }
     .footnotes-section .section { padding: 32px 20px; }
     /* Touch targets ≥ 44px */
     .cover-nav a { padding: 12px 0; min-height: 44px; display: inline-flex; align-items: center; }
@@ -1743,17 +1754,11 @@
     .infra-cell-title { font-size: 14px; }
     .infra-cell-text { font-size: 12px; }
     .stat-peers { gap: 10px; flex-wrap: wrap; }
-    .proportion-bar-seg { font-size: 8px; }
+    .proportion-bar-seg { font-size: 9px; }
   }
 
   /* ── PRINT / PDF FIXES ── */
   @page { margin: 0; }
-
-  @media print {
-    .nav-drawer, .nav-drawer-overlay { display: none !important; }
-    .exec-summary { page-break-before: avoid; }
-    .context-bars, .proportion-bar { page-break-before: avoid; page-break-after: auto; }
-  }
 
   /* ── DARK MODE ── */
   @media (prefers-color-scheme: dark) {
@@ -2403,47 +2408,47 @@
     <h2 class="section-title reveal">Lo que dirán los que se oponen.<br><em>Y lo que responde la evidencia.</em></h2>
     <p class="section-subtitle reveal">"Un argumento que no aborda sus críticas no merece ser tomado en serio."</p>
 
-    <div class="effects-grid reveal" style="grid-template-columns: 1fr 1fr; margin-top: 40px;">
+    <div class="effects-grid grid-2col reveal">
       <div class="effect-card">
-        <div class="effect-num" style="font-size: 32px; color: var(--danger);">Objeción</div>
+        <div class="effect-num effect-num--obj">Objeción</div>
         <div class="effect-title">"El mercado es demasiado chico para separar funciones"</div>
         <div class="effect-text">ACAFI reporta USD 5.000M en alternativos. ¿Justifica una reforma estructural para un mercado de ese tamaño?</div>
       </div>
       <div class="effect-card">
-        <div class="effect-num" style="font-size: 32px; color: var(--accent);">Respuesta</div>
+        <div class="effect-num effect-num--resp">Respuesta</div>
         <div class="effect-title">El mercado es chico PORQUE no tiene infraestructura</div>
         <div class="effect-text">La causalidad es inversa: el mercado no crece porque los institucionales no entran sin infraestructura de verificación. Luxemburgo tenía un mercado similar antes de AIFMD. Hoy administra EUR 5.9T. La infraestructura precede al volumen, no al revés.</div>
       </div>
 
       <div class="effect-card">
-        <div class="effect-num" style="font-size: 32px; color: var(--danger);">Objeción</div>
+        <div class="effect-num effect-num--obj">Objeción</div>
         <div class="effect-title">"Esto encarece la operación de los fondos"</div>
         <div class="effect-text">Un Fund Admin cobra por sus servicios. Eso se suma al costo operacional del fondo y reduce el retorno neto al inversionista.</div>
       </div>
       <div class="effect-card">
-        <div class="effect-num" style="font-size: 32px; color: var(--accent);">Respuesta</div>
+        <div class="effect-num effect-num--resp">Respuesta</div>
         <div class="effect-title">3–7 bps que desbloquean capital que hoy no entra</div>
         <div class="effect-text">Un Fund Admin global cobra 3–7 bps sobre AUM (benchmark EFAMA/Monterone 2024). Para un fondo de USD 100M, eso es USD 30–70K anuales. El costo de NO tener la infraestructura es que las AFPs no entran, los GPs internacionales excluyen Chile, y el mercado no crece. El costo neto es negativo.</div>
       </div>
 
       <div class="effect-card">
-        <div class="effect-num" style="font-size: 32px; color: var(--danger);">Objeción</div>
+        <div class="effect-num effect-num--obj">Objeción</div>
         <div class="effect-title">"Las AGFs ya están reguladas por la CMF"</div>
         <div class="effect-text">La CMF supervisa las AGFs. ¿No es suficiente? ¿Para qué agregar actores?</div>
       </div>
       <div class="effect-card">
-        <div class="effect-num" style="font-size: 32px; color: var(--accent);">Respuesta</div>
+        <div class="effect-num effect-num--resp">Respuesta</div>
         <div class="effect-title">Sartor estaba regulada. Cada falla ocurrió igual</div>
         <div class="effect-text">La CMF supervisó a Sartor como entidad, pero no existía el actor cuyo mandato fuera verificar operaciones en tiempo real. La supervisión ex-post no sustituye los controles por oposición ex-ante. No se trata de más supervisión — se trata de arquitectura que hace posible que el mercado se auto-verifique.</div>
       </div>
 
       <div class="effect-card">
-        <div class="effect-num" style="font-size: 32px; color: var(--danger);">Objeción</div>
+        <div class="effect-num effect-num--obj">Objeción</div>
         <div class="effect-title">"Esto es lobby de consultores internacionales"</div>
         <div class="effect-text">Apex, Alter Domus, IQ-EQ serían beneficiarios directos. ¿No es esto un pitch comercial disfrazado de política pública?</div>
       </div>
       <div class="effect-card">
-        <div class="effect-num" style="font-size: 32px; color: var(--accent);">Respuesta</div>
+        <div class="effect-num effect-num--resp">Respuesta</div>
         <div class="effect-title">Los beneficiarios son los aportantes, no los intermediarios</div>
         <div class="effect-text">Los Fund Admins son infraestructura, como las bolsas de valores o los DCV. Que empresas privadas provean esa infraestructura es el diseño — no el problema. Los beneficiarios finales son los trabajadores cuyas pensiones se invierten sin verificación independiente, y las empresas que no acceden a financiamiento porque el canal alternativo no existe.</div>
       </div>
