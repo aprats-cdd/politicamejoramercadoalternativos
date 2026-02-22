@@ -1177,7 +1177,7 @@
     line-height: 1.6;
   }
 
-  /* ── MAIN NAV (INSTITUTIONAL) ── */
+  /* ── MAIN NAV (INSTITUTIONAL · ALWAYS VISIBLE) ── */
   .main-nav {
     position: fixed;
     top: 0;
@@ -1185,16 +1185,13 @@
     right: 0;
     z-index: 100;
     height: var(--nav-h);
-    background: var(--nav-bg);
+    background: transparent;
     border-bottom: 1px solid transparent;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  }
-  .main-nav.visible {
-    transform: translateY(0);
-    border-bottom-color: var(--nav-border);
+    transition: background 0.3s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
   .main-nav.scrolled {
+    background: var(--nav-bg);
+    border-bottom-color: var(--nav-border);
     box-shadow: var(--nav-shadow);
   }
 
@@ -1209,19 +1206,23 @@
     gap: 24px;
   }
 
+  /* Brand — white on cover, dark when scrolled */
   .main-nav-brand {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.14em;
-    color: var(--nav-link);
+    color: rgba(255,255,255,0.5);
     text-transform: uppercase;
     text-decoration: none;
     flex-shrink: 0;
     white-space: nowrap;
-    transition: color 0.2s;
+    transition: color 0.3s;
   }
-  .main-nav-brand:hover { color: var(--nav-link-active); }
+  .main-nav-brand:hover { color: rgba(255,255,255,0.85); }
+  .main-nav.scrolled .main-nav-brand { color: var(--nav-link); }
+  .main-nav.scrolled .main-nav-brand:hover { color: var(--nav-link-active); }
 
+  /* Links list */
   .main-nav-links {
     display: flex;
     align-items: center;
@@ -1231,11 +1232,12 @@
     justify-content: center;
   }
 
+  /* Links — white on cover, dark when scrolled */
   .main-nav-links a {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.10em;
-    color: var(--nav-link);
+    color: rgba(255,255,255,0.45);
     text-decoration: none;
     text-transform: uppercase;
     padding: 0 14px;
@@ -1243,7 +1245,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    transition: color 0.2s;
+    transition: color 0.3s;
     white-space: nowrap;
   }
   .main-nav-links a::after {
@@ -1253,14 +1255,20 @@
     left: 14px;
     right: 14px;
     height: 2px;
-    background: var(--nav-accent-bar);
+    background: rgba(255,255,255,0.5);
     transform: scaleX(0);
-    transition: transform 0.25s ease;
+    transition: transform 0.25s ease, background 0.3s ease;
   }
-  .main-nav-links a:hover { color: var(--nav-link-hover); }
+  .main-nav-links a:hover { color: rgba(255,255,255,0.85); }
   .main-nav-links a:hover::after { transform: scaleX(1); }
-  .main-nav-links a.active { color: var(--nav-link-active); font-weight: 500; }
+  .main-nav-links a.active { color: rgba(255,255,255,0.95); font-weight: 500; }
   .main-nav-links a.active::after { transform: scaleX(1); }
+
+  /* Scrolled state: dark text + accent underline */
+  .main-nav.scrolled .main-nav-links a { color: var(--nav-link); }
+  .main-nav.scrolled .main-nav-links a::after { background: var(--nav-accent-bar); }
+  .main-nav.scrolled .main-nav-links a:hover { color: var(--nav-link-hover); }
+  .main-nav.scrolled .main-nav-links a.active { color: var(--nav-link-active); }
 
   /* Focus visible for keyboard navigation */
   .main-nav-brand:focus-visible,
@@ -1274,7 +1282,7 @@
     outline-offset: 2px;
   }
 
-  /* Back-to-top button (in navbar, right side) */
+  /* Back-to-top — white on cover, dark when scrolled */
   .main-nav-top {
     display: inline-flex;
     align-items: center;
@@ -1283,23 +1291,25 @@
     font-size: 10px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--nav-link);
+    color: rgba(255,255,255,0.3);
     background: none;
-    border: 1px solid var(--nav-border);
+    border: 1px solid rgba(255,255,255,0.15);
     padding: 6px 14px;
     cursor: pointer;
     flex-shrink: 0;
-    transition: color 0.2s, border-color 0.2s, opacity 0.3s;
+    transition: color 0.3s, border-color 0.3s, opacity 0.3s;
     opacity: 0.4;
   }
   .main-nav-top:hover {
-    color: var(--nav-link-active);
-    border-color: var(--nav-link);
+    color: rgba(255,255,255,0.85);
+    border-color: rgba(255,255,255,0.3);
     opacity: 1;
   }
+  .main-nav.scrolled .main-nav-top { color: var(--nav-link); border-color: var(--nav-border); }
+  .main-nav.scrolled .main-nav-top:hover { color: var(--nav-link-active); border-color: var(--nav-link); }
   .main-nav.scrolled-deep .main-nav-top { opacity: 0.8; }
 
-  /* Hamburger toggle (hidden on desktop) */
+  /* Hamburger toggle — white on cover, dark when scrolled */
   .main-nav-toggle {
     display: none;
     flex-direction: column;
@@ -1318,9 +1328,10 @@
     display: block;
     width: 20px;
     height: 2px;
-    background: var(--nav-link);
-    transition: transform 0.3s, opacity 0.3s;
+    background: rgba(255,255,255,0.6);
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
   }
+  .main-nav.scrolled .main-nav-toggle span { background: var(--nav-link); }
   .main-nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .main-nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .main-nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -2725,18 +2736,18 @@
 </div>
 
 <script>
-  /* ── MAIN NAV: show/hide on scroll past cover ── */
+  /* ── MAIN NAV: transparent → solid when past cover ── */
   const mainNav = document.getElementById('mainNav');
   const cover = document.querySelector('.cover');
   const coverObserver = new IntersectionObserver(
     ([entry]) => {
-      mainNav.classList.toggle('visible', !entry.isIntersecting);
+      mainNav.classList.toggle('scrolled', !entry.isIntersecting);
     },
-    { threshold: 0.05 }
+    { threshold: 0.01 }
   );
   coverObserver.observe(cover);
 
-  /* ── SHADOW + DEEP SCROLL STATE ── */
+  /* ── PROGRESS BAR + DEEP SCROLL STATE ── */
   const progressBar = document.getElementById('progressBar');
   let ticking = false;
   window.addEventListener('scroll', () => {
@@ -2744,11 +2755,7 @@
       requestAnimationFrame(() => {
         const scrollTop = document.documentElement.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        // Progress bar
         progressBar.style.width = (scrollTop / scrollHeight) * 100 + '%';
-        // Shadow when scrolled past cover
-        mainNav.classList.toggle('scrolled', scrollTop > 100);
-        // Back-to-top emphasis after 40% scroll
         mainNav.classList.toggle('scrolled-deep', scrollTop / scrollHeight > 0.4);
         ticking = false;
       });
