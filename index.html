@@ -1688,6 +1688,21 @@
   .ciudadano-subtitle {
     font-size: 14px; color: var(--ink-muted); line-height: 1.6; max-width: 560px;
   }
+  .ciudadano-tabs-wrap {
+    position: relative;
+  }
+  .ciudadano-tabs-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 48px;
+    background: linear-gradient(to right, transparent, var(--white));
+    pointer-events: none;
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+  .ciudadano-tabs-wrap.scrolled-end::after { opacity: 0; }
   .ciudadano-tabs {
     display: flex; gap: 0; padding: 0 32px; border-bottom: 1px solid var(--rule);
     overflow-x: auto; -webkit-overflow-scrolling: touch;
@@ -1706,8 +1721,9 @@
   .ciudadano-tab:hover { color: var(--ink); }
   .ciudadano-tab.active { color: var(--ink); border-bottom-color: var(--accent-mid); }
   .ciudadano-content { padding: 32px; }
-  .ciudadano-tab-content { display: none; }
-  .ciudadano-tab-content.active { display: block; }
+  .ciudadano-tab-content { display: none; opacity: 0; }
+  .ciudadano-tab-content.active { display: block; animation: tabFadeIn 0.3s ease forwards; }
+  @keyframes tabFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .ciudadano-cards {
     display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
   }
@@ -2011,7 +2027,19 @@
     /* Table: stack as cards */
     .compare-table { font-size: 12px; display: table; }
     .compare-table th, .compare-table td { padding: 10px 12px; }
-    .compare-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 40px; }
+    .compare-table-scroll {
+      overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 40px;
+      position: relative;
+      background:
+        linear-gradient(to right, var(--white) 30%, transparent),
+        linear-gradient(to left, var(--white) 30%, transparent),
+        linear-gradient(to right, rgba(0,0,0,0.15), transparent 20px),
+        linear-gradient(to left, rgba(0,0,0,0.15), transparent 20px);
+      background-position: left center, right center, left center, right center;
+      background-size: 40px 100%, 40px 100%, 20px 100%, 20px 100%;
+      background-repeat: no-repeat;
+      background-attachment: local, local, scroll, scroll;
+    }
 
     .exec-summary-grid { grid-template-columns: 1fr; }
     .tldr .section { padding: 32px 32px; }
@@ -2049,7 +2077,7 @@
     .stat-number { font-size: 24px; }
     .stat-item.stat-hero .stat-number { font-size: 32px; }
     .stat-item { padding: 12px 8px 12px 0; margin-right: 8px; }
-    .stat-source { font-size: 8px; }
+    .stat-source { font-size: 0; height: 0; overflow: hidden; margin: 0; padding: 0; }
     .stat-peers { flex-wrap: nowrap; gap: 4px; }
     .stat-label { font-size: 10px; max-width: 100%; }
     .cover-footer { padding: 20px 20px; flex-direction: column; gap: 12px; align-items: flex-start; }
@@ -2068,7 +2096,7 @@
     .flow-node-title { font-size: 12px; }
     .flow-split-col { padding: 8px 10px; }
     .flow-split-col .flow-node-title { font-size: 10px; }
-    .flow-split-col .flow-node-desc { font-size: 9px; line-height: 1.35; }
+    .flow-split-col .flow-node-desc { font-size: 10px; line-height: 1.4; }
     /* Sartor */
     .sartor-numbers { grid-template-columns: 1fr; gap: 1px; }
     .sartor-num-value { font-size: 28px; }
@@ -2079,11 +2107,11 @@
     .effect-num { font-size: 36px; margin-bottom: 10px; }
     .effect-card { padding: 22px; }
     /* Roadmap */
-    .roadmap-timeline { margin-bottom: 24px; padding: 0 8px; }
+    .roadmap-timeline { margin-bottom: 24px; padding: 0 4px; }
     .roadmap-timeline-dot { width: 10px; height: 10px; }
     .roadmap-timeline-label { font-size: 10px; }
-    .roadmap-timeline-desc { font-size: 8px; }
-    .roadmap-timeline-line { min-width: 16px; margin: 0 4px; margin-bottom: 32px; }
+    .roadmap-timeline-desc { font-size: 9px; letter-spacing: 0.04em; }
+    .roadmap-timeline-line { min-width: 20px; margin: 0 6px; margin-bottom: 32px; }
     .roadmap-capa { padding: 24px 20px; }
     .roadmap-capa-title { font-size: 16px; }
     /* Infra cells */
@@ -2105,8 +2133,10 @@
     .exec-summary .section { padding: 32px 20px; }
     .tldr .section { padding: 28px 20px; }
     .tldr-item-text { font-size: 14px; }
-    .ciudadano-trigger { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 10px; }
-    .mobile-top-fab { bottom: 16px; left: 16px; width: 40px; height: 40px; }
+    .ciudadano-trigger { bottom: 16px; right: 16px; padding: 12px 18px; font-size: 10px; border-color: var(--accent-mid); }
+    .mobile-top-fab { bottom: 16px; left: 16px; width: 36px; height: 36px; opacity: 0; }
+    .mobile-top-fab.visible { opacity: 0.5; }
+    .mobile-top-fab:active { opacity: 0.8; }
     .ciudadano-header { padding: 0 20px 16px; }
     .ciudadano-title { font-size: 18px; }
     .ciudadano-tabs { padding: 0 20px; }
@@ -2130,7 +2160,8 @@
     .ciudadano-screen--data-caption { font-size: 13px; }
     .ciudadano-screen--prose p, .ciudadano-screen--close p { font-size: 15px; }
     /* Missing overrides for narrow screens */
-    .context-bar-item { grid-template-columns: 52px 1fr 36px; gap: 6px; }
+    .context-bar-item { grid-template-columns: 62px 1fr 32px; gap: 6px; }
+    .context-bar-label { font-size: 9px; }
     .compare-table { font-size: 11px; }
     .compare-table th, .compare-table td { padding: 8px 10px; }
     .footnote-item { gap: 8px; }
@@ -2200,6 +2231,17 @@
     .context-bar-item.is-chile .context-bar-fill { background: var(--accent-mid); }
     .proportion-bar-track { border-color: var(--rule); }
     .proportion-bar-seg.seg-major { background: var(--ink); color: #0E1117; }
+    .compare-table-scroll {
+      background:
+        linear-gradient(to right, var(--paper) 30%, transparent),
+        linear-gradient(to left, var(--paper) 30%, transparent),
+        linear-gradient(to right, rgba(255,255,255,0.08), transparent 20px),
+        linear-gradient(to left, rgba(255,255,255,0.08), transparent 20px);
+      background-position: left center, right center, left center, right center;
+      background-size: 40px 100%, 40px 100%, 20px 100%, 20px 100%;
+      background-repeat: no-repeat;
+      background-attachment: local, local, scroll, scroll;
+    }
     .compare-table th { background: var(--paper-warm); color: var(--ink); border-color: var(--rule); }
     .compare-table td { border-color: var(--rule); }
     .compare-table tr:hover td { background: var(--paper-warm); }
@@ -2212,6 +2254,7 @@
     .mobile-top-fab { background: #1A1E28; border-color: var(--rule); }
     .closing-action-btn--primary { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
     .ciudadano-trigger:hover { background: var(--accent); }
+    .ciudadano-tabs-wrap::after { background: linear-gradient(to right, transparent, var(--paper)); }
     .ciudadano-panel { background: var(--paper); border-color: var(--rule); }
     .ciudadano-card { border-color: var(--rule); background: var(--white); }
     .ciudadano-stat { border-color: var(--rule); background: var(--white); }
@@ -3043,12 +3086,14 @@
     </div>
     <div class="ciudadano-subtitle">El memorándum es técnico. El impacto no lo es. Elige tu perspectiva.</div>
   </div>
+  <div class="ciudadano-tabs-wrap" id="ciudadanoTabsWrap">
   <div class="ciudadano-tabs" role="tablist">
     <button class="ciudadano-tab active" data-tab="tab-pensionado" role="tab" aria-selected="true" id="btn-pensionado" aria-controls="tab-pensionado"><span class="ciudadano-tab-full">Si estás jubilado o próximo</span><span class="ciudadano-tab-short">Pensiones</span></button>
     <button class="ciudadano-tab" data-tab="tab-empresa" role="tab" aria-selected="false" id="btn-empresa" aria-controls="tab-empresa"><span class="ciudadano-tab-full">Si buscas financiamiento</span><span class="ciudadano-tab-short">Empresa</span></button>
     <button class="ciudadano-tab" data-tab="tab-afp" role="tab" aria-selected="false" id="btn-afp" aria-controls="tab-afp"><span class="ciudadano-tab-full">Si administras AFP o seguros</span><span class="ciudadano-tab-short">Institucional</span></button>
     <button class="ciudadano-tab" data-tab="tab-legislador" role="tab" aria-selected="false" id="btn-legislador" aria-controls="tab-legislador"><span class="ciudadano-tab-full">Si legislas o regulas</span><span class="ciudadano-tab-short">Regulador</span></button>
     <button class="ciudadano-tab" data-tab="tab-banca" role="tab" aria-selected="false" id="btn-banca" aria-controls="tab-banca"><span class="ciudadano-tab-full">Si operas desde la banca</span><span class="ciudadano-tab-short">Banca</span></button>
+  </div>
   </div>
   <div class="ciudadano-content">
 
@@ -3392,21 +3437,40 @@
         t.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
       tabContents.forEach(tc => tc.classList.toggle('active', tc.id === target));
+      // Reset panel scroll to top on tab switch
+      panel.scrollTop = 0;
     });
   });
 
-  // Swipe to close ciudadano panel
+  // Tabs scroll-end detection for fade gradient
+  const tabsEl = document.querySelector('.ciudadano-tabs');
+  const tabsWrap = document.getElementById('ciudadanoTabsWrap');
+  function checkTabsScroll() {
+    if (!tabsEl || !tabsWrap) return;
+    const atEnd = tabsEl.scrollLeft + tabsEl.clientWidth >= tabsEl.scrollWidth - 4;
+    tabsWrap.classList.toggle('scrolled-end', atEnd);
+  }
+  tabsEl.addEventListener('scroll', checkTabsScroll, { passive: true });
+  // Check on panel open
+  const origOpen = openPanel;
+  openPanel = function() { origOpen(); requestAnimationFrame(checkTabsScroll); };
+
+  // Swipe to close ciudadano panel (only when scrolled to top)
   let startY = 0;
-  panel.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
+  let swipeAllowed = false;
+  panel.addEventListener('touchstart', (e) => {
+    startY = e.touches[0].clientY;
+    swipeAllowed = panel.scrollTop <= 5;
+  }, { passive: true });
   panel.addEventListener('touchmove', (e) => {
-    if (e.touches[0].clientY - startY > 80) closePanel();
+    if (swipeAllowed && e.touches[0].clientY - startY > 80) closePanel();
   }, { passive: true });
 
   // Share buttons
   const shareMessages = {
     pensionado: 'Tu pensión está invertida como si necesitaras la plata mañana. Pero no la necesitas mañana. Eso tiene un costo.',
     empresa: 'En Chile hay 500.000 empresas. El mercado de capitales cubre 250. El resto depende del banco.',
-    afp: 'Llegó un fondo alternativo al comité. Lo aprobaste. Pero toda la información venía del mismo actor que lo gestiona — NAV, activos, aportantes. Chile tiene 0 Fund Administrators independientes. Eso no es due diligence — es confianza sin contraparte.',
+    afp: 'Chile tiene 0 Fund Administrators independientes. USD 5.000M en alternativos donde NAV, activos y aportantes los reporta el mismo actor que gestiona. Eso no es due diligence — es confianza sin contraparte.',
     legislador: 'Colombia tiene 3 Fund Admins autorizados. Perú permite delegación parcial. Chile — el mercado más sofisticado de la región — tiene cero. Reforma ejecutable en 9–15 meses, $0 costo fiscal, sin Congreso.',
     banca: 'El 83% del financiamiento corporativo en Chile está en balance bancario. La separación funcional abre un canal de originación y distribución con fees recurrentes — sin consumir capital regulatorio.'
   };
@@ -3414,7 +3478,8 @@
     btn.addEventListener('click', async () => {
       const key = btn.dataset.share;
       const msg = shareMessages[key];
-      const url = window.location.href.split('#')[0];
+      const tabMap = { pensionado: 'tab-pensionado', empresa: 'tab-empresa', afp: 'tab-afp', legislador: 'tab-legislador', banca: 'tab-banca' };
+      const url = window.location.href.split('#')[0] + '#' + tabMap[key];
       const full = msg + '\n\n' + url;
       if (navigator.share) {
         try { await navigator.share({ text: full }); } catch (e) { /* cancelled */ }
@@ -3480,6 +3545,27 @@
     }
   });
   closingPdfBtn.addEventListener('click', () => { window.print(); });
+
+  /* ── DEEP-LINK: open panel to specific tab from URL hash ── */
+  function handleDeepLink() {
+    const hash = window.location.hash.replace('#', '');
+    const validTabs = ['tab-pensionado', 'tab-empresa', 'tab-afp', 'tab-legislador', 'tab-banca'];
+    if (validTabs.includes(hash)) {
+      const targetTab = document.querySelector(`.ciudadano-tab[data-tab="${hash}"]`);
+      if (targetTab) {
+        openPanel();
+        targetTab.click();
+        // Scroll the tab into view within the tabs container
+        requestAnimationFrame(() => {
+          targetTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        });
+      }
+    }
+  }
+  // Run on load and on hash change
+  handleDeepLink();
+  window.addEventListener('hashchange', handleDeepLink);
+
 </script>
 </body>
 </html>
