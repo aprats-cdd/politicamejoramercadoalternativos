@@ -618,8 +618,10 @@
   }
   .context-bar-fill {
     height: 100%;
+    width: 100%;
     background: var(--rule);
-    transition: width 0.8s ease;
+    transform-origin: left;
+    transition: transform 0.8s ease;
   }
   .context-bar-item.is-chile .context-bar-fill {
     background: var(--accent-mid);
@@ -848,7 +850,7 @@
     position: absolute;
     top: -1px;
     left: -1px;
-    background: #8B1A1A;
+    background: var(--danger);
     color: white;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
@@ -1283,12 +1285,12 @@
 
   .closing-title em {
     font-style: italic;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.75);
   }
 
   .closing-text {
     font-size: 16px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.65);
     max-width: 560px;
     line-height: 1.75;
     margin-bottom: 56px;
@@ -1893,7 +1895,7 @@
     position: fixed;
     bottom: 24px;
     left: 24px;
-    z-index: 90;
+    z-index: 91;
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -1980,7 +1982,7 @@
     .section-title { font-size: 32px !important; }
     .compare-table { font-size: 11px !important; }
     .compare-table th, .compare-table td { padding: 10px 12px !important; }
-    .progress-bar, .ciudadano-trigger, .ciudadano-overlay, .ciudadano-panel, .main-nav-top, .tldr, .mobile-top-fab, .closing-actions { display: none !important; }
+    .progress-bar, .ciudadano-trigger, .ciudadano-overlay, .ciudadano-panel, .main-nav-top, .tldr, .mobile-top-fab, .closing-actions, .show-more-btn { display: none !important; }
     .exec-summary { page-break-after: avoid; }
     .footnotes-section { page-break-before: always; break-before: page; }
     [data-source]::after { display: none !important; }
@@ -2117,10 +2119,10 @@
     .effects-grid.is-collapsed.grid-2col .effect-card:nth-child(n+5) { display: none; }
     .show-more-btn {
       display: block; width: 100%; margin-top: 16px; padding: 14px;
-      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+      font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;
       letter-spacing: 0.06em; text-transform: uppercase;
       color: var(--accent); background: transparent;
-      border: 1px solid var(--accent); border-radius: 2px; cursor: pointer;
+      border: 1px solid var(--accent); cursor: pointer;
       transition: background 0.2s, color 0.2s;
     }
     .show-more-btn:hover { background: var(--accent); color: var(--white); }
@@ -2136,7 +2138,7 @@
     .infra-grid { gap: 12px; background: transparent; }
     .infra-cell { padding: 24px 20px; border: 1px solid var(--rule); }
     .sartor-grid { gap: 20px; }
-    html { scroll-padding-top: 68px; }
+    html { scroll-padding-top: 80px; }
     .main-nav-inner { padding: 0 20px; }
     .nav-drawer { width: 280px; }
     /* Closing */
@@ -2220,14 +2222,15 @@
       --nav-link-hover: #7AAAF0;
       --nav-link-active: #E8EAEE;
       --nav-accent-bar: #5B8FDB;
+      --deep-dark: #080A0F;
     }
     body { -webkit-font-smoothing: auto; }
-    ::selection { background: var(--accent-mid); color: #0E1117; }
-    .cover { background: #080A0F; }
-    .sartor-section { background: #080A0F; }
-    .sartor-num { background: #080A0F; }
+    ::selection { background: var(--accent-mid); color: var(--deep-dark); }
+    .cover { background: var(--deep-dark); }
+    .sartor-section { background: var(--deep-dark); }
+    .sartor-num { background: var(--deep-dark); }
     .sartor-falla { background: rgba(255,255,255,0.04); }
-    .closing { background: #080A0F; }
+    .closing { background: var(--deep-dark); }
     .flow-node { background: var(--white); }
     .effect-card { background: var(--white); }
 
@@ -2631,22 +2634,22 @@
         <div class="context-bars-title">Financiamiento empresarial vía banca · Comparado</div>
         <div class="context-bar-item is-chile">
           <div class="context-bar-label">Chile</div>
-          <div class="context-bar-track"><div class="context-bar-fill" style="width: 83%;"></div></div>
+          <div class="context-bar-track"><div class="context-bar-fill" style="transform: scaleX(0.83);"></div></div>
           <div class="context-bar-value">83%</div>
         </div>
         <div class="context-bar-item">
           <div class="context-bar-label">Alemania</div>
-          <div class="context-bar-track"><div class="context-bar-fill" style="width: 70%;"></div></div>
+          <div class="context-bar-track"><div class="context-bar-fill" style="transform: scaleX(0.70);"></div></div>
           <div class="context-bar-value">70%</div>
         </div>
         <div class="context-bar-item">
           <div class="context-bar-label">UK</div>
-          <div class="context-bar-track"><div class="context-bar-fill" style="width: 45%;"></div></div>
+          <div class="context-bar-track"><div class="context-bar-fill" style="transform: scaleX(0.45);"></div></div>
           <div class="context-bar-value">45%</div>
         </div>
         <div class="context-bar-item">
           <div class="context-bar-label">EE.UU.</div>
-          <div class="context-bar-track"><div class="context-bar-fill" style="width: 35%;"></div></div>
+          <div class="context-bar-track"><div class="context-bar-fill" style="transform: scaleX(0.35);"></div></div>
           <div class="context-bar-value">35%</div>
         </div>
         <div class="context-bar-source">Fuentes: CMF IEF 2S 2025 (Chile), BIS Quarterly Review 2025, Fed Flow of Funds, Bank of England</div>
@@ -2656,22 +2659,22 @@
         <div class="context-bars-title">Fund Administrators independientes autorizados</div>
         <div class="context-bar-item">
           <div class="context-bar-label">Luxemburgo</div>
-          <div class="context-bar-track"><div class="context-bar-fill" style="width: 100%;"></div></div>
+          <div class="context-bar-track"><div class="context-bar-fill" style="transform: scaleX(1);"></div></div>
           <div class="context-bar-value">150+</div>
         </div>
         <div class="context-bar-item">
           <div class="context-bar-label">Irlanda</div>
-          <div class="context-bar-track"><div class="context-bar-fill" style="width: 53%;"></div></div>
+          <div class="context-bar-track"><div class="context-bar-fill" style="transform: scaleX(0.53);"></div></div>
           <div class="context-bar-value">80+</div>
         </div>
         <div class="context-bar-item">
           <div class="context-bar-label">Colombia</div>
-          <div class="context-bar-track"><div class="context-bar-fill" style="width: 2%;"></div></div>
+          <div class="context-bar-track"><div class="context-bar-fill" style="transform: scaleX(0.02);"></div></div>
           <div class="context-bar-value">3</div>
         </div>
         <div class="context-bar-item is-chile">
           <div class="context-bar-label">Chile</div>
-          <div class="context-bar-track"><div class="context-bar-fill" style="width: 0%;"></div></div>
+          <div class="context-bar-track"><div class="context-bar-fill" style="transform: scaleX(0);"></div></div>
           <div class="context-bar-value">0</div>
         </div>
         <div class="context-bar-source">Fuentes: CSSF, Central Bank of Ireland, SFC Colombia, CMF Chile<a href="#fn9" class="fn-ref">9</a></div>
@@ -3590,7 +3593,7 @@
 
   /* ── PROGRESSIVE DISCLOSURE: collapse effect grids on mobile ── */
   (function() {
-    var mql = window.matchMedia('(max-width: 768px)');
+    var mql = window.matchMedia('(max-width: 480px)');
     var btns = document.querySelectorAll('.show-more-btn');
 
     function applyCollapse(isMobile) {
