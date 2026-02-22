@@ -11,6 +11,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="es_CL">
 <meta property="og:image" content="https://aprats-cdd.github.io/politicamejoramercadoalternativos/og-cover.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://aprats-cdd.github.io/politicamejoramercadoalternativos/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="500.000 empresas en Chile. Tu pensión invierte en 250.">
@@ -1194,6 +1196,39 @@
     line-height: 1.75;
     margin-bottom: 56px;
   }
+
+  .closing-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+  .closing-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .closing-action-btn--primary {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .closing-action-btn--primary:hover { background: rgba(255,255,255,0.18); }
+  .closing-action-btn--primary.copied { background: rgba(26,92,42,0.5); border-color: rgba(26,92,42,0.7); }
+  .closing-action-btn--secondary {
+    background: none;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .closing-action-btn--secondary:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.25); }
 
   .closing-footer {
     width: 100%;
@@ -2881,10 +2916,15 @@
     <p class="closing-text">
       La infraestructura que Luxemburgo construyó en 2013, que EE.UU. formalizó post-Madoff, y que Colombia y Perú están comenzando a ensayar — Chile puede implementarla con las facultades normativas que la CMF ya tiene. No como reacción a Sartor. Como decisión de construir el mercado de capitales que el ahorro chileno necesita y merece.
     </p>
+    <div class="closing-actions">
+      <button class="closing-action-btn closing-action-btn--primary" id="closingShare">&#8599; Compartir este memorándum</button>
+      <button class="closing-action-btn closing-action-btn--secondary" id="closingPdf">&#8615; Descargar PDF</button>
+    </div>
     <div class="closing-footer">
       <div class="closing-footer-brand">
         Andrés Prats<br>
-        Santiago de Chile · Febrero 2026
+        Santiago de Chile · Febrero 2026<br>
+        Disponible para presentar este análisis ante CMF, SP o comisiones legislativas
       </div>
       <div class="closing-footer-disclaimer">
         Profesional con 15 años en mercados privados y alternativos<br>
@@ -3018,6 +3058,7 @@
           <div class="ciudadano-stat-label">Concentrado en banca</div>
         </div>
       </div>
+      <button class="ciudadano-share" data-share="afp">&#8599; Compartir</button>
     </div>
     <div class="ciudadano-tab-content" id="tab-legislador">
       <div class="ciudadano-cards">
@@ -3056,6 +3097,7 @@
           <div class="ciudadano-stat-label">Sanción Sartor</div>
         </div>
       </div>
+      <button class="ciudadano-share" data-share="legislador">&#8599; Compartir</button>
     </div>
   </div>
 </div>
@@ -3238,14 +3280,16 @@
   // Share buttons
   const shareMessages = {
     pensionado: 'Tu pensión está invertida como si necesitaras la plata mañana. Pero no la necesitas mañana. Eso tiene un costo.',
-    empresa: 'En Chile hay 500.000 empresas. El mercado de capitales cubre 250. El resto depende del banco.'
+    empresa: 'En Chile hay 500.000 empresas. El mercado de capitales cubre 250. El resto depende del banco.',
+    afp: 'Chile tiene 0 Fund Administrators independientes. Tu due diligence sobre fondos privados depende de la palabra del gestor.',
+    legislador: 'La reforma de mercados privados cuesta $0 al fisco y no requiere Congreso. Ejecutable en 9–15 meses por CMF y SP.'
   };
   document.querySelectorAll('.ciudadano-share').forEach(btn => {
     btn.addEventListener('click', async () => {
       const key = btn.dataset.share;
       const msg = shareMessages[key];
       const url = window.location.href.split('#')[0];
-      const full = msg + ' ' + url;
+      const full = msg + '\n\n' + url;
       if (navigator.share) {
         try { await navigator.share({ text: full }); } catch (e) { /* cancelled */ }
       } else {
@@ -3287,6 +3331,29 @@
       document.querySelectorAll('[data-source].tooltip-open').forEach(t => t.classList.remove('tooltip-open'));
     }
   }, { passive: true });
+
+  /* ── CLOSING ACTIONS ── */
+  const closingShareBtn = document.getElementById('closingShare');
+  const closingPdfBtn = document.getElementById('closingPdf');
+  const closingMsg = 'Memorándum de Política Pública: mercados privados de capital en Chile. 500.000 empresas, tu pensión invierte en 250. Separación funcional, sin Congreso, en 9 meses.';
+  closingShareBtn.addEventListener('click', async () => {
+    const url = window.location.href.split('#')[0];
+    const full = closingMsg + '\n\n' + url;
+    if (navigator.share) {
+      try { await navigator.share({ title: document.title, text: full }); } catch (e) {}
+    } else {
+      try {
+        await navigator.clipboard.writeText(full);
+        closingShareBtn.classList.add('copied');
+        closingShareBtn.textContent = '\u2713 Copiado al portapapeles';
+        setTimeout(() => {
+          closingShareBtn.classList.remove('copied');
+          closingShareBtn.innerHTML = '&#8599; Compartir este memorándum';
+        }, 2500);
+      } catch (e) {}
+    }
+  });
+  closingPdfBtn.addEventListener('click', () => { window.print(); });
 </script>
 </body>
 </html>
