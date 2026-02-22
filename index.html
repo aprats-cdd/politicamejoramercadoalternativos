@@ -734,12 +734,24 @@
     visibility: visible;
   }
   /* Light background variant */
-  .prose [data-source] { border-bottom-color: var(--rule); }
+  .prose [data-source] { border-bottom: 1px dotted var(--rule); }
   .prose [data-source]::after {
     background: var(--white);
     color: var(--ink-soft);
     border-color: var(--rule);
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  /* On mobile: tooltip below element to avoid viewport overflow */
+  @media (max-width: 900px) {
+    [data-source]::after {
+      bottom: auto;
+      top: calc(100% + 6px);
+      left: 0;
+      right: auto;
+      max-width: 260px;
+      white-space: normal;
+      line-height: 1.4;
+    }
   }
 
   /* ── FOOTNOTE REFERENCES ── */
@@ -1956,8 +1968,10 @@
     .closing-footer { flex-direction: column; gap: 16px; align-items: flex-start; }
     .closing-footer-disclaimer { text-align: left; max-width: 100%; }
     /* Table: stack as cards */
-    .compare-table { display: none; }
-    .compare-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
+    .compare-table { font-size: 12px; display: table; }
+    .compare-table th, .compare-table td { padding: 10px 12px; }
+    .compare-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 40px; }
+    .compare-cards { display: none; }
     .exec-summary-grid { grid-template-columns: 1fr; }
     .tldr .section { padding: 32px 32px; }
     .tldr-item { flex-direction: column; gap: 6px; }
@@ -2071,6 +2085,8 @@
     .ciudadano-screen--prose p, .ciudadano-screen--close p { font-size: 15px; }
     /* Missing overrides for narrow screens */
     .context-bar-item { grid-template-columns: 52px 1fr 36px; gap: 6px; }
+    .compare-table-scroll { display: none; }
+    .compare-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
     .compare-card-row { grid-template-columns: 56px 1fr; }
     .footnote-item { gap: 8px; }
     .infra-cell-title { font-size: 14px; }
@@ -2445,6 +2461,7 @@
       <div class="act-label reveal">
         Análisis comparado · Chile · Luxemburgo · EE.UU.
       </div>
+      <div class="compare-table-scroll">
       <table class="compare-table reveal">
         <thead>
           <tr>
@@ -2492,8 +2509,9 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
-      <!-- Mobile cards (shown only on <900px via CSS) -->
+      <!-- Mobile cards (fallback for very narrow screens) -->
       <div class="compare-cards">
 
         <div class="compare-card">
