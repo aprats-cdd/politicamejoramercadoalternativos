@@ -915,6 +915,11 @@
     background: var(--white);
     padding: 32px;
   }
+  .infra-grid-divider {
+    grid-column: 1 / -1;
+    height: 20px;
+    background: transparent;
+  }
 
   .infra-cell-label {
     font-family: 'IBM Plex Mono', monospace;
@@ -961,6 +966,8 @@
     grid-template-columns: 1fr 1fr;
     margin-top: 40px;
   }
+  /* Show-more button hidden on desktop */
+  .show-more-btn { display: none; }
 
   .effect-card {
     padding: 28px;
@@ -2103,9 +2110,20 @@
     .sartor-falla { padding: 20px 18px; }
     .sartor-falla-title { font-size: 13px; }
     /* Effects */
-    .effects-grid, .effects-grid.grid-2col { grid-template-columns: 1fr; gap: 12px; }
+    .effects-grid, .effects-grid.grid-2col { grid-template-columns: 1fr; gap: 20px; }
     .effect-num { font-size: 36px; margin-bottom: 10px; }
     .effect-card { padding: 22px; }
+    /* Progressive disclosure: hide overflow cards on mobile */
+    .effects-grid.is-collapsed.grid-2col .effect-card:nth-child(n+5) { display: none; }
+    .show-more-btn {
+      display: block; width: 100%; margin-top: 16px; padding: 14px;
+      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--accent); background: transparent;
+      border: 1px solid var(--accent); border-radius: 2px; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .show-more-btn:hover { background: var(--accent); color: var(--white); }
     /* Roadmap */
     .roadmap-timeline { margin-bottom: 24px; padding: 0 4px; }
     .roadmap-timeline-dot { width: 10px; height: 10px; }
@@ -2114,8 +2132,10 @@
     .roadmap-timeline-line { min-width: 20px; margin: 0 6px; margin-bottom: 32px; }
     .roadmap-capa { padding: 24px 20px; }
     .roadmap-capa-title { font-size: 16px; }
-    /* Infra cells */
-    .infra-cell { padding: 24px 20px; }
+    /* Infra cells — more breathing room on mobile */
+    .infra-grid { gap: 12px; background: transparent; }
+    .infra-cell { padding: 24px 20px; border: 1px solid var(--rule); }
+    .sartor-grid { gap: 20px; }
     html { scroll-padding-top: 68px; }
     .main-nav-inner { padding: 0 20px; }
     .nav-drawer { width: 280px; }
@@ -2332,7 +2352,7 @@
       <em>Cero infraestructura de mercados privados.</em><a href="#fn9" class="fn-ref">9</a>
     </h1>
     <p class="cover-thesis">
-      En mercados públicos, el precio lo da la transacción entre comprador y vendedor, la existencia de los activos la verifica un tercero, y los flujos se liquidan por un sistema independiente. En mercados privados, nada de eso existe por defecto — hay que construirlo. En Chile, las tres funciones las cumple el mismo actor que se beneficia de que nadie lo verifique.
+      Medio millón de empresas necesitan capital. Los fondos de pensiones buscan dónde invertirlo. La barrera no es regulación ni voluntad — es que Chile no tiene la infraestructura independiente para que ese capital fluya con verificación y confianza. Hoy, quien gestiona el fondo es el mismo que valora los activos, confirma que existen y controla los flujos. Sin separación, no hay mercado.
     </p>
     <div class="cover-stats">
       <div class="stat-item">
@@ -2522,6 +2542,7 @@
         <div class="infra-cell-title">Tres actores · Responsabilidades acotadas · Controles por oposición</div>
         <div class="infra-cell-text">GP gestiona. Fund Admin administra y calcula NAV. Custodio Regulado verifica existencia de activos y reporta autónomamente a la CMF. Ningún actor puede ser árbitro de su propio cumplimiento.</div>
       </div>
+      <div class="infra-grid-divider"></div>
       <div class="infra-cell infra-problem">
         <div class="infra-cell-label">Consecuencia para el mercado</div>
         <div class="infra-cell-title">Barreras de entrada altas · Especialización imposible</div>
@@ -2766,7 +2787,7 @@
     <h2 class="section-title reveal">Cada objeción previsible.<br><em>Y lo que responde la evidencia.</em></h2>
     <p class="section-subtitle reveal">Un argumento que no aborda sus críticas no merece ser tomado en serio.</p>
 
-    <div class="effects-grid grid-2col reveal">
+    <div id="objeciones-grid" class="effects-grid grid-2col reveal">
       <div class="effect-card">
         <div class="effect-num effect-num--obj">Objeción</div>
         <div class="effect-title">"El mercado es demasiado chico para separar funciones"</div>
@@ -2811,6 +2832,7 @@
         <div class="effect-text">Los Fund Admins son infraestructura, como las bolsas de valores o los DCV. Que empresas privadas provean esa infraestructura es el diseño — no el problema. Los beneficiarios finales son los trabajadores cuyas pensiones se invierten sin verificación independiente, y las empresas que no acceden a financiamiento porque el canal privado no existe.</div>
       </div>
     </div>
+    <button class="show-more-btn" data-target="objeciones-grid" hidden>+ 4 objeciones más</button>
   </div>
 </section>
 
@@ -3565,6 +3587,38 @@
   // Run on load and on hash change
   handleDeepLink();
   window.addEventListener('hashchange', handleDeepLink);
+
+  /* ── PROGRESSIVE DISCLOSURE: collapse effect grids on mobile ── */
+  (function() {
+    var mql = window.matchMedia('(max-width: 768px)');
+    var btns = document.querySelectorAll('.show-more-btn');
+
+    function applyCollapse(isMobile) {
+      btns.forEach(function(btn) {
+        var grid = document.getElementById(btn.getAttribute('data-target'));
+        if (!grid) return;
+        if (isMobile) {
+          grid.classList.add('is-collapsed');
+          btn.hidden = false;
+        } else {
+          grid.classList.remove('is-collapsed');
+          btn.hidden = true;
+        }
+      });
+    }
+
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var grid = document.getElementById(btn.getAttribute('data-target'));
+        if (!grid) return;
+        grid.classList.remove('is-collapsed');
+        btn.hidden = true;
+      });
+    });
+
+    applyCollapse(mql.matches);
+    mql.addEventListener('change', function(e) { applyCollapse(e.matches); });
+  })();
 
 </script>
 </body>
