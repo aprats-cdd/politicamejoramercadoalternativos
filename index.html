@@ -511,6 +511,40 @@
     transform: rotate(45deg);
   }
 
+  /* ── FLOW SPLIT (3 problems diagram) ── */
+  .flow-node.flow-split {
+    border-left: none;
+    padding: 0;
+    overflow: hidden;
+  }
+  .flow-node.flow-split .flow-node-label {
+    padding: 12px 16px 8px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+  .flow-split-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .flow-split-col {
+    padding: 12px 16px 16px;
+  }
+  .flow-split-col.flow-split-ok {
+    border-left: 3px solid var(--accent-mid);
+    background: var(--accent-light);
+  }
+  .flow-split-col.flow-split-gap {
+    border-left: 1px solid var(--rule-light);
+    border-right: none;
+    background: var(--danger-light);
+  }
+  .flow-split-col .flow-node-title {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  .flow-split-col .flow-node-desc {
+    font-size: 11px;
+  }
+
   /* ── DATA VISUALIZATION ── */
   .context-bars {
     margin-top: 48px;
@@ -1098,6 +1132,37 @@
     margin-top: 1px;
   }
 
+  /* ── GLOSSARY ── */
+  .glossary-section {
+    background: var(--paper-warm);
+  }
+  .glossary-section .section { padding: 48px 64px; }
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 40px;
+    max-width: 900px;
+  }
+  .glossary-item {
+    padding: 20px 24px;
+    background: var(--white);
+    border: 1px solid var(--rule-light);
+    border-left: 3px solid var(--accent-mid);
+  }
+  .glossary-term {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .glossary-def {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
   /* ── CLOSING ── */
   .closing {
     background: var(--ink);
@@ -1682,6 +1747,10 @@
     .ciudadano-header { padding: 0 24px 20px; }
     .ciudadano-tabs { padding: 0 24px; }
     .footnotes-section .section { padding: 48px 32px; }
+    .glossary-grid { grid-template-columns: 1fr; gap: 16px; }
+    .glossary-section .section { padding: 48px 32px; }
+    .flow-split-row { grid-template-columns: 1fr; }
+    .flow-split-col.flow-split-gap { border-left: 3px solid var(--danger); border-top: 1px solid var(--rule-light); }
     .context-bar-item { grid-template-columns: 64px 1fr 40px; gap: 8px; }
     .stat-peers { gap: 12px; }
     .proportion-bar-seg { font-size: 9px; }
@@ -1737,6 +1806,10 @@
     .closing-footer { padding-top: 28px; }
     .closing-footer-brand { font-size: 9px; }
     .closing-footer-disclaimer { font-size: 9px; }
+    .glossary-section .section { padding: 32px 20px; }
+    .glossary-item { padding: 16px 18px; }
+    .glossary-term { font-size: 11px; }
+    .glossary-def { font-size: 12px; }
     .exec-summary .section { padding: 32px 20px; }
     .ciudadano-trigger { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 10px; }
     .ciudadano-header { padding: 0 20px 16px; }
@@ -1810,6 +1883,8 @@
       color: var(--ink-muted);
     }
     .footnotes-section { background: var(--paper-warm); }
+    .glossary-section { background: var(--paper-warm); }
+    .glossary-item { background: var(--white); border-color: var(--rule); }
     .exec-summary { background: var(--white); }
     .roadmap-section { background: var(--paper-warm); }
     .badge-a1 { background: #5A5E6A; color: white; }
@@ -1843,7 +1918,7 @@
   <div class="main-nav-inner">
     <a href="#" class="main-nav-brand" id="navBrand">Memorándum · 2026</a>
     <ul class="main-nav-links" role="list">
-      <li><a href="#acto1">I · La falla</a></li>
+      <li><a href="#acto1">I · El sistema</a></li>
       <li><a href="#acto2">II · Infraestructura</a></li>
       <li><a href="#acto3">III · Sartor</a></li>
       <li><a href="#acto4">IV · La reforma</a></li>
@@ -1866,7 +1941,7 @@
     <button class="nav-drawer-close" id="navDrawerClose" aria-label="Cerrar menú">&#10005;</button>
   </div>
   <ul class="nav-drawer-links" role="list">
-    <li><a href="#acto1">I · La falla</a></li>
+    <li><a href="#acto1">I · El sistema</a></li>
     <li><a href="#acto2">II · Infraestructura</a></li>
     <li><a href="#acto3">III · Sartor</a></li>
     <li><a href="#acto4">IV · La reforma</a></li>
@@ -1901,7 +1976,7 @@
       <em>Cero infraestructura de mercados privados.</em><a href="#fn9" class="fn-ref">9</a>
     </h1>
     <p class="cover-thesis">
-      Chile tiene el sistema de ahorro previsional más maduro de América Latina<a href="#fn1" class="fn-ref">1</a>, un sistema bancario que concentra el 83% del financiamiento empresarial<a href="#fn2" class="fn-ref">2</a>, y un mercado de capitales privados que aún no existe funcionalmente. La separación funcional entre gestión, administración y custodia es la infraestructura que conecta ambos — y que Chile todavía no tiene.
+      En mercados públicos, el precio lo da la transacción entre comprador y vendedor, la existencia de los activos la verifica un tercero, y los flujos se liquidan por un sistema independiente. En mercados privados, nada de eso existe por defecto — hay que construirlo. En Chile, las tres funciones las cumple el mismo actor que se beneficia de que nadie lo verifique.
     </p>
     <div class="cover-stats">
       <div class="stat-item">
@@ -1934,7 +2009,7 @@
   <div class="cover-footer">
     <div class="cover-footer-left">Memorándum de Política Pública · CMF · Superintendencia de Pensiones</div>
     <ul class="cover-nav">
-      <li><a href="#acto1">La Falla</a></li>
+      <li><a href="#acto1">El sistema</a></li>
       <li><a href="#acto2">Infraestructura</a></li>
       <li><a href="#acto3">Sartor</a></li>
       <li><a href="#acto4">La Reforma</a></li>
@@ -1951,7 +2026,7 @@
     <div class="exec-summary-grid">
       <div class="exec-summary-item">
         <span class="exec-summary-num">01</span>
-        <div class="exec-summary-text"><strong>El problema.</strong> Chile tiene USD 400.000M en ahorro administrado y cero Fund Administrators independientes. El gestor de activos privados es árbitro único de su propio cumplimiento.</div>
+        <div class="exec-summary-text"><strong>El problema.</strong> En mercados privados no hay precio de mercado, no hay depósito central y no hay cámara de compensación. Alguien tiene que estimar el valor, verificar los activos y monitorear los flujos. En Chile, ese alguien es el mismo gestor que cobra comisiones sobre el valor que él declara.</div>
       </div>
       <div class="exec-summary-item">
         <span class="exec-summary-num">02</span>
@@ -1975,57 +2050,73 @@
   <div class="section">
     <div class="act-label">
       <span class="act-number">I</span>
-      La falla silenciosa del mercado de capitales chileno
+      Tres problemas que en mercados públicos no existen
     </div>
-    <h2 class="section-title reveal">83% por un solo canal.<br><em>El resto no tiene infraestructura.</em></h2>
-    <p class="section-subtitle reveal">"El sistema financiero chileno es sólido. Y aun así, no cumple su función más básica."</p>
+    <h2 class="section-title reveal">Valor estimado. Activos no verificados.<br><em>Flujos sin monitoreo.</em></h2>
+    <p class="section-subtitle reveal">"Los tres problemas que definen a los mercados privados — y que Chile no ha resuelto."</p>
 
     <div class="act1-grid">
       <div>
         <div class="prose reveal">
-          <p>Chile tiene uno de los sistemas de ahorro previsional más robustos de América Latina. Las AFPs administran más de USD 200.000M<a href="#fn1" class="fn-ref">1</a>. El sistema bancario es profundo y bien capitalizado. Y sin embargo, existe una falla estructural que rara vez se nombra con precisión: <strong>el ahorro chileno no llega eficientemente al mundo real</strong>.</p>
+          <p>Un mercado de capitales — público o privado — canaliza ahorro hacia inversión. La diferencia está en una sola restricción: en mercados públicos, los activos se transan en bolsa. En mercados privados, no. Esa restricción tiene tres consecuencias directas que definen todo lo que sigue.</p>
 
-          <p>La banca concentra el 83% del financiamiento empresarial<a href="#fn2" class="fn-ref">2</a> porque es el único canal de intermediación disponible. Que los mercados privados sean de nicho es la consecuencia directa de esa ausencia — no una decisión del mercado.</p>
+          <p><strong>Valorización.</strong> En mercados públicos, el precio es la última transacción entre comprador y vendedor. Es un hecho observable. En mercados privados, no hay transacción recurrente. Alguien tiene que estimar el valor de activos que no se transan — y esa estimación determina las comisiones que cobra el gestor, los retornos que se reportan a los aportantes, y las decisiones de rescate que toman los inversionistas.</p>
 
-          <p>Los gestores de activos privados — deuda privada, capital privado, infraestructura, real estate — son exactamente el tipo de intermediario diseñado para cubrir esas partes de la cadena que la banca no puede o no quiere cubrir por diseño prudencial. <strong>Pero en Chile, esa industria es todavía de nicho</strong> — no por falta de demanda, sino porque opera sin la infraestructura jurídica que los mercados desarrollados construyeron hace una década.</p>
+          <p><strong>Existencia del activo.</strong> En mercados públicos, los valores están en registro electrónico del DCV, verificables en tiempo real. En mercados privados, el activo es un contrato — un pagaré, un crédito, una participación, un inmueble. Alguien tiene que verificar que ese contrato existe, que el fondo es titular, y en qué estado se encuentra.</p>
 
-          <p>Un Chile con una industria de activos privados funcionalmente robusta canaliza ahorro hacia la economía real de forma que el sistema bancario — por mandato regulatorio y lógica prudencial — no puede hacer. Los beneficiarios de la reforma son los aportantes, las empresas que necesitan financiamiento, y la economía real que los conecta. Los gestores son el mecanismo, no el objetivo.</p>
+          <p><strong>Flujos de caja.</strong> En mercados públicos, la cámara de compensación liquida transacciones con margin diario. En mercados privados, los flujos son capital calls, distribuciones, pagos de interés, rescates. Alguien tiene que monitorear que los flujos correspondan a lo que el fondo prometió.</p>
+
+          <p>En mercados desarrollados, tres actores independientes resuelven estos tres problemas: el Fund Administrator estima valor, el Custodio Regulado verifica activos, y ambos reportan autónomamente al regulador. En Chile, un solo actor — la AGF — cumple las tres funciones sobre sí mismo.</p>
+
+          <p>¿Por qué importa? Porque la banca concentra el 83% del financiamiento empresarial<a href="#fn2" class="fn-ref">2</a> y los mercados privados son el canal diseñado para cubrir lo que la banca no puede cubrir por diseño prudencial: pymes en crecimiento, infraestructura regional, deuda de largo plazo. Las AFPs administran más de USD 200.000M<a href="#fn1" class="fn-ref">1</a> y tienen mandato de inversión en activos privados. Pero ese canal no funciona sin los tres actores que lo hacen verificable. Los beneficiarios de la reforma son los aportantes, las empresas que necesitan financiamiento, y la economía real que los conecta.</p>
         </div>
 
         <blockquote class="pull-quote reveal">
-          "Un Chile con una industria de mercados privados robusta no compite con la banca — la complementa, cubriendo partes de la cadena que hoy nadie cubre."
+          "Nadie aceptaría una bolsa donde el emisor declara el precio de su propia acción. Los mercados privados en Chile operan exactamente así."
         </blockquote>
       </div>
 
       <div class="flow-chain reveal">
-        <div class="flow-node flow-ok">
-          <div class="flow-node-label">Ahorro disponible</div>
-          <div class="flow-node-title" data-source="SP + CMF + ACAFI, dic. 2025">USD 400.000M+ administrado</div>
-          <div class="flow-node-desc">AFPs, aseguradoras, family offices, inversionistas institucionales.</div>
+        <div class="flow-node flow-split">
+          <div class="flow-node-label">Problema 01 · Valorización</div>
+          <div class="flow-split-row">
+            <div class="flow-split-col flow-split-ok">
+              <div class="flow-node-title">Mercado público</div>
+              <div class="flow-node-desc">Precio = última transacción entre comprador y vendedor. Hecho observable por todos.</div>
+            </div>
+            <div class="flow-split-col flow-split-gap">
+              <div class="flow-node-title">Chile hoy</div>
+              <div class="flow-node-desc">La AGF estima el valor de activos que ella misma originó. Cobra comisiones sobre ese valor. Sin verificación.</div>
+            </div>
+          </div>
         </div>
         <div class="flow-arrow"></div>
-        <div class="flow-node">
-          <div class="flow-node-label">Canal principal</div>
-          <div class="flow-node-title" data-source="CMF, IEF 2S 2025">Sistema bancario (83%)</div>
-          <div class="flow-node-desc">Profundo, sólido, regulado. Por diseño prudencial: crédito de corto plazo, garantías reales, ratings formales.</div>
+        <div class="flow-node flow-split">
+          <div class="flow-node-label">Problema 02 · Existencia del activo</div>
+          <div class="flow-split-row">
+            <div class="flow-split-col flow-split-ok">
+              <div class="flow-node-title">Mercado público</div>
+              <div class="flow-node-desc">Valores en registro electrónico del DCV. Titularidad verificable en tiempo real.</div>
+            </div>
+            <div class="flow-split-col flow-split-gap">
+              <div class="flow-node-title">Chile hoy</div>
+              <div class="flow-node-desc">La AGF declara existencia de activos. Nadie verifica que el contrato exista ni en qué estado se encuentra.</div>
+            </div>
+          </div>
         </div>
         <div class="flow-arrow"></div>
-        <div class="flow-node flow-gap">
-          <div class="flow-node-label">Gap estructural</div>
-          <div class="flow-node-title">Lo que la banca no puede cubrir</div>
-          <div class="flow-node-desc">Pymes en crecimiento · Infraestructura regional · Deuda de largo plazo · Real estate no residencial · Capital de riesgo.</div>
-        </div>
-        <div class="flow-arrow"></div>
-        <div class="flow-node flow-gap">
-          <div class="flow-node-label">Canal privado · Estado actual</div>
-          <div class="flow-node-title" data-source="ACAFI, Q4 2025">Deuda privada: USD 5.000M (nicho)</div>
-          <div class="flow-node-desc">Sin Fund Admins independientes. Sin custodio regulado. Sin circuito de verificación. El gestor es árbitro único de su propio cumplimiento.</div>
-        </div>
-        <div class="flow-arrow"></div>
-        <div class="flow-node">
-          <div class="flow-node-label">Economía real</div>
-          <div class="flow-node-title">Demanda insatisfecha</div>
-          <div class="flow-node-desc">El financiamiento que podría llegar, no llega. No por falta de capital — por falta de arquitectura.</div>
+        <div class="flow-node flow-split">
+          <div class="flow-node-label">Problema 03 · Flujos de caja</div>
+          <div class="flow-split-row">
+            <div class="flow-split-col flow-split-ok">
+              <div class="flow-node-title">Mercado público</div>
+              <div class="flow-node-desc">Cámara de compensación liquida transacciones. Margin diario. Sistema independiente.</div>
+            </div>
+            <div class="flow-split-col flow-split-gap">
+              <div class="flow-node-title">Chile hoy</div>
+              <div class="flow-node-desc">La AGF controla inversiones y flujos simultáneamente. Nadie monitorea que correspondan al mandato del fondo.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2044,7 +2135,7 @@
     <p class="section-subtitle reveal">"El mercado no despega porque no tiene la infraestructura operativa que los inversionistas institucionales exigen como condición de entrada."</p>
 
     <div class="prose reveal">
-      <p>El mercado de deuda privada en Chile tiene aproximadamente USD 5.000M en activos bajo gestión<a href="#fn3" class="fn-ref">3</a>. Para una economía de USD 320.000M de PIB<a href="#fn4" class="fn-ref">4</a> con el sistema previsional más maduro de la región, ese número no refleja falta de demanda. Refleja la ausencia de la infraestructura que convierte el apetito en capital desplegado.</p>
+      <p>Los tres problemas del Acto I tienen una solución conocida. Luxemburgo, Estados Unidos y Reino Unido la implementaron hace más de una década. La diferencia entre Chile y esos mercados no es de sofisticación financiera — es que ellos construyeron los actores independientes que resuelven valorización, existencia de activos y flujos de caja, y Chile no. El mercado de deuda privada en Chile tiene aproximadamente USD 5.000M en activos bajo gestión<a href="#fn3" class="fn-ref">3</a>. Para una economía de USD 320.000M de PIB<a href="#fn4" class="fn-ref">4</a> con el sistema previsional más maduro de la región, ese número no refleja falta de demanda. Refleja la ausencia de los tres actores que convierten el apetito en capital desplegado.</p>
 
       <p>Las AFPs tienen mandato de inversión en activos privados, los family offices buscan retorno descorrelacionado, y hay capital institucional internacional disponible para mercados emergentes con institucionalidad sólida. Todos ellos exigen, como condición de entrada, una infraestructura operativa que Chile todavía no tiene: un circuito independiente de verificación que permita desplegar capital con los estándares de due diligence que sus propios reguladores les exigen.</p>
 
@@ -2304,10 +2395,10 @@
   <div class="section">
     <div class="act-label">
       <span class="act-number">III</span>
-      El costo de no tener infraestructura
+      La consecuencia predecible de un sistema incompleto
     </div>
-    <h2 class="section-title reveal">Sartor: el costo ya fue pagado.</h2>
-    <p class="section-subtitle reveal">"El argumento es sobre no pagarlo de nuevo."</p>
+    <h2 class="section-title reveal">Sartor: cada falla corresponde<br>a un problema sin resolver.</h2>
+    <p class="section-subtitle reveal">"Cada falla que la CMF documentó corresponde exactamente a un problema que la separación funcional resuelve."</p>
 
     <div class="prose reveal">
       <p>El caso Sartor es la consecuencia documentada del modelo concentrado — la CMF lo registró con una precisión que raramente se ve en expedientes sancionatorios. Entre 2020 y 2024, Sartor AGF canalizó <strong>+CLP 100.000MM en créditos hacia empresas relacionadas</strong><a href="#fn5" class="fn-ref">5</a> con sus propios directores y controladores, a través de fondos públicos administrados bajo la LUF. Los estados financieros de Sartor Leasing y Sartor Táctico fueron falsificados durante cuatro períodos consecutivos. Las pérdidas superaron el <strong>85% del valor patrimonial</strong> de algunos fondos, según auditorías de PwC y Deloitte<a href="#fn7" class="fn-ref">7</a>.</p>
@@ -2316,19 +2407,19 @@
     </div>
 
     <div class="sartor-grid reveal">
-      <div class="sartor-falla" data-n="Falla 01 · NAV sin verificación">
+      <div class="sartor-falla" data-n="Falla 01 · Valorización sin verificación">
         <div class="sartor-falla-title">El gestor calculó el NAV que él mismo deterioró</div>
         <div class="sartor-falla-text">Sartor calculó el valor de cuotas sobre activos que él mismo había comprometido en créditos a partes relacionadas, sin verificación externa durante cuatro períodos de captación activa. Los estados financieros de Sartor Leasing y Sartor Táctico no reflejaban la situación real.</div>
       </div>
-      <div class="sartor-falla" data-n="Falla 02 · Activos inexistentes">
+      <div class="sartor-falla" data-n="Falla 02 · Existencia del activo">
         <div class="sartor-falla-title">Activos declarados, nunca verificados</div>
         <div class="sartor-falla-text">Los contratos de crédito y derechos sobre flujos existían solo como declaración del gestor. Ningún actor independiente verificó existencia, titularidad ni condición real. El 80% del Fondo Sartor Táctico estaba invertido en pagarés emitidos por personas vinculadas a la administradora<a href="#fn10" class="fn-ref">10</a>.</div>
       </div>
-      <div class="sartor-falla" data-n="Falla 03 · Descalce oculto">
+      <div class="sartor-falla" data-n="Falla 03 · Flujos de caja sin monitoreo">
         <div class="sartor-falla-title">Cartera y tesorería controladas por el mismo actor</div>
         <div class="sartor-falla-text">Sartor controló simultáneamente las inversiones y los flujos del fondo. El descalce entre promesas de rescate y activos ilíquidos fue cubierto con nuevas captaciones — el patrón clásico que ningún actor del circuito tenía mandato de detectar.</div>
       </div>
-      <div class="sartor-falla" data-n="Falla 04-05 · Árbitro único">
+      <div class="sartor-falla" data-n="Falla 04 · Un actor, tres funciones, cero verificación">
         <div class="sartor-falla-title">El gestor verificó su propio cumplimiento del mandato</div>
         <div class="sartor-falla-text">Sartor era árbitro único de su propio cumplimiento del reglamento interno. Los directores fueron sancionados por no fiscalizar — pero no existía ningún actor externo con mandato legal ni incentivo económico para detectar las irregularidades antes de que el daño fuera consumado.</div>
       </div>
@@ -2350,7 +2441,7 @@
     </div>
 
     <blockquote class="pull-quote">
-      "Sartor no fue un caso de regulación insuficiente. Fue un caso de arquitectura ausente. La CMF sancionó lo que pudo, una vez el daño estaba consumado. La separación funcional opera ex-ante."
+      "Sartor no fue un accidente. Fue la consecuencia predecible de un sistema donde el mismo actor estima valor, declara existencia de activos y controla los flujos — sin que nadie lo verifique."
     </blockquote>
   </div>
 </section>
@@ -2364,7 +2455,7 @@
       La reforma como habilitador de industria
     </div>
     <h2 class="section-title reveal">No es compliance.<br>Es construcción de mercado.</h2>
-    <p class="section-subtitle reveal">"La reforma no aumenta la carga regulatoria — crea las condiciones para que exista un mercado que hoy no puede existir."</p>
+    <p class="section-subtitle reveal">"La reforma construye los tres actores independientes que resuelven los tres problemas que definen a los mercados privados."</p>
 
     <div class="prose reveal">
       <p>Cuando la CMF emite la NCG de responsabilidad diferenciada, la cadena de consecuencias es directa. Los Fund Administrators independientes pueden cotizar servicios en Chile porque existe una asignación de responsabilidad que sus aseguradoras pueden modelar. <strong>Apex Group, Alter Domus e IQ-EQ</strong><a href="#fn12" class="fn-ref">12</a> — que ya operan en Colombia, Perú y México — pueden instalar operaciones en Chile en 60 días<a href="#fn13" class="fn-ref">13</a>. Los gestores internacionales de private debt que hoy excluyen Chile de sus mandatos porque no pueden replicar su estructura operativa estándar, comienzan a considerarlo.</p>
@@ -2428,7 +2519,7 @@
       <div class="effect-card">
         <div class="effect-num effect-num--resp">Respuesta</div>
         <div class="effect-title">El mercado es chico PORQUE no tiene infraestructura</div>
-        <div class="effect-text">La causalidad es inversa: el mercado no crece porque los institucionales no entran sin infraestructura de verificación. Luxemburgo tenía un mercado similar antes de AIFMD. Hoy administra EUR 5.9T. La infraestructura precede al volumen, no al revés.</div>
+        <div class="effect-text">El tamaño del mercado no cambia la naturaleza del problema. Un fondo de USD 50M donde el gestor estima el valor de sus propios activos tiene el mismo defecto estructural que uno de USD 5.000M. Un depósito central de valores no se justifica por el volumen de transacciones — se justifica porque sin él, nadie sabe quién es dueño de qué. La causalidad es inversa: el mercado no crece porque los institucionales no entran sin infraestructura de verificación. Luxemburgo tenía un mercado similar antes de AIFMD. Hoy administra EUR 5.9T. La infraestructura precede al volumen, no al revés.</div>
       </div>
 
       <div class="effect-card">
@@ -2563,6 +2654,44 @@
   </div>
 </section>
 
+<!-- ── DEFINICIONES ── -->
+<hr class="section-divider">
+<section id="definiciones" class="glossary-section">
+  <div class="section">
+    <div class="act-label">Definiciones · Lenguaje del memorándum</div>
+    <div class="glossary-grid">
+      <div class="glossary-item">
+        <div class="glossary-term">Mercado de capitales privados</div>
+        <div class="glossary-def">Canal de intermediación financiera donde los activos no se transan en bolsa. Complementa al sistema bancario y al mercado bursátil. Su propósito es el mismo: canalizar ahorro hacia inversión.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Separación funcional</div>
+        <div class="glossary-def">Principio por el cual las funciones de gestión, administración y custodia son ejecutadas por entidades distintas e independientes entre sí. Ningún actor es árbitro de su propio desempeño.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">GP · General Partner / Gestor</div>
+        <div class="glossary-def">Entidad que toma decisiones de inversión, construye la cartera y tiene responsabilidad fiduciaria indelegable. En Chile hoy: la AGF cumple este rol y todos los demás simultáneamente.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Fund Administrator</div>
+        <div class="glossary-def">Entidad independiente del GP que calcula el NAV, lleva el registro de aportantes, ejecuta distribuciones y verifica cumplimiento del reglamento interno. No existe como categoría jurídica en Chile.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Custodio Regulado</div>
+        <div class="glossary-def">Entidad que verifica la existencia, titularidad y estado de los activos del fondo. Reporta autónomamente al regulador sin consultar al GP ni al Fund Admin. Equivalente funcional del depositario bajo AIFMD art. 21.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">NAV · Net Asset Value</div>
+        <div class="glossary-def">Valor neto de los activos del fondo. En mercados públicos, el precio lo da la última transacción en bolsa — es un hecho observable. En mercados privados, no hay transacción: alguien debe estimar el valor. La pregunta es quién, y si ese actor tiene conflicto de interés.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">AGF · Administradora General de Fondos</div>
+        <div class="glossary-def">Entidad regulada por la CMF bajo la LUF 20.712 que en Chile concentra gestión, administración, cálculo de NAV, registro de aportantes y declaración de existencia de activos. Es el modelo que esta reforma propone separar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── FUENTES ── -->
 <section class="footnotes-section" id="fuentes">
   <div class="section">
@@ -2578,7 +2707,7 @@
       </li>
       <li class="footnote-item" id="fn3">
         <span class="footnote-num">[3]</span>
-        <span>ACAFI, Informe Trimestral de Inversiones Alternativas en Chile, Q4 2025. Incluye deuda privada, capital privado, infraestructura y real estate.</span>
+        <span>ACAFI, Informe Trimestral de Inversiones Alternativas en Chile, Q4 2025. Cifra de deuda privada. El mercado total de alternativos (incluyendo capital privado, infraestructura y real estate) es mayor.</span>
       </li>
       <li class="footnote-item" id="fn4">
         <span class="footnote-num">[4]</span>
