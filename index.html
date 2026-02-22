@@ -1673,7 +1673,9 @@
   .ciudadano-tabs {
     display: flex; gap: 0; padding: 0 32px; border-bottom: 1px solid var(--rule);
     overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .ciudadano-tabs::-webkit-scrollbar { display: none; }
   .ciudadano-tab {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
@@ -2081,7 +2083,7 @@
     .ciudadano-header { padding: 0 20px 16px; }
     .ciudadano-title { font-size: 18px; }
     .ciudadano-tabs { padding: 0 20px; }
-    .ciudadano-tab { padding: 12px 14px; font-size: 10px; }
+    .ciudadano-tab { padding: 12px 12px; font-size: 10px; letter-spacing: 0.06em; }
     .ciudadano-content { padding: 20px; }
     .ciudadano-card { padding: 16px; }
     .ciudadano-stat { padding: 16px; }
@@ -3124,6 +3126,7 @@
     <button class="ciudadano-tab" data-tab="tab-empresa" role="tab" aria-selected="false" id="btn-empresa" aria-controls="tab-empresa"><span class="ciudadano-tab-full">Si buscas financiamiento</span><span class="ciudadano-tab-short">Empresa</span></button>
     <button class="ciudadano-tab" data-tab="tab-afp" role="tab" aria-selected="false" id="btn-afp" aria-controls="tab-afp"><span class="ciudadano-tab-full">Si administras una AFP</span><span class="ciudadano-tab-short">AFP</span></button>
     <button class="ciudadano-tab" data-tab="tab-legislador" role="tab" aria-selected="false" id="btn-legislador" aria-controls="tab-legislador"><span class="ciudadano-tab-full">Si legislas o regulas</span><span class="ciudadano-tab-short">Regulador</span></button>
+    <button class="ciudadano-tab" data-tab="tab-banca" role="tab" aria-selected="false" id="btn-banca" aria-controls="tab-banca"><span class="ciudadano-tab-full">Si operas desde la banca</span><span class="ciudadano-tab-short">Banca</span></button>
   </div>
   <div class="ciudadano-content">
 
@@ -3191,82 +3194,93 @@
 
     <!-- ── TAB: AFP ── -->
     <div class="ciudadano-tab-content" id="tab-afp" role="tabpanel" aria-labelledby="btn-afp">
-      <div class="ciudadano-cards">
-        <div class="ciudadano-card">
-          <div class="ciudadano-card-label">Hoy</div>
-          <div class="ciudadano-card-title">Sin verificación independiente</div>
-          <div class="ciudadano-card-text">El gestor calcula el NAV, registra aportantes y declara existencia de activos. Tu due diligence depende de la palabra del GP.</div>
+      <div class="ciudadano-screens">
+        <div class="ciudadano-screen ciudadano-screen--hero">
+          <div class="ciudadano-screen--hero-text">
+            Cada fondo alternativo que analizas te obliga a confiar en el mismo actor que gestiona, valúa y custodia. Sabes que eso no es due diligence.
+          </div>
         </div>
-        <div class="ciudadano-card">
-          <div class="ciudadano-card-label">Con la reforma</div>
-          <div class="ciudadano-card-title">Circuito independiente</div>
-          <div class="ciudadano-card-text">Fund Admin calcula el NAV. Custodio verifica activos. Tres actores con responsabilidades acotadas y asegurables.</div>
+        <div class="ciudadano-screen ciudadano-screen--prose">
+          <p>Tu equipo de inversiones pide NAV al gestor. El gestor lo calcula. Pides confirmación de activos. El gestor la provee. Pides el registro de aportantes. El gestor lo administra. <strong>Estás verificando al emisor con información del emisor.</strong></p>
+          <p>No es descuido — es la estructura del mercado. En Chile no existe un Fund Administrator independiente que calcule NAV, verifique activos y reporte sin pasar por el GP.</p>
         </div>
-        <div class="ciudadano-card">
-          <div class="ciudadano-card-label">Riesgo actual</div>
-          <div class="ciudadano-card-title">Riesgo Sartor es sistémico</div>
-          <div class="ciudadano-card-text">Sin Fund Admin, no puedes verificar cumplimiento del reglamento interno. El riesgo no es idiosincrático — es estructural.</div>
+        <div class="ciudadano-screen ciudadano-screen--data">
+          <div class="ciudadano-screen--data-number">0</div>
+          <div class="ciudadano-screen--data-label">Fund Administrators independientes en Chile</div>
+          <div class="ciudadano-screen--data-vs">tus pares internacionales exigen</div>
+          <div class="ciudadano-screen--data-number-sm">3</div>
+          <div class="ciudadano-screen--data-caption">Tres actores con responsabilidades separadas: GP, Fund Admin, Custodio. Es la condición de entrada a cualquier fondo privado en Luxemburgo, EE.UU. y UK. Aquí no existe.</div>
+          <div class="ciudadano-screen--data-url">politicamejoramercadoalternativos</div>
         </div>
-        <div class="ciudadano-card">
-          <div class="ciudadano-card-label">Beneficio directo</div>
-          <div class="ciudadano-card-title">Infraestructura operativa estándar</div>
-          <div class="ciudadano-card-text">Acceso a la infraestructura que tus pares internacionales exigen como condición de entrada a cualquier fondo privado.</div>
+        <div class="ciudadano-screen ciudadano-screen--prose">
+          <p>Sartor no fue un cisne negro. Fue la consecuencia predecible de una arquitectura donde <strong>el gestor se verifica a sí mismo</strong>. Mientras esa arquitectura no cambie, cada fondo alternativo que apruebes lleva el mismo riesgo estructural — sin importar la calidad del GP.</p>
+          <p>La reforma no te quita autonomía. Te da la infraestructura para ejercer tu mandato fiduciario con un circuito que funciona: NAV independiente, activos verificados, reporte directo a ti sin intermediación del gestor.</p>
         </div>
-      </div>
-      <div class="ciudadano-stats">
-        <div class="ciudadano-stat">
-          <div class="ciudadano-stat-value">0</div>
-          <div class="ciudadano-stat-label">Fund Admins hoy</div>
-        </div>
-        <div class="ciudadano-stat">
-          <div class="ciudadano-stat-value">USD 5.000M</div>
-          <div class="ciudadano-stat-label">Sin verificación</div>
-        </div>
-        <div class="ciudadano-stat">
-          <div class="ciudadano-stat-value">83%</div>
-          <div class="ciudadano-stat-label">Concentrado en banca</div>
+        <div class="ciudadano-screen ciudadano-screen--close">
+          <p>Hoy tu due diligence depende de la palabra del GP. Con separación funcional, depende de tres actores que se fiscalizan entre sí. Esa es la diferencia entre confiar y verificar.</p>
+          <button class="ciudadano-share" data-share="afp">&#8599; Compartir</button>
         </div>
       </div>
-      <button class="ciudadano-share" data-share="afp">&#8599; Compartir</button>
     </div>
     <div class="ciudadano-tab-content" id="tab-legislador" role="tabpanel" aria-labelledby="btn-legislador">
-      <div class="ciudadano-cards">
-        <div class="ciudadano-card">
-          <div class="ciudadano-card-label">Costo fiscal</div>
-          <div class="ciudadano-card-title">$0 de presupuesto público</div>
-          <div class="ciudadano-card-text">La reforma no requiere presupuesto público. Los Fund Admins son entidades privadas que cobran por sus servicios.</div>
+      <div class="ciudadano-screens">
+        <div class="ciudadano-screen ciudadano-screen--hero">
+          <div class="ciudadano-screen--hero-text">
+            Sartor no fue un accidente. Fue el resultado predecible de una arquitectura que permite que el gestor se verifique a sí mismo. El próximo caso ya está en gestación.
+          </div>
         </div>
-        <div class="ciudadano-card">
-          <div class="ciudadano-card-label">Vía regulatoria</div>
-          <div class="ciudadano-card-title">Sin Congreso (primera fase)</div>
-          <div class="ciudadano-card-text">La Capa B es ejecutable por CMF y Superintendencia de Pensiones en 9–15 meses. Solo normativa infralegal.</div>
+        <div class="ciudadano-screen ciudadano-screen--prose">
+          <p>La CMF sancionó con 367.500 UF. Los inversionistas perdieron más de CLP 100.000 millones. Pero el problema no era Sartor — era la estructura. <strong>Cualquier AGF en Chile opera hoy bajo la misma arquitectura</strong>: gestiona, valúa, custodia y reporta sobre sí mismo.</p>
+          <p>La ley no lo prohíbe. El problema es que no exige que un tercero verifique. Y eso no se arregla con más fiscalización sobre el mismo modelo.</p>
         </div>
-        <div class="ciudadano-card">
-          <div class="ciudadano-card-label">Estándar internacional</div>
-          <div class="ciudadano-card-title">Lo que ya existe en el mundo</div>
-          <div class="ciudadano-card-text">Luxemburgo (2013), EE.UU. (2009), UK (2013)<a href="#fn11" class="fn-ref">11</a>. Chile sería el primero en América Latina con separación funcional completa.</div>
+        <div class="ciudadano-screen ciudadano-screen--data">
+          <div class="ciudadano-screen--data-number">$0</div>
+          <div class="ciudadano-screen--data-label">costo fiscal de esta reforma</div>
+          <div class="ciudadano-screen--data-vs">ejecutable en</div>
+          <div class="ciudadano-screen--data-number-sm">9–15 meses</div>
+          <div class="ciudadano-screen--data-caption">Sin Congreso. La Capa B es ejecutable por CMF y Superintendencia de Pensiones con las facultades normativas que ya tienen. Luxemburgo (2013), EE.UU. (2009), UK (2013) ya lo hicieron.</div>
+          <div class="ciudadano-screen--data-url">politicamejoramercadoalternativos</div>
         </div>
-        <div class="ciudadano-card">
-          <div class="ciudadano-card-label">Post-Sartor</div>
-          <div class="ciudadano-card-title">Prevención, no reacción</div>
-          <div class="ciudadano-card-text">367.500 UF de sanción, +CLP 100.000MM en pérdidas. La arquitectura que habría prevenido cada falla documentada.</div>
+        <div class="ciudadano-screen ciudadano-screen--prose">
+          <p>No es una reforma partidista. No tiene costo fiscal. No necesita mayoría legislativa para la primera fase. Y posiciona a Chile como <strong>el primer país de América Latina con separación funcional completa</strong> en mercados privados de capital.</p>
+          <p>Colombia ya tiene 3 Fund Admins autorizados por la SFC. Perú permite delegación parcial. México contempla servicios de administración por terceros. Chile tiene cero.</p>
         </div>
-      </div>
-      <div class="ciudadano-stats">
-        <div class="ciudadano-stat">
-          <div class="ciudadano-stat-value">9–15</div>
-          <div class="ciudadano-stat-label">Meses para Capa B</div>
-        </div>
-        <div class="ciudadano-stat">
-          <div class="ciudadano-stat-value">$0</div>
-          <div class="ciudadano-stat-label">Costo fiscal</div>
-        </div>
-        <div class="ciudadano-stat">
-          <div class="ciudadano-stat-value">367.500 UF</div>
-          <div class="ciudadano-stat-label">Sanción Sartor</div>
+        <div class="ciudadano-screen ciudadano-screen--close">
+          <p>La pregunta no es si Chile necesita esta infraestructura. Es cuántos Sartor más esperar antes de construirla. Los reguladores que actúan antes de la crisis definen mercados. Los que reaccionan después, administran el daño.</p>
+          <button class="ciudadano-share" data-share="legislador">&#8599; Compartir</button>
         </div>
       </div>
-      <button class="ciudadano-share" data-share="legislador">&#8599; Compartir</button>
+    </div>
+
+    <!-- ── TAB: BANCA / ORIGINADORES ── -->
+    <div class="ciudadano-tab-content" id="tab-banca" role="tabpanel" aria-labelledby="btn-banca">
+      <div class="ciudadano-screens">
+        <div class="ciudadano-screen ciudadano-screen--hero">
+          <div class="ciudadano-screen--hero-text">
+            Tu balance concentra el 83% del financiamiento corporativo en Chile. Eso no es una ventaja — es un riesgo de concentración que el regulador ya está mirando.
+          </div>
+        </div>
+        <div class="ciudadano-screen ciudadano-screen--prose">
+          <p>Cada crédito que otorgas consume capital regulatorio. Cada empresa que financias compite por el mismo espacio en tu balance. Y cuando llega Basilea IV, ese espacio se encarece. <strong>El negocio de originación masiva por balance tiene un techo que ya se ve.</strong></p>
+          <p>Pero hay otro modelo: originar el activo, estructurarlo en un vehículo privado y distribuirlo a inversores institucionales — AFP, seguros, family offices. Tú cobras por originar, estructurar y distribuir. No consumes balance. El fee es recurrente.</p>
+        </div>
+        <div class="ciudadano-screen ciudadano-screen--data">
+          <div class="ciudadano-screen--data-number">83%</div>
+          <div class="ciudadano-screen--data-label">financiamiento corporativo en banca</div>
+          <div class="ciudadano-screen--data-vs">en Luxemburgo, más del</div>
+          <div class="ciudadano-screen--data-number-sm">60%</div>
+          <div class="ciudadano-screen--data-caption">Del financiamiento corporativo fluye por mercados de capitales. No porque los bancos sean débiles — sino porque tienen la infraestructura para originar y distribuir sin retener todo el riesgo.</div>
+          <div class="ciudadano-screen--data-url">politicamejoramercadoalternativos</div>
+        </div>
+        <div class="ciudadano-screen ciudadano-screen--prose">
+          <p>Lo que hoy falta en Chile no es demanda. Es <strong>infraestructura que haga creíble el vehículo</strong>. Sin Fund Admin, ningún institucional va a entrar a un fondo que tu mesa estructuró — porque no hay quién verifique el NAV, la existencia de activos ni el cumplimiento del mandato.</p>
+          <p>Con separación funcional, tú puedes ser el originador y estructurador. El Fund Admin verifica. El custodio resguarda. Y el institucional entra porque la estructura es auditable. Tu rol cambia de retenedor de riesgo a arquitecto de la transacción — con fees de estructuración, distribución y servicing.</p>
+        </div>
+        <div class="ciudadano-screen ciudadano-screen--close">
+          <p>Esta reforma no te quita negocio. Te abre una línea completa de ingresos que hoy no puedes monetizar porque el vehículo no es creíble para el institucional. Cuando la infraestructura exista, el primer banco que se posicione captura el mercado.</p>
+          <button class="ciudadano-share" data-share="banca">&#8599; Compartir</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -3470,8 +3484,9 @@
   const shareMessages = {
     pensionado: 'Tu pensión está invertida como si necesitaras la plata mañana. Pero no la necesitas mañana. Eso tiene un costo.',
     empresa: 'En Chile hay 500.000 empresas. El mercado de capitales cubre 250. El resto depende del banco.',
-    afp: 'Chile tiene 0 Fund Administrators independientes. Tu due diligence sobre fondos privados depende de la palabra del gestor.',
-    legislador: 'La reforma de mercados privados cuesta $0 al fisco y no requiere Congreso. Ejecutable en 9–15 meses por CMF y SP.'
+    afp: 'Tu due diligence sobre fondos alternativos depende de la palabra del gestor. Chile tiene 0 Fund Administrators independientes. Cada fondo que apruebes lleva el mismo riesgo estructural que Sartor.',
+    legislador: 'La reforma de mercados privados cuesta $0 al fisco y no requiere Congreso. Ejecutable en 9–15 meses por CMF y SP.',
+    banca: 'El 83% del financiamiento corporativo en Chile está en balance bancario. La separación funcional abre un canal de originación y distribución con fees recurrentes — sin consumir capital regulatorio.'
   };
   document.querySelectorAll('.ciudadano-share').forEach(btn => {
     btn.addEventListener('click', async () => {
