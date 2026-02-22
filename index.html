@@ -27,7 +27,7 @@
   :root {
     --ink: #0E1117;
     --ink-soft: #2C3140;
-    --ink-muted: #5A6070;
+    --ink-muted: #4D5366;
     --rule: #C8CAD0;
     --rule-light: #E8EAEE;
     --accent: #1A3A6B;
@@ -64,6 +64,23 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+  }
+
+  /* ── SKIP TO CONTENT ── */
+  .skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 999;
+    background: var(--accent-mid);
+    color: white;
+    padding: 12px 24px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+  }
+  .skip-to-content:focus {
+    left: 0;
   }
 
   /* ── PROGRESS BAR ── */
@@ -2176,6 +2193,7 @@
 </style>
 </head>
 <body>
+<a href="#contenido" class="skip-to-content">Saltar al contenido</a>
 
 <!-- PROGRESS BAR -->
 <div class="progress-bar" id="progressBar"></div>
@@ -2286,6 +2304,8 @@
     </ul>
   </div>
 </section>
+
+<main id="contenido">
 
 <!-- ── TL;DR ── -->
 <section class="tldr">
@@ -3077,6 +3097,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- ── MOBILE FAB BACK-TO-TOP ── -->
 <button class="mobile-top-fab" id="mobileTopFab" aria-label="Volver arriba">
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M8 3L3 8M8 3l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -3088,7 +3110,7 @@
   Por qué te importa
 </button>
 <div class="ciudadano-overlay" id="ciudadanoOverlay"></div>
-<div class="ciudadano-panel" id="ciudadanoPanel">
+<div class="ciudadano-panel" id="ciudadanoPanel" role="dialog" aria-modal="true" aria-label="Por qué esta reforma te importa">
   <div class="ciudadano-handle"></div>
   <div class="ciudadano-header">
     <div class="ciudadano-header-top">
@@ -3097,16 +3119,16 @@
     </div>
     <div class="ciudadano-subtitle">El memorándum es técnico. El impacto no lo es. Elige tu perspectiva.</div>
   </div>
-  <div class="ciudadano-tabs">
-    <button class="ciudadano-tab active" data-tab="tab-pensionado"><span class="ciudadano-tab-full">Si estás jubilado o próximo</span><span class="ciudadano-tab-short">Pensiones</span></button>
-    <button class="ciudadano-tab" data-tab="tab-empresa"><span class="ciudadano-tab-full">Si buscas financiamiento</span><span class="ciudadano-tab-short">Empresa</span></button>
-    <button class="ciudadano-tab" data-tab="tab-afp"><span class="ciudadano-tab-full">Si administras una AFP</span><span class="ciudadano-tab-short">AFP</span></button>
-    <button class="ciudadano-tab" data-tab="tab-legislador"><span class="ciudadano-tab-full">Si legislas o regulas</span><span class="ciudadano-tab-short">Regulador</span></button>
+  <div class="ciudadano-tabs" role="tablist">
+    <button class="ciudadano-tab active" data-tab="tab-pensionado" role="tab" aria-selected="true" id="btn-pensionado" aria-controls="tab-pensionado"><span class="ciudadano-tab-full">Si estás jubilado o próximo</span><span class="ciudadano-tab-short">Pensiones</span></button>
+    <button class="ciudadano-tab" data-tab="tab-empresa" role="tab" aria-selected="false" id="btn-empresa" aria-controls="tab-empresa"><span class="ciudadano-tab-full">Si buscas financiamiento</span><span class="ciudadano-tab-short">Empresa</span></button>
+    <button class="ciudadano-tab" data-tab="tab-afp" role="tab" aria-selected="false" id="btn-afp" aria-controls="tab-afp"><span class="ciudadano-tab-full">Si administras una AFP</span><span class="ciudadano-tab-short">AFP</span></button>
+    <button class="ciudadano-tab" data-tab="tab-legislador" role="tab" aria-selected="false" id="btn-legislador" aria-controls="tab-legislador"><span class="ciudadano-tab-full">Si legislas o regulas</span><span class="ciudadano-tab-short">Regulador</span></button>
   </div>
   <div class="ciudadano-content">
 
     <!-- ── TAB: PENSIONADO ── -->
-    <div class="ciudadano-tab-content active" id="tab-pensionado">
+    <div class="ciudadano-tab-content active" id="tab-pensionado" role="tabpanel" aria-labelledby="btn-pensionado">
       <div class="ciudadano-screens">
         <div class="ciudadano-screen ciudadano-screen--hero">
           <div class="ciudadano-screen--hero-text">
@@ -3137,7 +3159,7 @@
     </div>
 
     <!-- ── TAB: EMPRESA ── -->
-    <div class="ciudadano-tab-content" id="tab-empresa">
+    <div class="ciudadano-tab-content" id="tab-empresa" role="tabpanel" aria-labelledby="btn-empresa">
       <div class="ciudadano-screens">
         <div class="ciudadano-screen ciudadano-screen--hero">
           <div class="ciudadano-screen--hero-text">
@@ -3168,7 +3190,7 @@
     </div>
 
     <!-- ── TAB: AFP ── -->
-    <div class="ciudadano-tab-content" id="tab-afp">
+    <div class="ciudadano-tab-content" id="tab-afp" role="tabpanel" aria-labelledby="btn-afp">
       <div class="ciudadano-cards">
         <div class="ciudadano-card">
           <div class="ciudadano-card-label">Hoy</div>
@@ -3207,7 +3229,7 @@
       </div>
       <button class="ciudadano-share" data-share="afp">&#8599; Compartir</button>
     </div>
-    <div class="ciudadano-tab-content" id="tab-legislador">
+    <div class="ciudadano-tab-content" id="tab-legislador" role="tabpanel" aria-labelledby="btn-legislador">
       <div class="ciudadano-cards">
         <div class="ciudadano-card">
           <div class="ciudadano-card-label">Costo fiscal</div>
@@ -3428,7 +3450,11 @@
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.tab;
-      tabs.forEach(t => t.classList.toggle('active', t === tab));
+      tabs.forEach(t => {
+        const isActive = t === tab;
+        t.classList.toggle('active', isActive);
+        t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
       tabContents.forEach(tc => tc.classList.toggle('active', tc.id === target));
     });
   });
