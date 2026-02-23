@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "strategy-brief.schema.json",
+  "title": "Strategy Brief",
+  "description": "Schema for Step 1 artifact: Strategic Domain Vision. Captures the domain description, problem statement, stakeholders, ubiquitous language, bounded context candidates, and success metrics derived from source documents.",
+  "type": "object",
+  "required": ["metadata", "domain", "strategic_vision", "stakeholders", "ubiquitous_language", "bounded_context_candidates", "standards_applicable"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["step", "artifact", "pipeline_id", "created_at"],
+      "properties": {
+        "step": { "type": "integer", "const": 1 },
+        "artifact": { "type": "string", "const": "strategy-brief" },
+        "pipeline_id": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "source_document": { "type": "string" },
+        "source_title": { "type": "string" },
+        "source_reference": { "type": "string" },
+        "author": { "type": "string" }
+      }
+    },
+    "domain": {
+      "type": "object",
+      "required": ["name", "description", "industry"],
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "industry": { "type": "string" },
+        "geography": { "type": "string" },
+        "regulatory_framework": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "strategic_vision": {
+      "type": "object",
+      "required": ["thesis", "problem_statement", "solution"],
+      "properties": {
+        "thesis": { "type": "string" },
+        "problem_statement": {
+          "type": "object",
+          "required": ["summary"],
+          "properties": {
+            "summary": { "type": "string" },
+            "three_core_problems": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id", "name", "description"],
+                "properties": {
+                  "id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "description": { "type": "string" },
+                  "public_market_analog": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "solution": {
+          "type": "object",
+          "required": ["summary"],
+          "properties": {
+            "summary": { "type": "string" },
+            "three_actors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["role", "responsibilities", "liability"],
+                "properties": {
+                  "role": { "type": "string" },
+                  "responsibilities": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "liability": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "caso_sartor": { "type": "object" },
+        "key_statistics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["metric", "description", "source"],
+            "properties": {
+              "metric": { "type": "string" },
+              "description": { "type": "string" },
+              "source": { "type": "string" }
+            }
+          }
+        },
+        "comparative_analysis": { "type": "object" }
+      }
+    },
+    "roadmap": { "type": "object" },
+    "stakeholders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "role", "interest"],
+        "properties": {
+          "name": { "type": "string" },
+          "role": { "type": "string" },
+          "interest": { "type": "string" }
+        }
+      }
+    },
+    "ubiquitous_language": {
+      "type": "object",
+      "required": ["terms"],
+      "properties": {
+        "description": { "type": "string" },
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["term", "definition"],
+            "properties": {
+              "term": { "type": "string" },
+              "definition": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "bounded_context_candidates": {
+      "type": "object",
+      "required": ["candidates"],
+      "properties": {
+        "description": { "type": "string" },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "description"],
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "core_entities": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "actor_responsible": { "type": "string" },
+              "standards": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "standards_applicable": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["standard", "usage"],
+        "properties": {
+          "standard": { "type": "string" },
+          "version": { "type": "string" },
+          "usage": { "type": "string" }
+        }
+      }
+    },
+    "success_metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["metric", "target"],
+        "properties": {
+          "metric": { "type": "string" },
+          "target": { "type": "string" }
+        }
+      }
+    },
+    "risks_and_constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["risk", "mitigation"],
+        "properties": {
+          "risk": { "type": "string" },
+          "mitigation": { "type": "string" }
+        }
+      }
+    },
+    "next_steps": { "type": "object" }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "pipeline_id": "pipeline-20260223",
+  "system_name": "ddd-pipeline-engine",
+  "domain": "Plataforma de Infraestructura para Mercados Privados de Capital — Chile",
+  "current_step": 1,
+  "steps": {
+    "1": {
+      "name": "Strategic Domain Vision",
+      "status": "RUNNING",
+      "artifact": "runs/artifacts/step-1/strategy-brief.json",
+      "timestamp": "2026-02-23T01:15:00Z"
+    },
+    "2": { "name": "Domain Model & Bounded Contexts", "status": "PENDING", "timestamp": "" },
+    "3": { "name": "Aggregates & Entities", "status": "PENDING", "timestamp": "" },
+    "4": { "name": "Domain Events & Integration", "status": "PENDING", "timestamp": "" },
+    "5": { "name": "API Contracts", "status": "PENDING", "timestamp": "" },
+    "6": { "name": "Data Schemas & Persistence", "status": "PENDING", "timestamp": "" },
+    "7": { "name": "Security & Compliance", "status": "PENDING", "timestamp": "" },
+    "8": { "name": "Infrastructure & Deployment", "status": "PENDING", "timestamp": "" },
+    "9": { "name": "Final Review & Documentation", "status": "PENDING", "timestamp": "" }
+  }
+}

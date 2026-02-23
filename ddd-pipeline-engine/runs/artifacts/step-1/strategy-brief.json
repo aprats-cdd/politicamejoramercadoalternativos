@@ -1,0 +1,475 @@
+{
+  "$schema": "../../../engine/schemas/strategy-brief.schema.json",
+  "metadata": {
+    "step": 1,
+    "artifact": "strategy-brief",
+    "pipeline_id": "pipeline-20260223",
+    "created_at": "2026-02-23T01:15:00Z",
+    "source_document": "index.html",
+    "source_title": "Memorándum de Política Pública · Mercados Privados de Capital · Chile 2026",
+    "source_reference": "MPP-2026-001",
+    "author": "Andrés Prats — Socio Fundador Cordada Asset Manager"
+  },
+
+  "domain": {
+    "name": "Plataforma de Infraestructura para Mercados Privados de Capital — Chile",
+    "description": "Sistema de software que implementa la separación funcional entre gestión (GP), administración (Fund Admin) y custodia (Custodio Regulado) para fondos de inversión en mercados privados chilenos. El sistema habilita verificación independiente de valorización, existencia de activos y flujos de caja — la infraestructura que hoy no existe y que impide el crecimiento del mercado.",
+    "industry": "Asset Management / Private Capital Markets",
+    "geography": "Chile (con referencia comparada a Luxemburgo, EE.UU., UK, Colombia, Perú, México)",
+    "regulatory_framework": [
+      "LUF 20.712 (Ley Única de Fondos — Chile)",
+      "DL 3.538 arts. 5 y 12 (facultades normativas CMF)",
+      "AIFMD 2011/61/UE art. 21 (depositario — Luxemburgo)",
+      "CSSF Circular 22/811 (Fund Admin delegatario)",
+      "Advisers Act 1940 / Custody Rule 206(4)-2 (SEC — EE.UU.)",
+      "Ley 21.595 (Ley de Delitos Económicos — Chile)",
+      "ILPA Reporting Template 3.0"
+    ]
+  },
+
+  "strategic_vision": {
+    "thesis": "Chile tiene USD 400.000M en ahorro administrado y cero infraestructura independiente de mercados privados. Quien gestiona es el mismo que valora los activos, confirma que existen y controla los flujos. Sin separación funcional, no hay mercado. La barrera no es regulación ni voluntad — es la ausencia de los tres actores independientes que todo mercado desarrollado tiene: GP, Fund Admin y Custodio Regulado.",
+    "problem_statement": {
+      "summary": "En mercados privados chilenos, un solo actor (la AGF) cumple simultáneamente las funciones de gestión, administración, cálculo de NAV, verificación de activos y monitoreo de flujos — sobre sí mismo. No existe circuito independiente de control.",
+      "three_core_problems": [
+        {
+          "id": "P1",
+          "name": "Valorización sin verificación",
+          "description": "La AGF estima el valor de activos que ella misma originó y cobra comisiones sobre ese valor. No existe verificación independiente del NAV.",
+          "public_market_analog": "En mercados públicos, el precio es la última transacción entre comprador y vendedor — un hecho observable por todos."
+        },
+        {
+          "id": "P2",
+          "name": "Existencia del activo no verificada",
+          "description": "La AGF declara existencia de activos. Nadie verifica que el contrato exista ni en qué estado se encuentra.",
+          "public_market_analog": "En mercados públicos, los valores están en registro electrónico del DCV. Titularidad verificable en tiempo real."
+        },
+        {
+          "id": "P3",
+          "name": "Flujos de caja sin monitoreo independiente",
+          "description": "La AGF controla inversiones y flujos simultáneamente. Nadie monitorea que correspondan al mandato del fondo.",
+          "public_market_analog": "En mercados públicos, la cámara de compensación liquida transacciones con margin diario y sistema independiente."
+        }
+      ]
+    },
+    "solution": {
+      "summary": "Separación funcional entre gestión (GP), administración (Fund Admin) y custodia (Custodio Regulado) — el estándar que Luxemburgo, EE.UU. y UK ya tienen. Chile sería el primero en América Latina con separación funcional completa.",
+      "three_actors": [
+        {
+          "role": "GP (General Partner / Gestor)",
+          "responsibilities": [
+            "Decisiones de inversión",
+            "Construcción de cartera",
+            "Gestión de riesgos",
+            "Responsabilidad fiduciaria indelegable",
+            "Cumplimiento del mandato prometido"
+          ],
+          "liability": "Plena e indelegable"
+        },
+        {
+          "role": "Fund Administrator",
+          "responsibilities": [
+            "Cálculo del NAV",
+            "Registro de aportantes",
+            "Distribuciones",
+            "Contabilidad del fondo",
+            "Verificación de Reglamento Interno",
+            "Reporte a CMF en su perímetro"
+          ],
+          "liability": "Acotada y asegurable"
+        },
+        {
+          "role": "Custodio Regulado",
+          "responsibilities": [
+            "Verificación de existencia de activos",
+            "Verificación de titularidad y estado",
+            "Supervisión de flujos de efectivo",
+            "Reporte autónomo a CMF sin consultar al GP ni al Fund Admin"
+          ],
+          "liability": "Independencia verificadora con reporte autónomo"
+        }
+      ]
+    }
+  },
+
+  "evidence": {
+    "caso_sartor": {
+      "summary": "Entre 2020 y 2024, Sartor AGF canalizó +CLP 100.000MM en créditos hacia empresas relacionadas a través de fondos públicos. Estados financieros falsificados durante 4 períodos consecutivos. Pérdidas superiores al 85% del valor patrimonial en algunos fondos.",
+      "sanctions": "367.500 UF (sanción más severa en la historia de la CMF) + revocación de existencia + derivación al Ministerio Público bajo Ley 21.595",
+      "source": "CMF, Resolución Exenta N° 10.950, Procedimiento Sancionatorio Sartor AGF S.A., 2024",
+      "failures_mapped_to_problems": [
+        {
+          "failure": "El gestor calculó el NAV que él mismo deterioró",
+          "maps_to": "P1 — Valorización sin verificación",
+          "detail": "Sartor calculó el valor de cuotas sobre activos que él mismo había comprometido en créditos a partes relacionadas, sin verificación externa durante cuatro períodos."
+        },
+        {
+          "failure": "Activos declarados, nunca verificados",
+          "maps_to": "P2 — Existencia del activo no verificada",
+          "detail": "El 80% del Fondo Sartor Táctico estaba invertido en pagarés emitidos por personas vinculadas a la administradora. Ningún actor independiente verificó existencia ni titularidad."
+        },
+        {
+          "failure": "Cartera y tesorería controladas por el mismo actor",
+          "maps_to": "P3 — Flujos de caja sin monitoreo",
+          "detail": "Sartor controló simultáneamente las inversiones y los flujos del fondo. El descalce entre promesas de rescate y activos ilíquidos fue cubierto con nuevas captaciones."
+        },
+        {
+          "failure": "El gestor verificó su propio cumplimiento del mandato",
+          "maps_to": "P1+P2+P3 — Un actor, tres funciones, cero verificación",
+          "detail": "Sartor era árbitro único de su propio cumplimiento del reglamento interno. No existía ningún actor externo con mandato legal ni incentivo económico para detectar las irregularidades."
+        }
+      ]
+    },
+    "key_statistics": [
+      {
+        "metric": "USD 400.000M",
+        "description": "Ahorro administrado total en Chile (AFPs ~210.000M, seguros de vida ~85.000M, fondos mutuos ~65.000M, fondos alternativos ~40.000M)",
+        "source": "SP, CMF, Banco Central, ACAFI — cifras diciembre 2025"
+      },
+      {
+        "metric": "USD 5.000M",
+        "description": "Deuda privada en Chile — un mercado real sin verificación independiente",
+        "source": "ACAFI, Q4 2025"
+      },
+      {
+        "metric": "83%",
+        "description": "Del financiamiento empresarial concentrado en banca. Los mercados privados son aún de nicho.",
+        "source": "CMF, IEF 2S 2025"
+      },
+      {
+        "metric": "0",
+        "description": "Fund Administrators independientes autorizados en Chile hoy (vs 150+ en Luxemburgo, 80+ en Irlanda, 3 en Colombia)",
+        "source": "CMF, Registro de Entidades Supervisadas"
+      },
+      {
+        "metric": "USD 320.000M",
+        "description": "PIB nominal de Chile 2025",
+        "source": "Banco Central de Chile, Cuentas Nacionales"
+      },
+      {
+        "metric": "3–7 bps",
+        "description": "Costo de Fund Admin global sobre AUM. Para fondo de USD 100M = USD 30.000–70.000 anuales",
+        "source": "EFAMA/Monterone Partners, Fund Administration Industry Survey 2024"
+      },
+      {
+        "metric": "USD 8.000–12.000M",
+        "description": "Capital adicional estimado si Chile captura 1% del flujo global de alternativos hacia LatAm en la próxima década",
+        "source": "Estimación del autor basada en Preqin Global Alternatives Report 2025"
+      }
+    ],
+    "comparative_analysis": {
+      "chile": {
+        "framework": "LUF 20.712",
+        "model": "AGF todo-en-uno. Gestión + administración + custodia concentradas. Sin separación funcional. Sin categoría jurídica de Fund Admin.",
+        "fund_admins": 0
+      },
+      "luxemburgo": {
+        "framework": "AIFMD 2011/61/UE, transpuesta 2013",
+        "model": "AFM autorizado CSSF. Separación funcional obligatoria. Depositario obligatorio con responsabilidad objetiva (art. 21). Reporte autónomo a CSSF.",
+        "fund_admins": "150+"
+      },
+      "eeuu": {
+        "framework": "Advisers Act 1940 / Custody Rule 206(4)-2",
+        "model": "Investment Adviser registrado SEC. Qualified Custodian obligatorio. Examen sorpresa PCAOB. Custodio comunica directamente a inversores.",
+        "fund_admins": "industria desarrollada"
+      },
+      "latam_peers": {
+        "colombia": "3 Fund Admins autorizados por SFC (Deceval, Fiduciaria Bancolombia, Cititrust)",
+        "peru": "SBS permite delegación parcial de funciones operacionales bajo marco de fondos de inversión",
+        "mexico": "CNBV contempla servicios de administración por terceros bajo Ley de Fondos de Inversión"
+      }
+    }
+  },
+
+  "roadmap": {
+    "summary": "Ejecutable sin Congreso, en 9–15 meses, por CMF y Superintendencia de Pensiones. Primero crear el mercado, luego codificar lo que ya funciona. Costo fiscal cero.",
+    "phases": [
+      {
+        "id": "B",
+        "name": "Capa B — Acción Inmediata",
+        "timeline": "9–15 meses",
+        "requires_congress": false,
+        "actors": ["CMF", "Superintendencia de Pensiones"],
+        "measures": [
+          {
+            "id": "B1",
+            "name": "NCG de Régimen de Responsabilidad Diferenciada",
+            "timeline": "6–9 meses",
+            "type": "fundacional",
+            "legal_basis": "DL 3.538 arts. 5 y 12, LUF art. 70",
+            "description": "La CMF establece la matriz de asignación de responsabilidad GP / Fund Admin. No crea nueva entidad regulada — habilita delegación contractual de funciones operacionales a tercero calificado."
+          },
+          {
+            "id": "B2",
+            "name": "Registro de Fund Administrators Habilitados",
+            "timeline": "9–15 meses",
+            "type": "operacional",
+            "description": "Pasaporte expedito 60 días para entidades con autorización CSSF, FCA o SEC. Permite que Apex, Alter Domus e IQ-EQ operen en Chile."
+          },
+          {
+            "id": "B3",
+            "name": "Oficio Circular Conjunto CMF–SP",
+            "timeline": "simultánea con B1",
+            "type": "estratégica",
+            "description": "Separación funcional como criterio de riesgo operacional para AFPs. Cuando lo incorporan en sus manuales, todos los AGFs adoptan el modelo para acceder al capital de pensiones — sin coerción."
+          }
+        ]
+      },
+      {
+        "id": "A1",
+        "name": "Capa A1 — Legislativa",
+        "timeline": "24–36 meses",
+        "requires_congress": true,
+        "measures": [
+          {
+            "name": "Escisión legal AGF → GP + Fund Administrator",
+            "description": "Entidades jurídicas distintas. Régimen de responsabilidad diferenciada codificado en la ley."
+          },
+          {
+            "name": "Transición escalonada",
+            "description": "AGFs grandes: 24 meses. Medianas: 36 meses. Pequeñas: 48 meses."
+          }
+        ]
+      },
+      {
+        "id": "A2",
+        "name": "Capa A2 — Custodio Regulado",
+        "timeline": "36–48 meses",
+        "requires_congress": true,
+        "actors": ["Congreso", "Banco Central de Chile"],
+        "measures": [
+          {
+            "name": "Custodio Regulado de Activos Privados",
+            "description": "Análogo funcional del depositario AIFMD art. 21. Capital mínimo escalonado. Supervisión prudencial CMF."
+          },
+          {
+            "name": "Reporte autónomo obligatorio",
+            "description": "Obligación de reporte directo a CMF sin consultar al GP ni al Fund Admin. Verifica existencia, titularidad y estado de activos ilíquidos."
+          }
+        ]
+      }
+    ]
+  },
+
+  "stakeholders": [
+    {
+      "name": "CMF (Comisión para el Mercado Financiero)",
+      "role": "Regulador principal. Emite NCGs, supervisa AGFs/GPs/Fund Admins.",
+      "interest": "Prevenir casos como Sartor. Habilitar infraestructura de mercado."
+    },
+    {
+      "name": "Superintendencia de Pensiones (SP)",
+      "role": "Supervisa AFPs. Co-emite oficio circular con CMF.",
+      "interest": "Mejorar diversificación y retorno del ahorro previsional."
+    },
+    {
+      "name": "AFPs",
+      "role": "Inversores institucionales con USD ~210.000M en AUM.",
+      "interest": "Acceder a activos privados con verificación independiente para mejorar retornos de largo plazo."
+    },
+    {
+      "name": "AGFs (Administradoras Generales de Fondos)",
+      "role": "Gestores actuales todo-en-uno. Sujetos de la reforma.",
+      "interest": "Resistencia a perder control operacional. Beneficio: menores barreras de entrada para nuevos gestores especializados."
+    },
+    {
+      "name": "Fund Administrators globales (Apex, Alter Domus, IQ-EQ)",
+      "role": "Proveedores de infraestructura operacional.",
+      "interest": "Entrada al mercado chileno. Ya operan en Colombia, Perú y México."
+    },
+    {
+      "name": "GPs internacionales",
+      "role": "Gestores bajo AIFMD que requieren contractualmente Fund Admin y depositario.",
+      "interest": "Actualmente excluyen Chile de sus mandatos. Con la reforma, pueden entrar."
+    },
+    {
+      "name": "Aportantes y pensionados",
+      "role": "Beneficiarios finales del sistema.",
+      "interest": "Mayor retorno previsional vía diversificación en activos privados con verificación independiente."
+    },
+    {
+      "name": "PYMEs y empresas en crecimiento",
+      "role": "Demandantes de capital que la banca no financia.",
+      "interest": "Acceso a financiamiento vía mercados privados (deuda privada, capital de crecimiento)."
+    }
+  ],
+
+  "ubiquitous_language": {
+    "description": "Vocabulario canónico extraído del Memorándum de Política Pública. Todos los bounded contexts del sistema deben usar estos términos de forma consistente.",
+    "terms": [
+      {
+        "term": "Separación funcional",
+        "definition": "Principio por el cual las funciones de gestión, administración y custodia son ejecutadas por entidades distintas e independientes entre sí."
+      },
+      {
+        "term": "GP (General Partner / Gestor)",
+        "definition": "Entidad que toma decisiones de inversión, construye la cartera y tiene responsabilidad fiduciaria indelegable."
+      },
+      {
+        "term": "Fund Administrator",
+        "definition": "Entidad independiente del GP que calcula el NAV, lleva el registro de aportantes, ejecuta distribuciones y verifica cumplimiento del reglamento interno."
+      },
+      {
+        "term": "Custodio Regulado",
+        "definition": "Entidad que verifica existencia, titularidad y estado de activos del fondo. Reporta autónomamente al regulador."
+      },
+      {
+        "term": "NAV (Net Asset Value)",
+        "definition": "Valor neto de los activos del fondo. En mercados privados, no hay transacción observable: alguien debe estimar el valor."
+      },
+      {
+        "term": "AGF (Administradora General de Fondos)",
+        "definition": "Entidad regulada por la CMF bajo la LUF 20.712 que concentra gestión, administración, cálculo de NAV, registro de aportantes y declaración de existencia de activos."
+      },
+      {
+        "term": "Mercado de capitales privados",
+        "definition": "Canal de intermediación financiera donde los activos no se transan en bolsa. Complementa al sistema bancario y al mercado bursátil."
+      },
+      {
+        "term": "Capital call",
+        "definition": "Solicitud del GP a los LPs para que aporten capital comprometido al fondo."
+      },
+      {
+        "term": "Distribución",
+        "definition": "Retorno de capital e/o ganancias desde el fondo hacia los LPs."
+      },
+      {
+        "term": "Reglamento Interno",
+        "definition": "Documento que define el mandato del fondo: política de inversión, límites, restricciones y derechos de los aportantes."
+      },
+      {
+        "term": "Reporte autónomo",
+        "definition": "Obligación del Custodio Regulado de reportar directamente a la CMF sin consultar al GP ni al Fund Admin."
+      },
+      {
+        "term": "Controles por oposición",
+        "definition": "Diseño donde cada actor tiene incentivo económico y mandato legal para verificar a los otros actores."
+      },
+      {
+        "term": "Pasaporte expedito",
+        "definition": "Mecanismo regulatorio que permite a Fund Admins con autorización CSSF, FCA o SEC operar en Chile en 60 días."
+      },
+      {
+        "term": "NCG (Norma de Carácter General)",
+        "definition": "Instrumento normativo de la CMF. No requiere Congreso."
+      },
+      {
+        "term": "Responsabilidad diferenciada",
+        "definition": "Matriz que asigna responsabilidades específicas y acotadas a cada actor (GP, Fund Admin, Custodio) en lugar de concentrarlas en uno solo."
+      }
+    ]
+  },
+
+  "bounded_context_candidates": {
+    "description": "Candidatos preliminares de bounded contexts identificados a partir del análisis del dominio. Serán refinados en Step 2.",
+    "candidates": [
+      {
+        "name": "Fund Management",
+        "description": "Gestión de fondos de inversión: creación, configuración de reglamento interno, política de inversión, ciclo de vida del fondo.",
+        "core_entities": ["Fondo", "Reglamento Interno", "Política de Inversión"],
+        "actor_responsible": "GP"
+      },
+      {
+        "name": "Portfolio & Investment",
+        "description": "Decisiones de inversión, construcción y gestión de cartera, originación de activos (deuda privada, equity, infraestructura).",
+        "core_entities": ["Inversión", "Activo Subyacente", "Cartera"],
+        "actor_responsible": "GP"
+      },
+      {
+        "name": "Fund Administration",
+        "description": "Operaciones administrativas del fondo: cálculo de NAV, registro de aportantes, distribuciones, contabilidad, verificación de reglamento interno.",
+        "core_entities": ["NAV Calculation", "Registro de Aportantes", "Distribución", "Capital Call"],
+        "actor_responsible": "Fund Admin"
+      },
+      {
+        "name": "Custody & Asset Verification",
+        "description": "Verificación independiente de existencia, titularidad y estado de activos. Supervisión de flujos. Reporte autónomo a CMF.",
+        "core_entities": ["Activo Custodiado", "Verificación de Existencia", "Reporte Autónomo"],
+        "actor_responsible": "Custodio Regulado"
+      },
+      {
+        "name": "Investor Relations",
+        "description": "Gestión de la relación con LPs: compromisos de capital, reporting (ILPA 3.0), capital account statements, comunicaciones.",
+        "core_entities": ["LP (Limited Partner)", "Compromiso de Capital", "Capital Account"],
+        "standards": ["ILPA 3.0"]
+      },
+      {
+        "name": "Regulatory Compliance",
+        "description": "Cumplimiento normativo: reporting a CMF, verificación de mandato, detección de operaciones con partes relacionadas, Ley de Delitos Económicos.",
+        "core_entities": ["Reporte Regulatorio", "Alerta de Compliance", "Operación con Parte Relacionada"],
+        "actor_responsible": "Todos (GP, Fund Admin, Custodio)"
+      },
+      {
+        "name": "Fee & Expense Management",
+        "description": "Gestión de comisiones y gastos: management fees, carried interest, organizational expenses, fund expenses, fee offsets.",
+        "core_entities": ["Management Fee", "Carried Interest", "Expense"],
+        "standards": ["ILPA 3.0 — Fee and Expense Reporting"]
+      }
+    ]
+  },
+
+  "standards_applicable": [
+    {
+      "standard": "DDD (Domain-Driven Design)",
+      "version": "Evans, 2003",
+      "usage": "Modelado del dominio: bounded contexts, aggregates, domain events, ubiquitous language, context map"
+    },
+    {
+      "standard": "ILPA Reporting Template",
+      "version": "3.0",
+      "usage": "Validación de conformidad para reporting a LPs: capital account statements, portfolio company data, fee reporting, ESG"
+    },
+    {
+      "standard": "API Design (RESTful conventions)",
+      "version": "RFC 7807",
+      "usage": "Validación de contratos de API: versionado, naming, error format, pagination, idempotency"
+    }
+  ],
+
+  "success_metrics": [
+    {
+      "metric": "Cobertura funcional de la separación",
+      "target": "100% de las funciones GP / Fund Admin / Custodio modeladas como bounded contexts independientes con interfaces explícitas"
+    },
+    {
+      "metric": "Conformidad ILPA 3.0",
+      "target": "Todos los campos obligatorios de Capital Account Statement, Portfolio Company Data, Fee Reporting y ESG cubiertos por el modelo de datos"
+    },
+    {
+      "metric": "Controles por oposición",
+      "target": "Cada operación del GP pasa por verificación del Fund Admin y/o Custodio antes de ser registrada como hecho consumado"
+    },
+    {
+      "metric": "Reporte autónomo implementado",
+      "target": "El Custodio puede generar y enviar reportes a CMF sin depender de datos del GP"
+    },
+    {
+      "metric": "Onboarding Fund Admin global",
+      "target": "Un Fund Admin con autorización CSSF/FCA/SEC puede conectarse al sistema en ≤60 días (pasaporte expedito)"
+    }
+  ],
+
+  "risks_and_constraints": [
+    {
+      "risk": "Resistencia de AGFs incumbentes",
+      "mitigation": "La reforma no las obliga inicialmente — el mercado las empuja vía requisitos de las AFPs"
+    },
+    {
+      "risk": "Mercado demasiado pequeño para Fund Admins globales",
+      "mitigation": "Fund Admins ya operan en Colombia (mercado similar). El costo de entrada es bajo si hay pasaporte expedito. La infraestructura precede al volumen."
+    },
+    {
+      "risk": "Complejidad de custodia de activos ilíquidos",
+      "mitigation": "Capa A2 (Custodio Regulado) se implementa en fase 3 (36–48 meses). Se comienza con Fund Admin que ya tiene precedentes."
+    },
+    {
+      "risk": "Interoperabilidad con sistemas legacy de AGFs",
+      "mitigation": "API contracts con versionado y contratos claros. Transición escalonada por tamaño de AGF."
+    }
+  ],
+
+  "next_steps": {
+    "step_2": "Domain Model & Bounded Contexts — Refinar los bounded context candidates en bounded contexts formales con límites explícitos, context map y relaciones upstream/downstream.",
+    "dependencies": ["Este strategy-brief debe ser aprobado en checkpoint crítico (Step 1) antes de proceder."]
+  }
+}
