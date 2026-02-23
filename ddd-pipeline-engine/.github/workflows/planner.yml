@@ -1,0 +1,54 @@
+name: Pipeline Planner
+
+on:
+  workflow_dispatch:
+    inputs:
+      domain_description:
+        description: "Descripción del dominio a diseñar"
+        required: true
+        type: string
+      standards:
+        description: "Estándares a aplicar (comma-separated: ILPA-3.0, DDD)"
+        required: false
+        default: "DDD"
+        type: string
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      plan_id: ${{ steps.generate.outputs.plan_id }}
+      steps_json: ${{ steps.generate.outputs.steps_json }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate execution plan
+        id: generate
+        run: |
+          PLAN_ID="run-$(date +%Y%m%d-%H%M%S)"
+          echo "plan_id=$PLAN_ID" >> "$GITHUB_OUTPUT"
+
+          # TODO: invocar agente planner real
+          # Por ahora genera un plan stub
+          echo "steps_json=[]" >> "$GITHUB_OUTPUT"
+          echo "Plan generado: $PLAN_ID"
+          echo "Dominio: ${{ inputs.domain_description }}"
+          echo "Estándares: ${{ inputs.standards }}"
+
+      - name: Persist plan
+        run: |
+          mkdir -p runs/${{ steps.generate.outputs.plan_id }}
+          echo '{"domain": "${{ inputs.domain_description }}", "standards": "${{ inputs.standards }}"}' \
+            > runs/${{ steps.generate.outputs.plan_id }}/plan.json
+          echo "Plan persistido en runs/${{ steps.generate.outputs.plan_id }}/plan.json"
+
+  dispatch-generators:
+    needs: plan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch generator agents
+        run: |
+          echo "Dispatching generators para plan: ${{ needs.plan.outputs.plan_id }}"
+          # TODO: iterar sobre steps_json y disparar cada generator

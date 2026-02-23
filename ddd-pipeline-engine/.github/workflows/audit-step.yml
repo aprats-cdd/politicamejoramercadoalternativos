@@ -1,0 +1,68 @@
+name: Audit Step
+
+on:
+  workflow_dispatch:
+    inputs:
+      plan_id:
+        description: "ID del plan de ejecución"
+        required: true
+        type: string
+      artifact_path:
+        description: "Ruta al artefacto a auditar (relativa a runs/)"
+        required: true
+        type: string
+      checklist:
+        description: "Checklist a aplicar (nombre del archivo en engine/checklists/)"
+        required: true
+        type: string
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Load artifact
+        id: load
+        run: |
+          ARTIFACT="runs/${{ inputs.artifact_path }}"
+          if [ ! -f "$ARTIFACT" ]; then
+            echo "::error::Artefacto no encontrado: $ARTIFACT"
+            exit 1
+          fi
+          echo "artifact_content<<EOF" >> "$GITHUB_OUTPUT"
+          cat "$ARTIFACT" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Load checklist
+        id: checklist
+        run: |
+          CHECKLIST="engine/checklists/${{ inputs.checklist }}"
+          if [ ! -f "$CHECKLIST" ]; then
+            echo "::error::Checklist no encontrada: $CHECKLIST"
+            exit 1
+          fi
+          echo "checklist_content<<EOF" >> "$GITHUB_OUTPUT"
+          cat "$CHECKLIST" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Run audit agent
+        id: audit
+        run: |
+          echo "Auditando artefacto: ${{ inputs.artifact_path }}"
+          echo "Con checklist: ${{ inputs.checklist }}"
+          # TODO: invocar agente auditor real
+          # El agente recibe artifact_content + checklist_content
+          # y produce un audit_report
+          RESULT="PASS"
+          echo "result=$RESULT" >> "$GITHUB_OUTPUT"
+
+      - name: Persist audit report
+        run: |
+          REPORT_DIR="runs/${{ inputs.plan_id }}/audits"
+          mkdir -p "$REPORT_DIR"
+          echo '{"artifact": "${{ inputs.artifact_path }}", "checklist": "${{ inputs.checklist }}", "result": "${{ steps.audit.outputs.result }}"}' \
+            > "$REPORT_DIR/$(basename ${{ inputs.artifact_path }}).audit.json"
+          echo "Audit report persistido"
