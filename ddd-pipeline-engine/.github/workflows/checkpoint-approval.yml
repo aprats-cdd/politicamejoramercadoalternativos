@@ -1,0 +1,165 @@
+###############################################################################
+# Checkpoint Approval Listener
+#
+# Escucha comentarios "APPROVED" en issues marcados como checkpoint-critico
+# y avanza el pipeline al siguiente paso.
+###############################################################################
+
+name: Checkpoint Approval
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+
+env:
+  STATE_FILE: runs/pipeline-state.json
+  TOTAL_STEPS: 9
+
+jobs:
+  process-approval:
+    if: |
+      contains(github.event.issue.labels.*.name, 'checkpoint-critico') &&
+      contains(github.event.issue.labels.*.name, 'awaiting-approval') &&
+      startsWith(github.event.comment.body, 'APPROVED')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Extract step number from issue labels
+        id: extract
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = context.payload.issue.labels.map(l => l.name);
+            const stepLabel = labels.find(l => /^step-\d+$/.test(l));
+            if (!stepLabel) {
+              core.setFailed('No se encontró label step-N en el issue');
+              return;
+            }
+            const step = stepLabel.replace('step-', '');
+            core.setOutput('step_number', step);
+            core.setOutput('next_step', String(parseInt(step) + 1));
+            core.setOutput('approver', context.payload.comment.user.login);
+
+      - name: Update state — APPROVED and advance
+        id: advance
+        run: |
+          STEP="${{ steps.extract.outputs.step_number }}"
+          NEXT="${{ steps.extract.outputs.next_step }}"
+          APPROVER="${{ steps.extract.outputs.approver }}"
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          TOTAL="${{ env.TOTAL_STEPS }}"
+
+          jq --arg step "$STEP" \
+             --arg ts "$TIMESTAMP" \
+             --arg approver "$APPROVER" \
+             --arg next "$NEXT" \
+             '.steps[$step].status = "APPROVED" |
+              .steps[$step].approver = $approver |
+              .steps[$step].timestamp = $ts |
+              .current_step = ($next | tonumber)' \
+             "${{ env.STATE_FILE }}" > tmp_state.json && mv tmp_state.json "${{ env.STATE_FILE }}"
+
+          if [ "$NEXT" -le "$TOTAL" ]; then
+            jq --arg step "$NEXT" \
+               --arg ts "$TIMESTAMP" \
+               '.steps[$step].status = "PENDING" |
+                .steps[$step].timestamp = $ts' \
+               "${{ env.STATE_FILE }}" > tmp_state.json && mv tmp_state.json "${{ env.STATE_FILE }}"
+            echo "pipeline_complete=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "pipeline_complete=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ env.STATE_FILE }}"
+          git commit -m "pipeline: step-${STEP} APPROVED by ${APPROVER} → advance to step-${NEXT}"
+          git push
+
+      - name: Close checkpoint issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const step = '${{ steps.extract.outputs.step_number }}';
+            const approver = '${{ steps.extract.outputs.approver }}';
+
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+
+            await github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              name: 'awaiting-approval'
+            }).catch(() => {});
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `✅ Checkpoint aprobado por @${approver}. Pipeline avanzando a step-${parseInt(step) + 1}.`
+            });
+
+      - name: Notify next step
+        if: steps.advance.outputs.pipeline_complete == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const next = '${{ steps.extract.outputs.next_step }}';
+            const critical = [1, 4, 8].includes(parseInt(next));
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `▶️ Pipeline: iniciar step-${next}`,
+              body: [
+                `## Step ${next}`,
+                '',
+                `Checkpoint anterior aprobado. Pipeline listo para continuar.`,
+                '',
+                `### Instrucciones`,
+                `1. Crear branch: \`step-${next}-<descripcion>\``,
+                `2. Implementar los artefactos del paso`,
+                `3. Ejecutar auditoría antes de crear PR`,
+                `4. Crear PR a \`main\``,
+                '',
+                critical ? '> ⚠️ **Este paso es un checkpoint crítico.**' : '',
+              ].join('\n'),
+              labels: ['pipeline', 'next-step', `step-${next}`]
+            });
+
+  process-rejection:
+    if: |
+      contains(github.event.issue.labels.*.name, 'checkpoint-critico') &&
+      contains(github.event.issue.labels.*.name, 'awaiting-approval') &&
+      startsWith(github.event.comment.body, 'REJECTED')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Acknowledge rejection
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.comment.body;
+            const reason = body.replace('REJECTED:', '').replace('REJECTED', '').trim() || 'Sin motivo especificado';
+            const user = context.payload.comment.user.login;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `❌ Checkpoint rechazado por @${user}.\n\n**Motivo:** ${reason}\n\nEl pipeline permanece detenido. Corregir y volver a solicitar aprobación.`
+            });

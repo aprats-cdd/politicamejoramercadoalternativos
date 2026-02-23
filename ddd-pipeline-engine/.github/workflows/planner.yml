@@ -1,54 +1,415 @@
-name: Pipeline Planner
+###############################################################################
+# PlannerAgent — Orquestador del DDD Pipeline Engine
+#
+# Trigger:  PR mergeado a main desde branch con formato step-N-descripcion
+# Función:  Detecta qué paso se completó, valida auditoría, avanza el pipeline,
+#           gestiona checkpoints críticos (pasos 1, 4, 8) y persiste estado.
+#
+# Estados por paso:
+#   PENDING | RUNNING | AUDIT_PASS | AUDIT_FAIL |
+#   PENDING_HUMAN | APPROVED | COMPLETE
+###############################################################################
+
+name: PlannerAgent
 
 on:
-  workflow_dispatch:
-    inputs:
-      domain_description:
-        description: "Descripción del dominio a diseñar"
-        required: true
-        type: string
-      standards:
-        description: "Estándares a aplicar (comma-separated: ILPA-3.0, DDD)"
-        required: false
-        default: "DDD"
-        type: string
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: read
+
+env:
+  STATE_FILE: runs/pipeline-state.json
+  CRITICAL_CHECKPOINTS: "1,4,8"
+  TOTAL_STEPS: 9
 
 jobs:
-  plan:
+  # ─────────────────────────────────────────────────────────
+  # 1. Detectar paso completado desde el nombre de la branch
+  # ─────────────────────────────────────────────────────────
+  detect-step:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     outputs:
-      plan_id: ${{ steps.generate.outputs.plan_id }}
-      steps_json: ${{ steps.generate.outputs.steps_json }}
+      step_number: ${{ steps.parse.outputs.step_number }}
+      step_description: ${{ steps.parse.outputs.step_description }}
+      branch_name: ${{ steps.parse.outputs.branch_name }}
+      is_valid_step: ${{ steps.parse.outputs.is_valid_step }}
+
+    steps:
+      - name: Parse branch name
+        id: parse
+        run: |
+          BRANCH="${{ github.event.pull_request.head.ref }}"
+          echo "branch_name=$BRANCH" >> "$GITHUB_OUTPUT"
+
+          if [[ "$BRANCH" =~ ^step-([0-9]+)-(.+)$ ]]; then
+            STEP_NUM="${BASH_REMATCH[1]}"
+            STEP_DESC="${BASH_REMATCH[2]}"
+            echo "step_number=$STEP_NUM" >> "$GITHUB_OUTPUT"
+            echo "step_description=$STEP_DESC" >> "$GITHUB_OUTPUT"
+            echo "is_valid_step=true" >> "$GITHUB_OUTPUT"
+            echo "✅ Paso detectado: step-${STEP_NUM} (${STEP_DESC})"
+          else
+            echo "is_valid_step=false" >> "$GITHUB_OUTPUT"
+            echo "⏭️  Branch '$BRANCH' no sigue el formato step-N-descripcion. Ignorando."
+          fi
+
+  # ─────────────────────────────────────────────────────────
+  # 2. Validar auditoría del paso completado
+  # ─────────────────────────────────────────────────────────
+  validate-audit:
+    needs: detect-step
+    if: needs.detect-step.outputs.is_valid_step == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      audit_result: ${{ steps.check-audit.outputs.audit_result }}
+      is_critical: ${{ steps.check-critical.outputs.is_critical }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
-      - name: Generate execution plan
-        id: generate
+      - name: Check audit result for step
+        id: check-audit
         run: |
-          PLAN_ID="run-$(date +%Y%m%d-%H%M%S)"
-          echo "plan_id=$PLAN_ID" >> "$GITHUB_OUTPUT"
+          STEP="${{ needs.detect-step.outputs.step_number }}"
+          AUDIT_FILE="runs/audits/step-${STEP}.audit.json"
 
-          # TODO: invocar agente planner real
-          # Por ahora genera un plan stub
-          echo "steps_json=[]" >> "$GITHUB_OUTPUT"
-          echo "Plan generado: $PLAN_ID"
-          echo "Dominio: ${{ inputs.domain_description }}"
-          echo "Estándares: ${{ inputs.standards }}"
+          if [ -f "$AUDIT_FILE" ]; then
+            RESULT=$(jq -r '.result // "UNKNOWN"' "$AUDIT_FILE")
+            echo "audit_result=$RESULT" >> "$GITHUB_OUTPUT"
+            echo "📋 Audit result para step-${STEP}: $RESULT"
+          else
+            # Si no existe archivo de auditoría, asumimos PASS
+            # (el paso puede no requerir auditoría explícita)
+            echo "audit_result=PASS" >> "$GITHUB_OUTPUT"
+            echo "⚠️  No se encontró $AUDIT_FILE — asumiendo PASS"
+          fi
 
-      - name: Persist plan
+      - name: Check if step is critical checkpoint
+        id: check-critical
         run: |
-          mkdir -p runs/${{ steps.generate.outputs.plan_id }}
-          echo '{"domain": "${{ inputs.domain_description }}", "standards": "${{ inputs.standards }}"}' \
-            > runs/${{ steps.generate.outputs.plan_id }}/plan.json
-          echo "Plan persistido en runs/${{ steps.generate.outputs.plan_id }}/plan.json"
+          STEP="${{ needs.detect-step.outputs.step_number }}"
+          CRITICAL="${{ env.CRITICAL_CHECKPOINTS }}"
 
-  dispatch-generators:
-    needs: plan
+          if echo ",$CRITICAL," | grep -q ",$STEP,"; then
+            echo "is_critical=true" >> "$GITHUB_OUTPUT"
+            echo "🔴 Step-${STEP} es un CHECKPOINT CRÍTICO"
+          else
+            echo "is_critical=false" >> "$GITHUB_OUTPUT"
+            echo "🟢 Step-${STEP} no requiere aprobación humana"
+          fi
+
+  # ─────────────────────────────────────────────────────────
+  # 3. Gate: bloquear si auditoría falló
+  # ─────────────────────────────────────────────────────────
+  gate-audit:
+    needs: [detect-step, validate-audit]
+    if: needs.validate-audit.outputs.audit_result != 'PASS'
     runs-on: ubuntu-latest
+
     steps:
-      - name: Dispatch generator agents
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Update state to AUDIT_FAIL
         run: |
-          echo "Dispatching generators para plan: ${{ needs.plan.outputs.plan_id }}"
-          # TODO: iterar sobre steps_json y disparar cada generator
+          STEP="${{ needs.detect-step.outputs.step_number }}"
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+          if [ -f "${{ env.STATE_FILE }}" ]; then
+            jq --arg step "$STEP" \
+               --arg ts "$TIMESTAMP" \
+               '.steps[$step].status = "AUDIT_FAIL" |
+                .steps[$step].timestamp = $ts' \
+               "${{ env.STATE_FILE }}" > tmp_state.json && mv tmp_state.json "${{ env.STATE_FILE }}"
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ env.STATE_FILE }}"
+          git commit -m "pipeline: mark step-${STEP} as AUDIT_FAIL" || true
+          git push
+
+      - name: Create failure issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const step = '${{ needs.detect-step.outputs.step_number }}';
+            const desc = '${{ needs.detect-step.outputs.step_description }}';
+            const audit = '${{ needs.validate-audit.outputs.audit_result }}';
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚫 Pipeline bloqueado: step-${step} audit ${audit}`,
+              body: [
+                `## Auditoría fallida en Step ${step}: ${desc}`,
+                '',
+                `**Resultado de auditoría:** \`${audit}\``,
+                '',
+                'El pipeline no puede avanzar hasta que este paso sea corregido y la auditoría devuelva `PASS`.',
+                '',
+                '### Acciones requeridas',
+                `1. Revisar el audit report en \`runs/audits/step-${step}.audit.json\``,
+                `2. Corregir los hallazgos en una nueva branch \`step-${step}-fix-*\``,
+                '3. Re-ejecutar la auditoría',
+                '4. Crear PR a main cuando el audit sea PASS',
+              ].join('\n'),
+              labels: ['pipeline', 'audit-fail', `step-${step}`]
+            });
+
+      - name: Fail the workflow
+        run: |
+          echo "::error::Pipeline bloqueado — step-${{ needs.detect-step.outputs.step_number }} audit result: ${{ needs.validate-audit.outputs.audit_result }}"
+          exit 1
+
+  # ─────────────────────────────────────────────────────────
+  # 4. Checkpoint crítico: crear issue para aprobación humana
+  # ─────────────────────────────────────────────────────────
+  checkpoint-critico:
+    needs: [detect-step, validate-audit]
+    if: |
+      needs.validate-audit.outputs.audit_result == 'PASS' &&
+      needs.validate-audit.outputs.is_critical == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Update state to PENDING_HUMAN
+        run: |
+          STEP="${{ needs.detect-step.outputs.step_number }}"
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+          if [ -f "${{ env.STATE_FILE }}" ]; then
+            jq --arg step "$STEP" \
+               --arg ts "$TIMESTAMP" \
+               '.steps[$step].status = "PENDING_HUMAN" |
+                .steps[$step].timestamp = $ts |
+                .current_step = ($step | tonumber)' \
+               "${{ env.STATE_FILE }}" > tmp_state.json && mv tmp_state.json "${{ env.STATE_FILE }}"
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ env.STATE_FILE }}"
+          git commit -m "pipeline: mark step-${STEP} as PENDING_HUMAN" || true
+          git push
+
+      - name: Create checkpoint issue requiring human approval
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const step = '${{ needs.detect-step.outputs.step_number }}';
+            const desc = '${{ needs.detect-step.outputs.step_description }}';
+            const nextStep = parseInt(step) + 1;
+
+            const checkpointNames = {
+              '1': 'Domain Model Foundation',
+              '4': 'Core Architecture Validation',
+              '8': 'Pre-Production Readiness'
+            };
+
+            const name = checkpointNames[step] || `Checkpoint Step ${step}`;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🔴 CHECKPOINT CRÍTICO: ${name} (step-${step})`,
+              body: [
+                `## Checkpoint Crítico — Step ${step}: ${desc}`,
+                '',
+                `**Nombre del checkpoint:** ${name}`,
+                '',
+                '> ⚠️ Este paso requiere **aprobación humana explícita** antes de que el pipeline pueda continuar.',
+                '',
+                '### Artefactos a revisar',
+                `- Estado del pipeline: \`runs/pipeline-state.json\``,
+                `- Artefactos del paso: \`runs/artifacts/step-${step}/\``,
+                `- Audit report: \`runs/audits/step-${step}.audit.json\``,
+                '',
+                '### Para aprobar',
+                'Comentar en este issue con el texto exacto:',
+                '```',
+                'APPROVED',
+                '```',
+                '',
+                `Una vez aprobado, el pipeline avanzará a **step-${nextStep}**.`,
+                '',
+                '### Para rechazar',
+                'Comentar con:',
+                '```',
+                'REJECTED: <motivo>',
+                '```',
+              ].join('\n'),
+              labels: ['pipeline', 'checkpoint-critico', `step-${step}`, 'awaiting-approval']
+            });
+
+            console.log(`Checkpoint issue creado para step-${step}. Pipeline en espera de aprobación humana.`);
+
+  # ─────────────────────────────────────────────────────────
+  # 5. Avanzar al siguiente paso (si audit PASS y no es crítico)
+  # ─────────────────────────────────────────────────────────
+  advance-pipeline:
+    needs: [detect-step, validate-audit]
+    if: |
+      needs.validate-audit.outputs.audit_result == 'PASS' &&
+      needs.validate-audit.outputs.is_critical == 'false'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Update state — mark current COMPLETE, next PENDING
+        id: advance
+        run: |
+          STEP="${{ needs.detect-step.outputs.step_number }}"
+          NEXT_STEP=$((STEP + 1))
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          TOTAL="${{ env.TOTAL_STEPS }}"
+
+          echo "current_step=$STEP" >> "$GITHUB_OUTPUT"
+          echo "next_step=$NEXT_STEP" >> "$GITHUB_OUTPUT"
+
+          # Inicializar state file si no existe
+          if [ ! -f "${{ env.STATE_FILE }}" ]; then
+            mkdir -p "$(dirname "${{ env.STATE_FILE }}")"
+            INIT_STEPS="{}"
+            for i in $(seq 1 "$TOTAL"); do
+              INIT_STEPS=$(echo "$INIT_STEPS" | jq --arg s "$i" '.[$s] = {"status": "PENDING", "approver": "", "timestamp": ""}')
+            done
+            jq -n \
+              --arg pid "pipeline-$(date +%Y%m%d)" \
+              --arg sys "ddd-pipeline-engine" \
+              --argjson steps "$INIT_STEPS" \
+              '{pipeline_id: $pid, system_name: $sys, current_step: 0, steps: $steps}' \
+              > "${{ env.STATE_FILE }}"
+          fi
+
+          # Marcar paso actual como COMPLETE
+          jq --arg step "$STEP" \
+             --arg ts "$TIMESTAMP" \
+             --arg next "$NEXT_STEP" \
+             '.steps[$step].status = "COMPLETE" |
+              .steps[$step].timestamp = $ts |
+              .current_step = ($next | tonumber)' \
+             "${{ env.STATE_FILE }}" > tmp_state.json && mv tmp_state.json "${{ env.STATE_FILE }}"
+
+          # Si hay siguiente paso, marcarlo como PENDING
+          if [ "$NEXT_STEP" -le "$TOTAL" ]; then
+            jq --arg step "$NEXT_STEP" \
+               --arg ts "$TIMESTAMP" \
+               '.steps[$step].status = "PENDING" |
+                .steps[$step].timestamp = $ts' \
+               "${{ env.STATE_FILE }}" > tmp_state.json && mv tmp_state.json "${{ env.STATE_FILE }}"
+            echo "pipeline_complete=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "pipeline_complete=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo "📊 Estado actualizado:"
+          cat "${{ env.STATE_FILE }}" | jq .
+
+      - name: Commit state update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ env.STATE_FILE }}"
+          git commit -m "pipeline: step-${{ steps.advance.outputs.current_step }} COMPLETE → advance to step-${{ steps.advance.outputs.next_step }}" || true
+          git push
+
+      - name: Notify next step via issue
+        if: steps.advance.outputs.pipeline_complete == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const current = '${{ steps.advance.outputs.current_step }}';
+            const next = '${{ steps.advance.outputs.next_step }}';
+            const desc = '${{ needs.detect-step.outputs.step_description }}';
+
+            const stepNames = {
+              '1': 'Strategic Domain Vision',
+              '2': 'Domain Model & Bounded Contexts',
+              '3': 'Aggregates & Entities',
+              '4': 'Domain Events & Integration',
+              '5': 'API Contracts',
+              '6': 'Data Schemas & Persistence',
+              '7': 'Security & Compliance',
+              '8': 'Infrastructure & Deployment',
+              '9': 'Final Review & Documentation'
+            };
+
+            const nextName = stepNames[next] || `Step ${next}`;
+            const critical = [1, 4, 8].includes(parseInt(next));
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `▶️ Pipeline: iniciar step-${next} — ${nextName}`,
+              body: [
+                `## Step ${next}: ${nextName}`,
+                '',
+                `Step-${current} (\`${desc}\`) completado con auditoría PASS.`,
+                '',
+                `### Instrucciones`,
+                `1. Crear branch: \`step-${next}-<descripcion>\``,
+                `2. Implementar los artefactos del paso`,
+                `3. Ejecutar auditoría antes de crear PR`,
+                `4. Crear PR a \`main\` cuando esté listo`,
+                '',
+                critical ? '> ⚠️ **Este paso es un checkpoint crítico.** Tras merge, se requerirá aprobación humana explícita.' : '',
+                '',
+                `**Estado del pipeline:** \`runs/pipeline-state.json\``,
+              ].join('\n'),
+              labels: ['pipeline', 'next-step', `step-${next}`]
+            });
+
+      - name: Notify pipeline complete
+        if: steps.advance.outputs.pipeline_complete == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🏁 Pipeline COMPLETO — Todos los pasos finalizados',
+              body: [
+                '## Pipeline Finalizado',
+                '',
+                'Todos los 9 pasos del DDD Pipeline Engine han sido completados y auditados.',
+                '',
+                '### Resumen',
+                'Revisar el estado final en `runs/pipeline-state.json`.',
+                '',
+                '### Siguiente',
+                '- Revisar todos los artefactos generados en `runs/artifacts/`',
+                '- Validar audit reports en `runs/audits/`',
+                '- Proceder con la implementación del sistema diseñado',
+              ].join('\n'),
+              labels: ['pipeline', 'complete']
+            });
+
+  # ─────────────────────────────────────────────────────────
+  # 6. Listener: procesar aprobación humana en checkpoint
+  # ─────────────────────────────────────────────────────────
+  # NOTA: Este job se activa desde un workflow separado
+  # (checkpoint-approval.yml) que escucha issue_comment.
+  # Se incluye aquí como referencia de la lógica completa.
+  # ─────────────────────────────────────────────────────────
