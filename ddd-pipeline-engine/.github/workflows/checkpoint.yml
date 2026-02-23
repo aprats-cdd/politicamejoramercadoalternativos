@@ -1,0 +1,55 @@
+name: Checkpoint
+
+on:
+  workflow_dispatch:
+    inputs:
+      plan_id:
+        description: "ID del plan de ejecución"
+        required: true
+        type: string
+      step_name:
+        description: "Nombre del paso que acaba de completarse"
+        required: true
+        type: string
+      status:
+        description: "Estado del paso (pass | fail | skip)"
+        required: true
+        type: choice
+        options:
+          - pass
+          - fail
+          - skip
+
+jobs:
+  checkpoint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Record checkpoint
+        run: |
+          CHECKPOINT_DIR="runs/${{ inputs.plan_id }}/checkpoints"
+          mkdir -p "$CHECKPOINT_DIR"
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          echo "{\"step\": \"${{ inputs.step_name }}\", \"status\": \"${{ inputs.status }}\", \"timestamp\": \"$TIMESTAMP\"}" \
+            > "$CHECKPOINT_DIR/${{ inputs.step_name }}.json"
+          echo "Checkpoint registrado: ${{ inputs.step_name }} = ${{ inputs.status }}"
+
+      - name: Evaluate continuation
+        id: evaluate
+        run: |
+          if [ "${{ inputs.status }}" = "fail" ]; then
+            echo "::warning::Paso ${{ inputs.step_name }} falló. Pipeline detenido."
+            echo "continue=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Paso ${{ inputs.step_name }} completado con estado: ${{ inputs.status }}"
+            echo "continue=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Gate decision
+        if: steps.evaluate.outputs.continue == 'false'
+        run: |
+          echo "::error::Pipeline detenido en checkpoint ${{ inputs.step_name }}"
+          exit 1
