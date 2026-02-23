@@ -6,9 +6,12 @@
   "steps": {
     "1": {
       "name": "Strategic Domain Vision",
-      "status": "RUNNING",
+      "status": "PENDING_HUMAN",
       "artifact": "runs/artifacts/step-1/strategy-brief.json",
-      "timestamp": "2026-02-23T01:15:00Z"
+      "timestamp": "2026-02-23T01:15:00Z",
+      "merged_pr": 18,
+      "approval_issue": null,
+      "pending_since": "2026-02-23T02:00:00Z"
     },
     "2": { "name": "Domain Model & Bounded Contexts", "status": "PENDING", "timestamp": "" },
     "3": { "name": "Aggregates & Entities", "status": "PENDING", "timestamp": "" },
