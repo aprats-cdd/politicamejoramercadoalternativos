@@ -58,4 +58,33 @@ securitizadoras. La página dice "Sujeto a revisión legal" — encaja.
   vs ~USD 85.000M (fn8). No tocada — fuera del alcance "la página está auditada".
 
 ## Veredicto del panel adversarial final
-(ver abajo — se completa con la corrida del workflow `red-team-final-memo`)
+
+12 lectores hostiles (abogado CMF, riesgo AFP, CIO seguros, AGF aludida, asesor
+legislativo, clasificadora, economista…). 81 hallazgos, 71 residuales reales.
+
+**Veredicto: SOBREVIVE-CON-RESERVAS.** La arquitectura defensiva es sólida y
+honesta; el ancla en seguros de vida sobrevive a un revisor hostil. La reserva:
+la tesis constructiva descansaba en un salto no probado — que la legalidad del
+vehículo (Título XVIII) arrastra la migración de cupo. **Legal de emitir ≠
+elegible para imputar al cupo de renta fija**: eso lo decide el Régimen de
+Inversión de las AFP (vía CCR) y la norma de seguros de la CMF, no el Título XVIII.
+
+### Aplicado en esta corrida (sobre el Acto V propio, sin tocar el argumento existente)
+1. El cupo se **construye**, no se asume: nombrados CCR / Régimen de Inversión /
+   norma de seguros como gates del tenedor; migración = meta, no automática.
+2. El "70×" degradado a tamaño de la categoría de destino (no demanda inmediata).
+3. 4º resguardo anti-2008: clasificación por tercero independiente + límites de
+   concentración (cierra correlación oculta + rating inflado).
+4. Custodio con independencia económica nombrada (fee no atado al NAV) + actores
+   concretos (EF Securitizadora, Apex). Nueva objeción del salto de cupo.
+
+### Deferido a decisión del CEO (cambia el ask o toca contenido existente)
+- **Sartor "sin excepción"** (Acto III, existente): es un over-claim — la
+  separación detecta/encarece fallas operacionales, pero prestar a relacionados
+  fue falla fiduciaria del GP (art.17 LUF). Suavizar es decisión del autor.
+- **Proporcionalidad por AUM**: el costo fijo de 3 proveedores pesa 5–8× más en
+  un fondo chico → riesgo de foso de los incumbentes. Tramo aligerado por tamaño.
+- **Estructura de pérdida**: quién absorbe la cola en ahorro previsional (tramo
+  senior, retención vertical, clawback de fee).
+- **Reencuadre reserva legal** custodio → deberes de la AGF (esquivar colisión
+  con Ley 18.876). Parcialmente ya resuelto por la Capa A2 del roadmap.
