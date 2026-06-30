@@ -78,13 +78,16 @@ Inversión de las AFP (vía CCR) y la norma de seguros de la CMF, no el Título 
 4. Custodio con independencia económica nombrada (fee no atado al NAV) + actores
    concretos (EF Securitizadora, Apex). Nueva objeción del salto de cupo.
 
-### Deferido a decisión del CEO (cambia el ask o toca contenido existente)
-- **Sartor "sin excepción"** (Acto III, existente): es un over-claim — la
-  separación detecta/encarece fallas operacionales, pero prestar a relacionados
-  fue falla fiduciaria del GP (art.17 LUF). Suavizar es decisión del autor.
-- **Proporcionalidad por AUM**: el costo fijo de 3 proveedores pesa 5–8× más en
-  un fondo chico → riesgo de foso de los incumbentes. Tramo aligerado por tamaño.
-- **Estructura de pérdida**: quién absorbe la cola en ahorro previsional (tramo
-  senior, retención vertical, clawback de fee).
-- **Reencuadre reserva legal** custodio → deberes de la AGF (esquivar colisión
-  con Ley 18.876). Parcialmente ya resuelto por la Capa A2 del roadmap.
+### Aplicado por decisión del CEO (30-jun) — doctrina: "el gestor es responsable final; el Fund Admin y el Custodio son controles por oposición"
+- **Sartor reencuadrado** (resumen ejecutivo + Acto III): se quita el "sin
+  excepción". Prestar a relacionados fue falla fiduciaria del GP —indelegable,
+  suya—; lo que faltó fueron los controles por oposición que detectan su
+  manifestación operacional (NAV inflado, existencia no verificada, descalce).
+- **Proporcionalidad por AUM** (roadmap Medida 4): régimen aligerado bajo umbral
+  de AUM; integridad, no consolidación.
+- **Estructura de pérdida** (objeción nueva): afiliado solo al tramo senior,
+  retención vertical unhedged, clawback de fee.
+- **Reencuadre reserva legal** (roadmap Medida 1): la NCG opera sobre deberes de
+  la AGF ya regulada (segregación + valoración/administración independiente como
+  control por oposición), no crea un nuevo sujeto; sin chocar con la Ley 18.876.
+  El Custodio pleno queda en Capa A2 (ley).
