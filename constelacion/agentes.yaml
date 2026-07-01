@@ -1,0 +1,97 @@
+# Constelación del memorándum — registro local (personal, no Cordada).
+#
+# La unidad de trabajo no es un agente suelto: es el equipo que lleva el memo
+# a estándar mundial. Cada rol tiene una memoria (qué lee), un trabajo, y un
+# eval que CORRE OTRO — nunca él mismo. Tres reglas, fail-closed:
+#   1. Ningún rol valida su propio trabajo (el gate lo corre otro).
+#   2. Ningún rol pasa sin un eval que de verdad se pueda correr.
+#   3. Cada dato que entra a la página está auditado por dos fuentes/ojos
+#      independientes — lo no doble-verificado no entra.
+#
+# Gate ejecutable: constelacion/eval_constelacion.py
+
+agentes:
+
+  - slug: AG-AUDITOR-EVIDENCIA
+    rol: Auditor de evidencia
+    hace: Verifica cada cifra del memo contra dos fuentes independientes; marca lo que no se puede doble-verificar.
+    memoria:
+      semantica: [SIFMA, BIS, IMF GFSR, Preqin, CMF, Superintendencia de Pensiones, Banco Central de Chile]
+      episodica: constelacion/runs/AG-AUDITOR-EVIDENCIA/
+      procedural: busqueda web + tabla claim->fuente1->fuente2
+    eval:
+      gate: dos auditores ciegos deben coincidir; el adversario marca toda cifra sin fuente. Lo corre el harness + AG-ADVERSARIO-MEMO, no él.
+      estado: ejecutable
+    metricas: [cifras sin doble fuente al cierre (target 0)]
+
+  - slug: AG-JURISTA-REGULATORIO
+    rol: Jurista regulatorio
+    hace: Factibilidad legal chilena con norma citada; separa derecho vigente de propuesta; marca dónde hay reserva legal.
+    memoria:
+      semantica: [Ley 18.045 Titulo XVIII, DL 3.500 art. 45, DFL 251, Ley 18.876, leychile.cl, cmfchile.cl]
+      episodica: constelacion/runs/AG-JURISTA-REGULATORIO/
+      procedural: lectura de norma primaria + tabla vigente/gap/requiere-Congreso
+    eval:
+      gate: AG-VERIFICADOR-CITAS confirma cada norma; AG-ADVERSARIO-MEMO ataca la reserva legal. Lo corren otros.
+      estado: ejecutable
+    metricas: [normas citadas sin fuente primaria (target 0)]
+
+  - slug: AG-VERIFICADOR-CITAS
+    rol: Verificador de citas
+    hace: Fija el número de artículo y la fuente exacta de cada cita legal que aparece en la página.
+    memoria:
+      semantica: [leychile.cl, bcn.cl, cmfchile.cl, spensiones.cl]
+      episodica: constelacion/runs/AG-VERIFICADOR-CITAS/
+      procedural: doble verificación contra fuente primaria
+    eval:
+      gate: dos verificadores ciegos coinciden contra leychile/CMF. Lo corre el harness, no él.
+      estado: ejecutable
+    metricas: [citas con numero de articulo no confirmado (target 0)]
+
+  - slug: AG-ARQUITECTO-TESIS
+    rol: Arquitecto de la tesis
+    hace: Integra la tesis defensiva (separacion funcional) con la constructiva (cupo de renta fija); arma el hilo claim->evidencia->implicacion.
+    memoria:
+      semantica: [index.html, hallazgos del jurista, hallazgos del adversario]
+      episodica: constelacion/runs/AG-ARQUITECTO-TESIS/
+      procedural: mapa del argumento + gap-analysis
+    eval:
+      gate: AG-ADVERSARIO-MEMO no puede dejar un salto logico sin respuesta en el cuerpo. Lo corre el adversario.
+      estado: ejecutable
+    metricas: [saltos logicos sin respuesta en el cuerpo (target 0)]
+
+  - slug: AG-PRODUCTOR-PAGINA
+    rol: Productor de la pagina
+    hace: Edita el HTML a estandar mundial reusando los componentes existentes; nada de rediseno. Accesibilidad y citas.
+    memoria:
+      semantica: [index.html, componentes de estilo existentes, WCAG]
+      episodica: constelacion/runs/AG-PRODUCTOR-PAGINA/
+      procedural: edicion quirurgica + verificacion de anclas de footnotes
+    eval:
+      gate: workflow de verificacion sobre el draft final (cada claim + cada ancla fn). Lo corre el harness.
+      estado: ejecutable
+    metricas: [footnotes rotas o claims sin fuente en el draft (target 0)]
+
+  - slug: AG-ADVERSARIO-MEMO
+    rol: Adversario
+    hace: Lee el memo como el lector mas hostil posible (abogado CMF, comite de riesgo AFP, gestor aludido); ataca cada salto y cada cifra.
+    memoria:
+      semantica: [el memo completo, catalogo de modos de falla, casos 2008/Madoff/Wirecard]
+      episodica: constelacion/runs/AG-ADVERSARIO-MEMO/
+      procedural: red-team multi-lente, objeciones rankeadas por letalidad
+    eval:
+      gate: INVERTIDO — su salida ES el gate de publicacion (0 golpes letales sin respuesta).
+      estado: ejecutable
+    metricas: [golpes letales sin respuesta al cierre (target 0)]
+
+  - slug: AG-SINTETIZADOR
+    rol: Sintetizador
+    hace: Deduplica hallazgos; arma el ledger de evidencia (solo lo doble-confirmado) y la lista rankeada de ediciones.
+    memoria:
+      semantica: [salidas de todos los demas roles]
+      episodica: constelacion/runs/AG-SINTETIZADOR/
+      procedural: dedup + ranking + critico de completitud
+    eval:
+      gate: el ledger solo admite lo doble-confirmado; un critico de completitud independiente revisa que no falte. Lo corre otro.
+      estado: ejecutable
+    metricas: [hallazgos sin doble fuente que igual entraron al ledger (target 0)]
