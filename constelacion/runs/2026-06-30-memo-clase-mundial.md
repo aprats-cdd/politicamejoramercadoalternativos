@@ -91,3 +91,21 @@ Inversión de las AFP (vía CCR) y la norma de seguros de la CMF, no el Título 
   la AGF ya regulada (segregación + valoración/administración independiente como
   control por oposición), no crea un nuevo sujeto; sin chocar con la Ley 18.876.
   El Custodio pleno queda en Capa A2 (ley).
+
+## Ronda final de verificación (6 verificadores sobre el texto publicado)
+
+Cerrados en firme: Sartor honesto, coherencia de doctrina, reserva legal.
+**Residuos cazados y corregidos** (el rigor se había perdido en superficies de
+alta visibilidad):
+- El "70×" es global (universo RF vs private credit); estaba mal aplicado al
+  cupo chileno (real ~3–4×) en el resumen 05, la tarjeta "puerta grande" y la
+  objeción de cupo → corregido a "balde mayoritario", el 70× queda solo global.
+- El resumen 05 y el pull-quote habían revertido el hedge (migración como
+  automática) → restaurado: "puede migrar… no es automático… si la CCR / Régimen
+  / CMF reconocen la imputación"; "la verificación que la habilita a entrar".
+- Sartor resumen 02: "antes de consumarse" → "elevando la fricción" (sin rozar
+  promesa de prevención).
+- Medida 1: carve-out explícito de la Ley 18.876 (la NCG no impone custodia de
+  valores; esa queda para Capa A2).
+
+Tras estos fixes, las tres reservas del veredicto quedan cerradas en el texto.
