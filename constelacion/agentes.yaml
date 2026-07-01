@@ -95,3 +95,15 @@ agentes:
       gate: el ledger solo admite lo doble-confirmado; un critico de completitud independiente revisa que no falte. Lo corre otro.
       estado: ejecutable
     metricas: [hallazgos sin doble fuente que igual entraron al ledger (target 0)]
+
+  - slug: AG-JURISTA-RESPONSABILIDAD
+    rol: Jurista de responsabilidad diferenciada
+    hace: Mapea la responsabilidad funcion por funcion con norma comparada (mandato->GP; valoracion/operativa->Fund Admin; existencia->Custodio); prueba por que la delegacion no libera al gestor (culpa in eligendo/vigilando) y por que la responsabilidad acotada es asegurable y la ilimitada no.
+    memoria:
+      semantica: [AIFMD art. 20 y 21, SEC Custody Rule 206(4)-2, Ley 20.712 (LUF), DFL 251, Codigo Civil (responsabilidad por el hecho ajeno), seguros E&O / responsabilidad civil profesional]
+      episodica: constelacion/runs/AG-JURISTA-RESPONSABILIDAD/
+      procedural: tabla falla -> responsable -> norma -> asegurabilidad
+    eval:
+      gate: doble verificacion ciega de cada cita + el adversario ataca el flanco "la AGF lava responsabilidad delegando". Lo corren otros, no el.
+      estado: ejecutable
+    metricas: [citas sin fuente primaria (target 0), flanco de lavado de responsabilidad sin respuesta (target 0)]
