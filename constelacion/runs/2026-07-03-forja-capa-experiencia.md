@@ -73,6 +73,7 @@ solape), se corrigió → verde. Ronda hostil sobre el UI **implementado**:
 - `smoke_experiencia.js` — VERDE (T01-T05, área táctil medida en render).
 - `eval_sitio.py` — VERDE (S01-S09, sin regresión).
 
-La constelación queda **`propuesta`**. Se promueve a `activa` con el **accept
-del CEO sobre la identidad visual** (E6) — el único gate que el operador no se
-otorga a sí mismo. Ése es el momento del humano.
+La constelación se promovió a **`activa`** el 03-jul-2026: corrió su primer
+O→M→D con todos los gates verdes y el **CEO dio el accept sobre la identidad
+visual** (E6, "Mergea") — el único gate que el operador no se otorga a sí
+mismo. Ése era el momento del humano; se cumplió y el PR se lleva a merge.

@@ -386,15 +386,16 @@ agentes:
   # cuerpo se mueva, seduzca y se lea con el pulgar sin perder la sobriedad).
   # O→M→D: cartografo mide la brecha (O) → disenador especifica el sistema
   # (M) → ingeniero implementa en la hoja unica + paginas (D). Ningun agente
-  # valida su propio trabajo. Estado: PROPUESTA hasta el accept del CEO sobre
-  # la identidad visual (E6) — el harness verifica la spec aceptada, no una
-  # wishlist previa (fix del DD adversarial, critico 5).
+  # valida su propio trabajo. Estado: ACTIVA desde 03-jul-2026 — 1er O→M→D
+  # corrido (gates verdes) + accept del CEO sobre la identidad visual (E6,
+  # "Mergea"). El harness verifica la spec aceptada, no una wishlist previa
+  # (fix del DD adversarial, critico 5).
   # DD adversarial de esta forja: runs/AG-SITIO-ADVERSARIO/2026-07-03-dd-capa-experiencia.md
   # ══════════════════════════════════════════════════════════════════
 
   - slug: AG-SITIO-CARTOGRAFO-EXPERIENCIA
     rol: Cartografo de la experiencia (capa O · rol-de-corrida con sunset)
-    estado: propuesta
+    estado: activa  # promovida 03-jul: 1er O→M→D corrido + accept del CEO (E6)
     hace: >
       Mide la experiencia actual del sitio con medidas REPRODUCIBLES (M1-M14:
       area tactil renderizada, retorno al indice, navegacion de pie, escala
@@ -416,7 +417,7 @@ agentes:
 
   - slug: AG-SITIO-DISENADOR-EXPERIENCIA
     rol: Diseñador del sistema de experiencia (capa M)
-    estado: propuesta
+    estado: activa  # promovida 03-jul: 1er O→M→D corrido + accept del CEO (E6)
     hace: >
       Convierte las brechas medidas en la spec del sistema de experiencia
       movil-primero DENTRO de la sobriedad R41 (autoridad por sobriedad):
@@ -435,7 +436,7 @@ agentes:
 
   - slug: AG-SITIO-INGENIERO-UI
     rol: Ingeniero de UI (capa D · implementa; PROHIBIDO tocar prosa)
-    estado: propuesta
+    estado: activa  # promovida 03-jul: 1er O→M→D corrido + accept del CEO (E6)
     hace: >
       Implementa la spec aceptada en la hoja unica (assets/sitio.css) y en las
       paginas: tipografia fluida clamp(), token de area tactil de 44px con
