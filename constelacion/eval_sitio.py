@@ -269,9 +269,15 @@ def main() -> int:
                               capture_output=True, text=True, check=True).stdout.strip()
         if rama == "main":
             fallos.append("S08 trabajando directo sobre main (prohibido: PR draft)")
+        # Pre-publicacion: la raiz de main sirve el memo. Post-publicacion
+        # (merge con sign-off del CEO): el memo vive integro en memorandum.html
+        # y la raiz es el home. Ambos estados son validos; lo invariante es que
+        # el memorandum exista publicado en main.
         main_index = git_show("origin/main:index.html")
-        if main_index and "Memorándum de Política Pública" not in main_index:
-            fallos.append("S08 origin/main:index.html ya no es el memorandum vigente")
+        main_memo = git_show("origin/main:memorandum.html")
+        marca = "Memorándum de Política Pública"
+        if main_index and marca not in main_index and marca not in main_memo:
+            fallos.append("S08 el memorandum no existe en origin/main (ni raiz ni memorandum.html)")
     except subprocess.CalledProcessError:
         fallos.append("S08 no se pudo verificar la rama (git). Fail-closed.")
 
