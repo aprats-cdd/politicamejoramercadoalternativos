@@ -1,0 +1,78 @@
+# Tabla pregunta -> respuesta-en-pagina -> estado · AG-LECTOR-INVERSIONISTA
+# Corrida 2026-07-03 (capa MFO). Gate: constelacion/eval_lector.py (L01-L04).
+# Lente primaria: mfo (multi-family office / asesor patrimonial independiente).
+# Lente secundaria: aseguradora (cia de seguros de vida). Se conservan las
+# preguntas de cio-afp y aportante-final que la capa toca.
+
+preguntas:
+  - pregunta: ¿Por qué la deuda privada rentaría más sin ser más riesgosa que la renta fija tradicional?
+    lector: mfo
+    estado: respondida
+    donde: "#tab-asesor"
+    evidencia: "La deuda privada paga el premio de no necesitar venderse cada día — consistente con el Acto V y la pestaña del pensionado (activos que pagan más porque no necesitan venderse rápido)."
+
+  - pregunta: ¿Qué piezas componen exactamente el estándar completo que se me pide exigir?
+    lector: mfo
+    estado: respondida
+    donde: "#acto5"
+    evidencia: "Patrimonio separado, custodia regulada, clasificación de riesgo independiente, valoración por un tercero, datos por instrumento — desglosado en Acto V, hoja de ruta y glosario."
+
+  - pregunta: ¿La migración al cupo de renta fija es automática una vez securitizado?
+    lector: mfo
+    estado: respondida
+    donde: "#acto5"
+    evidencia: "No — el Acto V lo declara explícito: la imputación la determinan el Régimen de Inversión (vía CCR) y la norma de inversiones de seguros de la CMF; es la meta de la reforma, no su consecuencia automática."
+
+  - pregunta: ¿Existe hoy liquidez o mercado secundario para estos instrumentos?
+    lector: mfo
+    estado: gap-declarado
+    donde: "#acto5"
+    evidencia: "Gap declarado en el cuerpo: 'lo que falta después —originación estandarizada con datos, clasificación de riesgo, administración institucional, profundidad de secundario— es construcción de mercado, no una ley pendiente'."
+
+  - pregunta: ¿Qué gano yo, como asesor independiente, si este estándar se adopta?
+    lector: mfo
+    estado: respondida
+    donde: "#tab-asesor"
+    evidencia: "Más instrumentos elegibles y comparables frente a los clientes, más diversificación y control, datos por instrumento para fundamentar cada recomendación; el valor de la transparencia lo capturan el aportante y quien lo asesora directamente."
+
+  - pregunta: ¿Qué puedo hacer mañana, sin esperar la norma?
+    lector: mfo
+    estado: respondida
+    donde: "#tab-asesor"
+    evidencia: "El checklist del aportante: siete preguntas exigibles hoy a cualquier administrador; 'un administrador con la arquitectura completa las responde en una página'."
+
+  - pregunta: ¿Cómo calza esto con reservas técnicas y pasivo largo de una compañía de seguros de vida?
+    lector: aseguradora
+    estado: respondida
+    donde: "#tab-afp"
+    evidencia: "Segunda lectura para seguros de vida: pasivo largo contra activo largo verificado por la vía de la renta fija elegible; el Acto V desarrolla la elegibilidad bajo la norma de inversiones de seguros (fn19)."
+
+  - pregunta: ¿No es esto repetir la cadena de 2008 (originar, empaquetar, distribuir)?
+    lector: aseguradora
+    estado: respondida
+    donde: "#acto5"
+    evidencia: "Cuatro invariantes de diseño: retención de riesgo, subyacente de una sola capa verificado, vehículos cerrados calzados con pasivo largo, clasificación por tercero independiente. Reforzado en objeciones."
+
+  - pregunta: ¿Quién responde ante mí si el NAV está mal calculado?
+    lector: cio-afp
+    estado: respondida
+    donde: "#tab-afp"
+    evidencia: "Un tercero que calcula el NAV sin preguntarle al gestor y reporta directo al inversionista; responsabilidad acotada y asegurable del Fund Admin (hoja de ruta, tabla de responsabilidades)."
+
+  - pregunta: ¿Cuánto cuesta la capa de verificación y quién la paga?
+    lector: cio-afp
+    estado: respondida
+    donde: "#objeciones"
+    evidencia: "Benchmark EFAMA/Monterone 2024: 3-7 bps sobre AUM; la objeción de costo está respondida con el costo de NO tener la infraestructura."
+
+  - pregunta: ¿Qué preguntas concretas le hago al administrador de los vehículos donde invierto?
+    lector: aportante-final
+    estado: respondida
+    donde: "#tab-asesor"
+    evidencia: "Checklist de siete preguntas del aportante como cierre del arco de la pestaña del asesor."
+
+  - pregunta: ¿Cuánto retorno adicional concreto puedo esperar en mi portfolio?
+    lector: aportante-final
+    estado: gap-declarado
+    donde: "#tab-pensionado"
+    evidencia: "La página se niega deliberadamente a cuantificar la promesa: 'No el doble — pero lo suficiente para notarlo cada mes'. Ninguna cifra de retorno esperado se afirma en el cuerpo; es un gap declarado por diseño (test del aludido y prudencia de claims)."

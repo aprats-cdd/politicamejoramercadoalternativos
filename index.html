@@ -18,6 +18,20 @@
 <meta name="twitter:title" content="500.000 empresas en Chile. Tu pensión invierte en 250.">
 <meta name="twitter:description" content="Chile tiene más de USD 200.000 millones en ahorro. Falta una pieza de infraestructura para conectar ese capital con la economía real — y con tu pensión.">
 <meta name="twitter:image" content="https://aprats-cdd.github.io/politicamejoramercadoalternativos/og-cover.svg">
+<link rel="canonical" href="https://aprats-cdd.github.io/politicamejoramercadoalternativos/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Memorándum de Política Pública · Mercados Privados de Capital · Chile 2026",
+  "author": { "@type": "Person", "name": "Andrés Prats" },
+  "inLanguage": "es-CL",
+  "datePublished": "2026-02",
+  "dateModified": "2026-07-03",
+  "mainEntityOfPage": "https://aprats-cdd.github.io/politicamejoramercadoalternativos/",
+  "about": "Reforma regulatoria para los mercados privados de capital en Chile: separación funcional entre gestión, administración y custodia."
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%230E1117'/><text x='50' y='68' font-family='Georgia,serif' font-size='56' font-weight='700' fill='white' text-anchor='middle'>M</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1886,6 +1900,30 @@
   .ciudadano-share:hover { background: var(--accent); }
   .ciudadano-share.copied { background: #1a5c2a; }
 
+  /* Checklist del aportante */
+  .ciudadano-checklist {
+    list-style: none;
+    margin: 20px 0 20px;
+    max-width: 520px;
+  }
+  .ciudadano-checklist li {
+    position: relative;
+    padding: 10px 0 10px 28px;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    border-top: 1px solid var(--rule-light);
+  }
+  .ciudadano-checklist li:first-child { border-top: none; }
+  .ciudadano-checklist li::before {
+    content: "\2192";
+    position: absolute;
+    left: 0;
+    color: var(--accent-mid);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
   /* Tab label variants */
   .ciudadano-tab-short { display: none; }
 
@@ -2572,7 +2610,7 @@
     <!-- Tabla comparativa -->
     <div class="compare-wrapper">
       <div class="act-label reveal">
-        Análisis comparado · Chile · Luxemburgo · EE.UU.
+        Análisis comparado · Chile · Luxemburgo · EE.UU.<a href="#fn11" class="fn-ref">11</a>
       </div>
       <div class="compare-table-scroll">
       <table class="compare-table reveal">
@@ -2830,6 +2868,12 @@
         <div class="infra-cell-text">Un bono securitizado con rating, respaldado por un patrimonio separado y verificado por un tercero independiente, puede entrar por el cupo de renta fija —el balde mayoritario del portafolio institucional, muy superior al de alternativos—, sujeto a que el Régimen de Inversión y la CMF reconozcan la imputación. La misma exposición económica, por la puerta correcta.</div>
       </div>
     </div>
+
+    <!-- capa:mfo-2026-07 -->
+    <div class="prose reveal">
+      <p><strong>Qué significa para el dueño del portfolio.</strong> Para quien asigna capital — el institucional, el family office, quien asesora patrimonios — la lectura es directa: la renta fija es la parte más grande del portfolio, y es exactamente ahí donde este estándar trabaja. La deuda privada verificada y securitizada apunta a capturar el premio de iliquidez dentro de la parte del portfolio que ya existe — con el riesgo verificado por terceros en lugar de declarado por el gestor, y sujeta al reconocimiento de la imputación que este mismo capítulo detalla. Y la vara es exigible desde hoy, sin esperar la norma: las preguntas que un aportante debería hacerle a su administrador están en <a href="#tab-asesor">el checklist de este memorándum</a>.</p>
+    </div>
+    <!-- /capa:mfo-2026-07 -->
   </div>
 </section>
 
@@ -3290,6 +3334,7 @@
     <button class="ciudadano-tab active" data-tab="tab-pensionado" role="tab" aria-selected="true" id="btn-pensionado" aria-controls="tab-pensionado"><span class="ciudadano-tab-full">Si estás jubilado o próximo</span><span class="ciudadano-tab-short">Pensiones</span></button>
     <button class="ciudadano-tab" data-tab="tab-empresa" role="tab" aria-selected="false" id="btn-empresa" aria-controls="tab-empresa"><span class="ciudadano-tab-full">Si buscas financiamiento</span><span class="ciudadano-tab-short">Empresa</span></button>
     <button class="ciudadano-tab" data-tab="tab-afp" role="tab" aria-selected="false" id="btn-afp" aria-controls="tab-afp"><span class="ciudadano-tab-full">Si administras AFP o seguros</span><span class="ciudadano-tab-short">Institucional</span></button>
+    <button class="ciudadano-tab" data-tab="tab-asesor" role="tab" aria-selected="false" id="btn-asesor" aria-controls="tab-asesor"><span class="ciudadano-tab-full">Si asesoras patrimonios</span><span class="ciudadano-tab-short">Patrimonios</span></button>
     <button class="ciudadano-tab" data-tab="tab-legislador" role="tab" aria-selected="false" id="btn-legislador" aria-controls="tab-legislador"><span class="ciudadano-tab-full">Si legislas o regulas</span><span class="ciudadano-tab-short">Regulador</span></button>
     <button class="ciudadano-tab" data-tab="tab-banca" role="tab" aria-selected="false" id="btn-banca" aria-controls="tab-banca"><span class="ciudadano-tab-full">Si operas desde la banca</span><span class="ciudadano-tab-short">Banca</span></button>
   </div>
@@ -3369,6 +3414,9 @@
         <div class="ciudadano-screen ciudadano-screen--prose">
           <p>No es que tu equipo no haga due diligence. Es que la due diligence tiene un límite estructural: <strong>toda la información viene del mismo actor que gestiona el fondo</strong>. NAV, existencia de activos, registro de aportantes, cumplimiento del mandato — todo lo calcula, verifica y reporta el GP.</p>
           <p>Tu AFP o tu compañía de seguros administra plata ajena con un mandato fiduciario. Y la única forma de cumplirlo hoy es confiar en que el gestor se fiscaliza a sí mismo. En Luxemburgo, eso sería ilegal desde 2013.</p>
+          <!-- capa:mfo-2026-07-seguros -->
+          <p>Si administras reservas de seguros de vida, hay una segunda lectura: tu pasivo es largo. La deuda privada verificada y securitizada — patrimonio separado, custodia regulada, clasificación independiente — es el activo largo que calza con ese pasivo, y puede entrar por la vía de la renta fija en lugar del cupo de alternativos si el Régimen de Inversión y la norma de inversiones de la CMF reconocen la imputación. Esa puerta la desarrolla el Acto V de este memorándum.</p>
+          <!-- /capa:mfo-2026-07-seguros -->
         </div>
         <div class="ciudadano-screen ciudadano-screen--data">
           <div class="ciudadano-screen--data-number">USD 5.000M+</div>
@@ -3388,6 +3436,54 @@
         </div>
       </div>
     </div>
+
+    <!-- ── TAB: ASESOR PATRIMONIAL / MFO ── -->
+    <!-- capa:mfo-2026-07 -->
+    <div class="ciudadano-tab-content" id="tab-asesor" role="tabpanel" aria-labelledby="btn-asesor">
+      <div class="ciudadano-screens">
+        <div class="ciudadano-screen ciudadano-screen--hero">
+          <div class="ciudadano-screen--hero-text">
+            El grueso del portfolio de tus clientes vive en renta fija. Es la parte más grande, la más difícil de mover — y la que renta menos de lo que su horizonte permite.
+          </div>
+        </div>
+        <div class="ciudadano-screen ciudadano-screen--prose">
+          <p>La deuda privada paga el premio de no necesitar venderse cada día. Tú lo sabes — por eso ya la miras. Pero hoy entra al portfolio como <strong>activo alternativo</strong>: cupo acotado, valorización que reporta el mismo actor que gestiona, sin clasificación independiente ni salida ordenada.</p>
+          <p>El resultado: accedes a una fracción del óptimo, con el apetito intacto. <strong>Lo que falta es la arquitectura.</strong></p>
+        </div>
+        <div class="ciudadano-screen ciudadano-screen--data">
+          <div class="ciudadano-screen--data-number">70&times;</div>
+          <div class="ciudadano-screen--data-label">el universo global de renta fija vs el de deuda privada</div>
+          <div class="ciudadano-screen--data-vs">y hoy ese activo entra por</div>
+          <div class="ciudadano-screen--data-number-sm">la puerta chica</div>
+          <div class="ciudadano-screen--data-caption">El capital para la deuda privada existe; lo que la limita es el cupo por el que entra. El detalle y las fuentes de esta cifra están en el Acto V del memorándum.</div>
+          <div class="ciudadano-screen--data-url">politicamejoramercadoalternativos</div>
+        </div>
+        <div class="ciudadano-screen ciudadano-screen--prose">
+          <p>Las dos puertas se distinguen por una sola cosa: la verificación. Con el estándar completo — <strong>patrimonio separado, custodia regulada, clasificación de riesgo independiente, datos por instrumento</strong> — la deuda privada adquiere los atributos que los mandatos de renta fija exigen, y puede computar en el cupo grande — sujeto a que el Régimen de Inversión y la CMF reconozcan la imputación — con diversificación por emisor y una salida de mercado como meta de diseño.</p>
+          <p>Para el portfolio de tus clientes eso apunta a una cosa concreta: <strong>capturar el premio de iliquidez dentro de la parte más relevante del portfolio, con el riesgo verificado por terceros en lugar de declarado por el gestor.</strong> El premio existe porque el activo no necesita venderse cada día — y el riesgo sigue ahí, solo que verificado.</p>
+        </div>
+        <div class="ciudadano-screen ciudadano-screen--prose">
+          <p>Y hay algo más, que es para ti. Una arquitectura verificada y abierta <strong>multiplica la oferta</strong>: más instrumentos elegibles y comparables entre sí que un asesor independiente puede poner frente a sus clientes — más diversificación real, más control, y datos por instrumento para fundamentar cada recomendación.</p>
+          <p>Cuando la información es verificada por terceros y comparable, el criterio profesional vale más — y el valor de esa transparencia lo capturan el aportante y quien lo asesora directamente.</p>
+        </div>
+        <div class="ciudadano-screen ciudadano-screen--close">
+          <p>El estándar te sirve desde ya, sin esperar ninguna norma: una vara aplicable mañana. Estas son las preguntas que un aportante — o quien lo asesora — debería hacerle hoy al administrador de cada vehículo donde invierte:</p>
+          <ul class="ciudadano-checklist">
+            <li>¿Quién calcula el valor del fondo: el gestor, o un tercero independiente que responde si el número no cuadra?</li>
+            <li>¿Quién verifica que los activos existen, y con qué frecuencia?</li>
+            <li>¿La custodia está en una entidad regulada, separada del gestor?</li>
+            <li>¿El vehículo tiene clasificación de riesgo de un tercero independiente? ¿Más de una?</li>
+            <li>¿Puedo ver los datos por instrumento — o solo el agregado que el gestor decide mostrar?</li>
+            <li>¿Qué pasa con los activos si el gestor deja de existir? ¿Hay patrimonio separado?</li>
+            <li>¿Cómo salgo si necesito salir — y quién provee esa liquidez?</li>
+          </ul>
+          <p>Son preguntas que cualquier administrador serio recibe bien: el estándar con el que opera el capital institucional en los mercados desarrollados. Un administrador con la arquitectura completa las responde en una página. Exigirlas no cuesta nada — y mueve el mercado en la dirección correcta.</p>
+          <button class="ciudadano-share" data-share="asesor">&#8599; Compartir</button>
+        </div>
+      </div>
+    </div>
+    <!-- /capa:mfo-2026-07 -->
+
     <div class="ciudadano-tab-content" id="tab-legislador" role="tabpanel" aria-labelledby="btn-legislador">
       <div class="ciudadano-screens">
         <div class="ciudadano-screen ciudadano-screen--hero">
@@ -3671,6 +3767,7 @@
     pensionado: 'Tu pensión está invertida como si necesitaras la plata mañana. Pero no la necesitas mañana. Eso tiene un costo.',
     empresa: 'En Chile hay 500.000 empresas. El mercado de capitales cubre 250. El resto depende del banco.',
     afp: 'Chile tiene 0 Fund Administrators independientes. USD 5.000M en alternativos donde NAV, activos y aportantes los reporta el mismo actor que gestiona. Eso no es due diligence — es confianza sin contraparte.',
+    asesor: 'La parte más grande del portfolio es la renta fija. La deuda privada verificada y securitizada — clasificación independiente, custodia regulada, datos por instrumento — puede postular a ese cupo si los reguladores reconocen la imputación. Y hay un checklist que cualquier aportante puede exigir hoy.',
     legislador: 'Colombia tiene 3 Fund Admins autorizados. Perú permite delegación parcial. Chile — el mercado más sofisticado de la región — tiene cero. Reforma ejecutable en 9–15 meses, $0 costo fiscal, sin Congreso.',
     banca: 'El 83% del financiamiento corporativo en Chile está en balance bancario. La separación funcional abre un canal de originación y distribución con fees recurrentes — sin consumir capital regulatorio.'
   };
@@ -3678,7 +3775,7 @@
     btn.addEventListener('click', async () => {
       const key = btn.dataset.share;
       const msg = shareMessages[key];
-      const tabMap = { pensionado: 'tab-pensionado', empresa: 'tab-empresa', afp: 'tab-afp', legislador: 'tab-legislador', banca: 'tab-banca' };
+      const tabMap = { pensionado: 'tab-pensionado', empresa: 'tab-empresa', afp: 'tab-afp', asesor: 'tab-asesor', legislador: 'tab-legislador', banca: 'tab-banca' };
       const url = window.location.href.split('#')[0] + '#' + tabMap[key];
       const full = msg + '\n\n' + url;
       if (navigator.share) {
@@ -3749,7 +3846,7 @@
   /* ── DEEP-LINK: open panel to specific tab from URL hash ── */
   function handleDeepLink() {
     const hash = window.location.hash.replace('#', '');
-    const validTabs = ['tab-pensionado', 'tab-empresa', 'tab-afp', 'tab-legislador', 'tab-banca'];
+    const validTabs = ['tab-pensionado', 'tab-empresa', 'tab-afp', 'tab-asesor', 'tab-legislador', 'tab-banca'];
     if (validTabs.includes(hash)) {
       const targetTab = document.querySelector(`.ciudadano-tab[data-tab="${hash}"]`);
       if (targetTab) {

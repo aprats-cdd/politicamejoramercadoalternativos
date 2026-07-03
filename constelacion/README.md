@@ -6,7 +6,7 @@ mover una silla.
 
 ## La idea
 
-La unidad de trabajo no es un agente suelto: es el **equipo**. Siete roles, cada
+La unidad de trabajo no es un agente suelto: es el **equipo**. Nueve roles, cada
 uno con un trabajo, lo que lee, y un examen que **corre otro** — nunca él mismo.
 
 ## Las tres reglas (fail-closed)
@@ -25,8 +25,10 @@ uno con un trabajo, lo que lee, y un examen que **corre otro** — nunca él mis
 | Verificador de citas | Fija el artículo y la fuente exacta | Doble verificación |
 | Arquitecto de la tesis | Une lo defensivo y lo constructivo | Adversario |
 | Productor de la página | Edita el HTML sin tocar el diseño | Verificación del draft |
-| Adversario | Lee como el más hostil posible | Su salida ES el examen |
+| Adversario | Lee como el más hostil posible (incl. lente del aludido) | Su salida ES el examen |
 | Sintetizador | Deduplica y prioriza los arreglos | Crítico de completitud |
+| Lector inversionista / MFO | Pregunta lo que falta para decidir e invertir | Harness (`eval_lector.py`) + adversario |
+| Empaquetador citable | Convierte la página en la referencia más fácil de citar | Harness (`eval_citabilidad.py`) + verificador de citas |
 
 El catálogo completo, con la memoria y el examen de cada rol, está en
 `agentes.yaml`.
@@ -34,7 +36,9 @@ El catálogo completo, con la memoria y el examen de cada rol, está en
 ## Cómo se corre el examen
 
 ```bash
-python3 constelacion/eval_constelacion.py
+python3 constelacion/eval_constelacion.py   # las tres leyes sobre el catálogo
+python3 constelacion/eval_citabilidad.py    # footnotes + metadata + capas auditadas + kit
+python3 constelacion/eval_lector.py         # tabla pregunta→estado del lector institucional
 ```
 
 Verde = el equipo cumple las tres reglas. Rojo = bloquea (no se publica).
@@ -43,4 +47,7 @@ Verde = el equipo cumple las tres reglas. Rojo = bloquea (no se publica).
 
 Cada vez que el equipo trabaja, deja registro en `runs/`. Ver
 `runs/2026-06-30-memo-clase-mundial.md` para la corrida que agregó la tesis de
-renta fija y blindó el memo contra la lectura hostil de un regulador.
+renta fija y blindó el memo contra la lectura hostil de un regulador,
+`runs/2026-07-03-forja-relato-inversionista.md` para la forja de los roles de
+citabilidad, y `runs/2026-07-03-capa-mfo.md` para la primera corrida O→M→D de
+la constelación de nueve (capa del asesor patrimonial).

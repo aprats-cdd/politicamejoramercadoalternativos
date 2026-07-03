@@ -1,0 +1,16 @@
+# Ledger de claims · capa MFO (2026-07-03) — AG-AUDITOR-EVIDENCIA
+# Regla: la capa MFO no introduce cifras nuevas. Toda cifra que aparece en los
+# bloques <!-- capa:mfo-2026-07* --> debe estar en este ledger, respaldada por
+# footnote ya doble-auditada del cuerpo (corrida 2026-06-30) o marcada
+# ilustrativa. Lo verifica constelacion/eval_citabilidad.py (P03).
+
+claims:
+  - texto: "70 veces — el universo global de renta fija vs el de deuda privada"
+    footnote: fn16
+    fuente_1: "SIFMA, Capital Markets Fact Book 2024 (renta fija global ~USD 145 billones), consistente con BIS debt securities statistics"
+    fuente_2: "FMI, Global Financial Stability Report abril 2024 (~USD 2,1 billones private credit) y Preqin 2025"
+    nota: >
+      Cifra ya doble-auditada en la corrida 2026-06-30 y publicada en el
+      Acto V con fn16 (multiplo de orden, rango defendible 65-85x). La capa
+      MFO la reusa sin reformular; el data-screen de la pestaña del asesor
+      remite explicitamente al Acto V para el detalle y las fuentes.

@@ -8,7 +8,10 @@
 #   3. Cada dato que entra a la página está auditado por dos fuentes/ojos
 #      independientes — lo no doble-verificado no entra.
 #
-# Gate ejecutable: constelacion/eval_constelacion.py
+# Gates ejecutables:
+#   constelacion/eval_constelacion.py  (las tres leyes sobre este catalogo)
+#   constelacion/eval_lector.py        (gate de AG-LECTOR-INVERSIONISTA)
+#   constelacion/eval_citabilidad.py   (gate de AG-EMPAQUETADOR-CITABLE)
 
 agentes:
 
@@ -106,12 +109,14 @@ agentes:
   # Encargo: la pagina gana el relato como REFERENCIA citable ante
   # inversionistas institucionales, MFO y prensa financiera. Cuello:
   # citabilidad/distribucion (la calidad ya la garantiza el equipo del memo;
-  # lo que falta es que la citen). Estado: propuesta — se promueve a activa
-  # en su primera corrida O→M→D.
+  # lo que falta es que la citen).
+  # PROMOCION 03-jul-2026: primera corrida O→M→D ejecutada (capa MFO,
+  # run 2026-07-03-capa-mfo.md) — evals implementados y verdes →
+  # propuesta → activa.
 
   - slug: AG-LECTOR-INVERSIONISTA
     rol: Lector inversionista institucional / MFO
-    estado: propuesta
+    estado: activa
     hace: >
       Lee la pagina como un CIO institucional, un multi-family office o un
       aportante final decidiendo si citarla y usarla: lista toda pregunta que
@@ -127,12 +132,12 @@ agentes:
       procedural: checklist de preguntas por tipo de lector (CIO AFP · aseguradora · MFO · aportante final) + tabla pregunta->respuesta-en-pagina->gap
     eval:
       gate: 0 preguntas de su checklist sin respuesta ni gap declarado en la pagina al cierre de corrida; la letalidad/pertinencia de las preguntas la juzga AG-ADVERSARIO-MEMO (lente hostil) — lo corren el harness + el adversario, no el.
-      estado: declarado — ejecutable en su primera corrida (tabla verificable pregunta->estado)
+      estado: ejecutable — constelacion/eval_lector.py (L01-L04 sobre la tabla pregunta->estado en runs/AG-LECTOR-INVERSIONISTA/)
     metricas: [preguntas de inversionista sin respuesta ni gap declarado (target 0), preguntas del checklist adoptadas como herramienta publica de la pagina (señal de valor)]
 
   - slug: AG-EMPAQUETADOR-CITABLE
     rol: Empaquetador de citabilidad y distribucion
-    estado: propuesta
+    estado: activa
     hace: >
       Convierte la pagina en la referencia mas facil de citar del tema en
       Chile: PDF real descargable (no window.print), one-pager ejecutivo,
@@ -149,5 +154,5 @@ agentes:
       procedural: builder de PDF/one-pager + checker de citabilidad (schema.org presente, anchors, links primarios vivos, 100% cifras del kit con footnote)
     eval:
       gate: harness de citabilidad (determinista) — PDF real presente · 100% de cifras del kit con footnote doble-auditada · footnotes del kit con URL primaria · schema.org/canonical/fecha presentes · 0 claims nuevos respecto del cuerpo auditado; lo corren el harness + AG-VERIFICADOR-CITAS, no el.
-      estado: declarado — ejecutable en su primera corrida (implementar el checker es el paso 1, ley 2)
+      estado: ejecutable — constelacion/eval_citabilidad.py (P01 footnotes · P02 metadata · P03 capas auditadas contra ledger del auditor · P04 kit declarado en kit-manifest.yaml; los empaques del kit siguen pendientes declarados hasta la corrida del empaquetador)
     metricas: [empaques presentes y verdes al cierre (PDF, one-pager, hoja de datos, metadata), citas externas de la pagina detectadas por trimestre (prensa/informes — la metrica del relato), claims nuevos introducidos por el kit (veto = 0)]
