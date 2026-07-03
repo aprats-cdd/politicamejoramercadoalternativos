@@ -71,6 +71,12 @@ preguntas:
     donde: "#tab-asesor"
     evidencia: "Checklist de siete preguntas del aportante como cierre del arco de la pestaña del asesor."
 
+  - pregunta: ¿Qué debe abrir la ficha de un fondo de deuda privada para hacerle un buen Q&A?
+    lector: mfo
+    estado: respondida
+    donde: "#tab-asesor"
+    evidencia: "Segundo nivel del checklist (de la arquitectura a la cartera): posiciones completas con emisor, repactaciones declaradas, política de provisiones por producto y crédito, casos en normalización y cobranza judicial — con precedente en la disciplina bancaria del Compendio de Normas Contables CMF (Medida 5 de la hoja de ruta, fn21)."
+
   - pregunta: ¿Cuánto retorno adicional concreto puedo esperar en mi portfolio?
     lector: aportante-final
     estado: gap-declarado
