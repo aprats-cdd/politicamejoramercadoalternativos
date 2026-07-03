@@ -1,0 +1,50 @@
+estado: cierre
+corpus_base: git:3592d91:index.html
+umbral_similitud: 0.02
+paginas:
+- archivo: memorandum.html
+  tipo: memo-vigente
+  nueva: false
+  gate_pasado: true
+- archivo: index.html
+  tipo: home
+  nueva: true
+  gate_pasado: true
+- archivo: due-diligence-deuda-privada.html
+  tipo: guia-dd
+  nueva: true
+  gate_pasado: true
+- archivo: deuda-privada-como-renta-fija.html
+  tipo: ensayo
+  nueva: true
+  gate_pasado: true
+- archivo: separacion-de-roles.html
+  tipo: ensayo
+  nueva: true
+  gate_pasado: true
+- archivo: buscador-causas-judiciales.html
+  tipo: herramienta-anuncio
+  nueva: true
+  gate_pasado: true
+  lexico_prohibido:
+  - difíciles de encontrar
+  - lo que no muestran
+  - FIP
+  - red flag
+  - ranking
+  - semáforo
+  - único acto
+  - cero interpretación
+  - documento que acredita
+- archivo: og-cover.html
+  tipo: asset
+  nueva: false
+  gate_pasado: true
+- archivo: feed.xml
+  tipo: asset
+  nueva: false
+  gate_pasado: true
+- archivo: assets/og-sitio.svg
+  tipo: asset
+  nueva: false
+  gate_pasado: true

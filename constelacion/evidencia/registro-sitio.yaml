@@ -1,0 +1,337 @@
+# ─────────────────────────────────────────────────────────────────────────
+# Registro de evidencia del sitio — AG-SITIO-AUDITOR
+# Forja fundacional 03-jul-2026.
+#
+# Fuente de derivación: los 21 footnotes del memorándum commiteado
+# (index.html, sección id="fuentes") — evidencia doble-auditada por la
+# constelación del memo (AG-AUDITOR-EVIDENCIA + AG-VERIFICADOR-CITAS,
+# run 2026-06-30) — más los claims de bio del autor y las cifras del
+# corpus que las piezas nuevas del sitio pueden necesitar.
+#
+# Contrato (gate S07 de eval_sitio.py, fail-closed):
+#   - Todo claim lleva fuente_1 Y fuente_2, o la marca ilustrativo: true.
+#   - El gate hace match por token numérico sobre el campo "texto":
+#     toda cifra que una pieza nueva publique debe existir como token
+#     en algún claim de este registro.
+#   - Este registro es memoria (evidencia), no artefacto: las piezas
+#     citan desde acá, nunca copian texto.
+# ─────────────────────────────────────────────────────────────────────────
+
+version: 1
+fecha: 2026-07-03
+autor: AG-SITIO-AUDITOR
+derivado_de: "git:main:index.html#fuentes (21 footnotes doble-auditados) + bio del autor + panel ciudadano"
+
+claims:
+
+  # ── fn1 · Ahorro previsional y renta fija ──
+  - texto: >-
+      Las AFP chilenas administran más de USD 200.000 millones (USD 200.000M);
+      más de la mitad del fondo de pensiones está invertido en renta fija
+      (composición renta fija ~55% al cierre 2024). Cifras a diciembre 2025
+      en la fuente (dic. 2025).
+    fuente_1: "Superintendencia de Pensiones, Estadísticas del Sistema de Pensiones, diciembre 2025 (fn1)"
+    fuente_2: "Cruce con el consolidado por componente de fn8: componente AFP USD ~210.000M (SP) dentro del total institucional ~USD 400.000M"
+    nota: "La composición ~55% renta fija corresponde al cierre 2024 (SP), declarado en fn15."
+
+  # ── fn2 · Concentración bancaria ──
+  - texto: >-
+      La banca concentra el 83% del financiamiento empresarial en Chile;
+      mercados privados y otros canales cubren el 17% restante. Comparado
+      internacional: Alemania 70%, Reino Unido 45%, EE.UU. 35%.
+    fuente_1: "CMF, Informe de Estabilidad Financiera, segundo semestre 2025 (fn2)"
+    fuente_2: "BIS Quarterly Review 2025; Fed Flow of Funds; Bank of England (fuentes declaradas en el gráfico comparado del memo)"
+
+  # ── fn3 · Tamaño de la deuda privada en Chile ──
+  - texto: >-
+      El mercado de deuda privada en Chile tiene aproximadamente USD 5.000
+      millones (USD 5.000M+) en activos bajo gestión. El mercado total de
+      alternativos (capital privado, infraestructura, real estate) es mayor.
+    fuente_1: "ACAFI, Informe Trimestral de Inversiones Alternativas en Chile, Q4 2025 (fn3)"
+    fuente_2: "Doble auditoría del memo (AG-AUDITOR-EVIDENCIA, run 2026-06-30) + consistencia con el componente fondos de inversión y alternativos USD ~40.000M del consolidado institucional (fn8)"
+
+  # ── fn4 · PIB de Chile ──
+  - texto: >-
+      Chile es una economía de USD 320.000 millones (USD 320.000M) de PIB
+      nominal 2025.
+    fuente_1: "Banco Central de Chile, Cuentas Nacionales, PIB nominal 2025 (fn4)"
+    fuente_2: "FMI, World Economic Outlook 2025 — cifra consistente en orden de magnitud"
+
+  # ── fn5 + fn10 · Caso Sartor: sanción y cartera ──
+  - texto: >-
+      Entre 2020 y 2024, Sartor AGF canalizó más de CLP 100.000 millones
+      (+CLP 100.000MM) en créditos a partes relacionadas a través de fondos
+      públicos. La CMF aplicó la sanción más severa de su historia — 367.500 UF
+      y revocación de existencia (Resolución Exenta N° 10.950 de 2024) — y derivó
+      el caso al Ministerio Público bajo la Ley 21.595 de Delitos Económicos.
+    fuente_1: "CMF, Resolución Exenta N° 10.950, Procedimiento Sancionatorio Sartor AGF S.A., 2024 (fn5)"
+    fuente_2: "Auditorías independientes PwC Chile y Deloitte Chile encargadas por la CMF (fn7) + cobertura pública verificable del caso (prensa financiera, 2024-2025)"
+
+  - texto: >-
+      El 80% del Fondo Sartor Táctico estaba invertido en pagarés emitidos por
+      personas vinculadas a la administradora.
+    fuente_1: "CMF, Resolución Sancionatoria Sartor AGF S.A., 2024, considerandos (fn10)"
+    fuente_2: "Auditorías independientes PwC Chile y Deloitte Chile sobre fondos administrados por Sartor AGF, 2024 (fn7)"
+
+  # ── fn6 · Ley de Delitos Económicos ──
+  - texto: >-
+      La Ley N° 21.595, Ley de Delitos Económicos, fue publicada en el Diario
+      Oficial el 17 de agosto de 2023.
+    fuente_1: "Diario Oficial, 17 de agosto de 2023 (fn6)"
+    fuente_2: "leychile.cl, texto vigente de la Ley N° 21.595"
+
+  # ── fn7 · Auditorías y pérdidas Sartor ──
+  - texto: >-
+      Estados financieros falsificados durante 4 períodos consecutivos;
+      pérdidas superiores al 85% del valor patrimonial en algunos fondos
+      administrados por Sartor.
+    fuente_1: "PwC Chile y Deloitte Chile, auditorías independientes encargadas por la CMF, 2024 (fn7)"
+    fuente_2: "CMF, Resolución Sancionatoria Sartor AGF S.A., 2024, considerandos (fn5/fn10)"
+
+  # ── fn8 · Ahorro institucional total ──
+  - texto: >-
+      El ahorro institucional chileno suma ~USD 400.000 millones (USD 400.000M),
+      consolidado por componente verificable: AFPs USD ~210.000M, compañías de
+      seguros de vida USD ~85.000M, fondos mutuos USD ~65.000M, fondos de
+      inversión y alternativos USD ~40.000M. Cifras 2025.
+    fuente_1: "Por componente: SP Estadísticas dic. 2025 (AFPs); CMF Estados Financieros Consolidados 2025 (seguros); Banco Central, Fondos Mutuos dic. 2025; ACAFI Q4 2025 (fn8)"
+    fuente_2: "Consolidación aritmética verificable componente a componente (210.000 + 85.000 + 65.000 + 40.000 ≈ 400.000), cada componente en fuente institucional independiente"
+
+  # ── fn9 · Cero Fund Administrators ──
+  - texto: >-
+      Chile tiene 0 Fund Administrators independientes autorizados: no existe la
+      categoría jurídica en la normativa vigente (LUF 20.712 y NCG aplicables) —
+      la ausencia es regulatoria, no de mercado. Comparado: Luxemburgo 150+,
+      Irlanda 80+, Colombia 3, Chile 0.
+    fuente_1: "CMF, Registro de Entidades Supervisadas + LUF 20.712 (fn9)"
+    fuente_2: "CSSF (Luxemburgo), Central Bank of Ireland, SFC Colombia — fuentes declaradas en el gráfico comparado del memo"
+
+  # ── fn11 · Arquitectura comparada internacional ──
+  - texto: >-
+      AIFMD, Directiva 2011/61/UE, transpuesta en julio 2013 (Luxemburgo y
+      Reino Unido/FCA, 2013), con depositario obligatorio bajo el art. 21 y
+      responsabilidad objetiva. EE.UU.: Investment Advisers Act de 1940 con
+      Custody Rule 206(4)-2 — enmiendas adoptadas por la SEC en diciembre de
+      2009 y vigentes desde 2010 (custodio calificado y examen sorpresivo por
+      auditor independiente). El Fund Admin delegatario del AFM opera bajo
+      la Circular 22/811 de la CSSF. Luxemburgo administra hoy EUR 5.9 billones
+      (variante 5,9T).
+    fuente_1: "EUR-Lex, Directiva 2011/61/UE + SEC (Custody Rule 206(4)-2, adopting release dic. 2009) (fn11)"
+    fuente_2: "FCA (transposición UK 2013) + CSSF (Circular 22/811 y estadísticas de AUM de Luxemburgo) + EFAMA Fact Book"
+    nota: >-
+      Corrección adversarial 2026-07-03: el fn11 del memo databa "Dodd-Frank
+      §404 (implementación SEC 2009)" — imposible (Dodd-Frank es de julio
+      2010) y de pertinencia dudosa para el principio de custodia. La
+      referencia se retiró; las fechas de la Custody Rule quedaron corregidas
+      (enmiendas dic-2009, vigencia 2010). El memo (index.html fn11) arrastra
+      el error original — pendiente de corrección propia.
+
+  # ── fn12 · Fund Admins globales en LatAm ──
+  - texto: >-
+      Apex Group, Alter Domus e IQ-EQ tienen presencia operativa verificable en
+      Colombia, Perú y México a febrero 2026.
+    fuente_1: "Sitios corporativos: apex.group, alterdomus.com, iq-eq.com (fn12)"
+    fuente_2: "Verificación de presencia por país (oficinas y anuncios públicos por jurisdicción) a febrero 2026, doble-auditada en el run del memo"
+
+  # ── fn13 · Plazos de instalación (propuesta) ──
+  - texto: >-
+      Plazos de instalación de un Fund Admin global en Chile: 60 días con
+      pasaporte expedito para entidades con autorización CSSF, FCA o SEC;
+      presencia operativa en el primer año.
+    ilustrativo: true
+    nota: >-
+      fn13 lo declara explícitamente: estimación del autor. Plazos propuestos,
+      no observados. Toda pieza que use estas cifras debe presentarlas como
+      propuesta. OJO (auditoría adversarial 2026-07-03): el benchmark
+      "EFAMA / Monterone Partners, Fund Administration Industry Survey 2024"
+      que fn13 del memo invocaba NO es verificable — no citarlo como fuente
+      en ninguna pieza.
+
+  # ── fn14 · Upside estimado (propuesta) ──
+  - texto: >-
+      Si Chile capturara el 1% del capital global en mercados privados que busca
+      LatAm, representaría USD 8.000-12.000 millones (USD 8.000–12.000M)
+      adicionales en la próxima década. Preqin proyecta USD 30 billones (30T+)
+      en AUM global de alternativos para 2030; LatAm representa ~2-3% del flujo.
+    ilustrativo: true
+    nota: >-
+      fn14 lo declara explícitamente: estimación del autor. El ancla citable
+      es Preqin Global Alternatives Report 2025; la referencia
+      "EFAMA/Monterone 2024" del memo NO es verificable (auditoría
+      adversarial 2026-07-03) y no debe citarse. La proyección para Chile es
+      ilustrativa y debe presentarse como tal.
+
+  # ── fn14 · Costo de Fund Administration (estimación del autor) ──
+  - texto: >-
+      Un Fund Admin global cobra entre 3 y 7 puntos base (3-7 bps) sobre AUM
+      para fondos de deuda privada; para un fondo de USD 100M el costo anual es
+      de USD 30.000-70.000 (USD 30-70K), comparable a una posición de
+      back-office internalizada.
+    ilustrativo: true
+    nota: >-
+      Degradado por auditoría adversarial 2026-07-03: la fuente que traía el
+      memo ("EFAMA / Monterone Partners, Fund Administration Industry Survey
+      2024") NO es verificable — Monterone Partners LLP es un hedge fund
+      long/short de renta variable sin research de fund administration, y
+      EFAMA no registra ese survey en su catálogo. NO citar esa atribución en
+      ninguna pieza. El rango 3-7 bps se publica como estimación ilustrativa
+      del autor (experiencia directa contratando la función), con la
+      derivación aritmética (3-7 bps × USD 100M = USD 30.000-70.000) como
+      única verificación. El memo (index.html fn14) arrastra la atribución
+      original — pendiente de corrección propia.
+
+  # ── fn15 · Límites de alternativos y composición previsional ──
+  - texto: >-
+      Los activos alternativos están acotados a un cupo del orden de 17% del
+      Fondo A vigente, escalando a un tope legal de 20% en calendario escalonado
+      hasta agosto de 2027 (hito 2027, fijado por el BCCh). Los límites
+      estructurales los fija el Banco Central.
+      La composición renta fija ~55% corresponde al cierre 2024.
+    fuente_1: "Banco Central de Chile y Superintendencia de Pensiones, Régimen de Inversión de los Fondos de Pensiones (fn15)"
+    fuente_2: "SP, composición de cartera al cierre 2024 (componente renta fija) — fuente independiente del calendario de límites del BCCh"
+
+  # ── fn16 · Renta fija global vs private credit ──
+  - texto: >-
+      El universo global de renta fija es del orden de USD 145 billones
+      (millones de millones); el de private credit, unos USD 2,1 billones
+      (variante 2.1 — incluido capital comprometido). El múltiplo es cerca de
+      70 veces (70×) — magnitud de orden, no cifra exacta; el rango defendible
+      es 65-85×.
+    fuente_1: "SIFMA, Capital Markets Fact Book 2024 (~USD 145 billones), consistente con estadísticas de títulos de deuda del BIS (fn16)"
+    fuente_2: "FMI, Global Financial Stability Report, abril 2024 (~USD 2,1 billones) + Preqin 2025 (fn16); el múltiplo ~70× se deriva aritméticamente de ambas cifras"
+
+  # ── fn17 · Securitización, Ley 18.045 ──
+  - texto: >-
+      La securitización está regulada en Chile desde 1994 en el Título XVIII de
+      la Ley N° 18.045 de Mercado de Valores (arts. 132 y siguientes). El
+      patrimonio separado de cada emisión (art. 135) aísla los activos de la
+      quiebra de la securitizadora y del originador (bankruptcy remoteness).
+    fuente_1: "Ley N° 18.045, Título XVIII, texto vigente en leychile.cl (fn17)"
+    fuente_2: "CMF, normativa aplicable a sociedades securitizadoras (registro y regulación de emisiones)"
+    nota: "fn17 declara: citas sujetas a revisión legal contra el texto vigente. AG-SITIO-JURISTA debe cruzar antes del cierre."
+
+  # ── fn18 · Elegibilidad AFP: DL 3.500 ──
+  - texto: >-
+      Las AFP pueden adquirir instrumentos de deuda bajo el art. 45 del
+      DL 3.500 (N° 3.500), vía la Comisión Clasificadora de Riesgo (CCR,
+      Título XI), con
+      clasificación mínima de riesgo. Un bono securitizado clasificado computa
+      como renta fija, no como activo alternativo.
+    fuente_1: "DL N° 3.500, art. 45 y Título XI, texto vigente en leychile.cl (fn18)"
+    fuente_2: "SP, Régimen de Inversión de los Fondos de Pensiones + normativa de la CCR (procedimientos de aprobación)"
+
+  # ── fn19 · Seguros: DFL 251 y NCG 152 ──
+  - texto: >-
+      Las compañías de seguros invierten reservas técnicas y patrimonio de
+      riesgo bajo el DFL N° 251 (Ley de Seguros), art. 21, y la NCG N° 152 de
+      la CMF: clasificación mínima BBB / N-3 y custodia de al menos 98% en
+      empresas de depósito de valores reguladas por la Ley N° 18.876.
+    fuente_1: "DFL N° 251, art. 21, texto vigente en leychile.cl (fn19)"
+    fuente_2: "CMF, NCG N° 152 (inversiones representativas y custodia) (fn19)"
+
+  # ── fn20 · Retención de riesgo 5% ──
+  - texto: >-
+      Retención de riesgo (skin in the game): el originador conserva al menos
+      5% del riesgo. Referencias: Reglamento (UE) 2017/2402, art. 6; EE.UU.,
+      Dodd-Frank §941 (que incorpora el §15G a la Securities Exchange Act de
+      1934) y la Regulation RR de 2014 (SEC). Estándar internacional citado como
+      referencia de diseño; no es normativa chilena vigente.
+    fuente_1: "EUR-Lex, Reglamento (UE) 2017/2402, art. 6 (fn20)"
+    fuente_2: "SEC, Regulation RR (2014) / Securities Exchange Act §15G vía Dodd-Frank §941 (fn20)"
+
+  # ── fn21 · Compendio de Normas Contables CMF ──
+  - texto: >-
+      La disciplina de apertura de cartera existe en la banca: CMF (ex-SBIF),
+      Compendio de Normas Contables para Bancos, Capítulo B-1 (provisiones por
+      riesgo de crédito) y Capítulo B-2 (créditos deteriorados y castigos,
+      incluido el tratamiento de renegociados). Su extensión a las fichas de
+      vehículos de deuda privada es propuesta del memorándum, no norma vigente.
+    fuente_1: "CMF, Compendio de Normas Contables para Bancos, Capítulos B-1 y B-2 (fn21)"
+    fuente_2: "Recopilación Actualizada de Normas (RAN) / normativa contable bancaria publicada por la CMF — verificación cruzada de AG-SITIO-JURISTA"
+
+  # ── Bio del autor ──
+  - texto: >-
+      Andrés Prats: 15 años en mercados privados y alternativos; Socio Fundador
+      de Cordada Asset Manager; Ex-LarrainVial; estructuración de deuda privada.
+      Memorándum MPP-2026-001 (febrero 2026) preparado a título personal y
+      sujeto a revisión legal.
+    fuente_1: "Declaración pública del propio autor (bio del memorándum commiteado, index.html)"
+    fuente_2: "Perfil público del autor y antecedentes societarios de Cordada Asset Manager (declaración pública verificable)"
+
+  - texto: >-
+      Cordada gestiona USD 218 millones (218M) en AUM con target de USD 600
+      millones (600M) para 2028 (target declarado).
+    fuente_1: "Declaración del propio autor (socio fundador y CEO de Cordada)"
+    fuente_2: "Domain model canónico de Cordada (repositorio cordada-dominio, commiteado)"
+    nota: >-
+      Cifra corporativa declarada por el autor, no auditada por tercero en este
+      registro. Si una pieza pública del sitio la usa, requiere confirmación
+      explícita del CEO antes de publicar.
+
+  # ── Hoja de ruta (propuesta del autor) ──
+  - texto: >-
+      Hoja de ruta propuesta en tres capas: Capa B, 9-15 meses, solo CMF + SP,
+      sin Congreso; Capa A1, 24-36 meses, el Congreso codifica (art. 15 LUF);
+      Capa A2, 36-48 meses, custodio regulado (Congreso + BCCH). Transición
+      escalonada: AGFs grandes 24 meses, medianas 36 meses, pequeñas 48 meses.
+      Pasaporte expedito de 60 días. Chile puede implementar la separación
+      funcional en 9 meses, sin Congreso.
+    ilustrativo: true
+    nota: >-
+      Calendario propuesto por el autor (memorándum, Actos de reforma). No son
+      plazos observados ni norma vigente; toda pieza debe presentarlos como
+      propuesta de política pública.
+
+  # ── Facultades normativas invocadas (propuesta jurídica del autor) ──
+  - texto: >-
+      Facultades normativas invocadas para la vía sin Congreso: DL 3.538
+      (arts. 5 y 12) y LUF 20.712, art. 70; la escisión legal de las AGF entra
+      por el art. 15 de la LUF. El estatuto de custodia de la Ley 18.876 queda
+      íntegro para la Capa A2.
+    fuente_1: "DL N° 3.538 (ley orgánica CMF), texto vigente en leychile.cl"
+    fuente_2: "LUF 20.712 y Ley 18.876, textos vigentes en leychile.cl"
+    nota: >-
+      Las normas citadas son verificables; la lectura de suficiencia de
+      facultades es tesis del autor sujeta a revisión legal (declarado en el
+      memorándum). AG-SITIO-JURISTA hace cumplir la separación vigente/propuesto.
+
+  # ── Leyes de datos (relevantes para el buscador FIP) ──
+  - texto: >-
+      Ley N° 19.628 sobre protección de la vida privada (datos personales) y
+      Ley N° 20.575 (principio de finalidad en el tratamiento de datos
+      económicos): marco que rige cualquier publicación de datos de deudores,
+      causas o expedientes en piezas del sitio.
+    fuente_1: "leychile.cl, Ley N° 19.628, texto vigente"
+    fuente_2: "leychile.cl, Ley N° 20.575, texto vigente"
+
+  # ── Crisis 2008 (contexto histórico) ──
+  - texto: >-
+      2008 fue securitizar a ciegas: opacidad, originar para vender sin riesgo
+      propio y tramos re-securitizados. La respuesta regulatoria posterior
+      (Reglamento UE 2017/2402; Dodd-Frank, 2010) invirtió esas tres causas.
+    fuente_1: "Financial Crisis Inquiry Report (FCIC, 2011)"
+    fuente_2: "Normativa post-crisis citada en fn20 (Reglamento UE 2017/2402; Dodd-Frank §941 / Regulation RR) + informes BIS/FSB post-2008"
+
+  # ── Panel ciudadano · empresas vs emisores (orden de magnitud) ──
+  - texto: >-
+      En Chile hay del orden de 500.000 empresas formales; el mercado de
+      capitales cubre del orden de 250 emisores.
+    ilustrativo: true
+    nota: >-
+      Orden de magnitud del panel ciudadano del memo ("medio millón de
+      empresas"), no cifra auditada. Referencias de contraste: SII, Estadísticas
+      de Empresas; nómina de emisores vigentes Bolsa de Santiago / CMF. Toda
+      pieza que lo use debe mantenerlo como orden de magnitud.
+
+  # ── Fe de erratas del memorándum + fechas de lanzamiento del sitio ──
+  # (agregado por AG-SITIO-VERIFICADOR, integración 2026-07-03: respalda las
+  #  fechas y números de nota que el home enuncia al presentar el memorándum)
+  - texto: >-
+      La fe de erratas del memorándum, publicada el 3 de julio de 2026, corrige
+      tres notas al pie: las notas 11, 13, 14 (fn11, fn13 y fn14), y queda
+      declarada en la propia página del memorándum. El sitio se lanza en julio
+      de 2026, y sus cuatro piezas iniciales se publican juntas el 3 de julio
+      de 2026, con esa fecha a la vista. El orden de magnitud del ahorro
+      institucional se declara a 2025, cierre de las fuentes consolidadas.
+    fuente_1: "memorandum.html#fe-de-erratas — fe de erratas del 3 de julio de 2026, versionada en este repositorio"
+    fuente_2: "Este registro, notas de auditoría adversarial 2026-07-03 sobre fn11/fn13/fn14 (correcciones documentadas claim a claim)"

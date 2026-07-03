@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FCFBF7"/>
+  <rect x="0" y="0" width="14" height="630" fill="#1C4B43"/>
+  <text x="90" y="240" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-weight="700" fill="#1B1E24">Andrés Prats</text>
+  <text x="90" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-style="italic" fill="#6B6B66">Inversiones en mercados privados</text>
+  <text x="90" y="440" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">Análisis, estándares y herramientas para quien decide</text>
+  <text x="90" y="478" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">cupos de inversión en deuda privada.</text>
+  <text x="90" y="560" font-family="ui-monospace, Consolas, monospace" font-size="19" letter-spacing="2" fill="#1C4B43">CADA CIFRA MUESTRA DE DÓNDE SALIÓ</text>
+</svg>

@@ -1,0 +1,778 @@
+/* ============================================================
+   sitio.css — hoja única del sitio de Andrés Prats
+   ------------------------------------------------------------
+   Sistema de diseño E0 (design brief 2026-07-03, §3).
+   Escrita desde cero: NO hereda tokens ni reglas del memorándum
+   (el memo conserva su CSS embebido; documento congelado).
+   Cero requests externos (R38): tipografías de sistema, sin
+   webfonts, sin imports.
+   Dirección R41: manifiesto minimalista — una columna angosta,
+   blanco generoso, texto primero, jerarquía tipográfica fuerte,
+   paleta casi monocroma con un acento. Autoridad por sobriedad.
+   Toda página del manifest referencia ESTA hoja y ninguna otra
+   (eval de no-drift).
+   ============================================================ */
+
+/* ---------- 1 · Tokens ---------- */
+
+:root {
+  /* tinta / papel — casi monocromo */
+  --tinta:  #1B1E24;
+  --papel:  #FCFBF7;
+  --gris:   #6B6B66;
+  --regla:  #D9D7CF;
+  --nota:   #F2EFE6;
+
+  /* un acento: verde institucional profundo (links, kickers, reglas de énfasis) */
+  --acento: #1C4B43;
+
+  /* excepción semántica documentada (R29/P8): terracota reservado
+     EXCLUSIVAMENTE para el bloque .propuesta-autor. No es acento
+     decorativo; no se usa para nada más. */
+  --propuesta: #9A4520;
+
+  /* tipografía de sistema (cero webfonts) */
+  --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --sans:  -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono:  ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace;
+
+  /* escala */
+  --texto-base: 17px;
+  --interlineado: 1.65;
+  --columna: min(42rem, 68ch);
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tinta:  #E8E6E0;
+    --papel:  #15181C;
+    --gris:   #9B9A93;
+    --regla:  #33383E;
+    --nota:   #1C2127;
+    --acento: #7FBFAD;
+    --propuesta: #D08E63;
+  }
+}
+
+/* ---------- 2 · Base y prosa ---------- */
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: var(--texto-base);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--serif);
+  line-height: var(--interlineado);
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* columna única angosta, blanco generoso */
+.contenedor,
+main {
+  max-width: var(--columna);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--tinta);
+}
+
+h1 { font-size: 2rem;   margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.4rem; margin: 2.75rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 2rem 0 0.5rem; }
+
+p, ul, ol { margin: 0 0 1.1rem; }
+li { margin-bottom: 0.35rem; }
+
+a {
+  color: var(--acento);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover { text-decoration-thickness: 2px; }
+
+strong { font-weight: 700; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--regla);
+  margin: 3rem 0;
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0 0 0 1.1rem;
+  border-left: 2px solid var(--regla);
+  color: var(--gris);
+}
+
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.88em;
+}
+
+img, svg { max-width: 100%; height: auto; }
+
+figure { margin: 2rem 0; }
+
+figcaption {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--gris);
+  margin-top: 0.5rem;
+}
+
+/* kicker genérico: sans, mayúsculas con tracking, en acento */
+.kicker {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acento);
+}
+
+/* meta genérica (fechas, tiempos de lectura, etiquetas) */
+.meta {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--gris);
+}
+
+/* ---------- 3 · Accesibilidad ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.salto-contenido {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--tinta);
+  color: var(--papel);
+  font-family: var(--sans);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+.salto-contenido:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- 4 · Masthead y navegación ---------- */
+
+.masthead {
+  padding: 3.5rem 0 1.75rem;
+  border-bottom: 1px solid var(--regla);
+  margin-bottom: 2.5rem;
+}
+
+.masthead-nombre {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.masthead-nombre a {
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.masthead-nombre a:hover { color: var(--acento); }
+
+.masthead-tagline {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--gris);
+  margin: 0.4rem 0 0;
+  max-width: 34rem;
+}
+
+.masthead-nav {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  margin-top: 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+}
+
+.masthead-nav a {
+  color: var(--gris);
+  text-decoration: none;
+}
+
+.masthead-nav a:hover { color: var(--acento); text-decoration: underline; }
+
+/* nav mínima de retorno (cabecera de cada pieza) */
+.nav-retorno {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  padding: 1.5rem 0;
+}
+
+.nav-retorno a {
+  color: var(--gris);
+  text-decoration: none;
+}
+
+.nav-retorno a:hover { color: var(--acento); text-decoration: underline; }
+
+/* nav de pie: volver al índice + prev/next (corrige G7) */
+.nav-pie {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  border-top: 1px solid var(--regla);
+  margin-top: 3.5rem;
+  padding: 1.5rem 0;
+}
+
+/* ---------- 5 · Header de pieza ---------- */
+
+.pieza-header {
+  margin: 0 0 2.5rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--regla);
+}
+
+.pieza-header .kicker { display: block; margin-bottom: 0.6rem; }
+
+.pieza-header h1 { margin-bottom: 0.75rem; }
+
+.pieza-bajada {
+  font-size: 1.1rem;
+  color: var(--gris);
+  margin: 0 0 1rem;
+}
+
+.pieza-meta {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--gris);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+/* caja para-quién: para quién es / qué te llevas / tiempo de lectura */
+.para-quien {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  background: var(--nota);
+  border-left: 3px solid var(--acento);
+  padding: 1rem 1.25rem;
+  margin: 0 0 2.5rem;
+}
+
+.para-quien dt {
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin-top: 0.6rem;
+}
+
+.para-quien dt:first-child { margin-top: 0; }
+.para-quien dd { margin: 0.15rem 0 0; }
+
+/* ---------- 6 · Cifra destacada (.dato) ---------- */
+
+.dato {
+  margin: 2.25rem 0;
+  padding: 1.25rem 1.5rem;
+  border-top: 2px solid var(--acento);
+  border-bottom: 1px solid var(--regla);
+  text-align: left;
+}
+
+.dato-cifra {
+  font-family: var(--mono);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--tinta);
+  display: block;
+}
+
+.dato-contexto {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--gris);
+  display: block;
+  margin-top: 0.35rem;
+}
+
+.dato-fuente {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--gris);
+  display: block;
+  margin-top: 0.7rem;
+}
+
+.dato-fuente::before { content: "Fuente: "; font-weight: 600; }
+
+/* fail-closed visual: un .dato sin .dato-fuente se delata en pantalla
+   (el harness lo bloquea; esto lo hace visible al productor) */
+.dato:not(:has(.dato-fuente)) {
+  outline: 2px dashed var(--propuesta);
+}
+
+.dato:not(:has(.dato-fuente))::after {
+  content: "⚠ cifra sin fuente — no publicable";
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--propuesta);
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* ---------- 7 · Tabla sobria ---------- */
+
+.tabla-envoltura { overflow-x: auto; margin: 2rem 0; }
+
+.tabla-sobria {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.92rem;
+}
+
+.tabla-sobria caption {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--tinta);
+  text-align: left;
+  padding-bottom: 0.6rem;
+}
+
+.tabla-sobria th {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gris);
+  text-align: left;
+  border-bottom: 2px solid var(--tinta);
+  padding: 0.5rem 0.9rem 0.5rem 0;
+}
+
+.tabla-sobria td {
+  border-bottom: 1px solid var(--regla);
+  padding: 0.55rem 0.9rem 0.55rem 0;
+  vertical-align: top;
+}
+
+.tabla-sobria td.num, .tabla-sobria th.num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  padding-right: 0;
+}
+
+/* fila de fuentes obligatoria al pie de la tabla */
+.tabla-fuentes td {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--gris);
+  border-bottom: 0;
+  padding-top: 0.7rem;
+}
+
+/* ---------- 8 · Callouts vigente / propuesta del autor ---------- */
+
+.vigente,
+.propuesta-autor {
+  margin: 2rem 0;
+  padding: 1.1rem 1.35rem;
+}
+
+.vigente {
+  border-left: 3px solid var(--gris);
+  background: var(--nota);
+}
+
+.vigente-etiqueta {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gris);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* ÚNICO uso del terracota en el sitio: marca semántica de R29/P8 */
+.propuesta-autor {
+  border-left: 3px solid var(--propuesta);
+  background: var(--nota);
+}
+
+.propuesta-autor-etiqueta {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--propuesta);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.vigente > :last-child,
+.propuesta-autor > :last-child { margin-bottom: 0; }
+
+/* ---------- 9 · Checklist copiable ---------- */
+
+.checklist { margin: 2rem 0; }
+
+.checklist pre {
+  background: var(--nota);
+  border: 1px solid var(--regla);
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  user-select: all;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.checklist-acciones {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-copiar {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--acento);
+  background: transparent;
+  border: 1px solid var(--acento);
+  border-radius: 3px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+
+.btn-copiar:hover { background: var(--nota); }
+
+/* lista de verificación en prosa (ítems con checkbox tipográfico) */
+.checklist-items { list-style: none; padding-left: 0; }
+
+.checklist-items li {
+  padding-left: 1.6rem;
+  position: relative;
+  margin-bottom: 0.6rem;
+}
+
+.checklist-items li::before {
+  content: "☐";
+  position: absolute;
+  left: 0;
+  color: var(--acento);
+}
+
+/* ---------- 10 · Footnotes / fuentes ---------- */
+
+.fuentes {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--regla);
+  font-size: 0.88rem;
+  color: var(--gris);
+}
+
+.fuentes h2 {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin: 0 0 1rem;
+}
+
+.fuentes ol { padding-left: 1.4rem; }
+.fuentes li { margin-bottom: 0.6rem; }
+
+.fuentes .retorno { text-decoration: none; margin-left: 0.35rem; }
+
+sup.nota-ref { line-height: 0; }
+
+sup.nota-ref a { text-decoration: none; font-family: var(--sans); font-size: 0.72em; }
+
+/* resaltar la nota destino al llegar por ancla */
+.fuentes li:target { background: var(--nota); outline: 1px solid var(--regla); padding: 0.25rem 0.4rem; }
+
+/* ---------- 11 · Declaración de interés ---------- */
+
+.interes {
+  margin: 3.5rem 0 0;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--regla);
+  background: var(--nota);
+  font-size: 0.92rem;
+}
+
+.interes-titulo {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta);
+  margin: 0 0 0.6rem;
+}
+
+.interes p:last-child { margin-bottom: 0; }
+
+.interes-costos {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--regla);
+}
+
+/* ---------- 12 · Changelog por pieza ---------- */
+
+.changelog {
+  margin: 2.5rem 0;
+  font-size: 0.88rem;
+}
+
+.changelog h2 {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin: 0 0 0.75rem;
+}
+
+.changelog dl { margin: 0; }
+
+.changelog dt {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--gris);
+  float: left;
+  clear: left;
+  width: 6.5rem;
+}
+
+.changelog dd { margin: 0 0 0.5rem 7.5rem; }
+
+@media (max-width: 34rem) {
+  .changelog dt { float: none; width: auto; }
+  .changelog dd { margin-left: 0; margin-bottom: 0.75rem; }
+}
+
+/* ---------- 13 · Estado beta (Pub D) ---------- */
+
+.beta {
+  margin: 2rem 0;
+  padding: 1.1rem 1.35rem;
+  border: 1px dashed var(--gris);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+}
+
+.beta-etiqueta {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--papel);
+  background: var(--gris);
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  margin-bottom: 0.6rem;
+}
+
+.beta p:last-child { margin-bottom: 0; }
+
+/* marca de ejemplo sintético */
+.sintetico {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-style: normal;
+  color: var(--gris);
+  border: 1px solid var(--regla);
+  padding: 0.05rem 0.4rem;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+/* ---------- 14 · Cards del índice (home) ---------- */
+
+.cards {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.card-publicacion {
+  border: 1px solid var(--regla);
+  padding: 1.25rem 1.4rem;
+  margin: 0;
+}
+
+.card-publicacion:hover { border-color: var(--gris); }
+
+.card-publicacion .kicker { display: block; margin-bottom: 0.45rem; }
+
+.card-titulo {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.4rem;
+}
+
+.card-titulo a { color: var(--tinta); text-decoration: none; }
+.card-titulo a:hover { color: var(--acento); text-decoration: underline; }
+
+.card-resumen { font-size: 0.95rem; margin: 0 0 0.6rem; }
+
+.card-llevas {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--tinta);
+  margin: 0 0 0.6rem;
+}
+
+.card-llevas::before {
+  content: "Qué te llevas: ";
+  font-weight: 700;
+}
+
+.card-meta {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--gris);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+/* documento de referencia (memo) — distinto de las 4 cards */
+.doc-referencia {
+  border-top: 2px solid var(--acento);
+  border-bottom: 1px solid var(--regla);
+  padding: 1rem 0;
+  margin: 2rem 0;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+}
+
+/* bloque «empieza aquí» del home */
+.empieza-aqui {
+  background: var(--nota);
+  border-left: 3px solid var(--acento);
+  padding: 1rem 1.25rem;
+  margin: 2rem 0;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+}
+
+.empieza-aqui ul { list-style: none; padding: 0; margin: 0.5rem 0 0; }
+.empieza-aqui li { margin-bottom: 0.4rem; }
+
+/* bio de 3 líneas del home */
+.bio { margin: 2.5rem 0; font-size: 0.98rem; }
+
+/* ---------- 15 · Colofón ---------- */
+
+.colofon {
+  margin-top: 4rem;
+  padding: 1.75rem 0 3rem;
+  border-top: 1px solid var(--regla);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--gris);
+}
+
+.colofon p { margin-bottom: 0.5rem; }
+
+.colofon a { color: var(--gris); }
+.colofon a:hover { color: var(--acento); }
+
+.colofon .disclaimer { margin-top: 0.9rem; }
+
+/* ---------- 16 · Print básico ---------- */
+
+@media print {
+  :root {
+    --tinta: #000;
+    --papel: #fff;
+    --gris: #444;
+    --regla: #999;
+    --nota: #fff;
+  }
+
+  body { font-size: 11pt; }
+
+  .masthead-nav,
+  .nav-retorno,
+  .nav-pie,
+  .btn-copiar,
+  .salto-contenido { display: none; }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* URLs visibles solo en prosa, no en nav */
+  main a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #444;
+  }
+
+  .dato, .vigente, .propuesta-autor, .interes, .beta, .card-publicacion {
+    break-inside: avoid;
+    border-color: #999;
+  }
+
+  .propuesta-autor { border-left-width: 4pt; }
+}

@@ -8,7 +8,16 @@
 #   3. Cada dato que entra a la página está auditado por dos fuentes/ojos
 #      independientes — lo no doble-verificado no entra.
 #
-# Gate ejecutable: constelacion/eval_constelacion.py
+# Gates ejecutables:
+#   constelacion/eval_constelacion.py  (las tres leyes sobre este catalogo)
+#   constelacion/eval_lector.py        (gate de AG-LECTOR-INVERSIONISTA, era memo)
+#   constelacion/eval_citabilidad.py   (gate de AG-EMPAQUETADOR-CITABLE, era memo)
+#   constelacion/eval_sitio.py         (gate determinista de la constelacion del sitio)
+#
+# ARCHIVO HISTORICO (03-jul-2026, orden CEO de la forja fundacional): los 9
+# roles de la era del memo quedan ARCHIVADOS como registro — prohibido
+# reutilizarlos para el sitio (P12 de la spec). La constelacion vigente para
+# el sitio es la seccion "CONSTELACION DEL SITIO" al final de este archivo.
 
 agentes:
 
@@ -106,12 +115,14 @@ agentes:
   # Encargo: la pagina gana el relato como REFERENCIA citable ante
   # inversionistas institucionales, MFO y prensa financiera. Cuello:
   # citabilidad/distribucion (la calidad ya la garantiza el equipo del memo;
-  # lo que falta es que la citen). Estado: propuesta — se promueve a activa
-  # en su primera corrida O→M→D.
+  # lo que falta es que la citen).
+  # PROMOCION 03-jul-2026: primera corrida O→M→D ejecutada (capa MFO,
+  # run 2026-07-03-capa-mfo.md) — evals implementados y verdes →
+  # propuesta → activa.
 
   - slug: AG-LECTOR-INVERSIONISTA
     rol: Lector inversionista institucional / MFO
-    estado: propuesta
+    estado: activa
     hace: >
       Lee la pagina como un CIO institucional, un multi-family office o un
       aportante final decidiendo si citarla y usarla: lista toda pregunta que
@@ -127,12 +138,12 @@ agentes:
       procedural: checklist de preguntas por tipo de lector (CIO AFP · aseguradora · MFO · aportante final) + tabla pregunta->respuesta-en-pagina->gap
     eval:
       gate: 0 preguntas de su checklist sin respuesta ni gap declarado en la pagina al cierre de corrida; la letalidad/pertinencia de las preguntas la juzga AG-ADVERSARIO-MEMO (lente hostil) — lo corren el harness + el adversario, no el.
-      estado: declarado — ejecutable en su primera corrida (tabla verificable pregunta->estado)
+      estado: ejecutable — constelacion/eval_lector.py (L01-L04 sobre la tabla pregunta->estado en runs/AG-LECTOR-INVERSIONISTA/)
     metricas: [preguntas de inversionista sin respuesta ni gap declarado (target 0), preguntas del checklist adoptadas como herramienta publica de la pagina (señal de valor)]
 
   - slug: AG-EMPAQUETADOR-CITABLE
     rol: Empaquetador de citabilidad y distribucion
-    estado: propuesta
+    estado: activa
     hace: >
       Convierte la pagina en la referencia mas facil de citar del tema en
       Chile: PDF real descargable (no window.print), one-pager ejecutivo,
@@ -149,5 +160,189 @@ agentes:
       procedural: builder de PDF/one-pager + checker de citabilidad (schema.org presente, anchors, links primarios vivos, 100% cifras del kit con footnote)
     eval:
       gate: harness de citabilidad (determinista) — PDF real presente · 100% de cifras del kit con footnote doble-auditada · footnotes del kit con URL primaria · schema.org/canonical/fecha presentes · 0 claims nuevos respecto del cuerpo auditado; lo corren el harness + AG-VERIFICADOR-CITAS, no el.
-      estado: declarado — ejecutable en su primera corrida (implementar el checker es el paso 1, ley 2)
+      estado: ejecutable — constelacion/eval_citabilidad.py (P01 footnotes · P02 metadata · P03 capas auditadas contra ledger del auditor · P04 kit declarado en kit-manifest.yaml; los empaques del kit siguen pendientes declarados hasta la corrida del empaquetador)
     metricas: [empaques presentes y verdes al cierre (PDF, one-pager, hoja de datos, metadata), citas externas de la pagina detectadas por trimestre (prensa/informes — la metrica del relato), claims nuevos introducidos por el kit (veto = 0)]
+
+  # ══════════════════════════════════════════════════════════════════
+  # CONSTELACION DEL SITIO — forja fundacional 03-jul-2026 (orden CEO:
+  # "forja un equipo y constelacion de agentes para hacerlo todo. 100%
+  # de nuevo. Prohibido reutilizar. Todo lo debes cuestionar.")
+  # Unidad de trabajo: el sitio de publicaciones de Andres Prats sobre
+  # mercados privados (4 publicaciones + home + herramienta en beta).
+  # Spec de origen: 38 requisitos + 16 prohibiciones + 16 decisiones
+  # (fase 1 de la forja, registrada en el run de la corrida).
+  # Orden de produccion POR RIESGO: la pieza mas riesgosa (buscador)
+  # se disenia primero. Cross-link = claim: prohibido enlazar un
+  # artefacto que no paso su gate.
+  # ══════════════════════════════════════════════════════════════════
+
+  - slug: AG-SITIO-CURADOR
+    rol: Editor jefe del sitio (dueño del diseño E0)
+    estado: activa-sitio
+    hace: >
+      Convierte la spec (38R/16P) y las 16 decisiones heredadas en el design
+      brief del sitio: identidad, arquitectura de informacion y URLs, voz por
+      tipo de pieza, matriz tesis-de-4-pasos → publicacion, y veredicto
+      explicito (mantener/cambiar/eliminar + razon) para CADA decision
+      heredada — destino del memo y su URL en negociacion incluido. Ningun
+      productor emite un archivo antes de que el brief exista y este juzgado
+      (leccion de la autopsia: la ejecucion sin diseño fue la falla raiz).
+    memoria:
+      semantica: [spec de la forja (fase 1), decisiones heredadas, autopsia de proceso y producto, index.html]
+      episodica: constelacion/runs/AG-SITIO-CURADOR/
+      procedural: design brief con registro de decisiones + matriz requisito→pieza
+    eval:
+      gate: panel de jueces independientes (propuestas competidoras + score contra la spec) y el harness verifica que el registro cubre 16/16 decisiones y que ningun archivo del sitio precede al brief. Lo corren jueces + harness, no el.
+      estado: ejecutable — juicio de diseño en la corrida + check de cobertura en el run record
+    metricas: [decisiones heredadas sin veredicto escrito (target 0), archivos del sitio emitidos antes del brief (target 0)]
+
+  - slug: AG-SITIO-RIESGO-BUSCADOR
+    rol: Diseñador de la pieza de mayor riesgo (buscador de demandas FIP)
+    estado: activa-sitio
+    hace: >
+      Diseña ANTES que toda otra pieza el framing publico del buscador de
+      demandas y juicios de FIPs subyacentes: criterios de inclusion/exclusion
+      de causas, solo fuentes publicas con enlace al expediente, simetria (la
+      misma vara para todos los vehiculos, incluidos los asociados al autor),
+      canal de correccion de errores, limitaciones declaradas (beta, homonimos,
+      falsos positivos), y la regla de que NINGUN dato extraido real se publica
+      antes del lanzamiento. Su diseño condiciona el copy de todo el sitio.
+    memoria:
+      semantica: [spec R18-R21 y P13-P14, descripcion cruda del CEO, doctrina del test del aludido]
+      episodica: constelacion/runs/AG-SITIO-RIESGO-BUSCADOR/
+      procedural: ficha de diseño de riesgo (criterios + mitigaciones + copy permitido/prohibido)
+    eval:
+      gate: INVERTIDO en cadena — el adversario del aludido ataca su diseño como el abogado del gestor mas hostil y el jurista revisa lo normativo-publico; sin PASA de ambos, ninguna pieza del sitio puede siquiera enlazar al buscador. Lo corren adversario + jurista, no el.
+      estado: ejecutable — veredicto escrito por ronda en el run record
+    metricas: [frases señalables en la pieza del buscador (target 0), datos reales publicados antes del lanzamiento (veto = 0)]
+
+  - slug: AG-SITIO-ESCRITOR
+    rol: Escritor de publicaciones (instanciado por pieza)
+    estado: activa-sitio
+    hace: >
+      Escribe cada pieza (home, separacion funcional, deuda privada como renta
+      fija, guia de DD, buscador) 100% de nuevo desde el design brief y el
+      registro de evidencia — con audiencia y registro declarados por pieza.
+      Prohibido copiar HTML, CSS o copy del corpus previo (la evidencia es
+      memoria; el texto es artefacto). Prosa sin la muletilla prohibida.
+    memoria:
+      semantica: [design brief del curador, registro de evidencia del auditor, spec de estilo R22-R24]
+      episodica: constelacion/runs/AG-SITIO-ESCRITOR/
+      procedural: contrato de audiencia por pieza + escritura desde evidencia citada
+    eval:
+      gate: eval_sitio.py (estilo S04, no-reutilizacion S06, claims S07) lo corre el harness; la verdad la ataca el adversario y la evidencia la cruza el auditor. Nunca el.
+      estado: ejecutable — constelacion/eval_sitio.py
+    metricas: [shingles compartidos con el corpus previo sobre umbral (target 0), claims sin respaldo (target 0)]
+
+  - slug: AG-SITIO-AUDITOR
+    rol: Auditor de evidencia del sitio
+    estado: activa-sitio
+    hace: >
+      Re-deriva el registro de evidencia del sitio desde las fuentes citadas en
+      el corpus commiteado (memoria, no artefacto): tabla claim → fuente_1 →
+      fuente_2 (o marca ilustrativa) en constelacion/evidencia/registro-sitio.yaml.
+      Toda cifra o claim normativo de cualquier pieza debe estar en el registro
+      antes de publicarse. Marca lo que no se puede doble-verificar.
+    memoria:
+      semantica: [footnotes del corpus commiteado (git), fuentes primarias ya citadas (SP, CMF, SIFMA, FMI, leychile)]
+      episodica: constelacion/runs/AG-SITIO-AUDITOR/
+      procedural: registro claim→fuente1→fuente2 + marca ilustrativa
+    eval:
+      gate: eval_sitio.py (S07) lo corre el harness contra el registro; el jurista cruza las citas normativas y el adversario ataca toda cifra floja. Lo corren harness + otros, no el.
+      estado: ejecutable — constelacion/eval_sitio.py
+    metricas: [cifras publicadas fuera del registro (target 0), claims del registro sin doble fuente ni marca (target 0)]
+
+  - slug: AG-SITIO-JURISTA
+    rol: Jurista de citas normativas del sitio
+    estado: activa-sitio
+    hace: >
+      Fija la exactitud de toda mencion normativa del sitio (Titulo XVIII Ley
+      18.045, DL 3.500 art. 45/CCR, DFL 251/NCG 152, Compendio de Normas
+      Contables CMF B-1/B-2, LUF 20.712) y hace cumplir la separacion
+      vigente-vs-propuesto en cada pasaje (P8/R29): ninguna propuesta del autor
+      puede leerse como norma vigente.
+    memoria:
+      semantica: [citas normativas del corpus commiteado, registro de evidencia del auditor]
+      episodica: constelacion/runs/AG-SITIO-JURISTA/
+      procedural: tabla norma→pasaje→vigente-o-propuesto
+    eval:
+      gate: el auditor cruza sus citas contra el registro (dos ojos independientes) y el adversario ataca todo pasaje que mezcle vigente con propuesto. Lo corren otros, no el.
+      estado: ejecutable — tabla verificable en el run record + cruce del auditor
+    metricas: [citas normativas sin cruce (target 0), pasajes vigente/propuesto mezclados (target 0)]
+
+  - slug: AG-SITIO-ADVERSARIO
+    rol: Adversario del aludido del sitio (severidad maxima)
+    estado: activa-sitio
+    hace: >
+      Lee CADA pieza como el abogado del actor mas hostil que pueda sentirse
+      apuntado (gestor vigente, banca, aseguradora, plataforma, clasificadora)
+      y como regulador que busca promesa engañosa. Lentes adicionales de esta
+      forja: mismatch audiencia-registro (un memo pegado en un blog es falla),
+      y la pieza del buscador como zona de severidad maxima. Tres prohibiciones
+      duras: quien-pierde, aritmetica de fees identificables, actor-vs-actor.
+    memoria:
+      semantica: [las piezas del sitio, spec P1-P16, catalogo de modos de falla del aludido]
+      episodica: constelacion/runs/AG-SITIO-ADVERSARIO/
+      procedural: red-team multi-lente por pieza + barrido de frases señalables
+    eval:
+      gate: INVERTIDO — su veredicto PASA/FALLA escrito por pieza ES el gate de cierre; la completitud de sus barridos la revisa el sintetizador (critico independiente). 0 frases señalables al cierre.
+      estado: ejecutable — veredicto escrito por pieza en el run record
+    metricas: [frases señalables al cierre (target 0), piezas cerradas sin veredicto (veto = 0)]
+
+  - slug: AG-SITIO-LECTORES
+    rol: Panel de lectores del sitio (por pieza)
+    estado: activa-sitio
+    hace: >
+      Simula lectores reales del perfil de la audiencia (multi-family office,
+      aseguradora de vida, asesor independiente, periodista financiero) leyendo
+      cada pieza terminada: concluyen solos la tesis, salen con accionable, y
+      reportan si algo se lee como lobby. Nombres del panel JAMAS en archivos
+      del repo (P9) — solo agregado anonimo en el run; el detalle nominal va
+      exclusivamente en el reporte del chat al CEO.
+    memoria:
+      semantica: [las piezas terminadas, criterios de exito por audiencia (spec R8-R10, R37)]
+      episodica: constelacion/runs/AG-SITIO-LECTORES/
+      procedural: lectura simulada por perfil + tabla criterio→conclusion
+    eval:
+      gate: el harness verifica el registro agregado (toda pieza con ronda de lectura y criterios evaluados; 0 nombres en repo) y el adversario juzga la letalidad de los hallazgos. Lo corren harness + adversario, no el.
+      estado: ejecutable — registro agregado verificable en el run record
+    metricas: [piezas sin ronda de lectura (target 0), lectores que concluyen lobby (target 0), nombres en repo (veto = 0)]
+
+  - slug: AG-SITIO-VERIFICADOR
+    rol: Verificador tecnico y de continuidad
+    estado: activa-sitio
+    hace: >
+      Implementa y mantiene el gate determinista del sitio (eval_sitio.py):
+      manifest de paginas y links internos integros (cross-link = claim: enlazar
+      una pieza sin gate es falla), footnotes por pagina, metadata por pagina,
+      barrido de la muletilla prohibida, tripwires lexicos del aludido,
+      no-reutilizacion por similitud de shingles contra el corpus previo,
+      cifras contra el registro de evidencia, y continuidad: main sigue
+      sirviendo el memo intacto mientras el PR este en draft (P11). Corre
+      ademas el smoke test en navegador.
+    memoria:
+      semantica: [constelacion/eval_sitio.py, constelacion/sitio-manifest.yaml, spec P11]
+      episodica: constelacion/runs/AG-SITIO-VERIFICADOR/
+      procedural: harness determinista + smoke test headless
+    eval:
+      gate: el eval es determinista y lo corre el harness (no su autor); sus hallazgos los revisa el sintetizador y el adversario audita que los tripwires del aludido esten completos. Lo corren harness + otros.
+      estado: ejecutable — constelacion/eval_sitio.py (S01-S07)
+    metricas: [checks rojos al cierre (target 0), links a piezas sin gate (veto = 0)]
+
+  - slug: AG-SITIO-SINTETIZADOR
+    rol: Sintetizador e integrador del sitio (critico de completitud)
+    estado: activa-sitio
+    hace: >
+      Deduplica hallazgos de todos los roles, mantiene la matriz spec→estado
+      (38 requisitos y 16 prohibiciones, cada uno con estado y evidencia),
+      decide la lista final de ediciones rankeada, y es el critico de
+      completitud: que ninguna modalidad haya quedado sin correr y ningun
+      requisito sin estado antes del cierre.
+    memoria:
+      semantica: [salidas de todos los roles del sitio, spec completa de la fase 1]
+      episodica: constelacion/runs/AG-SITIO-SINTETIZADOR/
+      procedural: matriz requisito→estado→evidencia + dedup + ranking
+    eval:
+      gate: el harness verifica la matriz (0 requisitos sin estado) y un critico de completitud independiente revisa que no falte modalidad; sus decisiones de integracion las ataca el adversario. Lo corren otros, no el.
+      estado: ejecutable — matriz verificable en el run record
+    metricas: [requisitos de la spec sin estado al cierre (target 0), hallazgos duplicados en la lista final (target 0)]
