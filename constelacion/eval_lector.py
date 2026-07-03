@@ -37,7 +37,9 @@ except ImportError:
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 DIR_LECTOR = os.path.join(HERE, "runs", "AG-LECTOR-INVERSIONISTA")
-INDEX = os.path.join(REPO, "index.html")
+INDEX = os.path.join(REPO, "memorandum.html")  # objeto del eval: el memorandum (post-swap D1)
+if not os.path.exists(INDEX):
+    INDEX = os.path.join(REPO, "index.html")  # compatibilidad pre-swap
 
 ESTADOS_OK = {"respondida", "gap-declarado"}
 LECTORES_OK = {"cio-afp", "aseguradora", "mfo", "aportante-final"}

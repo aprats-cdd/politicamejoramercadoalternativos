@@ -39,7 +39,9 @@ except ImportError:
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
-INDEX = os.path.join(REPO, "index.html")
+INDEX = os.path.join(REPO, "memorandum.html")  # objeto del eval: el memorandum (post-swap D1); antes vivia en index.html
+if not os.path.exists(INDEX):
+    INDEX = os.path.join(REPO, "index.html")  # compatibilidad pre-swap
 LEDGER_GLOB = os.path.join(HERE, "runs", "AG-AUDITOR-EVIDENCIA", "*claims*.yaml")
 MANIFEST = os.path.join(HERE, "kit-manifest.yaml")
 

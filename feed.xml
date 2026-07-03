@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Andrés Prats · Inversiones en mercados privados</title>
+    <link>https://aprats-cdd.github.io/politicamejoramercadoalternativos/</link>
+    <description>Análisis, estándares y herramientas para quien decide cupos de inversión en deuda privada. Sitio personal de Andrés Prats.</description>
+    <language>es-cl</language>
+    <lastBuildDate>Thu, 03 Jul 2026 12:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Separación de roles en asset management</title>
+      <link>https://aprats-cdd.github.io/politicamejoramercadoalternativos/separacion-de-roles.html</link>
+      <guid>https://aprats-cdd.github.io/politicamejoramercadoalternativos/separacion-de-roles.html</guid>
+      <pubDate>Thu, 03 Jul 2026 12:00:00 +0000</pubDate>
+      <description>Las cinco funciones de un vehículo de inversión, por qué su concentración fija el techo de cualquier due diligence, y qué parte de la corrección está disponible hoy por vía contractual.</description>
+    </item>
+    <item>
+      <title>Deuda privada como renta fija (securitizada)</title>
+      <link>https://aprats-cdd.github.io/politicamejoramercadoalternativos/deuda-privada-como-renta-fija.html</link>
+      <guid>https://aprats-cdd.github.io/politicamejoramercadoalternativos/deuda-privada-como-renta-fija.html</guid>
+      <pubDate>Thu, 03 Jul 2026 12:00:00 +0000</pubDate>
+      <description>Bajo qué condiciones la deuda privada securitizada postula al cupo de renta fija, qué lo decide el regulador, y por qué el diseño propuesto se aparta del que estalló en 2008.</description>
+    </item>
+    <item>
+      <title>Due diligence de un fondo de deuda privada: las preguntas relevantes</title>
+      <link>https://aprats-cdd.github.io/politicamejoramercadoalternativos/due-diligence-deuda-privada.html</link>
+      <guid>https://aprats-cdd.github.io/politicamejoramercadoalternativos/due-diligence-deuda-privada.html</guid>
+      <pubDate>Thu, 03 Jul 2026 12:00:00 +0000</pubDate>
+      <description>Guía práctica en dos niveles — la arquitectura del vehículo y la apertura de la cartera — con cuestionario copiable para enviar tal cual. Documento vivo con registro de cambios.</description>
+    </item>
+    <item>
+      <title>Buscador de causas judiciales de vehículos de fondos de deuda privada (anuncio, beta)</title>
+      <link>https://aprats-cdd.github.io/politicamejoramercadoalternativos/buscador-causas-judiciales.html</link>
+      <guid>https://aprats-cdd.github.io/politicamejoramercadoalternativos/buscador-causas-judiciales.html</guid>
+      <pubDate>Thu, 03 Jul 2026 12:00:00 +0000</pubDate>
+      <description>Las reglas del índice, publicadas antes que la herramienta: fuentes públicas con enlace al expediente, actos editoriales declarados, misma vara para todos los vehículos.</description>
+    </item>
+    <item>
+      <title>Memorándum de Política Pública · Mercados Privados de Capital · Chile</title>
+      <link>https://aprats-cdd.github.io/politicamejoramercadoalternativos/memorandum.html</link>
+      <guid>https://aprats-cdd.github.io/politicamejoramercadoalternativos/memorandum.html</guid>
+      <pubDate>Sun, 01 Feb 2026 12:00:00 +0000</pubDate>
+      <description>El documento formal que origina este sitio, congelado a su texto de febrero de 2026, con fe de erratas publicada.</description>
+    </item>
+  </channel>
+</rss>
