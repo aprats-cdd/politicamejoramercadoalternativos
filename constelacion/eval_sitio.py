@@ -56,6 +56,12 @@ MULETILLA_RES = [
     re.compile(r"[Nn]o se trata de[^.\n]{1,90}?se trata de"),
     re.compile(r"[Nn]o\s+[^,;.\n]{2,60},\s*sino\b"),
 ]
+# Brief D6/§4: la palabra "referente" no aparece en prosa del sitio (lint junto a P4).
+LEXICO_SITIO_RES = [re.compile(r"\breferente\b", re.I)]
+# R30/P9: nombres del panel jamás en el repo. La lista vive FUERA del repo
+# (escribirla aca la violaria); si el archivo privado no existe, el check se
+# omite declarandolo.
+NOMBRES_PRIVADOS = "/tmp/claude-0/-home-user/59a07bf5-3fc7-55a2-b82b-de050af410db/scratchpad/forja/nombres-confidenciales.txt"
 
 
 def texto_plano(html: str) -> str:
@@ -155,13 +161,52 @@ def main() -> int:
 
     nuevas = [p for p in paginas if p.get("nueva") and p.get("archivo") in htmls]
 
-    # S04 — muletilla prohibida en paginas nuevas
+    # S04 — muletilla prohibida + lexico del sitio en paginas nuevas
     for p in nuevas:
         arch = p["archivo"]
         cuerpo = texto_plano(sin_fuentes(htmls[arch]))
-        for rx in MULETILLA_RES:
+        excepciones = [str(e) for e in (p.get("excepciones_estilo") or [])]
+        for rx in MULETILLA_RES + LEXICO_SITIO_RES:
             for m in rx.finditer(cuerpo):
-                fallos.append(f"S04 [{arch}] muletilla prohibida: \"{m.group(0)[:70].strip()}\"")
+                frag = m.group(0)[:70].strip()
+                if any(exc and exc in m.group(0) for exc in excepciones):
+                    continue  # excepcion registrada en el manifest (p.ej. formula legal de Pub D)
+                fallos.append(f"S04 [{arch}] lexico/muletilla prohibida: \"{frag}\"")
+        # lexico prohibido especifico de la pieza (manifest: lexico_prohibido)
+        for term in (p.get("lexico_prohibido") or []):
+            if str(term).lower() in cuerpo.lower():
+                fallos.append(f"S04 [{arch}] copy prohibido de la pieza presente: \"{term}\"")
+
+    # S09 — no-drift de estilos: toda pagina nueva referencia la hoja unica y
+    # no lleva bloques <style> propios de mas de 40 lineas (margen para
+    # ajustes puntuales); el memo (memo-vigente) queda excluido por diseño.
+    for p in nuevas:
+        arch = p["archivo"]
+        html = htmls[arch]
+        if 'assets/sitio.css' not in html:
+            fallos.append(f"S09 [{arch}] no referencia assets/sitio.css (hoja unica del sitio)")
+        for bloque in re.findall(r"<style[^>]*>(.*?)</style>", html, re.S):
+            if bloque.count("\n") > 40:
+                fallos.append(f"S09 [{arch}] bloque <style> propio de {bloque.count(chr(10))} lineas — drift de estilos")
+
+    # S10 — R30/P9: nombres confidenciales del panel (lista privada fuera del repo)
+    if os.path.exists(NOMBRES_PRIVADOS):
+        with open(NOMBRES_PRIVADOS, encoding="utf-8") as fh:
+            nombres = [n.strip() for n in fh if n.strip()]
+        objetivo = list(htmls.items())
+        for raiz, _, archivos in os.walk(os.path.join(HERE, "runs")):
+            for a in archivos:
+                ruta = os.path.join(raiz, a)
+                try:
+                    objetivo.append((os.path.relpath(ruta, REPO), open(ruta, encoding="utf-8").read()))
+                except OSError:
+                    pass
+        for nombre in nombres:
+            for arch, contenido in objetivo:
+                if nombre.lower() in contenido.lower():
+                    fallos.append(f"S10 [{arch}] nombre confidencial del panel presente (P9/R30)")
+    else:
+        print("  S10 nota: lista privada de nombres no disponible — check omitido (se corre en la sesion del operador).")
 
     # S05 — gate del aludido registrado + denylist lexica
     if estado == "cierre":
