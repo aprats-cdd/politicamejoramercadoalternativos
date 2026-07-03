@@ -1,0 +1,22 @@
+# Manifest del sitio — lo mantiene AG-SITIO-VERIFICADOR.
+# Gate determinista: constelacion/eval_sitio.py (S01-S08).
+#
+# estado: pre-produccion → produccion → cierre
+#   (en "cierre", toda pagina nueva exige gate_pasado:true = veredicto PASA
+#    del adversario registrado en constelacion/runs/AG-SITIO-ADVERSARIO/)
+# corpus_base: corpus del memo contra el que se mide la no-reutilizacion (S06)
+#   — commit de base de la forja fundacional.
+
+estado: pre-produccion
+corpus_base: "git:3592d91:index.html"
+umbral_similitud: 0.02
+
+paginas:
+  - archivo: index.html
+    tipo: memo-vigente
+    nueva: false
+    gate_pasado: true   # 21 footnotes doble-auditadas + 4 rondas test del aludido (era memo)
+  - archivo: og-cover.html
+    tipo: asset
+    nueva: false
+    gate_pasado: true
