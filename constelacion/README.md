@@ -39,9 +39,25 @@ El catálogo completo, con la memoria y el examen de cada rol, está en
 python3 constelacion/eval_constelacion.py   # las tres leyes sobre el catálogo
 python3 constelacion/eval_citabilidad.py    # footnotes + metadata + capas auditadas + kit
 python3 constelacion/eval_lector.py         # tabla pregunta→estado del lector institucional
+python3 constelacion/eval_sitio.py          # gate determinista del sitio (S01-S09)
+python3 constelacion/eval_experiencia.py    # gate de experiencia móvil-primero (X01-X09)
+NODE_PATH=/opt/node22/lib/node_modules node constelacion/smoke_experiencia.js  # área táctil medida en render (T01-T05)
 ```
 
 Verde = el equipo cumple las tres reglas. Rojo = bloquea (no se publica).
+
+## Capa de experiencia (forja 03-jul-2026)
+
+Tercera constelación del repo: lleva el sitio a **clase mundial en UI**,
+móvil-primero, dentro de la sobriedad del sitio. Tres agentes nuevos en O→M→D
+(`AG-SITIO-CARTOGRAFO-EXPERIENCIA` mide la brecha · `AG-SITIO-DISENADOR-EXPERIENCIA`
+especifica el sistema · `AG-SITIO-INGENIERO-UI` implementa, con prohibición
+dura de tocar prosa) + tres enriquecidos (verificador dueño del harness de
+experiencia, lectores con lente móvil, adversario con lente
+experiencia-como-marketing). El área táctil se mide en un **smoke test headless
+independiente** (`smoke_experiencia.js`), no por tokens CSS — cerró el modo de
+falla "gate de teatro". Estado: **propuesta** hasta el accept del CEO sobre la
+identidad visual. Detalle en `runs/2026-07-03-forja-capa-experiencia.md`.
 
 ## Corridas
 

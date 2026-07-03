@@ -335,3 +335,19 @@ claims:
       institucional se declara a 2025, cierre de las fuentes consolidadas.
     fuente_1: "memorandum.html#fe-de-erratas — fe de erratas del 3 de julio de 2026, versionada en este repositorio"
     fuente_2: "Este registro, notas de auditoría adversarial 2026-07-03 sobre fn11/fn13/fn14 (correcciones documentadas claim a claim)"
+
+  # ── Etiqueta de versión del memorándum (no es cifra de mercado) ──
+  # (agregado por AG-SITIO-AUDITOR, capa de experiencia 2026-07-03: el home y
+  #  el ensayo de separación nombran el memorándum "versión 2.0"; el token
+  #  numérico 2.0 es una etiqueta editorial de versión, no un dato auditable —
+  #  se registra como ilustrativo para que S07 lo reconozca sin inflar el
+  #  registro con chrome. Regla dura de la capa de experiencia: los tokens de
+  #  navegación/UI NO entran a este registro; sólo lo hace una etiqueta de
+  #  versión que ya vive en el cuerpo publicado.)
+  - texto: >-
+      El memorándum de referencia está en su versión 2.0 (2.0), etiqueta de
+      versión editorial del documento formal que origina el sitio.
+    ilustrativo: true
+    nota: >-
+      Etiqueta de versión, no cifra de mercado. La versión del memorándum la
+      fija su propio changelog/JSON-LD (memorandum.html, "version": "2.0").

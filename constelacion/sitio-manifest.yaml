@@ -1,5 +1,5 @@
 estado: cierre
-corpus_base: git:3592d91:index.html
+corpus_base: git:origin/main:memorandum.html
 umbral_similitud: 0.02
 paginas:
 - archivo: memorandum.html

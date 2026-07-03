@@ -225,14 +225,22 @@ agentes:
       registro de evidencia — con audiencia y registro declarados por pieza.
       Prohibido copiar HTML, CSS o copy del corpus previo (la evidencia es
       memoria; el texto es artefacto). Prosa sin la muletilla prohibida.
+      ENRIQUECIDO 03-jul (capa de experiencia): dueño ademas del MICRO-COPY de
+      navegacion que la capa de experiencia introduce ("En esta pieza",
+      "Qué te llevas", "Volver al índice", "Subir", "Siguiente: …"). El
+      ingeniero de UI NO escribe copy: propone el hueco, el escritor lo llena.
+      Regla dura heredada del DD: el micro-copy de chrome sin digitos, sin
+      muletilla ni lexico prohibido; y PROHIBIDO inscribir tokens de chrome UI
+      en el registro de evidencia (registro-sitio.yaml es para claims, no para
+      interfaz).
     memoria:
-      semantica: [design brief del curador, registro de evidencia del auditor, spec de estilo R22-R24]
+      semantica: [design brief del curador, registro de evidencia del auditor, spec de estilo R22-R24, spec de experiencia del disenador (para el micro-copy de navegacion)]
       episodica: constelacion/runs/AG-SITIO-ESCRITOR/
-      procedural: contrato de audiencia por pieza + escritura desde evidencia citada
+      procedural: contrato de audiencia por pieza + escritura desde evidencia citada + micro-copy de navegacion de la capa de experiencia
     eval:
-      gate: eval_sitio.py (estilo S04, no-reutilizacion S06, claims S07) lo corre el harness; la verdad la ataca el adversario y la evidencia la cruza el auditor. Nunca el.
+      gate: eval_sitio.py (estilo S04, no-reutilizacion S06, claims S07) lo corre el harness; el micro-copy de navegacion pasa el mismo S04 (sin muletilla/lexico) y S07 (sin digitos); la verdad la ataca el adversario y la evidencia la cruza el auditor. Nunca el.
       estado: ejecutable — constelacion/eval_sitio.py
-    metricas: [shingles compartidos con el corpus previo sobre umbral (target 0), claims sin respaldo (target 0)]
+    metricas: [shingles compartidos con el corpus previo sobre umbral (target 0), claims sin respaldo (target 0), tokens de chrome UI inscritos en el registro (veto = 0)]
 
   - slug: AG-SITIO-AUDITOR
     rol: Auditor de evidencia del sitio
@@ -280,14 +288,22 @@ agentes:
       forja: mismatch audiencia-registro (un memo pegado en un blog es falla),
       y la pieza del buscador como zona de severidad maxima. Tres prohibiciones
       duras: quien-pierde, aritmetica de fees identificables, actor-vs-actor.
+      ENRIQUECIDO 03-jul (capa de experiencia): nueva lente —
+      experiencia-como-marketing. Lee cada micro-interaccion (barra de
+      progreso, card tactil, details, view transition) como un CIO o un
+      regulador que busca spin: ninguna interaccion puede leerse como app de
+      consumo, gamificacion ni venta, ni degradar la seriedad citable de la
+      pieza. Audita ademas la completitud de X01-X09 del harness de
+      experiencia (que ningun check sea teatro de tokens). Su veto prima sobre
+      "ganas de seguir leyendo" del panel (desempate declarado).
     memoria:
-      semantica: [las piezas del sitio, spec P1-P16, catalogo de modos de falla del aludido]
+      semantica: [las piezas del sitio, spec P1-P16, catalogo de modos de falla del aludido, la spec de experiencia (run del disenador), eval_experiencia.py]
       episodica: constelacion/runs/AG-SITIO-ADVERSARIO/
-      procedural: red-team multi-lente por pieza + barrido de frases señalables
+      procedural: red-team multi-lente por pieza + barrido de frases señalables + barrido experiencia-como-marketing sobre el UI implementado
     eval:
-      gate: INVERTIDO — su veredicto PASA/FALLA escrito por pieza ES el gate de cierre; la completitud de sus barridos la revisa el sintetizador (critico independiente). 0 frases señalables al cierre.
+      gate: INVERTIDO — su veredicto PASA/FALLA escrito por pieza ES el gate de cierre (incluye la lente experiencia-como-marketing sobre el UI IMPLEMENTADO, no la spec); la completitud de sus barridos la revisa el sintetizador (critico independiente). 0 frases señalables y 0 interacciones señalables como marketing al cierre.
       estado: ejecutable — veredicto escrito por pieza en el run record
-    metricas: [frases señalables al cierre (target 0), piezas cerradas sin veredicto (veto = 0)]
+    metricas: [frases señalables al cierre (target 0), interacciones señalables como marketing (target 0), piezas cerradas sin veredicto (veto = 0)]
 
   - slug: AG-SITIO-LECTORES
     rol: Panel de lectores del sitio (por pieza)
@@ -299,14 +315,20 @@ agentes:
       reportan si algo se lee como lobby. Nombres del panel JAMAS en archivos
       del repo (P9) — solo agregado anonimo en el run; el detalle nominal va
       exclusivamente en el reporte del chat al CEO.
+      ENRIQUECIDO 03-jul (capa de experiencia): nueva lente — lectura movil
+      real. Cada lector recorre la pieza en un telefono con el pulgar: reporta
+      si dan ganas de seguir leyendo, si la card seduce lo suficiente para
+      abrir, si el pulgar alcanza los controles, si el indice y el avance
+      ayudan o estorban. "Ganas de seguir leyendo" es su KPI; el veto del
+      adversario (experiencia-como-marketing) prima sobre este KPI.
     memoria:
-      semantica: [las piezas terminadas, criterios de exito por audiencia (spec R8-R10, R37)]
+      semantica: [las piezas terminadas, criterios de exito por audiencia (spec R8-R10, R37), la spec de experiencia (run del disenador)]
       episodica: constelacion/runs/AG-SITIO-LECTORES/
-      procedural: lectura simulada por perfil + tabla criterio→conclusion
+      procedural: lectura simulada por perfil + lectura movil con el pulgar + tabla criterio→conclusion
     eval:
-      gate: el harness verifica el registro agregado (toda pieza con ronda de lectura y criterios evaluados; 0 nombres en repo) y el adversario juzga la letalidad de los hallazgos. Lo corren harness + adversario, no el.
+      gate: el harness verifica el registro agregado (toda pieza con ronda de lectura movil y criterios evaluados; 0 nombres en repo) y el adversario juzga la letalidad de los hallazgos y veta engagement-como-marketing. Lo corren harness + adversario, no el.
       estado: ejecutable — registro agregado verificable en el run record
-    metricas: [piezas sin ronda de lectura (target 0), lectores que concluyen lobby (target 0), nombres en repo (veto = 0)]
+    metricas: [piezas sin ronda de lectura movil (target 0), lectores que concluyen lobby o marketing (target 0), lectores que abandonan sin llegar al accionable en movil (señal), nombres en repo (veto = 0)]
 
   - slug: AG-SITIO-VERIFICADOR
     rol: Verificador tecnico y de continuidad
@@ -320,14 +342,21 @@ agentes:
       cifras contra el registro de evidencia, y continuidad: main sigue
       sirviendo el memo intacto mientras el PR este en draft (P11). Corre
       ademas el smoke test en navegador.
+      ENRIQUECIDO 03-jul (capa de experiencia): dueño ademas del gate de
+      experiencia — constelacion/eval_experiencia.py (X01-X09, deterministas)
+      y constelacion/smoke_experiencia.js (headless, mide AREA TACTIL
+      RENDERIZADA y solapes: es EL gate de X03, no el token-check). Regla
+      heredada del DD: el area tactil se mide en render, nunca por presencia
+      de tokens CSS; y la completitud de X01-X09 la audita el adversario +
+      sintetizador (mismo contrato que los tripwires de S05), no su autor.
     memoria:
-      semantica: [constelacion/eval_sitio.py, constelacion/sitio-manifest.yaml, spec P11]
+      semantica: [constelacion/eval_sitio.py, constelacion/eval_experiencia.py, constelacion/smoke_experiencia.js, constelacion/sitio-manifest.yaml, spec P11]
       episodica: constelacion/runs/AG-SITIO-VERIFICADOR/
-      procedural: harness determinista + smoke test headless
+      procedural: harness determinista (eval_sitio + eval_experiencia) + smoke test headless (Playwright, area tactil medida)
     eval:
-      gate: el eval es determinista y lo corre el harness (no su autor); sus hallazgos los revisa el sintetizador y el adversario audita que los tripwires del aludido esten completos. Lo corren harness + otros.
-      estado: ejecutable — constelacion/eval_sitio.py (S01-S07)
-    metricas: [checks rojos al cierre (target 0), links a piezas sin gate (veto = 0)]
+      gate: los evals son deterministas y los corre el harness (no su autor); el smoke test headless mide lo que el harness estatico no puede (area tactil, solapes); sus hallazgos los revisa el sintetizador y el adversario audita que los tripwires del aludido Y la completitud de X01-X09 esten completos. Lo corren harness + otros.
+      estado: ejecutable — constelacion/eval_sitio.py (S01-S09) + constelacion/eval_experiencia.py (X01-X09) + constelacion/smoke_experiencia.js (T01-T05)
+    metricas: [checks rojos al cierre (target 0), links a piezas sin gate (veto = 0), controles bajo 44px medidos en render (target 0), solapes tactiles (target 0)]
 
   - slug: AG-SITIO-SINTETIZADOR
     rol: Sintetizador e integrador del sitio (critico de completitud)
@@ -346,3 +375,84 @@ agentes:
       gate: el harness verifica la matriz (0 requisitos sin estado) y un critico de completitud independiente revisa que no falte modalidad; sus decisiones de integracion las ataca el adversario. Lo corren otros, no el.
       estado: ejecutable — matriz verificable en el run record
     metricas: [requisitos de la spec sin estado al cierre (target 0), hallazgos duplicados en la lista final (target 0)]
+
+  # ══════════════════════════════════════════════════════════════════
+  # CAPA DE EXPERIENCIA — forja 03-jul-2026 (WF-FORJAR-EQUIPO, modo mixto).
+  # Encargo del CEO: llevar el sitio (#publicaciones) a clase mundial en UI
+  # y de frontera — movil-primero real, "ganas de leer", divulgacion
+  # progresiva ("si quiero profundizar abro"), sin techo de presupuesto.
+  # Cuello declarado: la EXPERIENCIA (la calidad de contenido/citabilidad ya
+  # la garantizan las dos constelaciones previas; lo que falta es que el
+  # cuerpo se mueva, seduzca y se lea con el pulgar sin perder la sobriedad).
+  # O→M→D: cartografo mide la brecha (O) → disenador especifica el sistema
+  # (M) → ingeniero implementa en la hoja unica + paginas (D). Ningun agente
+  # valida su propio trabajo. Estado: PROPUESTA hasta el accept del CEO sobre
+  # la identidad visual (E6) — el harness verifica la spec aceptada, no una
+  # wishlist previa (fix del DD adversarial, critico 5).
+  # DD adversarial de esta forja: runs/AG-SITIO-ADVERSARIO/2026-07-03-dd-capa-experiencia.md
+  # ══════════════════════════════════════════════════════════════════
+
+  - slug: AG-SITIO-CARTOGRAFO-EXPERIENCIA
+    rol: Cartografo de la experiencia (capa O · rol-de-corrida con sunset)
+    estado: propuesta
+    hace: >
+      Mide la experiencia actual del sitio con medidas REPRODUCIBLES (M1-M14:
+      area tactil renderizada, retorno al indice, navegacion de pie, escala
+      tipografica, peso por pagina, requests externos, dark mode) y separa la
+      medicion O del criterio de diseño M (los criterios de frontera son
+      insumo del disenador, no vara medida — se declaran como tales, con la
+      advertencia de honestidad en el run). SUNSET declarado: es rol-de-corrida;
+      tras la corrida 1 la medicion recurrente la absorbe el harness de
+      experiencia (X01-X09/T01-T05), y este agente no compite por el
+      single-writer de esas medidas.
+    memoria:
+      semantica: [index.html, assets/sitio.css, las cuatro piezas, catalogo de patrones editoriales de frontera (criterio, no fuente)]
+      episodica: constelacion/runs/AG-SITIO-CARTOGRAFO-EXPERIENCIA/
+      procedural: mediciones deterministas (wc, grep, getBoundingClientRect via smoke) + tabla brecha→medida
+    eval:
+      gate: cada brecha M1-M14 con su comando de medicion reproducible; el harness (eval_experiencia.py + smoke_experiencia.js) re-deriva de forma independiente las que son deterministas, y el sintetizador revisa completitud. Lo corren harness + sintetizador, no el.
+      estado: ejecutable — constelacion/runs/AG-SITIO-CARTOGRAFO-EXPERIENCIA/2026-07-03-brecha-experiencia.md re-verificable por el harness
+    metricas: [brechas sin medida reproducible (target 0), criterios de diseño colados como medicion O (target 0 tras el fix del DD)]
+
+  - slug: AG-SITIO-DISENADOR-EXPERIENCIA
+    rol: Diseñador del sistema de experiencia (capa M)
+    estado: propuesta
+    hace: >
+      Convierte las brechas medidas en la spec del sistema de experiencia
+      movil-primero DENTRO de la sobriedad R41 (autoridad por sobriedad):
+      cada decision de diseño (D1-D11) cita la brecha que corrige y declara su
+      registro visual. Manda en la forma, no en el copy ni en la
+      implementacion. Nada que parezca app de consumo, marketing o
+      gamificacion — esa frontera la fija el adversario.
+    memoria:
+      semantica: [informe de brecha del cartografo, brief E0/R41 del curador, index.html, assets/sitio.css]
+      episodica: constelacion/runs/AG-SITIO-DISENADOR-EXPERIENCIA/
+      procedural: spec de decisiones de diseño (decision→brecha→registro visual)
+    eval:
+      gate: la spec la juzgan AG-SITIO-LECTORES (lente movil), AG-SITIO-ADVERSARIO (lente experiencia-como-marketing) y el CEO (accept de identidad visual, E6). No la valida su autor.
+      estado: ejecutable — constelacion/runs/AG-SITIO-DISENADOR-EXPERIENCIA/2026-07-03-spec-sistema-experiencia.md juzgada por lectores + adversario + CEO
+    metricas: [decisiones de diseño sin brecha citada (target 0), decisiones vetadas por el adversario como marketing (target 0), vueltas antes del accept del CEO (target ≤2)]
+
+  - slug: AG-SITIO-INGENIERO-UI
+    rol: Ingeniero de UI (capa D · implementa; PROHIBIDO tocar prosa)
+    estado: propuesta
+    hace: >
+      Implementa la spec aceptada en la hoja unica (assets/sitio.css) y en las
+      paginas: tipografia fluida clamp(), token de area tactil de 44px con
+      padding + margen negativo, cards del indice con divulgacion progresiva
+      (details nativo) y card completa tactil, indice de pieza plegable,
+      barra de progreso de lectura CSS-only (animation-timeline: scroll() bajo
+      @supports, anulada por prefers-reduced-motion), nav de pie tactil,
+      view transitions same-origin bajo motion-safe, area tactil ampliada de
+      notas. REGLA DURA: no toca una sola palabra de prosa del cuerpo (el copy
+      es de AG-SITIO-ESCRITOR); solo microcopy de navegacion sin digitos, sin
+      muletilla, sin lexico prohibido. Hoja unica (S09), cero requests
+      externos (R38/X02), cero JS nuevo obligatorio.
+    memoria:
+      semantica: [la spec aceptada del disenador, assets/sitio.css, las cinco paginas, restricciones S04/S06/S07/S09/R38 heredadas]
+      episodica: constelacion/runs/AG-SITIO-INGENIERO-UI/
+      procedural: edicion de la hoja unica + insercion de details/nav/indice en paginas + microcopy de navegacion
+    eval:
+      gate: eval_experiencia.py (X01-X09) + smoke_experiencia.js (T01-T05, area tactil medida en render) + eval_sitio.py sin regresion (S01-S09) · lo corre el harness/AG-SITIO-VERIFICADOR, nunca su productor; el adversario ataca el UI implementado.
+      estado: ejecutable — constelacion/eval_experiencia.py + constelacion/smoke_experiencia.js + constelacion/eval_sitio.py todos VERDES sobre el UI implementado
+    metricas: [palabras de prosa del cuerpo modificadas (veto = 0), checks de experiencia rojos al cierre (target 0), regresiones de eval_sitio introducidas (veto = 0), requests externos añadidos (veto = 0)]

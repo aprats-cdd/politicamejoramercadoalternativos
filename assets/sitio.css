@@ -36,12 +36,22 @@
   --sans:  -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --mono:  ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace;
 
-  /* escala */
-  --texto-base: 17px;
+  /* escala — fluida: 17px en pantalla chica → 19px en escritorio,
+     misma medida de columna (spec D1, corrige M7) */
+  --texto-base: clamp(17px, 16.1px + 0.28vw, 19px);
   --interlineado: 1.65;
   --columna: min(42rem, 68ch);
 
+  /* área táctil mínima del sistema (spec D2, corrige M1-M3):
+     todo control primario la consume; el harness (X03) exige el token
+     y sus usos, el smoke test mide el render */
+  --tap-minimo: 44px;
+
   color-scheme: light dark;
+
+  /* los details del sitio (índice de pieza, card-mas) animan su apertura
+     donde el motor lo soporta; degrada a apertura instantánea (D10) */
+  interpolate-size: allow-keywords;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -90,9 +100,16 @@ h1, h2, h3 {
   color: var(--tinta);
 }
 
+h1, h2, h3 { text-wrap: balance; }
+
 h1 { font-size: 2rem;   margin: 0 0 0.5rem; letter-spacing: -0.01em; }
 h2 { font-size: 1.4rem; margin: 2.75rem 0 0.75rem; }
 h3 { font-size: 1.1rem; margin: 2rem 0 0.5rem; }
+
+/* anclas (índice de pieza, notas) aterrizan con aire */
+h2[id], h3[id], .fuentes li[id] { scroll-margin-top: 1.5rem; }
+
+p { text-wrap: pretty; }
 
 p, ul, ol { margin: 0 0 1.1rem; }
 li { margin-bottom: 0.35rem; }
@@ -186,6 +203,84 @@ figcaption {
   }
 }
 
+html { scroll-behavior: smooth; } /* anulado arriba si el lector pide quietud */
+
+/* transición entre páginas del sitio: continuidad, no espectáculo (D9);
+   solo si el lector no pidió movimiento reducido */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+
+/* ---------- 3b · Divulgación progresiva (details/summary del sistema) ---------- */
+
+summary { cursor: pointer; }
+
+details.card-mas > summary,
+details.indice-pieza > summary {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--acento);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--tap-minimo);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+details.card-mas > summary::-webkit-details-marker,
+details.indice-pieza > summary::-webkit-details-marker { display: none; }
+
+details.card-mas > summary::before,
+details.indice-pieza > summary::before {
+  content: "+";
+  font-family: var(--mono);
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--acento);
+  transition: transform 0.18s ease;
+}
+
+details.card-mas[open] > summary::before,
+details.indice-pieza[open] > summary::before { transform: rotate(45deg); }
+
+/* apertura animada donde el motor soporta ::details-content (D10) */
+details.card-mas::details-content,
+details.indice-pieza::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition: content-visibility 0.25s allow-discrete, block-size 0.25s ease;
+}
+
+details.card-mas[open]::details-content,
+details.indice-pieza[open]::details-content { block-size: auto; }
+
+/* progreso de lectura: un trazo en el borde superior, solo en piezas (D6);
+   CSS puro — sin JS; prefers-reduced-motion lo anula por la regla global */
+@supports (animation-timeline: scroll()) {
+  body.pieza::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--acento);
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    animation: progreso-lectura linear both;
+    animation-timeline: scroll(root);
+    z-index: 20;
+  }
+
+  @keyframes progreso-lectura {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+}
+
 /* ---------- 4 · Masthead y navegación ---------- */
 
 .masthead {
@@ -220,44 +315,76 @@ figcaption {
 .masthead-nav {
   font-family: var(--sans);
   font-size: 0.82rem;
-  margin-top: 1.1rem;
+  margin-top: 0.75rem;
+  margin-left: -0.6rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 1.4rem;
+  gap: 0 0.5rem;
 }
 
+/* área táctil del sistema (D2): el link crece hacia adentro del padding,
+   la mancha tipográfica no se mueve */
 .masthead-nav a {
   color: var(--gris);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-minimo);
+  padding: 0 0.6rem;
 }
 
 .masthead-nav a:hover { color: var(--acento); text-decoration: underline; }
 
-/* nav mínima de retorno (cabecera de cada pieza) */
+/* nav mínima de retorno (cabecera de cada pieza) — link táctil al índice (D3) */
 .nav-retorno {
   font-family: var(--sans);
   font-size: 0.82rem;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
 }
 
 .nav-retorno a {
   color: var(--gris);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-minimo);
+  padding: 0 0.6rem;
+  margin-left: -0.6rem;
 }
 
 .nav-retorno a:hover { color: var(--acento); text-decoration: underline; }
 
-/* nav de pie: volver al índice + prev/next (corrige G7) */
+/* nav de pie: volver al índice + subir + siguiente pieza (D4, corrige M5) */
 .nav-pie {
   font-family: var(--sans);
   font-size: 0.85rem;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  gap: 0.5rem 1.5rem;
+  gap: 0.25rem 1rem;
   border-top: 1px solid var(--regla);
   margin-top: 3.5rem;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
+}
+
+.nav-pie a {
+  color: var(--gris);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-minimo);
+  padding: 0 0.5rem;
+}
+
+.nav-pie a:first-child { margin-left: -0.5rem; }
+
+.nav-pie a:hover { color: var(--acento); text-decoration: underline; }
+
+.nav-pie .nav-pie-siguiente {
+  color: var(--acento);
+  font-weight: 600;
+  text-align: right;
 }
 
 /* ---------- 5 · Header de pieza ---------- */
@@ -308,6 +435,33 @@ figcaption {
 
 .para-quien dt:first-child { margin-top: 0; }
 .para-quien dd { margin: 0.15rem 0 0; }
+
+/* índice de pieza: "En esta pieza", plegado por defecto (D5, corrige M6) */
+.indice-pieza {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  border: 1px solid var(--regla);
+  padding: 0 1.1rem;
+  margin: 0 0 2.5rem;
+}
+
+.indice-pieza[open] { padding-bottom: 0.9rem; }
+
+.indice-pieza ol {
+  margin: 0.15rem 0 0;
+  padding-left: 1.35rem;
+}
+
+.indice-pieza li { margin-bottom: 0.15rem; }
+
+.indice-pieza a {
+  color: var(--tinta);
+  text-decoration-color: var(--regla);
+  display: inline-block;
+  padding: 0.35rem 0;
+}
+
+.indice-pieza a:hover { color: var(--acento); text-decoration-color: var(--acento); }
 
 /* ---------- 6 · Cifra destacada (.dato) ---------- */
 
@@ -534,11 +688,30 @@ figcaption {
 .fuentes ol { padding-left: 1.4rem; }
 .fuentes li { margin-bottom: 0.6rem; }
 
-.fuentes .retorno { text-decoration: none; margin-left: 0.35rem; }
+/* retornos y refs de nota: el control más usado del género gana área táctil
+   sin mover el texto (padding + margen negativo — D2, corrige M2/M3) */
+.fuentes .retorno {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.55rem 0.5rem;
+  margin: -0.45rem -0.15rem -0.45rem 0.2rem;
+}
 
 sup.nota-ref { line-height: 0; }
 
-sup.nota-ref a { text-decoration: none; font-family: var(--sans); font-size: 0.72em; }
+/* refs consecutivas: aire suficiente para que las áreas táctiles no se
+   solapen (T03 del smoke test — el tap jamás cae en la nota equivocada) */
+sup.nota-ref + sup.nota-ref { margin-left: 1.1em; }
+
+sup.nota-ref a {
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 0.72em;
+  position: relative;
+  z-index: 1;
+  padding: 1.35em 0.75em;
+  margin: -1.35em -0.55em;
+}
 
 /* resaltar la nota destino al llegar por ancla */
 .fuentes li:target { background: var(--nota); outline: 1px solid var(--regla); padding: 0.25rem 0.4rem; }
@@ -653,13 +826,27 @@ sup.nota-ref a { text-decoration: none; font-family: var(--sans); font-size: 0.7
   gap: 1.25rem;
 }
 
+/* card completa táctil con estado discreto (D7, corrige M8/M9):
+   el link del título se proyecta sobre toda la card; el details queda
+   por encima para conservar su propio tap */
 .card-publicacion {
+  position: relative;
   border: 1px solid var(--regla);
   padding: 1.25rem 1.4rem;
   margin: 0;
+  transition: border-color 0.18s ease, transform 0.18s ease;
 }
 
-.card-publicacion:hover { border-color: var(--gris); }
+@media (hover: hover) {
+  .card-publicacion:hover {
+    border-color: var(--acento);
+    transform: translateY(-2px);
+  }
+}
+
+.card-publicacion:active { transform: translateY(0); border-color: var(--acento); }
+
+.card-publicacion:focus-within { border-color: var(--acento); }
 
 .card-publicacion .kicker { display: block; margin-bottom: 0.45rem; }
 
@@ -674,18 +861,29 @@ sup.nota-ref a { text-decoration: none; font-family: var(--sans); font-size: 0.7
 .card-titulo a { color: var(--tinta); text-decoration: none; }
 .card-titulo a:hover { color: var(--acento); text-decoration: underline; }
 
-.card-resumen { font-size: 0.95rem; margin: 0 0 0.6rem; }
+/* toda la card abre la pieza */
+.card-titulo a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card-resumen { font-size: 0.95rem; margin: 0 0 0.25rem; }
+
+/* capa de profundidad de la card: se abre sin salir del índice (D7) */
+.card-mas {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.35rem;
+}
+
+.card-mas[open] { padding-bottom: 0.35rem; }
 
 .card-llevas {
   font-family: var(--sans);
   font-size: 0.85rem;
   color: var(--tinta);
   margin: 0 0 0.6rem;
-}
-
-.card-llevas::before {
-  content: "Qué te llevas: ";
-  font-weight: 700;
 }
 
 .card-meta {
@@ -758,7 +956,11 @@ sup.nota-ref a { text-decoration: none; font-family: var(--sans); font-size: 0.7
   .nav-retorno,
   .nav-pie,
   .btn-copiar,
+  .indice-pieza,
   .salto-contenido { display: none; }
+
+  .card-mas > summary { display: none; }
+  .card-mas::details-content { block-size: auto; overflow: visible; content-visibility: visible; }
 
   a { color: inherit; text-decoration: none; }
 
