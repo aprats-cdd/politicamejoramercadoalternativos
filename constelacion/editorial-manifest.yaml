@@ -23,3 +23,6 @@ piezas:
   - archivo: opinion-cupo-renta-fija.html
     tipo: opinion
     modo: hard
+  - archivo: renta-fija-palanca-patrimonio.html
+    tipo: ensayo
+    modo: hard

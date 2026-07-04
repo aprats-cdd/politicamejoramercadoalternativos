@@ -351,3 +351,25 @@ claims:
     nota: >-
       Etiqueta de versión, no cifra de mercado. La versión del memorándum la
       fija su propio changelog/JSON-LD (memorandum.html, "version": "2.0").
+
+  # ── Rangos de asignación de cartera patrimonial (caracterización del autor) ──
+  # (agregado por AG-SITIO-AUDITOR, motor editorial run 2026-07-04: la opinión
+  #  "palanca del patrimonio" contrasta el peso del bloque de renta fija con el
+  #  de deuda privada en una cartera patrimonial típica. Estos rangos NO son
+  #  datos de mercado auditados: son la caracterización del autor por
+  #  experiencia, registrada por la vía ilustrativa —igual que los 3-7 bps— para
+  #  que S07 reconozca los tokens 40, 60, 5 y 25 sin inflar el registro. La
+  #  pieza los marca explícitamente como orden de magnitud del autor, no como
+  #  promedio de mercado.)
+  - texto: >-
+      En una cartera patrimonial típica, la renta fija corre del orden de 40% a
+      60% del total y la deuda privada del orden de 5% a 25%. Rangos de
+      asignación como orden de magnitud, no cartera concreta ni promedio de
+      mercado auditado.
+    ilustrativo: true
+    nota: >-
+      Caracterización del autor a partir de su experiencia asesorando y
+      estructurando (fn2 de la opinión "palanca del patrimonio"). Toda pieza que
+      los use debe presentarlos como órdenes de magnitud del autor. El factor
+      "dos a tres veces" que la pieza deriva (peso relativo de los bloques) es
+      aritmético sobre estos rangos, no una medición independiente.
