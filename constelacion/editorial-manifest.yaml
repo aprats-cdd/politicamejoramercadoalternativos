@@ -1,0 +1,22 @@
+# Manifest del motor editorial — lo mantiene AG-SITIO-CURADOR (cola) +
+# AG-SITIO-VERIFICADOR (gate). Cada pieza editorial (opinión, hipótesis,
+# ensayo) se declara acá para que eval_editorial.py la gatee contra la voz
+# de la casa (voz-de-la-casa.md).
+#
+#   modo: hard     → pieza nueva bajo la spec; un hallazgo es ROJO.
+#   modo: advisory → corpus pre-spec; se reporta, no bloquea (LEC-20260703:
+#                    el texto vigente no se reescribe por estilo sin rediseño;
+#                    sirve de calibración del calibrador).
+#
+# techo_palabras: opinión ≤ ~1100 · hipótesis ≤ ~1300 · ensayo ≤ ~2600.
+
+piezas:
+  # Corpus fundacional (pre-spec) — advisory: mide la distancia de lo ya
+  # publicado a la voz nueva, sin forzar reescritura.
+  - archivo: separacion-de-roles.html
+    tipo: ensayo
+    modo: advisory
+  - archivo: deuda-privada-como-renta-fija.html
+    tipo: ensayo
+    modo: advisory
+  # Las piezas NUEVAS que forje el motor entran acá con modo: hard.

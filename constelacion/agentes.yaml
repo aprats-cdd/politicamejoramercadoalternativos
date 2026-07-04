@@ -225,6 +225,15 @@ agentes:
       registro de evidencia — con audiencia y registro declarados por pieza.
       Prohibido copiar HTML, CSS o copy del corpus previo (la evidencia es
       memoria; el texto es artefacto). Prosa sin la muletilla prohibida.
+      ENRIQUECIDO 03-jul (motor editorial): DUEÑO de la voz de la casa
+      (constelacion/voz-de-la-casa.md) — escribe cada publicacion nueva
+      (opinion, hipotesis, ensayo) en ese registro, para el banquero de un MFO
+      chileno (perfil Lakpa): sobrio, breve, sin jerga, sin vaguedades, sin la
+      muletilla "no es X — es Y". Marca todo juicio en primera persona
+      ("Sostengo", "Mi lectura es") para que quede etiquetado como juicio y
+      exento del gate de doble-fuente; toda cifra no marcada cae en S07. El DD
+      adversarial disolvio el agente "VOZ": el escritor ownea el registro, el
+      harness gatea lo determinista, los humanos juzgan el tono.
       ENRIQUECIDO 03-jul (capa de experiencia): dueño ademas del MICRO-COPY de
       navegacion que la capa de experiencia introduce ("En esta pieza",
       "Qué te llevas", "Volver al índice", "Subir", "Siguiente: …"). El
@@ -296,6 +305,13 @@ agentes:
       pieza. Audita ademas la completitud de X01-X09 del harness de
       experiencia (que ningun check sea teatro de tokens). Su veto prima sobre
       "ganas de seguir leyendo" del panel (desempate declarado).
+      ENRIQUECIDO 03-jul (motor editorial): nueva lente para hipotesis —
+      "envejece con dignidad". Ante una pieza-hipotesis, se pregunta: si la
+      realidad la falsa, el texto queda como una creencia honesta bien
+      declarada, o expone al autor a burla justa. Veta toda hipotesis cuyo
+      falsador este escondido o cuyo tono no sobreviva su propia falsacion.
+      Audita ademas que el ledger de hipotesis sea honesto (las falsadas
+      visibles, no ocultas — el cierre del loop no es teatro).
     memoria:
       semantica: [las piezas del sitio, spec P1-P16, catalogo de modos de falla del aludido, la spec de experiencia (run del disenador), eval_experiencia.py]
       episodica: constelacion/runs/AG-SITIO-ADVERSARIO/
@@ -457,3 +473,68 @@ agentes:
       gate: eval_experiencia.py (X01-X09) + smoke_experiencia.js (T01-T05, area tactil medida en render) + eval_sitio.py sin regresion (S01-S09) · lo corre el harness/AG-SITIO-VERIFICADOR, nunca su productor; el adversario ataca el UI implementado.
       estado: ejecutable — constelacion/eval_experiencia.py + constelacion/smoke_experiencia.js + constelacion/eval_sitio.py todos VERDES sobre el UI implementado
     metricas: [palabras de prosa del cuerpo modificadas (veto = 0), checks de experiencia rojos al cierre (target 0), regresiones de eval_sitio introducidas (veto = 0), requests externos añadidos (veto = 0)]
+
+  # ══════════════════════════════════════════════════════════════════
+  # MOTOR EDITORIAL — forja 03-jul-2026 (WF-FORJAR-EQUIPO, modo mixto).
+  # Encargo del CEO: el equipo que produce publicaciones NUEVAS (opiniones,
+  # hipotesis, ensayos) en el mismo estilo y tono, con LOOP DE MEJORA.
+  # Cliente primario: el banquero de un MFO chileno (perfil Lakpa) — sobrio,
+  # breve, sin jerga, sin vaguedades (voz-de-la-casa.md).
+  # Cuello: consistencia de voz + disciplina de tesis/hipotesis a escala (nadie
+  # ownea la voz como spec eval-able ni la hipotesis falsable para publicar).
+  # DD adversarial (independiente): PASA-CON-FIXES, 4 criticos aplicados —
+  #   C1 el agente "VOZ" se DISOLVIO (sin mandato irreducible; sus checks ya
+  #      tenian dueño) → la voz es spec de AG-SITIO-ESCRITOR. Netos NUEVOS: 2.
+  #   C2 el calibrador PROPONE, el verificador commitea el harness (no self-val).
+  #   C3 publicar hipotesis = checkpoint del CEO; ledger publico append-only.
+  #   C4 tesis/hipotesis en YAML estructurado parseable (LEY-2 real).
+  # Reusa (no re-crea): AG-SITIO-AUDITOR, AG-SITIO-JURISTA, AG-SITIO-ESCRITOR,
+  #   AG-SITIO-ADVERSARIO, AG-SITIO-LECTORES, AG-SITIO-VERIFICADOR,
+  #   AG-EMPAQUETADOR-CITABLE, AG-SITIO-CURADOR (cola). Estado: PROPUESTA.
+  # ══════════════════════════════════════════════════════════════════
+
+  - slug: AG-EDITORIAL-TESIS
+    rol: Arquitecto de tesis e hipotesis (capa M)
+    estado: propuesta
+    hace: >
+      Toma una idea, opinion o corazonada del CEO y forma el OBJETO de la pieza:
+      la tesis controladora unica (opinion/ensayo) que sobrevive el elevator
+      test, o la hipotesis FALSABLE (asercion + horizonte + falsador) que va al
+      ledger estructurado hipotesis-publicadas.yaml y que la pieza ancla con
+      data-hip. Frontera con AG-SITIO-CURADOR (editor jefe): el curador ownea la
+      cola editorial y la arquitectura de informacion; este agente ownea el acto
+      cognitivo M de formar la tesis/hipotesis por idea. No redacta la pieza (eso
+      es AG-SITIO-ESCRITOR). Publicar una hipotesis bajo el nombre del CEO es
+      checkpoint del CEO, nunca automatico.
+    memoria:
+      semantica: [constelacion/voz-de-la-casa.md, constelacion/hipotesis-publicadas.yaml, "el corpus como exemplars de tesis (las 4 piezas)", criterio del elevator test]
+      episodica: constelacion/runs/AG-EDITORIAL-TESIS/
+      procedural: builder de la ficha de hipotesis (yaml estructurado) + test de tesis en una frase
+    eval:
+      gate: la tesis pasa el elevator test y, si es hipotesis, trae los tres campos verificables en el ledger (asercion+horizonte+falsador); lo corren el harness (eval_editorial.py E02/H01) + el adversario, nunca el. Publicar hipotesis = checkpoint del CEO.
+      estado: ejecutable — constelacion/eval_editorial.py (E02 + H01 sobre el ledger)
+    metricas: [hipotesis publicadas sin los tres campos (veto = 0), tesis que no pasan el elevator test en dos vueltas (target 0), hipotesis publicadas sin checkpoint del CEO (veto = 0)]
+
+  - slug: AG-EDITORIAL-CALIBRADOR
+    rol: Calibrador del loop de mejora (post-publicacion)
+    estado: propuesta
+    hace: >
+      Cierra el loop de mejora despues de publicar. Corre la retrospectiva:
+      registra el outcome de cada hipotesis (confirmada/falsada) en el ledger
+      PUBLICO append-only —las falsadas quedan visibles con su resultado, el
+      track-record honesto es el activo de sobriedad—; convierte cada objecion
+      real no anticipada por el adversario en una PROPUESTA de tripwire; anota la
+      deriva de voz como PROPUESTA de regla nueva para voz-de-la-casa.md;
+      registra la reaccion de lectores en AGREGADO ANONIMO (nombres jamas en el
+      repo, P9; el detalle nominal solo al chat del CEO). PROPONE; el que
+      commitea el harness/tripwire es AG-SITIO-VERIFICADOR (single-writer del
+      gate). Su unico artefacto single-writer: calibracion-editorial.yaml + los
+      outcomes del ledger de hipotesis.
+    memoria:
+      semantica: [constelacion/hipotesis-publicadas.yaml, constelacion/calibracion-editorial.yaml, constelacion/voz-de-la-casa.md, "watch-items del adversario (runs/AG-SITIO-ADVERSARIO/)"]
+      episodica: constelacion/runs/AG-EDITORIAL-CALIBRADOR/
+      procedural: retrospectiva post-publicacion + builder de entradas de calibracion (objecion -> propuesta de tripwire)
+    eval:
+      gate: "L01 del harness (toda objecion no anticipada tiene tripwire commiteado DESPUES) + H01 (integridad del ledger) — lo corre el harness/AG-SITIO-VERIFICADOR, no el; el adversario audita que el cierre del loop no sea teatro. KPI del loop — golpes del adversario no anticipados por pieza tendiendo a 0."
+      estado: ejecutable — constelacion/eval_editorial.py (L01 + H01)
+    metricas: [objeciones no anticipadas sin tripwire al cierre (veto = 0), hipotesis falsadas ocultadas del ledger publico (veto = 0), golpes del adversario no anticipados por pieza (KPI del loop, baja con uso)]

@@ -1,0 +1,25 @@
+# Ledger de hipótesis publicadas — lo mantiene AG-EDITORIAL-CALIBRADOR.
+#
+# Una hipótesis publicada es una creencia FALSABLE del autor, expuesta en
+# público con su condición de falsación. El calibrador la sigue hasta que la
+# realidad la confirma o la falsa, y anota qué tan bien calibrada estaba —
+# ése es el núcleo del loop de mejora: el autor aprende cuán buenas son sus
+# creencias contra el mundo, no contra su propia opinión.
+#
+# Schema por entrada:
+#   id: HIP-YYYY-NN
+#   pieza: archivo.html
+#   asercion: la afirmación falsable, en una frase
+#   horizonte: cuándo debería verse (fecha o condición temporal)
+#   falsador: el hecho observable que la falsaría
+#   fecha_publicacion: YYYY-MM-DD
+#   estado: viva | confirmada | falsada
+#   evidencia: []   # se llena cuando el horizonte llega
+#   calibracion: ''  # nota del calibrador post-outcome
+#
+# Regla dura: una hipótesis sin los tres campos (aserción + horizonte +
+# falsador) NO se publica (E02 de eval_editorial, fail-closed). Publicar una
+# creencia que la realidad puede tumbar es el estándar; esconder el falsador
+# para no quedar mal es lo prohibido.
+
+hipotesis: []   # ninguna hipótesis publicada todavía — el motor está propuesto.

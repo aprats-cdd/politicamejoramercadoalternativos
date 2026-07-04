@@ -1,0 +1,28 @@
+# Ledger de calibración del loop de mejora — lo mantiene AG-EDITORIAL-CALIBRADOR.
+#
+# Cada objeción real (de un lector, un regulador, la prensa) que el
+# AG-SITIO-ADVERSARIO NO anticipó antes de publicar se registra acá y se
+# convierte en una PROPUESTA de tripwire. El cierre del loop es AUDITABLE
+# (L01 de eval_editorial.py, fail-closed): toda entrada con
+# objecion_no_anticipada: true debe tener su tripwire_ref commiteado DESPUÉS
+# de la entrada. Sin ese tripwire, el loop no cerró — y el harness lo bloquea.
+#
+# El calibrador PROPONE; AG-SITIO-VERIFICADOR commitea el tripwire al harness
+# (single-writer del gate). Así el loop de mejora no puede erosionar en
+# silencio la vara que debe atraparlo.
+#
+# KPI del loop: golpes del adversario no anticipados por pieza → tiende a 0 a
+# medida que se acumulan tripwires. La pieza N+1 es mejor que la N solo si ese
+# contador baja. "Afiné la voz" sin ese contador es teatro.
+#
+# Schema por entrada:
+#   pieza: archivo.html
+#   fecha: YYYY-MM-DD
+#   objecion: la objeción real, en una frase
+#   fuente: quién la levantó (agregado/anónimo si es lector — nombres jamás
+#           en el repo, P9; el detalle nominal solo al chat del CEO)
+#   objecion_no_anticipada: true|false
+#   tripwire_ref: dónde quedó el tripwire nuevo (archivo + commit), si aplica
+#   propuesta_voz: regla nueva propuesta para voz-de-la-casa.md, si aplica
+
+entradas: []   # ninguna corrida de calibración todavía — el motor está propuesto.
