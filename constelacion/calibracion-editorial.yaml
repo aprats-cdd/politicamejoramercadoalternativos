@@ -25,4 +25,23 @@
 #   tripwire_ref: dónde quedó el tripwire nuevo (archivo + commit), si aplica
 #   propuesta_voz: regla nueva propuesta para voz-de-la-casa.md, si aplica
 
-entradas: []   # ninguna corrida de calibración todavía — el motor está propuesto.
+entradas:
+  # Corrida 1 del motor (04-jul-2026) · opinión "cupo de renta fija".
+  # El loop de mejora funcionando: el adversario cazó una muletilla que el
+  # harness determinista NO anticipó → tripwire nuevo commiteado.
+  - pieza: opinion-cupo-renta-fija.html
+    fecha: 2026-07-04
+    objecion: >-
+      El adversario cazó "estructura y disciplina, no de permiso especial" —
+      familia muletilla en orden afirmación-primero ("X, no Y"). El check S04 de
+      eval_sitio solo mira la forma negación-primero ("no es X, es Y") y la dejó
+      pasar. La pieza se corrigió a "verificable sin permiso especial".
+    fuente: AG-SITIO-ADVERSARIO (lente voz Lakpa), corrida 1
+    objecion_no_anticipada: true
+    tripwire_ref: "constelacion/eval_editorial.py :: E10 (advisory) — commiteado en esta misma corrida, DESPUÉS de la objeción"
+    propuesta_voz: >-
+      La regla 6 de voz-de-la-casa.md ya prohíbe la muletilla; E10 extiende la
+      detección a la forma afirmación-primero. Se deja ADVISORY (no hard)
+      porque la frontera juicio/hecho usa la familia legítimamente ("una
+      apuesta del autor, no un dato") y un gate determinista sobre el tono
+      false-positivearía la agudeza. El humano decide sobre cada marca.

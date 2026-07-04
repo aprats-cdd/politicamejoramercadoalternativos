@@ -133,6 +133,16 @@ def check_pieza(entry, hip_ids):
 
     if not re.search(r"\d", c[: max(1, len(c) // 3)]):
         adv.append(f"E09 [{arch}] proof-first (proxy): sin cifra/cita en el primer tercio")
+
+    # E10 · muletilla afirmación-primero "X, no [de/un/una/por] Y" — SIEMPRE
+    # ADVISORY. Tripwire nacido de la corrida 1 (el adversario cazó
+    # "estructura y disciplina, no de permiso especial" que S04 —que solo mira
+    # negación-primero "no es X, es Y"— dejó pasar). No es hard: la frontera
+    # juicio/hecho usa la familia legítimamente ("una apuesta, no un dato"), y
+    # un gate determinista sobre el tono false-positivearía la agudeza. Marca
+    # para revisión humana, no bloquea. Ver calibracion-editorial.yaml.
+    for m in re.finditer(r"[a-záéíóúñ]{3,},\s+no\s+(?:de|un|una|por|para)\b", low):
+        adv.append(f"E10 [{arch}] muletilla afirmación-primero (revisar humano): \"{m.group(0)[:50].strip()}\"")
     return (duros, adv)
 
 
