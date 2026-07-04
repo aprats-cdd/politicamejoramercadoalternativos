@@ -45,3 +45,26 @@ entradas:
       porque la frontera juicio/hecho usa la familia legítimamente ("una
       apuesta del autor, no un dato") y un gate determinista sobre el tono
       false-positivearía la agudeza. El humano decide sobre cada marca.
+
+  # Corrida 2 del motor (04-jul-2026) · ensayo "palanca del patrimonio".
+  # El adversario cazó un defecto ARITMÉTICO que ningún gate determinista
+  # anticipaba: un múltiplo en prosa que no ataba con los pesos que la propia
+  # pieza enunciaba. Loop de mejora → tripwire nuevo commiteado.
+  - pieza: renta-fija-palanca-patrimonio.html
+    fecha: 2026-07-04
+    objecion: >-
+      El adversario cazó "dos a tres veces más … que pesa un décimo": la mitad
+      (~50%) ÷ un décimo (10%) = 5×, no 2-3×. El múltiplo enunciado no ataba con
+      los pesos que la prosa declaraba; un banquero numérico lo calcula al
+      margen y la autoridad por sobriedad se resiente. La pieza se corrigió a
+      "del orden de la mitad de la cartera … que rara vez pasa de un quinto"
+      (~50% / ~20% = 2,5×, dentro de "dos a tres" y del rango 5-25%).
+    fuente: AG-SITIO-ADVERSARIO (lente overclaim/aritmética), corrida 2
+    objecion_no_anticipada: true
+    tripwire_ref: "constelacion/eval_editorial.py :: E11 (advisory) — commiteado en esta misma corrida, DESPUÉS de la objeción"
+    propuesta_voz: >-
+      Ninguna regla nueva de voz: la regla 12 (sin vaguedades, un número o
+      nada) ya cubre el caso. E11 es el sensor operativo: marca todo claim
+      multiplicativo ("N veces más/menos") para que un humano verifique que ata
+      con los rangos/pesos que la pieza enuncia. ADVISORY porque un múltiplo
+      puede ser correcto; el gate no computa fracciones-en-palabras sin teatro.

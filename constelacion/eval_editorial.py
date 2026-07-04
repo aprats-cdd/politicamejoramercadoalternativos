@@ -143,6 +143,17 @@ def check_pieza(entry, hip_ids):
     # para revisión humana, no bloquea. Ver calibracion-editorial.yaml.
     for m in re.finditer(r"[a-záéíóúñ]{3,},\s+no\s+(?:de|un|una|por|para)\b", low):
         adv.append(f"E10 [{arch}] muletilla afirmación-primero (revisar humano): \"{m.group(0)[:50].strip()}\"")
+
+    # E11 · claim multiplicativo ("N veces más/menos/mayor/menor") — SIEMPRE
+    # ADVISORY. Tripwire nacido de la corrida 2 (ensayo "palanca del
+    # patrimonio"): el adversario cazó "dos a tres veces … un décimo" — la mitad
+    # ÷ un décimo = 5×, no 2-3×; el múltiplo enunciado NO ataba con los pesos que
+    # la propia prosa declaraba, y el harness no lo vio. Un gate no computa
+    # fracciones-en-palabras sin teatro; marca todo múltiplo para que el humano
+    # verifique que ata con los rangos/pesos que la pieza enuncia. No bloquea:
+    # un múltiplo puede ser correcto. Ver calibracion-editorial.yaml.
+    for m in re.finditer(r"\b\w+\s+veces\s+(?:m[áa]s|menos|mayor|menor)\b", low):
+        adv.append(f"E11 [{arch}] claim multiplicativo (verificar que ata con los rangos): \"{m.group(0)[:50].strip()}\"")
     return (duros, adv)
 
 

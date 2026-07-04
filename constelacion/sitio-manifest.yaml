@@ -43,7 +43,7 @@ paginas:
 - archivo: renta-fija-palanca-patrimonio.html
   tipo: ensayo
   nueva: true
-  gate_pasado: false  # pendiente del veredicto del adversario (motor editorial run 2026-07-04)
+  gate_pasado: true   # adversario PASA-CON-FIXES → 2 fixes aplicados + tripwire E11 (run 2026-07-04)
 - archivo: og-cover.html
   tipo: asset
   nueva: false
