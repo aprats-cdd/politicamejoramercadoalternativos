@@ -36,6 +36,10 @@ paginas:
   - único acto
   - cero interpretación
   - documento que acredita
+- archivo: opinion-cupo-renta-fija.html
+  tipo: opinion
+  nueva: true
+  gate_pasado: false
 - archivo: og-cover.html
   tipo: asset
   nueva: false

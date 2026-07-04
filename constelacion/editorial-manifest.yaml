@@ -20,3 +20,6 @@ piezas:
     tipo: ensayo
     modo: advisory
   # Las piezas NUEVAS que forje el motor entran acá con modo: hard.
+  - archivo: opinion-cupo-renta-fija.html
+    tipo: opinion
+    modo: hard
