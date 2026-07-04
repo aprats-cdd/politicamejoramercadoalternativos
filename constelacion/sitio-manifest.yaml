@@ -40,6 +40,10 @@ paginas:
   tipo: opinion
   nueva: true
   gate_pasado: true   # adversario PASA-CON-FIXES → 3 fixes aplicados (run 2026-07-04)
+- archivo: renta-fija-palanca-patrimonio.html
+  tipo: ensayo
+  nueva: true
+  gate_pasado: false  # pendiente del veredicto del adversario (motor editorial run 2026-07-04)
 - archivo: og-cover.html
   tipo: asset
   nueva: false

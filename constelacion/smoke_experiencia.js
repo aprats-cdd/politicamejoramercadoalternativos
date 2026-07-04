@@ -31,6 +31,7 @@ const PAGINAS = [
   "deuda-privada-como-renta-fija.html",
   "due-diligence-deuda-privada.html",
   "buscador-causas-judiciales.html",
+  "renta-fija-palanca-patrimonio.html",
 ];
 
 const PRIMARIOS = ".masthead-nav a, .nav-retorno a, .nav-pie a, details.indice-pieza > summary, details.card-mas > summary, .logo, .lupa";
