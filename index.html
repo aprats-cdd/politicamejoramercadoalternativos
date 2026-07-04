@@ -57,14 +57,30 @@
 <main id="inicio">
 
   <header class="masthead">
-    <h1 class="masthead-nombre"><a href="./">Andrés Prats</a></h1>
-    <p class="masthead-tagline">Análisis, estándares y herramientas para quien decide cupos de inversión en deuda privada.</p>
+    <div class="masthead-marca">
+      <a href="./" class="logo" aria-label="Andrés Prats — inicio">
+        <svg class="logo-mark" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><rect width="100" height="100" rx="16"/><text x="50" y="68" text-anchor="middle">AP</text></svg>
+      </a>
+      <div class="masthead-id">
+        <h1 class="masthead-nombre"><a href="./">Andrés Prats</a></h1>
+        <p class="masthead-tagline">Análisis, estándares y herramientas para quien decide cupos de inversión en deuda privada.</p>
+      </div>
+    </div>
     <nav class="masthead-nav" aria-label="Secciones del sitio">
       <a href="#publicaciones">Publicaciones</a>
       <a href="#metodologia">Metodología</a>
       <a href="#declaracion">Declaración de interés</a>
       <a href="memorandum.html">Memorándum</a>
+      <button class="lupa" type="button" aria-expanded="false" aria-controls="buscador" hidden>
+        <svg class="lupa-icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+        <span class="vh">Buscar publicaciones</span>
+      </button>
     </nav>
+    <div id="buscador" class="buscador" hidden>
+      <label class="vh" for="q">Buscar en las publicaciones</label>
+      <input id="q" class="buscador-input" type="search" placeholder="Buscar en las publicaciones…" autocomplete="off" spellcheck="false">
+      <p id="buscador-vacio" class="buscador-vacio" hidden>Sin resultados en las publicaciones. <a href="#publicaciones">Ver todas</a>.</p>
+    </div>
   </header>
 
   <p class="doc-referencia">
@@ -192,5 +208,49 @@
   </footer>
 
 </main>
+
+<script>
+/* Búsqueda local de publicaciones (progressive enhancement).
+   Sin JS: no hay lupa ni caja — el índice completo se ve igual.
+   Cero requests externos: filtra el texto de las cards ya presentes. */
+(function () {
+  var lupa = document.querySelector(".lupa");
+  var caja = document.getElementById("buscador");
+  var input = document.getElementById("q");
+  var vacio = document.getElementById("buscador-vacio");
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".card-publicacion"));
+  if (!lupa || !caja || !input || !cards.length) return;
+
+  lupa.hidden = false; // la lupa solo existe cuando hay JS que la sostiene
+
+  function filtrar() {
+    var q = input.value.trim().toLowerCase();
+    var n = 0;
+    cards.forEach(function (c) {
+      var hit = !q || c.textContent.toLowerCase().indexOf(q) !== -1;
+      c.hidden = !hit;
+      if (hit) n++;
+    });
+    if (vacio) vacio.hidden = !(q && n === 0);
+  }
+
+  function abrir(mostrar) {
+    caja.hidden = !mostrar;
+    lupa.setAttribute("aria-expanded", String(mostrar));
+    if (mostrar) {
+      input.focus();
+    } else {
+      input.value = "";
+      filtrar();
+    }
+  }
+
+  lupa.addEventListener("click", function () { abrir(caja.hidden); });
+  input.addEventListener("input", filtrar);
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { abrir(false); lupa.focus(); }
+  });
+})();
+</script>
 </body>
 </html>

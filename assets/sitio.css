@@ -281,13 +281,62 @@ details.indice-pieza[open]::details-content { block-size: auto; }
   }
 }
 
+/* utilidad · texto solo para lectores de pantalla */
+.vh {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
 /* ---------- 4 · Masthead y navegación ---------- */
 
 .masthead {
-  padding: 3.5rem 0 1.75rem;
+  padding: 4.5rem 0 1.75rem;   /* más aire arriba: calma editorial */
   border-bottom: 1px solid var(--regla);
   margin-bottom: 2.5rem;
 }
+
+/* marca: monograma AP + nombre, en una fila (logo a la izquierda) */
+.masthead-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-minimo);
+  min-height: var(--tap-minimo);
+  color: var(--acento);       /* el cuadro hereda este color */
+  flex: 0 0 auto;
+  text-decoration: none;
+  border-radius: 12px;
+}
+
+.logo-mark {
+  display: block;
+  width: 42px;
+  height: 42px;
+}
+
+.logo-mark rect { fill: currentColor; }
+
+.logo-mark text {
+  fill: var(--papel);
+  font-family: var(--serif);
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* marca mini para la cabecera de cada pieza */
+.logo-mark--mini { width: 24px; height: 24px; }
+
+.masthead-id { min-width: 0; }
 
 .masthead-nombre {
   font-family: var(--serif);
@@ -335,12 +384,71 @@ details.indice-pieza[open]::details-content { block-size: auto; }
 
 .masthead-nav a:hover { color: var(--acento); text-decoration: underline; }
 
+/* lupa: botón de búsqueda (solo aparece con JS — progressive enhancement) */
+.lupa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-minimo);
+  min-height: var(--tap-minimo);
+  margin-left: auto;           /* empuja la lupa al extremo derecho de la nav */
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--gris);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.lupa:hover { color: var(--acento); }
+
+.lupa-icono {
+  width: 20px; height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* caja de búsqueda: filtra las publicaciones en vivo */
+.buscador {
+  margin-top: 0.9rem;
+}
+
+.buscador-input {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--tinta);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--acento);
+  padding: 0.6rem 0.2rem;
+  min-height: var(--tap-minimo);
+}
+
+.buscador-input::placeholder { color: var(--gris); }
+.buscador-input:focus { outline: none; border-bottom-width: 2px; }
+
+.buscador-vacio {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--gris);
+  margin: 0.75rem 0 0;
+}
+
 /* nav mínima de retorno (cabecera de cada pieza) — link táctil al índice (D3) */
 .nav-retorno {
   font-family: var(--sans);
   font-size: 0.82rem;
   padding: 1rem 0;
 }
+
+/* marca + nombre en la cabecera de pieza */
+.nav-retorno a {
+  gap: 0.5rem;
+}
+.nav-retorno .logo-mark--mini { color: var(--acento); flex: 0 0 auto; }
 
 .nav-retorno a {
   color: var(--gris);

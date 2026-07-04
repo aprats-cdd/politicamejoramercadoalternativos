@@ -33,7 +33,7 @@ const PAGINAS = [
   "buscador-causas-judiciales.html",
 ];
 
-const PRIMARIOS = ".masthead-nav a, .nav-retorno a, .nav-pie a, details.indice-pieza > summary, details.card-mas > summary";
+const PRIMARIOS = ".masthead-nav a, .nav-retorno a, .nav-pie a, details.indice-pieza > summary, details.card-mas > summary, .logo, .lupa";
 const INLINE = "sup.nota-ref a, .fuentes .retorno";
 const ALTO_PRIMARIO = 44;
 const ALTO_INLINE = 32;

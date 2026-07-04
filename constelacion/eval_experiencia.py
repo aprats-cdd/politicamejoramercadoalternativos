@@ -165,6 +165,38 @@ def main() -> int:
     if "prefers-reduced-motion" not in css:
         fallos.append("X09 [assets/sitio.css] falta prefers-reduced-motion")
 
+    # X10 · marca (logo) inline presente: el home con la marca completa,
+    # cada pieza con la marca mini. Inline SVG (sin request externo, ver X02).
+    for arch, (html, p) in htmls.items():
+        tipo = p.get("tipo")
+        if tipo == "home":
+            if 'class="logo"' not in html or "logo-mark" not in html:
+                fallos.append(f"X10 [{arch}] el home no lleva la marca (class=\"logo\" + logo-mark)")
+        elif tipo in TIPOS_PIEZA:
+            if "logo-mark--mini" not in html:
+                fallos.append(f"X10 [{arch}] la pieza no lleva la marca mini (logo-mark--mini)")
+
+    # X11 · búsqueda con divulgación/degradación (progressive enhancement):
+    # el home declara la lupa como botón OCULTO en el HTML estático (solo el JS
+    # la revela → sin JS no hay control muerto), la caja de búsqueda y el input;
+    # y todo es inline (sin request externo). Fail-closed: si falta la
+    # degradación, ROJO (una lupa visible sin JS sería un botón muerto).
+    for arch, (html, p) in htmls.items():
+        if p.get("tipo") != "home":
+            continue
+        lupa = re.search(r'<button[^>]*class="lupa"[^>]*>', html)
+        if not lupa:
+            fallos.append(f"X11 [{arch}] falta el botón .lupa")
+        elif "hidden" not in lupa.group(0):
+            fallos.append(f"X11 [{arch}] la .lupa no está 'hidden' en el HTML estático "
+                          f"(sin progressive enhancement sería un botón muerto sin JS)")
+        if 'id="buscador"' not in html:
+            fallos.append(f"X11 [{arch}] falta la caja de búsqueda (id=\"buscador\")")
+        if not re.search(r'<input[^>]+type="search"', html):
+            fallos.append(f"X11 [{arch}] falta el input de búsqueda type=\"search\"")
+        if 'aria-controls="buscador"' not in html:
+            fallos.append(f"X11 [{arch}] la lupa no declara aria-controls (a11y)")
+
     print(f"eval_experiencia · {len(htmls)} página(s) en alcance · hoja única {os.path.getsize(CSS)} bytes")
     if fallos:
         print(f"\nROJO - {len(fallos)} hallazgo(s):")
