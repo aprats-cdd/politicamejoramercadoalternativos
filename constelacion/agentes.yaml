@@ -490,12 +490,14 @@ agentes:
   #   C4 tesis/hipotesis en YAML estructurado parseable (LEY-2 real).
   # Reusa (no re-crea): AG-SITIO-AUDITOR, AG-SITIO-JURISTA, AG-SITIO-ESCRITOR,
   #   AG-SITIO-ADVERSARIO, AG-SITIO-LECTORES, AG-SITIO-VERIFICADOR,
-  #   AG-EMPAQUETADOR-CITABLE, AG-SITIO-CURADOR (cola). Estado: PROPUESTA.
+  #   AG-EMPAQUETADOR-CITABLE, AG-SITIO-CURADOR (cola).
+  # Estado: ACTIVA desde 04-jul-2026 — 1er O→M→D corrido (opinión "cupo de renta
+  #   fija", gates verdes, loop cerrado con el tripwire E10) + accept del CEO.
   # ══════════════════════════════════════════════════════════════════
 
   - slug: AG-EDITORIAL-TESIS
     rol: Arquitecto de tesis e hipotesis (capa M)
-    estado: propuesta
+    estado: activa  # promovida 04-jul: 1er O→M→D (opinión cupo renta fija) + accept del CEO
     hace: >
       Toma una idea, opinion o corazonada del CEO y forma el OBJETO de la pieza:
       la tesis controladora unica (opinion/ensayo) que sobrevive el elevator
@@ -517,7 +519,7 @@ agentes:
 
   - slug: AG-EDITORIAL-CALIBRADOR
     rol: Calibrador del loop de mejora (post-publicacion)
-    estado: propuesta
+    estado: activa  # promovida 04-jul: loop cerrado en corrida 1 (tripwire E10) + accept del CEO
     hace: >
       Cierra el loop de mejora despues de publicar. Corre la retrospectiva:
       registra el outcome de cada hipotesis (confirmada/falsada) en el ledger
