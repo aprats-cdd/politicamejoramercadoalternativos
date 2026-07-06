@@ -107,7 +107,7 @@ agentes:
       episodica: constelacion/runs/AG-SINTETIZADOR/
       procedural: dedup + ranking + critico de completitud
     eval:
-      gate: el ledger solo admite lo doble-confirmado; un critico de completitud independiente revisa que no falte. Lo corre otro.
+      gate: el ledger solo admite lo doble-confirmado (check determinista del harness); AG-ADVERSARIO-MEMO revisa completitud (que no falte un hallazgo). Lo corren otros, no él.
       estado: ejecutable
     metricas: [hallazgos sin doble fuente que igual entraron al ledger (target 0)]
 
