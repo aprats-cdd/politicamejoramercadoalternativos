@@ -1,0 +1,66 @@
+name: Auto-merge · todo PR llega a merge
+
+# Enforcement determinístico de "todo PR llega a merge". Corre SIN agente.
+# Se dispara por check_suite (cuando CI termina) y schedule (red de seguridad);
+# NO por pull_request → no aparece como check del PR, así no se auto-referencia
+# ni contamina el rollup. Gate = sólo CI verde. Fail-open jamás: ante duda, skip.
+#
+# Cierra HAL-007 de AUD-2026-07-06: este repo carecía de la capa determinística
+# que la doctrina PR de los otros 4 repos declara como "la que fija la
+# probabilidad en 1".
+
+on:
+  check_suite:
+    types: [completed]
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: read
+
+concurrency:
+  group: auto-merge-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Evaluar y mergear PRs verdes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -uo pipefail   # sin -e: un PR problemático no debe abortar el barrido
+          DEFAULT=$(gh repo view "$REPO" --json defaultBranchRef -q .defaultBranchRef.name)
+          echo "Default branch: $DEFAULT"
+          PRS=$(gh pr list --repo "$REPO" --state open --base "$DEFAULT" \
+                  --json number,headRefName \
+                  -q '.[] | select(.headRefName | startswith("claude/")) | .number')
+          [ -z "${PRS:-}" ] && { echo "Sin PRs candidatos."; exit 0; }
+
+          for n in $PRS; do
+            echo "::group::PR #$n"
+            META=$(gh pr view "$n" --repo "$REPO" --json isDraft,mergeable 2>/dev/null)
+            if [ -z "$META" ]; then echo "no pude leer meta → skip"; echo "::endgroup::"; continue; fi
+            IS_DRAFT=$(echo "$META" | jq -r '.isDraft')
+            MERGEABLE=$(echo "$META" | jq -r '.mergeable')
+            [ "$IS_DRAFT" = "true" ]       && { echo "draft → skip";               echo "::endgroup::"; continue; }
+            [ "$MERGEABLE" = "CONFLICTING" ] && { echo "conflicto → skip";          echo "::endgroup::"; continue; }
+            [ "$MERGEABLE" != "MERGEABLE" ]  && { echo "mergeable=$MERGEABLE → skip"; echo "::endgroup::"; continue; }
+
+            CHECKS=$(gh pr checks "$n" --repo "$REPO" --json name,bucket 2>/dev/null)
+            [ -z "$CHECKS" ] && CHECKS='[]'
+            BAD=$(echo "$CHECKS"  | jq '[.[] | select(.name != "auto-merge") | select(.bucket=="fail" or .bucket=="cancel")] | length')
+            PEND=$(echo "$CHECKS" | jq '[.[] | select(.name != "auto-merge") | select(.bucket=="pending")] | length')
+            [ "${BAD:-0}" != "0" ]  && { echo "checks rojos → skip";     echo "::endgroup::"; continue; }
+            [ "${PEND:-0}" != "0" ] && { echo "checks pendientes → skip"; echo "::endgroup::"; continue; }
+
+            echo "PR #$n verde y mergeable → merge (squash)"
+            gh pr merge "$n" --repo "$REPO" --squash --delete-branch || echo "merge falló (carrera); reintenta próximo evento"
+            echo "::endgroup::"
+          done
+          exit 0

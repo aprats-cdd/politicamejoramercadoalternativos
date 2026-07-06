@@ -1,0 +1,36 @@
+name: CI · gates de la constelación y el sitio
+
+# Capa determinística de verificación. Antes este repo NO tenía
+# .github/workflows/ (HAL-007 de AUD-2026-07-06): la garantía de dos capas de
+# la doctrina PR colapsaba a prompt-only. Este CI corre los gates reales para
+# que auto-merge tenga algo que gatear (sin checks, auto-merge mergea trivial).
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Traer origin/main (los evals de corpus lo leen con git show)
+        run: git fetch --no-tags origin main:refs/remotes/origin/main || echo "sin origin/main aún"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Dependencias
+        run: python -m pip install --upgrade pip pyyaml
+      - name: Gate de las tres leyes (constelación · C01-C06)
+        run: python constelacion/eval_constelacion.py
+      - name: Gates deterministas del sitio
+        run: |
+          python constelacion/eval_sitio.py
+          python constelacion/eval_experiencia.py
+          python constelacion/eval_editorial.py
+          python constelacion/eval_citabilidad.py
+          python constelacion/eval_lector.py
