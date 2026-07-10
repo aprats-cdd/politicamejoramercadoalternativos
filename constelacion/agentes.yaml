@@ -187,8 +187,15 @@ agentes:
       heredada — destino del memo y su URL en negociacion incluido. Ningun
       productor emite un archivo antes de que el brief exista y este juzgado
       (leccion de la autopsia: la ejecucion sin diseño fue la falla raiz).
+      ENRIQUECIDO 10-jul (capa de afilado exogeno): consume el dossier de
+      afilado de AG-EDITORIAL-AFILADOR en la cola editorial y decide (D) que
+      item entra a que pieza, cual se deriva a AG-EDITORIAL-TESIS y cual se
+      descarta con razon escrita. REGLA DURA: editar una pieza YA PUBLICADA
+      bajo el nombre del autor por señal exogena es checkpoint del CEO,
+      nunca automatico. La señal es input, no base: un dossier jamas
+      re-fundamenta una tesis publicada.
     memoria:
-      semantica: [spec de la forja (fase 1), decisiones heredadas, autopsia de proceso y producto, index.html]
+      semantica: [spec de la forja (fase 1), decisiones heredadas, autopsia de proceso y producto, index.html, "dossiers de afilado (constelacion/runs/AG-EDITORIAL-AFILADOR/)"]
       episodica: constelacion/runs/AG-SITIO-CURADOR/
       procedural: design brief con registro de decisiones + matriz requisito→pieza
     eval:
@@ -312,8 +319,17 @@ agentes:
       falsador este escondido o cuyo tono no sobreviva su propia falsacion.
       Audita ademas que el ledger de hipotesis sea honesto (las falsadas
       visibles, no ocultas — el cierre del loop no es teatro).
+      ENRIQUECIDO 10-jul (capa de afilado exogeno): nueva lente — señal
+      interesada. Ante cada dossier de afilado, lee la señal desde el asiento
+      de quien la emitio: quien es el emisor, que vende, que gana si la pagina
+      adopta su marco (un post de un Managing Partner que asesora fondos ES
+      marketing ademas de señal). Ataca todo item cuyo valor dependa del
+      interes del emisor y no de evidencia primaria independiente; ataca
+      ademas el riesgo re-base (que el corpus termine orbitando el marco de
+      un tercero). Su veredicto sobre el dossier es previo a la cola del
+      curador.
     memoria:
-      semantica: [las piezas del sitio, spec P1-P16, catalogo de modos de falla del aludido, la spec de experiencia (run del disenador), eval_experiencia.py]
+      semantica: [las piezas del sitio, spec P1-P16, catalogo de modos de falla del aludido, la spec de experiencia (run del disenador), eval_experiencia.py, "dossiers de afilado (constelacion/runs/AG-EDITORIAL-AFILADOR/)"]
       episodica: constelacion/runs/AG-SITIO-ADVERSARIO/
       procedural: red-team multi-lente por pieza + barrido de frases señalables + barrido experiencia-como-marketing sobre el UI implementado
     eval:
@@ -365,8 +381,14 @@ agentes:
       heredada del DD: el area tactil se mide en render, nunca por presencia
       de tokens CSS; y la completitud de X01-X09 la audita el adversario +
       sintetizador (mismo contrato que los tripwires de S05), no su autor.
+      ENRIQUECIDO 10-jul (capa de afilado exogeno): dueño ademas del gate de
+      afilado — constelacion/eval_afilado.py (A01-A06, determinista sobre los
+      dossiers de AG-EDITORIAL-AFILADOR). Single-writer del harness (contrato
+      C2 del motor editorial): el afilador PROPONE formato/checks, este rol
+      los commitea. La completitud de A01-A06 la audita el adversario, no su
+      autor.
     memoria:
-      semantica: [constelacion/eval_sitio.py, constelacion/eval_experiencia.py, constelacion/smoke_experiencia.js, constelacion/sitio-manifest.yaml, spec P11]
+      semantica: [constelacion/eval_sitio.py, constelacion/eval_experiencia.py, constelacion/smoke_experiencia.js, constelacion/eval_afilado.py, constelacion/sitio-manifest.yaml, spec P11]
       episodica: constelacion/runs/AG-SITIO-VERIFICADOR/
       procedural: harness determinista (eval_sitio + eval_experiencia) + smoke test headless (Playwright, area tactil medida)
     eval:
@@ -540,3 +562,70 @@ agentes:
       gate: "L01 del harness (toda objecion no anticipada tiene tripwire commiteado DESPUES) + H01 (integridad del ledger) — lo corre el harness/AG-SITIO-VERIFICADOR, no el; el adversario audita que el cierre del loop no sea teatro. KPI del loop — golpes del adversario no anticipados por pieza tendiendo a 0."
       estado: ejecutable — constelacion/eval_editorial.py (L01 + H01)
     metricas: [objeciones no anticipadas sin tripwire al cierre (veto = 0), hipotesis falsadas ocultadas del ledger publico (veto = 0), golpes del adversario no anticipados por pieza (KPI del loop, baja con uso)]
+
+  # ══════════════════════════════════════════════════════════════════
+  # CAPA DE AFILADO EXOGENO — forja 10-jul-2026 (WF-FORJAR-EQUIPO, modo
+  # mixto). Encargo del CEO: definir COMO se afila la pagina con señales
+  # exogenas de mercado — primera instancia: post de Joe Briggs (Managing
+  # Partner, BCF) sobre la evolucion del ecosistema de fund administration
+  # (tesis team+tech, consolidacion via PE, bundling de servicios). Regla
+  # del CEO: la señal es INPUT, no base.
+  # Cuello declarado: la capa M — nadie ownea el mapeo señal-exogena →
+  # corpus-publicado. La captura O ya la hace el Cerebro (observacion +
+  # digesto con procedencia); la ejecucion D ya la tiene la constelacion
+  # (curador decide cola → escritor redacta → auditor doble-verifica →
+  # jurista cruza → adversario ataca → verificador gatea). Sin dueño M,
+  # el afilado vive en el chat y muere en el chat.
+  # O→M→D: Cerebro digiere la señal (O) → AG-EDITORIAL-AFILADOR mapea
+  # señal→pieza→claim y rankea (M) → AG-SITIO-CURADOR decide la cola con
+  # checkpoint del CEO para piezas publicadas (D).
+  # Reusa (no re-crea): AG-SITIO-CURADOR, AG-SITIO-ESCRITOR,
+  # AG-SITIO-AUDITOR, AG-SITIO-JURISTA, AG-SITIO-ADVERSARIO,
+  # AG-SITIO-VERIFICADOR, AG-EDITORIAL-TESIS (derivacion), calibrador.
+  # Neto NUEVO: 1 agente. Estado: PROPUESTA hasta primera corrida O→M→D
+  # (dossier del post Briggs) + accept del CEO.
+  # ══════════════════════════════════════════════════════════════════
+
+  - slug: AG-EDITORIAL-AFILADOR
+    rol: Afilador del corpus con señal exogena (capa M)
+    estado: propuesta
+    hace: >
+      Toma un digesto del Cerebro (señal exogena con procedencia declarada:
+      autor, fecha, canal, interes del emisor) y produce el DOSSIER DE
+      AFILADO: tabla señal→pieza→claim-ancla→tipo→propuesta, rankeada por
+      valor para el lector institucional. Tipos canonicos: refuerza (la señal
+      confirma un claim publicado y aporta comparable) · tensiona (la señal
+      contradice o matiza un claim — la pagina debe responder o declarar el
+      gap) · agrega-comparable (evidencia internacional nueva para una
+      seccion existente) · exige-gap-declarado (pregunta que la pagina no
+      responde y debe declarar) · deriva-a-tesis-nueva (la señal amerita
+      pieza propia — se deriva a AG-EDITORIAL-TESIS, jamas se resuelve en el
+      dossier) · no-accion (con razon escrita). TRES REGLAS DURAS:
+      (1) input-no-base — prohibido proponer re-fundamentar una tesis
+      publicada sobre la señal; el corpus argumenta desde su propia
+      evidencia, la señal solo lo afila; (2) la señal NUNCA es fuente — un
+      post de LinkedIn es señal, no evidencia: toda cifra que aspire a
+      entrar declara su fuente primaria candidata (SIFMA/BIS/CMF/registro
+      publico) y pasa por la doble verificacion del auditor (S07) como
+      cualquier claim; (3) el interes del emisor se declara SIEMPRE en el
+      dossier (que vende quien emite la señal) — sin ese campo el dossier
+      es invalido (fail-closed).
+    memoria:
+      semantica: ["las piezas publicadas del sitio (index + 4 piezas)", constelacion/evidencia/registro-sitio.yaml, constelacion/hipotesis-publicadas.yaml, constelacion/voz-de-la-casa.md, "Cerebro:exogeno/digestos/ (la señal digerida con procedencia — input canonico; un post crudo sin digesto no entra)"]
+      episodica: constelacion/runs/AG-EDITORIAL-AFILADOR/
+      procedural: dossier de afilado (yaml estructurado señal→items, parseable por eval_afilado.py) + test input-no-base por item
+    eval:
+      gate: >
+        eval_afilado.py (A01-A06, determinista) — A01 todo item ancla a una
+        pieza existente del repo con claim-ancla no vacio · A02 toda cifra
+        nueva declara fuente primaria candidata y ninguna es la propia señal
+        · A03 tipo dentro del enum canonico · A04 items deriva-a-tesis-nueva
+        declaran destinatario AG-EDITORIAL-TESIS (el dossier no forma tesis)
+        · A05 procedencia + interes-del-emisor presentes · A06 veredicto
+        input-no-base escrito. Lo corren el harness (AG-SITIO-VERIFICADOR es
+        single-writer del eval) + AG-SITIO-ADVERSARIO (lente señal
+        interesada: ataca relevancia, interes del emisor y riesgo re-base),
+        nunca el. La decision de cola es del curador; editar pieza publicada
+        es checkpoint del CEO.
+      estado: ejecutable — constelacion/eval_afilado.py (A01-A06 + selftest)
+    metricas: [items sin ancla a pieza/claim existente (veto = 0), cifras de señal publicadas sin doble fuente primaria (veto = 0), dossiers sin interes-del-emisor declarado (veto = 0), items aceptados por el curador / items propuestos (punteria del afilador, calibra con uso), tesis publicadas re-fundamentadas por señal exogena (veto = 0)]
