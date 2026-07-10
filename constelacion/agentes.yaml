@@ -588,7 +588,7 @@ agentes:
 
   - slug: AG-EDITORIAL-AFILADOR
     rol: Afilador del corpus con señal exogena (capa M)
-    estado: propuesta
+    estado: activa  # promovida 10-jul: 1er O→M→D corrido (dossier Briggs, eval_afilado VERDE) + accept del CEO (E8, en sesion)
     hace: >
       Toma un digesto del Cerebro (señal exogena con procedencia declarada:
       autor, fecha, canal, interes del emisor) y produce el DOSSIER DE
