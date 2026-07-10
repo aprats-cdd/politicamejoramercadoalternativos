@@ -41,6 +41,7 @@ python3 constelacion/eval_citabilidad.py    # footnotes + metadata + capas audit
 python3 constelacion/eval_lector.py         # tabla pregunta→estado del lector institucional
 python3 constelacion/eval_sitio.py          # gate determinista del sitio (S01-S09)
 python3 constelacion/eval_experiencia.py    # gate de experiencia móvil-primero (X01-X09)
+python3 constelacion/eval_afilado.py        # dossiers de afilado exógeno (A01-A06)
 NODE_PATH=/opt/node22/lib/node_modules node constelacion/smoke_experiencia.js  # área táctil medida en render (T01-T05)
 ```
 
@@ -58,6 +59,21 @@ experiencia-como-marketing). El área táctil se mide en un **smoke test headles
 independiente** (`smoke_experiencia.js`), no por tokens CSS — cerró el modo de
 falla "gate de teatro". Estado: **propuesta** hasta el accept del CEO sobre la
 identidad visual. Detalle en `runs/2026-07-03-forja-capa-experiencia.md`.
+
+## Capa de afilado exógeno (forja 10-jul-2026)
+
+Cómo una señal exógena de mercado (un post, un informe, un desarrollo
+regulatorio) afila el corpus publicado — **como input, nunca como base**.
+El Cerebro digiere la señal con procedencia (O) → `AG-EDITORIAL-AFILADOR`
+la mapea contra las piezas en un dossier rankeado (M) → el curador decide
+la cola, con checkpoint del CEO para toda pieza ya publicada (D). Tres
+reglas duras: la señal jamás re-fundamenta una tesis · la señal nunca es
+fuente (toda cifra pasa por doble fuente primaria) · el interés del emisor
+se declara siempre. Gate: `eval_afilado.py` (A01-A06, commiteado por el
+verificador, no por el afilador) + lente "señal interesada" del adversario.
+Estado: **propuesta** hasta el accept del CEO + primera corrida O→M→D
+(dossier del post de Joe Briggs sobre el ecosistema de fund admin).
+Detalle en `runs/2026-07-10-forja-capa-afilado-exogeno.md`.
 
 ## Corridas
 

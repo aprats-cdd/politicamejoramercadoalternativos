@@ -1,0 +1,103 @@
+# Dossier de afilado — corrida 1 de AG-EDITORIAL-AFILADOR (10-jul-2026)
+# Gate: constelacion/eval_afilado.py (A01-A06). La decision de cola es del
+# curador; editar una pieza publicada es checkpoint del CEO.
+
+senal:
+  slug: DIG-2026-07-10-briggs-fund-admin-ecosystem
+  digesto: "Cerebro-andres-prats:exogeno/digestos/DIG-2026-07-10-briggs-fund-admin-ecosystem.md (deriva de OBS-2026-07-10-briggs-fund-admin-ecosystem, capturas del CEO)"
+  procedencia:
+    autor: "Joe Briggs, Managing Partner, BCF"
+    fecha: "2026-07-10 (~7h antes de la captura del CEO)"
+    canal: "linkedin (post publico; 160 reacciones / 25 comentarios / 7 reposts al capturar)"
+  interes_del_emisor: >-
+    Briggs dirige BCF, asesora que vive de mandatos de seleccion de
+    proveedores de servicios de fondos: el post es marketing ademas de
+    señal (su marco "es dificil de navegar" le crea demanda). Ninguna
+    afirmacion suya se trata como evidencia; el mapa de transacciones PE
+    no esta verificado contra fuente primaria.
+
+veredicto_input_no_base: >-
+  0 items re-fundamentan tesis publicadas. Las tesis del corpus (separacion
+  funcional, cupo de renta fija, DD del aportante) siguen argumentadas desde
+  su propia evidencia primaria; la señal solo aporta un comparable de
+  mercado, una tension a responder y material de checklist. El unico marco
+  ajeno con potencial de pieza propia se deriva a AG-EDITORIAL-TESIS, no se
+  resuelve aca.
+
+items:
+
+  - pieza: separacion-de-roles.html
+    claim_ancla: "El estándar que ya rige en otras jurisdicciones"
+    tipo: agrega-comparable
+    ranking: 1
+    propuesta: >-
+      La seccion argumenta el estandar por regulacion comparada. La señal
+      muestra el complemento de MERCADO: la administracion de fondos existe
+      como industria global independiente — decenas de proveedores
+      especializados con dueños, transacciones de PE y competencia propia,
+      mas ofertas dedicadas de law firms offshore (Maples, Ogier, Harneys,
+      Mourant) y bancos custodios (State Street, Northern Trust, MUFG, RBC,
+      BNP Paribas). Afilado propuesto: 1-2 frases + footnote que digan que
+      la separacion funcional no es teoria regulatoria sino una industria
+      que en otras jurisdicciones ya se paga sola. Toda cifra (numero de
+      proveedores, AUA del sector) exige fuente primaria independiente
+      (Monterey Insight, PEI Fund Services reports, informes anuales de los
+      proveedores) y doble verificacion S07 ANTES de entrar — el post no es
+      citable.
+    cifras_nuevas: []
+
+  - pieza: separacion-de-roles.html
+    claim_ancla: "La verificación por oposición"
+    tipo: tensiona
+    ranking: 2
+    propuesta: >-
+      La señal describe el bundling comercial global: reg, compliance,
+      depositario, manco, cosec, banking y loan servicing empaquetados en el
+      MISMO contrato de administracion. Eso re-concentra en un proveedor las
+      funciones cuya oposicion la pagina defiende — es la objecion de
+      mercado mas fuerte contra la tesis ("la industria global va en la
+      direccion contraria por eficiencia"). Afilado propuesto: la pagina
+      responde explicitamente (o declara el gap): la verificacion por
+      oposicion exige independencia de INCENTIVOS, no de logos — el bundling
+      bajo un mismo dueño reproduce el conflicto que la separacion busca
+      eliminar, y la respuesta regulatoria comparada (p.ej. depositario con
+      responsabilidad propia bajo AIFMD) ya distingue empaquetar servicios
+      de fusionar responsabilidades.
+    cifras_nuevas: []
+
+  - pieza: due-diligence-deuda-privada.html
+    claim_ancla: "El cuestionario para enviar"
+    tipo: agrega-comparable
+    ranking: 3
+    propuesta: >-
+      El marco team+tech de la señal, convertido en preguntas del aportante
+      sobre el ADMINISTRADOR del vehiculo (hoy el cuestionario apunta al
+      gestor y la cartera): rotacion del equipo que sirve el fondo ·
+      dependencia de personas vs procesos · integracion y calidad de datos
+      entre administrador, custodio y gestor · uso de automatizacion e IA
+      con supervision humana declarada · experiencia del inversionista
+      (portal, reporteria, tiempos de respuesta). Se adopta el MARCO como
+      criterio propio de la guia (sin citar el post ni a su autor como
+      autoridad — asesor interesado); cero cifras nuevas.
+    cifras_nuevas: []
+
+  - tipo: deriva-a-tesis-nueva
+    destinatario: AG-EDITORIAL-TESIS
+    ranking: 4
+    propuesta: >-
+      Candidata a hipotesis propia (NO se forma aca): la consolidacion via
+      PE de la infraestructura de fondos (administradores comprados y
+      re-vendidos por los mismos tipos de actores a los que sirven) crea un
+      conflicto de interes estructural que los marcos de separacion
+      funcional aun no nombran. Si AG-EDITORIAL-TESIS la toma, exige
+      asercion + horizonte + falsador y fuentes primarias de transacciones;
+      publicarla es checkpoint del CEO.
+
+  - pieza: deuda-privada-como-renta-fija.html
+    claim_ancla: "El cupo más grande del portafolio"
+    tipo: no-accion
+    ranking: 5
+    razon: >-
+      La señal no toca la tesis del cupo de renta fija ni su arquitectura;
+      forzar una mencion seria adoptar el marco del emisor sin necesidad
+      (riesgo re-base). Se evaluo y se descarta.
