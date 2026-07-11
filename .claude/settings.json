@@ -35,5 +35,6 @@
       "mcp__Google_Drive__copy_file"
     ],
     "deny": []
-  }
+  },
+  "askUserQuestionTimeout": "10m"
 }
