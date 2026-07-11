@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "defaultMode": "dontAsk",
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "WebFetch"
+    ],
+    "ask": [
+      "Bash(git push origin main*)",
+      "Bash(git push -u origin main*)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "mcp__Slack__slack_send_message",
+      "mcp__Slack__slack_schedule_message",
+      "mcp__Slack__slack_create_canvas",
+      "mcp__Slack__slack_update_canvas",
+      "mcp__Notion__notion-create-pages",
+      "mcp__Notion__notion-update-page",
+      "mcp__Notion__notion-create-database",
+      "mcp__Notion__notion-update-data-source",
+      "mcp__Notion__notion-move-pages",
+      "mcp__Notion__notion-duplicate-page",
+      "mcp__Notion__notion-create-comment",
+      "mcp__Notion__notion-create-attachment",
+      "mcp__Notion__notion-create-view",
+      "mcp__Notion__notion-update-view",
+      "mcp__Gmail__create_draft",
+      "mcp__Google_Calendar__create_event",
+      "mcp__Google_Calendar__update_event",
+      "mcp__Google_Calendar__delete_event",
+      "mcp__Google_Calendar__respond_to_event",
+      "mcp__Google_Drive__create_file",
+      "mcp__Google_Drive__copy_file"
+    ],
+    "deny": []
+  }
+}
