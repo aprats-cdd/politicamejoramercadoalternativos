@@ -22,4 +22,28 @@
 # creencia que la realidad puede tumbar es el estándar; esconder el falsador
 # para no quedar mal es lo prohibido.
 
-hipotesis: []   # ninguna hipótesis publicada todavía — el motor está propuesto.
+hipotesis:
+
+  # HIP-2026-01 · nacida del análisis del deck de Apollo sobre Private
+  # Investment Grade (04-jul-2026, run 2026-07-04-analisis-apollo-ig.md).
+  # Apollo construye hoy en EE.UU. la infraestructura de liquidez del IG
+  # privado (marketplace propio, ETFs público-privados con State Street,
+  # ventanas de rescate a 30 días). La creencia falsable: esa tratabilidad
+  # llega también a Chile y erosiona el premio de iliquidez que hoy separa
+  # a la deuda privada de la renta fija líquida. Checkpoint del CEO: sí.
+  - id: HIP-2026-01
+    pieza: renta-fija-palanca-patrimonio.html
+    asercion: >-
+      Antes de julio de 2029, al menos un vehículo de deuda privada verificable
+      en Chile ofrecerá a inversionistas institucionales liquidez secundaria
+      estructurada o ventana de rescate periódica — la misma tratabilidad que
+      hoy se cree exclusiva de la renta fija pública.
+    horizonte: julio de 2029 (36 meses desde la publicación)
+    falsador: >-
+      Si a julio de 2029 ningún vehículo de deuda privada local ofrece a
+      institucionales liquidez secundaria estructurada ni ventana de rescate
+      periódica, la hipótesis queda falsada.
+    fecha_publicacion: 2026-07-04
+    estado: viva
+    evidencia: []
+    calibracion: ''
