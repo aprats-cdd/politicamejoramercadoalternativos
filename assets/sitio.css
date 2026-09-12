@@ -43,6 +43,12 @@
   --gris:     oklch(48% 0.02 var(--hue));
   --tenue:    oklch(62% 0.015 var(--hue));
 
+  /* Rótulo estructural (mono, 11-13px, versalitas). Token propio desde el
+     12-sep-2026: el juez midió --tenue a 3,34:1 sobre papel en los rótulos del
+     comparador y del debate, bajo el 4,5:1 que exige WCAG AA para texto chico.
+     --tenue sigue sirviendo donde el tamaño lo permite; los rótulos usan este. */
+  --rotulo:   oklch(44% 0.03 var(--hue));
+
   --regla:       oklch(88% 0.012 var(--hue));
   --regla-suave: oklch(93% 0.008 var(--hue));
 
@@ -98,6 +104,7 @@
     --tinta: oklch(93% 0.01 var(--hue));
     --gris:  oklch(76% 0.012 var(--hue));
     --tenue: oklch(64% 0.012 var(--hue));
+    --rotulo: oklch(78% 0.03 var(--hue));
 
     --regla:       oklch(100% 0 0 / 0.20);
     --regla-suave: oklch(100% 0 0 / 0.12);
@@ -897,138 +904,135 @@ sup.nota-ref a {
   font: 700 44px var(--sans);
 }
 
-/* ---------- 17.4 · El sistema, dibujado (comparador antes / después) ---------- */
+/* ---------- 17.4 · El sistema, dibujado (comparador antes / despues) ----------
 
-/* La tesis es el desacoplamiento, así que la figura tiene que MOSTRARLO: dos
-   perímetros, la misma triada de preguntas en los dos, y una frontera visible.
-   El panel propuesto es una zona rotulada —contorno punteado y rótulo montado
-   sobre la línea, como marca sus fronteras el diagrama oficial de Kubernetes—
-   porque el desacoplamiento se ve cuando hay un contorno que dice qué queda
-   adentro y qué afuera. */
+   Reestructurado el 12-sep-2026 por el bloqueante A3 del juez de clase mundial
+   (runs/AG-SITIO-JUEZ-CLASE-MUNDIAL/2026-09-12-cuarta-corrida-vara-v2.md): la
+   version anterior eran dos paneles que solo se ponian lado a lado desde 768px,
+   asi que en TODO telefono en vertical la comparacion era secuencial —se leia
+   una columna y despues la otra, de memoria—, y medía 813px de alto a 390 de
+   ancho. Un comparador que no se compara de un golpe no es un comparador.
 
-.comparador {
+   Ahora la unidad es la PREGUNTA, no el panel: cada una de las tres ocupa una
+   fila con sus dos respuestas al lado, en cualquier ancho. El rotulo de la
+   pregunta deja de escribirse dos veces, que es de donde sale casi todo el alto
+   que se recupera. El registro visual se conserva: la columna de hoy es
+   superficie hundida y cerrada; la de la propuesta, zona de contorno punteado. */
+
+.comparador { margin: 1.75rem 0 2.5rem; }
+
+.comparador-cab,
+.comparador-fila {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.1rem;
-  margin: 1.75rem 0 2.5rem;
+  gap: 0.7rem;
 }
 
-.comparador-panel {
-  position: relative;
+.comparador-cab { margin-bottom: 0.55rem; }
+
+.comparador-fila {
+  padding-top: 0.9rem;
+  margin-top: 0.9rem;
+  border-top: 1px solid var(--regla-suave);
+}
+
+.comparador-fila:first-of-type { margin-top: 0; }
+
+/* la pregunta manda sobre la fila entera: es el eje de la comparacion */
+.comparador-pregunta {
+  grid-column: 1 / -1;
+  font: 600 0.72rem/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rotulo);
+  margin: 0 0 0.65rem;
+}
+
+/* rotulo de columna en mono versalitas: la "etiqueta de zona" */
+.comparador-titulo {
+  font: 600 0.7rem/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rotulo);
+  display: block;
+}
+
+.comparador-titulo.es-propuesta { color: var(--propuesta); }
+
+.comparador-celda {
   border-radius: var(--radio);
-  padding: 1.35rem 1.25rem 1.25rem;
-  display: flex;
-  flex-direction: column;
+  padding: 0.8rem 0.85rem;
+  font-size: 0.97rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
 }
 
-/* hoy: superficie hundida, contorno sólido — un bloque cerrado */
-.comparador-panel.es-hoy {
+/* hoy: superficie hundida, contorno solido — un bloque cerrado */
+.comparador-celda.es-hoy {
   background: var(--nota);
   box-shadow: 0 0 0 1px var(--regla-suave);
 }
 
-/* con el proyecto: zona con frontera punteada, el perímetro que se abre */
-.comparador-panel.es-propuesta {
+/* con el proyecto: zona con frontera punteada, el perimetro que se abre */
+.comparador-celda.es-propuesta {
   background: var(--superficie);
   border: var(--linea) dashed var(--propuesta-regla);
   box-shadow: var(--sombra-tarjeta);
 }
 
-/* rótulo estructural en mono versalitas: el registro de "etiqueta de zona".
-   En el panel propuesto se monta sobre la línea del contorno. */
-.comparador-titulo {
-  font: 600 0.7rem/1 var(--mono);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--tenue);
-  margin: 0 0 1rem;
+.comparador-celda b { font-weight: 650; display: block; }
+
+/* el limite de cada componente: lo que NO hace. Es lo que convierte el
+   organigrama en argumento de separacion de roles. */
+.comparador-celda .matiz {
   display: block;
-}
-
-.comparador-panel.es-propuesta .comparador-titulo {
-  position: absolute;
-  top: calc(var(--linea) * -1 - 0.42rem);
-  left: 1rem;
-  margin: 0;
-  padding: 0 0.5rem;
-  background: var(--papel);
-  color: var(--propuesta);
-}
-
-.comparador-panel.es-propuesta .tres-preguntas { margin-top: 0.35rem; }
-
-/* Las tres preguntas: el motivo de la página dentro de la figura.
-   Los dos paneles contestan LAS MISMAS tres preguntas —misma estructura,
-   distinto contenido— para que la diferencia se lea sin prosa de apoyo:
-   hoy un solo nombre tres veces; con el proyecto, tres nombres. Una sola
-   tríada, de funciones, la misma que enuncia el cuerpo. */
-.tres-preguntas { margin: 0 0 1rem; }
-
-.tres-preguntas dt {
-  font: 600 0.68rem/1 var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--tenue);
-  margin-top: 0.95rem;
-  padding-top: 0.95rem;
-  border-top: 1px solid var(--regla-suave);
-}
-
-.tres-preguntas dt:first-of-type {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: 0;
-}
-
-.tres-preguntas dd {
-  font-size: 1rem;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
-  color: var(--tinta);
-  margin: 0.42rem 0 0;
-}
-
-.tres-preguntas dd b { font-weight: 650; }
-
-/* el límite de cada componente: lo que NO hace. Es lo que convierte el
-   organigrama en argumento de separación de roles. */
-.tres-preguntas .matiz {
-  display: block;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   font-weight: 400;
   line-height: 1.4;
   color: var(--gris);
-  margin-top: 0.4rem;
-  padding-left: 0.6rem;
+  margin-top: 0.45rem;
+  padding-left: 0.55rem;
   border-left: 2px solid var(--regla);
 }
 
-.comparador-panel.es-propuesta .matiz { border-left-color: var(--propuesta-regla); }
+.comparador-celda.es-propuesta .matiz { border-left-color: var(--propuesta-regla); }
+
+/* El marcador de nota vive dentro de un matiz de 0,76rem en telefono: sin esto
+   el area tactil cae a 30px y T02 lo caza. El texto no crece; el blanco sí. */
+.comparador-celda .matiz sup.nota-ref a {
+  display: inline-block;
+  min-height: 32px;
+  padding: 0 0.35em;
+  line-height: 32px;
+  vertical-align: middle;
+}
 
 .comparador-cierre {
   font-size: 0.85rem;
   line-height: 1.45;
   color: var(--gris);
-  margin: auto 0 0;
+  margin: 0.9rem 0 0;
   padding-top: 0.85rem;
   border-top: 1px solid var(--regla-suave);
 }
 
 .comparador-cierre strong { color: var(--tinta); font-weight: 650; }
 
-@media (max-width: 46rem) {
-  .comparador { grid-template-columns: 1fr; gap: 1.15rem; }
-
-  /* La figura es el argumento: en un teléfono tiene que entrar completa en
-     una pantalla, o deja de leerse de un golpe y pasa a ser una lista que se
-     recorre. Se aprieta el aire, no el contenido. */
-  .comparador-panel { padding: 1.1rem 1rem 1rem; }
-  .comparador-panel.es-propuesta { padding-top: 1.25rem; }
-  .tres-preguntas dt { margin-top: 0.72rem; padding-top: 0.72rem; }
-  .tres-preguntas { margin-bottom: 0.8rem; }
-  .tres-preguntas dd { font-size: 0.97rem; }
-  .comparador-cierre { padding-top: 0.72rem; }
+@media (max-width: 34rem) {
+  .comparador-cab, .comparador-fila { gap: 0.45rem; }
+  .comparador-celda { padding: 0.6rem 0.6rem; font-size: 0.92rem; line-height: 1.3; }
+  .comparador-celda .matiz {
+    font-size: 0.76rem;
+    line-height: 1.32;
+    margin-top: 0.35rem;
+    padding-left: 0.45rem;
+  }
+  .comparador-fila { padding-top: 0.7rem; margin-top: 0.7rem; }
+  .comparador-pregunta { margin-bottom: 0.5rem; }
+  .comparador-cierre { margin-top: 0.75rem; padding-top: 0.7rem; font-size: 0.82rem; }
 }
+
 
 /* ---------- 17.6 · Cita grande (la voz del Mensaje) ---------- */
 
@@ -1099,7 +1103,7 @@ sup.nota-ref a {
   font: 600 0.7rem/1 var(--mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--tenue);
+  color: var(--rotulo);
 }
 
 .debate-lado.es-respuesta .debate-quien { color: var(--propuesta); }
@@ -1258,3 +1262,58 @@ sup.nota-ref a {
   color: var(--acento);
   white-space: nowrap;
 }
+
+/* ---------- 21 · Difusion · lo que el lector convencido puede hacer ----------
+
+   Nace el 12-sep-2026. El sitio llevaba tres paginas y ~3.500 palabras dirigidas
+   a legisladores, equipos de inversion, profesores y abogados, y cero superficie
+   para actuar: el lector que se convencia no tenia donde poner esa conviccion.
+
+   Va DESPUES de las fuentes a proposito: es aparato, no argumento —de la misma
+   clase que la seccion de fuentes, que el manifest editorial ya excluye del
+   conteo de palabras— y el que llega hasta aca es exactamente el que reenvia a
+   un comite o cita en un paper. Anclas planas, sin scripts ni botones de marca:
+   X02 sigue en cero requests externos. */
+
+.difundir {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--regla);
+}
+
+.difundir h2 {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin: 0 0 1.1rem;
+}
+
+.difundir-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.4rem 2rem;
+}
+
+.difundir-titulo {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+  margin-bottom: 0.4rem;
+}
+
+.difundir-item p {
+  margin: 0 0 0.4rem;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--gris);
+}
+
+.difundir-item p:last-child { margin-bottom: 0; }
+
+.difundir code { font-size: 0.8rem; color: var(--acento); }

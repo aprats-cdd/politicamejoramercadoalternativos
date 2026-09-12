@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FBFCFF"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <rect x="80" y="74" width="44" height="44" rx="10" fill="#2248F7"/>
+    <text x="102" y="104" font-size="21" font-weight="600" letter-spacing="-1" fill="#FBFCFF" text-anchor="middle">AP</text>
+    <text x="140" y="103" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" letter-spacing="2.2" fill="#1C3FCC">EL REGISTRO CHILENO · MERCADO DE CAPITALES</text>
+
+    <text x="80" y="222" font-size="66" font-weight="600" letter-spacing="-2.6" fill="#141822">Chile ya separó funciones</text>
+    <text x="80" y="296" font-size="66" font-weight="600" letter-spacing="-2.6" fill="#141822">cuatro veces</text>
+
+    <text x="80" y="366" font-size="25" fill="#585E69">Los rieles se quedan en casa. Los trenes vienen de donde sea.</text>
+
+    <!-- La vía: cuatro tramos tendidos y el quinto pendiente -->
+    <line x1="104" y1="472" x2="1000" y2="472" stroke="#2248F7" stroke-width="3"/>
+    <line x1="1000" y1="472" x2="1108" y2="472" stroke="#00845E" stroke-width="3" stroke-dasharray="7 7"/>
+
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="19" letter-spacing="1" fill="#1C3FCC" text-anchor="middle">
+      <text x="140" y="444">1981</text>
+      <text x="396" y="444">1989·94</text>
+      <text x="712" y="444">2009</text>
+      <text x="944" y="444">2014</text>
+      <text x="1076" y="444" fill="#00845E">2026</text>
+    </g>
+
+    <g fill="#2248F7">
+      <circle cx="140" cy="472" r="9"/>
+      <circle cx="396" cy="472" r="9"/>
+      <circle cx="712" cy="472" r="9"/>
+      <circle cx="944" cy="472" r="9"/>
+    </g>
+    <circle cx="1076" cy="472" r="9" fill="#FBFCFF" stroke="#00845E" stroke-width="3"/>
+
+    <g font-size="20" fill="#585E69" text-anchor="middle">
+      <text x="140" y="516">intermediación</text>
+      <text x="396" y="516">custodia</text>
+      <text x="712" y="516">compensación</text>
+      <text x="944" y="516">el fondo</text>
+    </g>
+    <text x="1076" y="516" font-size="20" font-weight="600" fill="#00845E" text-anchor="middle">¿decidir?</text>
+
+    <text x="80" y="594" font-size="17" fill="#828690">Andrés Prats · El autor declara interés económico directo</text>
+  </g>
+</svg>
