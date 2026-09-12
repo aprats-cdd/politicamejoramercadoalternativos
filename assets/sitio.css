@@ -1230,7 +1230,11 @@ sup.nota-ref a {
 
 .quien-escribe-titulo .logo-mark--mini { flex: none; }
 
-.quien-escribe p { margin-bottom: 0.7rem; }
+/* La caja ocupa el ancho completo, pero su texto respeta la misma medida que
+   el ensayo: sin este tope, a 1440px la línea llegaba a 99 y 132 caracteres
+   contra los 68 del cuerpo, y la declaración de interés —lo primero que lee
+   quien sospecha— era lo más incómodo de leer de la página. */
+.quien-escribe p { margin-bottom: 0.7rem; max-width: 68ch; }
 .quien-escribe > :last-child { margin-bottom: 0; }
 
 /* ---------- 17.4 · Comparador antes / después ---------- */
