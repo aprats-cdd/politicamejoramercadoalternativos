@@ -657,3 +657,29 @@ claims:
       Via de ascenso: abrir el registro de entidades de la CMF para fijar el
       numero chileno de AGF, y la estadistica de la CSSF para el luxemburgues.
       Con eso los dos primeros paneles suben a doble fuente.
+
+  # ── Registro de AGF vigentes de la CMF (index.html, figura y nota 12) ──
+  # Agregado 12-sep-2026. NO es de_oido: es el documento fuente. El dueño
+  # exportó el registro de entidades de la CMF y lo aportó como archivo; queda
+  # commiteado en constelacion/evidencia/fuentes/ para que cualquiera cuente las
+  # filas. Es el único dato chileno del sitio que viene del documento y no de un
+  # resumen de buscador.
+  #
+  # CORRIGE UN ERROR QUE ESTUVO PUBLICADO. La figura dijo "~30 gestores" durante
+  # unas horas, tomado de una nota secundaria ("más de 30"). El número real es
+  # 56: el error era de casi la mitad. Queda escrito acá porque un registro de
+  # evidencia que solo guarda los aciertos no sirve para nada.
+  - texto: >-
+      El registro de entidades de la Comisión para el Mercado Financiero lista
+      56 sociedades administradoras generales de fondos con estado Vigente al 12
+      de septiembre de 2026. De esas 56, del orden de 22 aparecen en el ranking
+      público de patrimonio de fondos mutuos: las demás administran fondos de
+      inversión o fondos privados y no fondos mutuos.
+      Tokens admitidos para esta pieza: 56 22 12
+    fuente_1: "CMF, Consulta de Entidades — Sociedades Administradoras Generales de Fondos, filtro Vigentes, exportación CSV de 12-sep-2026. Archivo commiteado en constelacion/evidencia/fuentes/cmf-agf-vigentes-2026-09-12.csv (56 filas de datos)"
+    fuente_2: "Cruce con el ranking público de patrimonio por AGF de fondos mutuos (BuscaFondos, 22 AGF listadas), aportado por el dueño: toda AGF del ranking aparece en el registro de la CMF"
+    nota: >-
+      No sostiene el patrimonio administrado por ninguna de las 56, ni cuántas
+      administran fondos de terceros, ni el estado procesal de ninguna entidad
+      en particular. El conteo de 22 es del ranking de fondos mutuos y no del
+      registro: es aproximado porque los nombres del ranking vienen truncados.
