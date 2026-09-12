@@ -659,3 +659,69 @@ agentes:
         es checkpoint del CEO.
       estado: ejecutable — constelacion/eval_afilado.py (A01-A06 + selftest)
     metricas: [items sin ancla a pieza/claim existente (veto = 0), cifras de señal publicadas sin doble fuente primaria (veto = 0), dossiers sin interes-del-emisor declarado (veto = 0), items aceptados por el curador / items propuestos (punteria del afilador, calibra con uso), tesis publicadas re-fundamentadas por señal exogena (veto = 0)]
+
+  # ══════════════════════════════════════════════════════════════════
+  # JUEZ DE CLASE MUNDIAL — forja 12-sep-2026 (encargo del CEO en sesion:
+  # "Necesito un Eval de esta pagina. Quienes auditan: el mejor disenador
+  # de paginas web del mundo. [...] Esta pagina la podria haber hecho el
+  # equipo de Apple con Steve Jobs. En diseno, narrativa. [...] Esta pagina
+  # y sus cunas se haran virales, famosa entre politicos, think tanks,
+  # profesores de universidad, equipos de inversiones, abogados.")
+  # Cuello declarado: nadie juzga hoy lo que el codigo no mide — diseno de
+  # clase mundial, comprension de la tesis por un lector ajeno, cunas como
+  # unidad viral, las cinco audiencias. El adversario ataca hechos, norma y
+  # aludido; los lectores preguntan que falta para decidir; la capa de
+  # experiencia mide mecanica movil. Este rol mide la distancia entre la
+  # pagina y la mejor pagina posible sobre el tema.
+  # Reusa (no re-crea): AG-SITIO-VERIFICADOR (gatea y commitea el run),
+  # AG-SITIO-ADVERSARIO (audita severidad), AG-SITIO-ESCRITOR /
+  # AG-SITIO-CURADOR / AG-SITIO-JURISTA (destinos de los cierres).
+  # Neto NUEVO: 1 rol + 1 prompt canonica. Estado: PROPUESTA hasta la
+  # primera corrida aislada + accept del CEO sobre el veredicto.
+  # Forja: constelacion/runs/2026-09-12-forja-juez-clase-mundial.md
+  # ══════════════════════════════════════════════════════════════════
+
+  - slug: AG-SITIO-JUEZ-CLASE-MUNDIAL
+    rol: Juez de clase mundial (diseño · narrativa · cuñas · audiencias)
+    estado: propuesta
+    hace: >
+      FORJADO 12-sep-2026. Audita la pieza publicada con la vara que el equipo
+      de diseño de Apple aplicaba bajo Steve Jobs, traducida al género (ensayo
+      sobrio de política pública, un autor, una columna): sustracción,
+      jerarquía, oficio en el detalle e inevitabilidad del orden; no su
+      lenguaje visual ni su tono comercial. Cuatro lentes en orden: diseño
+      (Rams, Bringhurst, Müller-Brockmann, Tufte, Cairo), narrativa (ensayo
+      Sequoia), honestidad (dónde la página dice más de lo que sus fuentes
+      sostienen) y alcance (qué frase se repite en una sala, una clase, un
+      comité y un memo legal, y cuál se retuerce en contra). Entrega un
+      scorecard de 12 dimensiones en dos varas que se cruzan (Vara Jobs 21 ·
+      Vara Masiva 15), cuatro vetos (tesis no reproducible · lobby en 30
+      segundos · sobreafirmación · superficie contradictoria), tabla de cuñas
+      (ocho tests por cuña), tabla de las cinco audiencias (rechazo #1 →
+      adopción #2), "los tres movimientos de Apple" y cierres priorizados
+      ruteados al rol que los cierra. Corre AISLADO: recibe solo la URL, sus
+      superficies alcanzables y la prompt canónica
+      (constelacion/prompts/eval-juez-clase-mundial.md); jamás el razonamiento
+      del autor ni las corridas de otros roles. No edita: propone. No duplica
+      gates deterministas: lo que S/X/P/L/E/D ya miden lo reporta aparte como
+      fuga del harness.
+      Se distingue de AG-SITIO-ADVERSARIO (ataca hechos, norma y aludido), de
+      AG-SITIO-LECTORES (qué falta para decidir) y de la capa de experiencia
+      (mecánica móvil medida): el juez mide la distancia entre la página y la
+      mejor página posible sobre el tema.
+    memoria:
+      semantica: [constelacion/prompts/eval-juez-clase-mundial.md, index.html, objeciones.html, assets/sitio.css, constelacion/voz-de-la-casa.md, "canon externo: Rams · Bringhurst · Müller-Brockmann · Tufte · Cairo · ensayos de Sequoia"]
+      episodica: constelacion/runs/AG-SITIO-JUEZ-CLASE-MUNDIAL/
+      procedural: nueve pasos de la prompt (primera impresión → test de la tesis → diseño → narrativa → anti-lobby → cuñas → audiencias → superficie de compartir → scorecard) con evidencia por ancla o frase verbatim en cada puntaje
+    eval:
+      gate: >
+        Su salida ES el examen de la pieza (LEY-1): corre como agente aislado,
+        nunca el autor de la página ni la sesión que la escribió. Al informe lo
+        gatea otro: AG-SITIO-VERIFICADOR verifica que el run trae el sobre YAML
+        completo, las nueve secciones, evidencia (ancla o frase verbatim) en
+        cada puntaje, cero actores vivos nombrados y un veredicto consistente
+        con las varas y los vetos; AG-SITIO-ADVERSARIO audita severidad
+        (deflación o inflación de hallazgos). Todo cierre que toque una pieza
+        publicada es checkpoint del CEO. El run lo commitea el verificador.
+      estado: propuesta — juicio en la corrida, verificable post-hoc en el run record; sin harness determinista propio por diseño (lo que el código mide ya tiene dueño y poner un LLM sobre un check decidible es regresión)
+    metricas: [puntajes sin evidencia citada (veto = 0), actores vivos nombrados en el informe (veto = 0), vetos V1-V4 abiertos al cierre (target 0), cierres bloqueantes sin rol destino (target 0), cuñas que pasan los ocho tests por pieza (target ≥3)]
