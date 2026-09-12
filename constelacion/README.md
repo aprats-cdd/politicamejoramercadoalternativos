@@ -91,9 +91,27 @@ dos varas que se cruzan (Jobs 21 · Masiva 15), cuatro vetos, tabla de cuñas
 ruteados al rol que los cierra. No edita, propone; no duplica los gates
 deterministas (lo que uno debió atrapar lo reporta como fuga). Gate del
 informe: el verificador (sobre YAML, nueve secciones, evidencia por puntaje,
-cero actores) y el adversario (severidad). Estado: **propuesta** hasta la
-primera corrida aislada y el accept del CEO sobre el veredicto. Detalle en
+cero actores) y el adversario (severidad). Estado: **activa** desde el 12-sep-2026 — 1a corrida aislada corrida y accept del CEO
+sobre el veredicto (**NO-PASA** · Vara Jobs 13/21 · Vara Masiva 9/15 · veto **V4**:
+superficies heredadas servidas en la raíz que contradicen la pieza). Informe en
+`runs/AG-SITIO-JUEZ-CLASE-MUNDIAL/2026-09-12-index-objeciones.md`; forja en
 `runs/2026-09-12-forja-juez-clase-mundial.md`.
+
+## Elevador de clase mundial (forja 12-sep-2026)
+
+El eslabón que sigue al juez: encargo del CEO de *"la prompt que lleva la página al
+estándar de creatividad, claridad y UX de clase mundial"*, con una audiencia nueva —
+el lector de izquierda chilena— que hay que ganar **sin cambiar la tesis, sin inventar
+beneficios, sin atacar actores y sin perder a las otras cinco**; la página sigue sin
+recomendar aprobar ni rechazar. `AG-SITIO-ELEVADOR` consume el informe del juez como
+input tipado (sin informe no eleva a ciegas) y entrega un paquete de cinco partes: spec
+de elevación, parche completo, evidencia de gates, tabla de seis audiencias y cierre
+honesto. Su disciplina: **sustracción antes que adición** (nada entra sin que algo
+salga) y **una sola idea creativa por página**, ejecutada completa dentro de la
+sobriedad. No publica: propone, y editar una pieza publicada es checkpoint del CEO. La
+elevación se mide con la **re-corrida ciega del juez** sobre la página propuesta — si
+las varas no suben, la movida se revierte. Prompt canónica en
+`prompts/elevar-clase-mundial.md`. Estado: **propuesta** hasta su primera corrida.
 
 ## Corridas
 
