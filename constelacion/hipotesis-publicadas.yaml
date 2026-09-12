@@ -23,12 +23,24 @@
 # para no quedar mal es lo prohibido.
 
 # ─────────────────────────────────────────────────────────────────────────
-# Capa 1 del eval de la pieza sobre el proyecto de ley (12-sep-2026).
+# Capa 1 del eval de la pieza sobre el proyecto de ley.
 #
 # El encargo del CEO fue explícito: "el eval es clave". Los gates antes de
 # publicar (capa 0) miden la pieza; estas tres hipótesis miden si el MARCO
 # viajó, que es lo único que decide si la página sirvió. Se anotan ANTES de
 # publicar: un eval que se escribe después del resultado no es eval.
+#
+# REESCRITAS el 12-sep-2026, mismo día, tras el reencuadre a la tesis del
+# domicilio. Las tres originales medían la página anterior: falsaban contra
+# el marco "control por oposición" —frase que hoy aparece cero veces en el
+# sitio—, contra cuñas que se reescribieron enteras, y declaraban
+# pieza: index.html para el caso sancionado, que se mudó a objeciones.html.
+# Medir eso el 12 de octubre habría sido medir una página que no se publicó.
+# Los enunciados originales viven en git, en el commit b2f0502.
+#
+# Se conservan los ids: son las hipótesis DE ESTA PIEZA, y renumerarlas
+# rompería la trazabilidad de la calibración. Lo que cambió es contra qué
+# se contrastan.
 #
 # Las mide AG-EDITORIAL-CALIBRADOR en la fecha de corte, no antes y no
 # "cuando se vea". Si el horizonte llega y nadie midió, la entrada queda
@@ -40,15 +52,18 @@ hipotesis:
   - id: HIP-2026-01
     pieza: index.html
     asercion: >-
-      El marco "control por oposición" —que el riesgo de administrar plata
-      ajena se contiene separando quién decide de quién administra y valoriza,
-      no agrandando al que hace todo— es más persuasivo para un legislador,
-      un regulador o un dirigente gremial que el marco rival de "gestoras más
-      robustas, más grandes y más profesionales".
+      Soldar las dos ideas —quien invoca Luxemburgo ya aceptó sus estándares,
+      porque lo que atrae la plata es lo mismo que la cuida— es más
+      persuasivo para un legislador, un regulador o un dirigente gremial que
+      defender la separación de roles por sí sola. Razón: monta sobre una
+      ambición país que ya tiene consenso, en vez de pedir que se acepte una
+      regla nueva.
     horizonte: 2026-10-12
     falsador: >-
-      A 30 días de publicada, cero apariciones públicas del marco o de una de
-      las cuñas de la página en boca de un legislador, regulador o dirigente
+      A 30 días de publicada, cero apariciones públicas de la soldadura o de
+      una de las cuñas vigentes —"la plomería se queda en casa", "no hay
+      Luxemburgo sin los estándares de Luxemburgo", "tres manos, tres firmas",
+      "Chile es la excepción"— en boca de un legislador, regulador o dirigente
       gremial (sesión de comisión, columna, entrevista, declaración).
       Si eso ocurre, el encuadre no sirvió: se reescribe el argumento o se
       abandona la tesis. No se culpa al medio ni al diseño.
@@ -60,31 +75,36 @@ hipotesis:
   - id: HIP-2026-02
     pieza: index.html
     asercion: >-
-      Una página que plantea la objeción rival en su mejor versión antes de
-      responderla consigue cobertura de prensa que una página que solo
-      argumenta a favor no consigue, porque le da al periodista las dos
-      posiciones ya ordenadas.
+      Una pieza que no publica una sola cifra de mercado consigue cobertura
+      igual, porque el gancho que le ofrece al periodista es una tesis país
+      citable —"Chile puede ser el Luxemburgo de América Latina"— y no un
+      dato. Es la apuesta explícita de la página: credibilidad sobre pickup.
     horizonte: 2026-10-12
     falsador: >-
-      A 30 días, cero notas de prensa que recojan el marco o citen una cuña
-      de la página.
+      A 30 días, cero notas de prensa que recojan la tesis o citen una cuña
+      de la página. Señal adicional a anotar si aparece: una nota que pida,
+      estime o invente cifras de tamaño que la página deliberadamente no da
+      —eso indicaría que la ausencia de números fue el costo, y obliga a
+      decidir si se registra evidencia citable o se acepta el techo.
     fecha_publicacion: 2026-09-12
     estado: viva
     evidencia: []
     calibracion: ''
 
   - id: HIP-2026-03
-    pieza: index.html
+    pieza: objeciones.html
     asercion: >-
-      La distinción entre "más grande" y "más separado" es concedible en
-      público por alguien que partió de acuerdo con la objeción, porque el
-      caso sancionado que la objeción usa como evidencia es un fallo de
-      concentración de funciones y no de tamaño.
+      Quien hoy sostiene en público la salida modesta —"seamos un hub andino
+      con Perú y Colombia, paso a paso"— puede conceder que esa versión
+      necesita la misma regla de separación, porque la concesión no le cuesta
+      la ambición: solo la secuencia.
     horizonte: 2026-10-27
     falsador: >-
-      A 45 días, nadie que haya sostenido públicamente la posición rival
-      concede la distinción; o alguien la refuta mostrando que el caso
-      sancionado sí fue un fallo de escala.
+      A 45 días, nadie que haya sostenido públicamente la versión modesta
+      concede que requiere separar quién administra de quién decide; o
+      alguien la refuta mostrando un domicilio de fondos relevante que
+      funcione sin esa separación. Lo segundo tumbaría la tesis central de
+      la página, no solo esta hipótesis.
     fecha_publicacion: 2026-09-12
     estado: viva
     evidencia: []
