@@ -495,6 +495,9 @@ details.indice-pieza[open]::details-content { block-size: auto; }
   text-align: right;
 }
 
+/* la nav de pie quedó en un solo paso: el enlace se ancla al borde derecho */
+.nav-pie .nav-pie-siguiente:only-child { margin-left: auto; margin-right: -0.5rem; }
+
 /* ---------- 5 · Header de pieza ---------- */
 
 .pieza-header {
@@ -565,8 +568,8 @@ details.indice-pieza[open]::details-content { block-size: auto; }
 .indice-pieza a {
   color: var(--tinta);
   text-decoration-color: var(--regla);
-  display: inline-block;
-  padding: 0.35rem 0;
+  display: block;
+  padding: 0.5rem 0;
 }
 
 .indice-pieza a:hover { color: var(--acento); text-decoration-color: var(--acento); }
@@ -793,8 +796,23 @@ details.indice-pieza[open]::details-content { block-size: auto; }
   margin: 0 0 1rem;
 }
 
-.fuentes ol { padding-left: 1.4rem; }
+.fuentes ol { list-style: none; padding-left: 2.3rem; margin-left: 0; }
 .fuentes li { margin-bottom: 0.6rem; }
+
+/* El número visible de la nota es el marcador que el cuerpo anuncia, no la
+   posición en la lista. Sin esto, el «7» del cuerpo aterriza en una nota
+   rotulada «5.» y el ancla funciona pero el ojo no. */
+.fuentes li[data-n] { position: relative; }
+
+.fuentes li[data-n]::before {
+  content: attr(data-n) ".";
+  position: absolute;
+  left: -2.3rem;
+  width: 1.9rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--gris);
+}
 
 /* retornos y refs de nota: el control más usado del género gana área táctil
    sin mover el texto (padding + margen negativo — D2, corrige M2/M3) */
@@ -807,9 +825,14 @@ details.indice-pieza[open]::details-content { block-size: auto; }
 
 sup.nota-ref { line-height: 0; }
 
-/* refs consecutivas: aire suficiente para que las áreas táctiles no se
-   solapen (T03 del smoke test — el tap jamás cae en la nota equivocada) */
-sup.nota-ref + sup.nota-ref { margin-left: 1.1em; }
+/* Dos llamadas PEGADAS (sin texto entre medio) necesitan aire para que las
+   áreas táctiles no se solapen: el tap jamás debe caer en la nota equivocada.
+   Va por clase explícita y no por `sup + sup`: el combinador de hermano
+   adyacente ignora el texto entre los dos <sup>, así que separaba con 1.1em
+   dos notas que estaban a una frase entera de distancia, abriendo un hueco en
+   mitad del párrafo. La clase la pone quien escribe, solo cuando de verdad
+   van pegadas. */
+sup.nota-ref.pegada { margin-left: 1.1em; }
 
 sup.nota-ref a {
   text-decoration: none;
@@ -819,6 +842,20 @@ sup.nota-ref a {
   z-index: 1;
   padding: 1.35em 0.75em;
   margin: -1.35em -0.55em;
+}
+
+/* La ref hereda el cuerpo de su anfitrión: en los bloques de tipografía chica
+   (tira de estado, declaración de interés, matices de la figura) el
+   multiplicador en em la deja bajo el mínimo táctil de 32px que mide el smoke.
+   Se compensa el multiplicador; el interlineado no se mueve. */
+.tira-estado .glosa sup.nota-ref a,
+.quien-escribe sup.nota-ref a,
+.cita-grande cite sup.nota-ref a,
+.tres-preguntas .matiz sup.nota-ref a {
+  padding-top: 1.9em;
+  padding-bottom: 1.9em;
+  margin-top: -1.9em;
+  margin-bottom: -1.9em;
 }
 
 /* resaltar la nota destino al llegar por ancla */
@@ -1047,6 +1084,9 @@ sup.nota-ref a {
 
 .colofon .disclaimer { margin-top: 0.9rem; }
 
+/* el papel se separa de su URL: en pantalla no aparece, impreso sí */
+.solo-impresion { display: none; }
+
 /* ============================================================
    17 · Capa landing (12-sep-2026)
    ------------------------------------------------------------
@@ -1089,16 +1129,20 @@ sup.nota-ref a {
   color: var(--acento);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 0.9rem;
+  gap: 0.35rem 0.5rem;
   margin-bottom: 1rem;
 }
 
-.hero-etiqueta .sep { color: var(--regla); }
+/* El separador viaja dentro del segmento que lo precede: no queda huérfano
+   al principio de una línea ni desaparece cuando la etiqueta se apila. */
+.hero-etiqueta > span:not(:last-child)::after {
+  content: "\00B7";
+  color: var(--regla);
+  margin-left: 0.5rem;
+}
 
 @media (max-width: 34rem) {
-  /* apilada, el "/" queda colgando al final de cada línea */
-  .hero-etiqueta .sep { display: none; }
-  .hero-etiqueta { gap: 0.2rem 0.8rem; }
+  .hero-etiqueta { gap: 0.2rem 0.5rem; }
 }
 
 .hero h1 {
@@ -1140,8 +1184,8 @@ sup.nota-ref a {
 
 .tira-estado dt,
 .tira-estado .valor {
-  font-family: var(--mono);
-  font-size: 1.15rem;
+  font-family: var(--sans);
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--tinta);
   display: block;
@@ -1186,7 +1230,11 @@ sup.nota-ref a {
 
 .quien-escribe-titulo .logo-mark--mini { flex: none; }
 
-.quien-escribe p { margin-bottom: 0.7rem; }
+/* La caja ocupa el ancho completo, pero su texto respeta la misma medida que
+   el ensayo: sin este tope, a 1440px la línea llegaba a 99 y 132 caracteres
+   contra los 68 del cuerpo, y la declaración de interés —lo primero que lee
+   quien sospecha— era lo más incómodo de leer de la página. */
+.quien-escribe p { margin-bottom: 0.7rem; max-width: 68ch; }
 .quien-escribe > :last-child { margin-bottom: 0; }
 
 /* ---------- 17.4 · Comparador antes / después ---------- */
@@ -1221,45 +1269,48 @@ sup.nota-ref a {
 
 .comparador-panel.es-propuesta .comparador-titulo { color: var(--acento); }
 
-/* cada actor del vehículo, con lo que carga */
-.actor {
-  border: 1px solid var(--regla);
-  background: var(--papel);
-  padding: 0.7rem 0.85rem;
-  margin-bottom: 0.6rem;
-}
+/* Las tres preguntas: el motivo de la página dentro de la figura.
+   Los dos paneles contestan LAS MISMAS tres preguntas —misma estructura,
+   distinto contenido— para que la diferencia se lea sin prosa de apoyo:
+   hoy un solo nombre tres veces; con el proyecto, tres nombres. Una sola
+   tríada, de funciones, la misma que enuncia el cuerpo. */
+.tres-preguntas { margin: 0 0 1rem; }
 
-.actor-nombre {
+.tres-preguntas dt {
   font-family: var(--sans);
-  font-size: 0.88rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  color: var(--tinta);
-  display: block;
-  margin-bottom: 0.3rem;
-}
-
-.actor-carga {
-  font-family: var(--sans);
-  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--gris);
-  margin: 0;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--regla);
+}
+
+.tres-preguntas dt:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.tres-preguntas dd {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--tinta);
+  margin: 0.3rem 0 0;
+}
+
+.tres-preguntas dd b { font-weight: 700; }
+
+.tres-preguntas .matiz {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
   line-height: 1.45;
-  list-style: none;
-  padding: 0;
-}
-
-.actor-carga li {
-  margin: 0 0 0.15rem;
-  padding-left: 0.85rem;
-  position: relative;
-}
-
-.actor-carga li::before {
-  content: "·";
-  position: absolute;
-  left: 0.2rem;
-  color: var(--acento);
-  font-weight: 700;
+  color: var(--gris);
+  margin-top: 0.2rem;
 }
 
 .comparador-cierre {
@@ -1275,7 +1326,15 @@ sup.nota-ref a {
 .comparador-cierre strong { color: var(--tinta); }
 
 @media (max-width: 46rem) {
-  .comparador { grid-template-columns: 1fr; gap: 1rem; }
+  .comparador { grid-template-columns: 1fr; gap: 0.85rem; }
+
+  /* La figura es el argumento: en un teléfono tiene que entrar completa en
+     una pantalla, o deja de leerse de un golpe y pasa a ser una lista que se
+     recorre. Se aprieta el aire, no el contenido. */
+  .comparador-panel { padding: 1rem 1.1rem 1.1rem; }
+  .tres-preguntas dt { margin-top: 0.7rem; padding-top: 0.7rem; }
+  .tres-preguntas { margin-bottom: 0.8rem; }
+  .comparador-cierre { padding-top: 0.7rem; }
 }
 
 /* ---------- 17.5 · Reglas numeradas (los tres artículos) ---------- */
@@ -1612,4 +1671,16 @@ sup.nota-ref a {
   }
 
   .propuesta-autor { border-left-width: 4pt; }
+
+  /* la barra de progreso es un control de pantalla: no se imprime */
+  body.pieza::before { display: none; }
+
+  /* el lector que imprime se queda con la dirección de la página */
+  .solo-impresion {
+    display: block;
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: #444;
+    overflow-wrap: anywhere;
+  }
 }
