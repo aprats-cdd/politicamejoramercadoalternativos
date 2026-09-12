@@ -1,13 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#FCFBF7"/>
-  <rect x="0" y="0" width="14" height="630" fill="#1C4B43"/>
-  <text x="90" y="106" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" letter-spacing="2" fill="#6B6B66">ANDRÉS PRATS</text>
-  <text x="90" y="204" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" fill="#1B1E24">Chile puede ser el Luxemburgo</text>
-  <text x="90" y="280" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" fill="#1C4B43">de América Latina</text>
-  <rect x="90" y="326" width="120" height="3" fill="#1C4B43"/>
-  <text x="90" y="392" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">Luxemburgo es el segundo domicilio de fondos del mundo, y en</text>
-  <text x="90" y="430" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">su arquitectura hay una regla que Chile no tiene: administrar un</text>
-  <text x="90" y="468" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">fondo y decidir sus inversiones pueden estar en manos distintas.</text>
-  <text x="90" y="506" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">Este proyecto la crea. Es la tesis de esta página, y la firmo.</text>
-  <text x="90" y="570" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" letter-spacing="2" fill="#1C4B43">PROYECTO DE LEY · MERCADO DE CAPITALES · CHILE 2026</text>
+  <rect width="1200" height="630" fill="#FBFCFF"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <rect x="80" y="74" width="44" height="44" rx="10" fill="#2248F7"/>
+    <text x="102" y="104" font-size="21" font-weight="600" letter-spacing="-1" fill="#FBFCFF" text-anchor="middle">AP</text>
+    <text x="140" y="103" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" letter-spacing="2.2" fill="#1C3FCC">PROYECTO DE LEY · MERCADO DE CAPITALES · CHILE 2026</text>
+
+    <text x="80" y="222" font-size="66" font-weight="600" letter-spacing="-2.6" fill="#141822">Chile puede ser el Luxemburgo</text>
+    <text x="80" y="296" font-size="66" font-weight="600" letter-spacing="-2.6" fill="#141822">de América Latina</text>
+
+    <text x="80" y="366" font-size="25" fill="#585E69">Luxemburgo separa a quien administra un fondo de quien decide sus</text>
+    <text x="80" y="402" font-size="25" fill="#585E69">inversiones. Chile no. Este proyecto crea esa figura.</text>
+
+    <rect x="80" y="448" width="480" height="104" rx="10" fill="#F1F2F7"/>
+    <text x="104" y="482" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.6" fill="#828690">HOY</text>
+    <text x="104" y="518" font-size="23" font-weight="600" letter-spacing="-0.6" fill="#141822">Una sola mano carga con todo</text>
+
+    <rect x="616" y="448" width="504" height="104" rx="10" fill="#FFFFFF" stroke="#00845E" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <text x="640" y="482" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.6" fill="#00845E">CON EL PROYECTO</text>
+    <text x="640" y="518" font-size="23" font-weight="600" letter-spacing="-0.6" fill="#141822">Tres manos, tres firmas</text>
+
+    <text x="80" y="594" font-size="17" fill="#828690">Andrés Prats · El autor declara interés económico directo</text>
+  </g>
 </svg>
