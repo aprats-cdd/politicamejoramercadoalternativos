@@ -65,20 +65,23 @@ piezas:
   # de tres tarjetas a una línea, y se apretaron tres párrafos: ~20 palabras),
   # y el resto sube el techo. Sigue muy por debajo del techo por defecto de
   # ensayo (2600) y del tiempo de lectura declarado.
-  # Sube de 960 a 995 el 12-sep-2026, al entrar historia.html. La raíz gana un
-  # párrafo de ~45 palabras que es el argumento que más le faltaba: que la
+  # Sube de 960 a 1000 el 12-sep-2026, al entrar historia.html. La raíz gana un
+  # párrafo de ~50 palabras que es el argumento que más le faltaba: que la
   # separación propuesta es el quinto tramo de una serie chilena
   # (intermediación, custodia, compensación, patrimonio del fondo), y que el
   # gremio de administradoras pide ese tramo. Eso desarma de una línea la
   # objeción más cómoda contra la pieza —"esto es copiar a Luxemburgo"— y por
   # eso no es adorno. Se recortó primero grasa real: la segunda mitad del
   # párrafo de la firma global duplicaba lo que el párrafo anterior ya decía
-  # (-14 palabras). El resto sube el techo. Sigue muy por debajo del techo por
-  # defecto de ensayo (2600).
+  # (-14 palabras). El resto sube el techo. El hallazgo C9 del adversario
+  # obligó después a calificar ese claim —"propuso evaluar", no "pide"— y a
+  # anclarlo a la sección que lo declara, que cuesta unas palabras más y es la
+  # diferencia entre un respaldo gremial afirmado y uno citado. Sigue muy por
+  # debajo del techo por defecto de ensayo (2600).
   - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 995
+    techo_palabras: 1000
   # Sube de 1100 a 1150 el 12-sep-2026, en el reencuadre a la tesis del
   # domicilio. El CEO pidió dos cosas que agregan objeción, no adorno: que la
   # tesis de Luxemburgo cargue con el ataque obvio —"Luxemburgo es un paraíso
@@ -103,7 +106,26 @@ piezas:
   # notas al pie largas, y la sección de fuentes no cuenta para el techo, pero
   # el Método sí. Recortar el Método para calzar un número sería recortar
   # exactamente la parte que hace publicable una pieza citada de oído.
+  #
+  # Sube de 1300 a 1500 en la misma jornada, tras el veredicto NO-PASA del
+  # adversario aislado (runs/AG-SITIO-ADVERSARIO/2026-09-12-historia.md:
+  # 9 bloqueantes, 9 corregibles, 6 menores). Sus hallazgos obligaron a agregar
+  # ~190 palabras, y las seis son concesiones contra el interés del autor:
+  # (1) el estado del derecho vigente —hoy sí se puede contratar a un tercero;
+  # lo que la ley hace es dejar la responsabilidad y el costo en la
+  # administradora— con su nota al pie, porque sin eso la pieza contradecía a
+  # index.html (B6); (2) la asimetría entre los cuatro movimientos anteriores,
+  # que fueron obligaciones, y el quinto, que es un permiso (B8); (3) la
+  # calificación del claim del gremio: "propuso evaluar", anterior al proyecto
+  # y sin posición conocida sobre él (B7); (4) el bloque "qué sí leí", que
+  # separa la única fuente primaria de las siete de oído y desarma la lectura
+  # de la declaración como coartada (B9); (5) la declaración de interés
+  # completa —beneficio Y costo— que la regla 7 exige y esta pieza tenía a
+  # medias (C8); (6) la creencia previa sobre la banca, movida del cuerpo al
+  # Método en primera persona en vez de instalada y desmentida (C3).
+  # Recortarlas para calzar 1300 sería devolver la pieza al estado que el
+  # adversario reprobó. El techo por defecto de ensayo (2600) sigue arriba.
   - archivo: historia.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 1300
+    techo_palabras: 1500

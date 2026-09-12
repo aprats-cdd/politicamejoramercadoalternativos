@@ -508,8 +508,14 @@ claims:
       de inversión de marzo de 2026 sobre separación de roles.
       Tokens de referencia admitidos para esta pieza, con sus variantes de
       puntuación tal como aparecen en el cuerpo:
-      1 2 3 4 5 6 7 53 179 18.876 19.301 20.345 20.712 18.045
-      1981 1981. 1989 1989, 1989. 1994 1994, 2003. 2009 2014 2026,
+      1 2 3 4 5 6 7 8 53 179 18.876 19.301 20.345 20.712 18.045
+      1981 1981, 1981. 1989 1989, 1989. 1994 1994, 2003. 2009 2014 2026 2026,
+      La referencia al Mensaje presidencial N° 166-374 que esta pieza hace en su
+      Método NO entra por acá: entra por el claim del proyecto de ley, que tiene
+      doble fuente y es el único documento primario que el autor leyó. Esa
+      separación es el hallazgo B6/B9 del adversario y es deliberada — mezclar
+      una fuente leída dentro de un claim de oído es exactamente la confusión
+      que la regla 8 existe para impedir.
     de_oido: true
     fuente_citada: >-
       Ley 18.876 (D.O. 21-dic-1989), ficha en repositorio jurídico comercial y
