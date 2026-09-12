@@ -57,7 +57,16 @@ piezas:
     tipo: ensayo
     modo: hard
     techo_palabras: 900
+  # Sube de 1100 a 1150 el 12-sep-2026, en el reencuadre a la tesis del
+  # domicilio. El CEO pidió dos cosas que agregan objeción, no adorno: que la
+  # tesis de Luxemburgo cargue con el ataque obvio —"Luxemburgo es un paraíso
+  # fiscal"— y con la salida realista que ya circula en el debate público
+  # —"seamos un hub andino, paso a paso"—. Son dos ejes nuevos de la objeción
+  # con su respuesta, ~100 palabras. Recortar concesiones para calzar 1100
+  # reconstruiría el hombre de paja que D03 existe para impedir, así que se
+  # recortó la grasa real (~16 palabras) y el resto sube el techo. Sigue muy
+  # por debajo del techo por defecto de ensayo (2600).
   - archivo: objeciones.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 1100
+    techo_palabras: 1150

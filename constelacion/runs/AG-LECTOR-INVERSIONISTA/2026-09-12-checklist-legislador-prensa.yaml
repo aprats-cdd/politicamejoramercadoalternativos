@@ -23,13 +23,13 @@ preguntas:
   - pregunta: "¿Por qué hoy no llegan gestores de activos globales a invertir en Chile?"
     lector: legislador
     estado: respondida
-    donde: "#oficio"
-    evidencia: "Para una firma extranjera que quiere administrar activos chilenos, el camino que queda es montar su propia administradora acá: sociedad, capital, gobierno corporativo, inscripción ante la CMF."
+    donde: "#falta"
+    evidencia: "Sección «Lo que a Chile le falta»: para una firma global, entrar a Chile hoy significa montar una administradora completa; por eso no entran. Los artículos 15, 16 y 17 hacen que contratar a un especialista cueste y no libere."
 
   - pregunta: "¿Ese diagnóstico es del autor o del Gobierno?"
     lector: periodista
     estado: respondida
-    donde: "#oficio"
+    donde: "#falta"
     evidencia: "El diagnóstico es del propio Mensaje presidencial: «[...] lo que ha impedido en la práctica el surgimiento de un mercado de gestores de inversión especializados [...]»"
 
   - pregunta: "¿Esto es desregulación? ¿Quedan menos entidades bajo supervisión?"
@@ -108,12 +108,12 @@ preguntas:
     lector: banca-desarrollo
     estado: respondida
     donde: "#cadauno"
-    evidencia: "Sección «Qué cambia para cada uno»: una administradora chica podría ofrecer estrategias que hoy no sabe correr, y una firma global tendría una vía más liviana que montar administradora completa. Marcado como lectura del autor."
+    evidencia: "Sección «Lo que se abre»: una administradora chica podría ofrecer estrategias que hoy no sabe correr, y un fondo regional que hoy se arma afuera podría armarse acá, con administración, custodia y auditoría chilenas. Marcado como lectura del autor."
 
   - pregunta: "¿Cómo le explico esto a un afiliado que no sabe qué es una AGF?"
     lector: gremio
     estado: respondida
-    donde: "#oficio"
+    donde: "#falta"
     evidencia: "«Un fondo de inversión necesita que alguien haga tres cosas distintas. Alguien tiene que decidir en qué se invierte. Alguien tiene que administrar el vehículo [...] Y alguien tiene que responder cuando algo sale mal.»"
 
   - pregunta: "¿Qué riesgo corre el que ahorra si esto se aprueba?"

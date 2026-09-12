@@ -431,3 +431,48 @@ claims:
       caso: ese contrafactual es inverificable y el propio corpus del sitio ya
       se desdijo de él. Lo máximo sostenible es detección más temprana y mayor
       costo de ejecución, y eso es argumento del autor, no claim.
+
+  # ── Referencias comparadas: Luxemburgo (UE) y Brasil ──
+  # (agregado 12-sep-2026 para el reencuadre de la raíz en torno a la tesis
+  #  "Chile puede ser el Luxemburgo de América Latina". Igual que la entrada
+  #  anterior, los tokens son REFERENCIAS NORMATIVAS —números de directiva,
+  #  de artículo, de instrucción y de resolución—, no cifras de mercado.
+  #
+  #  ADVERTENCIA DE CALIDAD, declarada y no resuelta: a diferencia del resto
+  #  del registro, este claim NO está verificado contra el texto primario. El
+  #  proxy de egress de la sesión bloqueó eur-lex.europa.eu, cmfchile.cl,
+  #  bcn.cl y los sitios de ALFI, Chambers y CVM; lo que hay es literatura de
+  #  práctica leída por búsqueda. Por eso la pieza lo declara al pie Y en el
+  #  Método, y por eso NO se publica ninguna cifra de estas jurisdicciones:
+  #  ni activos bajo administración, ni número de gestores, ni rankings con
+  #  número. La afirmación "segundo domicilio de fondos del mundo" es
+  #  cualitativa y va atribuida a fuente secundaria en la propia nota.
+  #  Para subir de categoría hay que leer los textos primarios.)
+  - texto: >-
+      Régimen europeo: la Directiva 2011/61/UE (AIFMD), en su artículo 20,
+      permite al gestor autorizado delegar en un tercero la gestión de cartera
+      bajo condiciones, sin que la delegación altere su propia responsabilidad
+      frente al fondo y sus partícipes, y sin que pueda vaciarse hasta quedar
+      como entidad buzón. En el régimen luxemburgués, los prestadores
+      esenciales de un fondo regulado —administración central, depositario y
+      auditor— deben estar establecidos y autorizados en Luxemburgo o actuar
+      por sucursal, mientras la gestión de cartera sí puede delegarse fuera.
+      Brasil: la distinción formal entre administrador fiduciário y gestor de
+      recursos como actividades registradas por separado proviene de la
+      Instrução CVM N° 558 de 2015; la Resolução CVM N° 175 de 2022 consolidó
+      el marco de fondos y equiparó al gestor con el administrador como
+      prestador de servicio esencial. Tokens de referencia normativa admitidos
+      para esta pieza: 2011, 61, 20, 558, 2015, 175, 2022, y 9 y 10 como
+      marcadores de nota al pie.
+    fuente_1: "Directiva 2011/61/UE del Parlamento Europeo y del Consejo (AIFMD), artículo 20 — consultada por búsqueda, NO verificada contra el texto consolidado en EUR-Lex (dominio bloqueado en la sesión)"
+    fuente_2: "Literatura de práctica: Chambers Global Practice Guides, Investment Funds / Alternative Funds — Luxembourg; ALFI y Luxembourg for Finance (régimen luxemburgués). Para Brasil: ANBIMA y literatura de práctica brasileña sobre Instrução CVM 558/2015 y Resolução CVM 175/2022 — NO verificadas contra el texto consolidado de la CVM"
+    nota: >-
+      Este claim habilita SOLO afirmaciones de arquitectura: qué función puede
+      delegarse y cuál debe quedar en el domicilio. NO habilita ninguna cifra
+      de tamaño, participación de mercado, empleo ni recaudación de esas
+      jurisdicciones, ni comparar regímenes en detalle, ni afirmar que el
+      proyecto chileno replique el europeo: la asignación de responsabilidad
+      difiere —AIFMD conserva la del gestor autorizado, el proyecto la radica
+      en el gestor de inversiones— y escribir lo contrario sería un error
+      verificable. Tampoco habilita decir que Chile sería el primero de la
+      región: Brasil tiene la separación desde 2015, y la pieza lo dice.
