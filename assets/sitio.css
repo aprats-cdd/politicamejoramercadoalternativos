@@ -15,54 +15,104 @@
 
 /* ---------- 1 · Tokens ---------- */
 
+/* Sistema visual v2 (12-sep-2026). El encargo del CEO: "moderno, para diputados
+   modernos, cercanos, abierto [...] una mirada tipo rockera y kubernete".
+   La tesis de la pieza es un mercado ABIERTO, TRANSPARENTE, DESACOPLADO y CON
+   CONTROLES — vocabulario de arquitectura de sistemas. Así que la forma dice lo
+   mismo que el texto: el sistema se dibuja, cada componente declara su límite, y
+   la frontera del perímetro regulado se ve.
+   Método tomado del código de producción de los design systems que explican
+   arquitecturas (Radix, Supabase, Grafana, Primer, Tailwind, el SVG oficial de
+   Kubernetes): neutro teñido hacia el acento, sólido y texto como tokens
+   distintos, un solo radio, un solo grosor de línea, cero webfonts. */
+
 :root {
-  /* tinta / papel — casi monocromo */
-  --tinta:  #1B1E24;
-  --papel:  #FCFBF7;
-  --gris:   #6B6B66;
-  --regla:  #D9D7CF;
-  --nota:   #F2EFE6;
+  /* el hue del sistema: índigo-violeta vivo. No es el azul de banco (que vive en
+     luminosidad 35-45% y croma 0.10-0.15): acá el croma del acento salta 13x
+     sobre el del neutro, y eso es lo que lo hace vivo. */
+  --hue: 266;
 
-  /* un acento: verde institucional profundo (links, kickers, reglas de énfasis) */
-  --acento: #1C4B43;
+  /* superficies — el canvas NO es blanco puro: deja margen para que una tarjeta
+     se eleve hacia el blanco */
+  --papel:    oklch(99.2% 0.004 var(--hue));
+  --superficie: oklch(100% 0 0);
+  --nota:     oklch(97% 0.008 var(--hue));
 
-  /* excepción semántica documentada (R29/P8): terracota reservado
-     EXCLUSIVAMENTE para el bloque .propuesta-autor. No es acento
-     decorativo; no se usa para nada más. */
-  --propuesta: #9A4520;
+  /* tres niveles de texto, ninguno negro puro */
+  --tinta:    oklch(21% 0.02 var(--hue));
+  --gris:     oklch(48% 0.02 var(--hue));
+  --tenue:    oklch(62% 0.015 var(--hue));
 
-  /* tipografía de sistema (cero webfonts) */
-  --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
-  --sans:  -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --mono:  ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace;
+  --regla:       oklch(88% 0.012 var(--hue));
+  --regla-suave: oklch(93% 0.008 var(--hue));
 
-  /* escala — fluida: 17px en pantalla chica → 19px en escritorio,
-     misma medida de columna (spec D1, corrige M7) */
-  --texto-base: clamp(17px, 16.1px + 0.28vw, 19px);
-  --interlineado: 1.65;
-  --columna: min(42rem, 68ch);
+  /* acento: sólido y texto son tokens DISTINTOS. Con un solo hex, o el relleno
+     se lava o el enlace queda ilegible (convergen Radix, Grafana, Supabase y
+     Primer en esta separación). */
+  --acento:       oklch(45% 0.22 var(--hue));  /* enlaces y texto sobre papel */
+  --acento-solido: oklch(51% 0.26 var(--hue)); /* rellenos y acentos de bloque */
+  --acento-fondo: oklch(96% 0.03 var(--hue));
+  --acento-regla: oklch(84% 0.09 var(--hue));
 
-  /* área táctil mínima del sistema (spec D2, corrige M1-M3):
-     todo control primario la consume; el harness (X03) exige el token
-     y sus usos, el smoke test mide el render */
+  /* color con función: lo que el proyecto PROPONE se distingue de lo VIGENTE.
+     Si un color no significa nada, sobra. */
+  --propuesta:       oklch(52% 0.16 172);
+  --propuesta-fondo: oklch(96% 0.04 172);
+  --propuesta-regla: oklch(82% 0.08 172);
+
+  /* tipografía de sistema: la pila entrega SF Pro, Segoe UI Variable o Roboto,
+     el mismo género que las grotescas de los sistemas modernos. Sin webfont, el
+     aire se recupera con tracking negativo y peso 600 (no 700). */
+  --sans:  ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mono:  ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --serif: ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+
+  /* cuerpo grande: los dos sistemas diseñados para toda la población (GOV.UK 19px,
+     Canada 20px) eligieron el cuerpo más grande de su muestra. Medida corta. */
+  --texto-base: clamp(17px, 15.9px + 0.34vw, 19.5px);
+  --interlineado: 1.62;
+  --columna: min(46rem, 68ch);
+
+  /* un solo radio y un solo grosor de línea en todo el sistema gráfico */
+  --radio: 8px;
+  --radio-chico: 6px;
+  --linea: 1.5px;
+
+  --sombra-tarjeta: 0 0 0 1px var(--regla-suave), 0 1px 2px 0 rgb(2 4 9 / 0.05);
+
   --tap-minimo: 44px;
 
   color-scheme: light dark;
-
-  /* los details del sitio (índice de pieza, card-mas) animan su apertura
-     donde el motor lo soporta; degrada a apertura instantánea (D10) */
   interpolate-size: allow-keywords;
 }
 
+/* Oscuro correcto: alfas recalculadas, no reusadas — el alfa que funciona sobre
+   papel desaparece sobre una superficie oscura. Elevado = mas claro; hundido =
+   mas oscuro. El texto nunca es blanco puro. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --tinta:  #E8E6E0;
-    --papel:  #15181C;
-    --gris:   #9B9A93;
-    --regla:  #33383E;
-    --nota:   #1C2127;
-    --acento: #7FBFAD;
-    --propuesta: #D08E63;
+  :root:not([data-theme="light"]) {
+    --papel:      oklch(19% 0.006 var(--hue));
+    --superficie: oklch(21.5% 0.008 var(--hue));
+    --nota:       oklch(16.5% 0.006 var(--hue));
+
+    --tinta: oklch(93% 0.01 var(--hue));
+    --gris:  oklch(76% 0.012 var(--hue));
+    --tenue: oklch(64% 0.012 var(--hue));
+
+    --regla:       oklch(100% 0 0 / 0.20);
+    --regla-suave: oklch(100% 0 0 / 0.12);
+
+    /* en oscuro el TEXTO del acento es mas claro que el solido */
+    --acento:        oklch(80% 0.15 var(--hue));
+    --acento-solido: oklch(62% 0.22 var(--hue));
+    --acento-fondo:  oklch(28% 0.06 var(--hue));
+    --acento-regla:  oklch(42% 0.10 var(--hue));
+
+    --propuesta:       oklch(78% 0.13 172);
+    --propuesta-fondo: oklch(26% 0.05 172);
+    --propuesta-regla: oklch(40% 0.08 172);
+
+    --sombra-tarjeta: 0 0 0 1px oklch(100% 0 0 / 0.14), 0 1px 2px 0 rgb(1 4 9 / 0.6);
   }
 }
 
@@ -79,9 +129,10 @@ body {
   margin: 0;
   background: var(--papel);
   color: var(--tinta);
-  font-family: var(--serif);
+  font-family: var(--sans);
   line-height: var(--interlineado);
   font-kerning: normal;
+  font-variant-numeric: tabular-nums;
   text-rendering: optimizeLegibility;
 }
 
@@ -93,18 +144,21 @@ main {
   padding: 0 1.25rem;
 }
 
+/* Peso 600 y tracking negativo: sin webfont, es lo que devuelve el aire de una
+   grotesca de diseno. El 700 con tracking cero lee a plantilla. */
 h1, h2, h3 {
-  font-family: var(--serif);
-  font-weight: 700;
-  line-height: 1.25;
+  font-family: var(--sans);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
   color: var(--tinta);
 }
 
 h1, h2, h3 { text-wrap: balance; }
 
-h1 { font-size: 2rem;   margin: 0 0 0.5rem; letter-spacing: -0.01em; }
-h2 { font-size: 1.4rem; margin: 2.75rem 0 0.75rem; }
-h3 { font-size: 1.1rem; margin: 2rem 0 0.5rem; }
+h1 { font-size: clamp(2.1rem, 1.55rem + 2.6vw, 3.4rem); margin: 0 0 0.7rem; letter-spacing: -0.035em; line-height: 1.03; }
+h2 { font-size: clamp(1.45rem, 1.25rem + 0.9vw, 1.85rem); margin: 3.2rem 0 0.9rem; }
+h3 { font-size: 1.12rem; margin: 2rem 0 0.5rem; letter-spacing: -0.012em; }
 
 /* anclas (índice de pieza, notas) aterrizan con aire */
 h2[id], h3[id], .fuentes li[id] { scroll-margin-top: 1.5rem; }
@@ -118,12 +172,16 @@ a {
   color: var(--acento);
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
+  text-decoration-color: var(--acento-regla);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 0.12s ease;
 }
+
+a:hover { text-decoration-color: var(--acento); }
 
 a:hover { text-decoration-thickness: 2px; }
 
-strong { font-weight: 700; }
+strong { font-weight: 650; }
 
 hr {
   border: 0;
@@ -327,10 +385,10 @@ details.indice-pieza[open]::details-content { block-size: auto; }
 
 .logo-mark text {
   fill: var(--papel);
-  font-family: var(--serif);
-  font-size: 46px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--sans);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
 /* marca mini para la cabecera de cada pieza */
@@ -574,208 +632,6 @@ details.indice-pieza[open]::details-content { block-size: auto; }
 
 .indice-pieza a:hover { color: var(--acento); text-decoration-color: var(--acento); }
 
-/* ---------- 6 · Cifra destacada (.dato) ---------- */
-
-.dato {
-  margin: 2.25rem 0;
-  padding: 1.25rem 1.5rem;
-  border-top: 2px solid var(--acento);
-  border-bottom: 1px solid var(--regla);
-  text-align: left;
-}
-
-.dato-cifra {
-  font-family: var(--mono);
-  font-size: 2.1rem;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--tinta);
-  display: block;
-}
-
-.dato-contexto {
-  font-family: var(--sans);
-  font-size: 0.9rem;
-  color: var(--gris);
-  display: block;
-  margin-top: 0.35rem;
-}
-
-.dato-fuente {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  color: var(--gris);
-  display: block;
-  margin-top: 0.7rem;
-}
-
-.dato-fuente::before { content: "Fuente: "; font-weight: 600; }
-
-/* fail-closed visual: un .dato sin .dato-fuente se delata en pantalla
-   (el harness lo bloquea; esto lo hace visible al productor) */
-.dato:not(:has(.dato-fuente)) {
-  outline: 2px dashed var(--propuesta);
-}
-
-.dato:not(:has(.dato-fuente))::after {
-  content: "⚠ cifra sin fuente — no publicable";
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  color: var(--propuesta);
-  display: block;
-  margin-top: 0.5rem;
-}
-
-/* ---------- 7 · Tabla sobria ---------- */
-
-.tabla-envoltura { overflow-x: auto; margin: 2rem 0; }
-
-.tabla-sobria {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 0.92rem;
-}
-
-.tabla-sobria caption {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--tinta);
-  text-align: left;
-  padding-bottom: 0.6rem;
-}
-
-.tabla-sobria th {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--gris);
-  text-align: left;
-  border-bottom: 2px solid var(--tinta);
-  padding: 0.5rem 0.9rem 0.5rem 0;
-}
-
-.tabla-sobria td {
-  border-bottom: 1px solid var(--regla);
-  padding: 0.55rem 0.9rem 0.55rem 0;
-  vertical-align: top;
-}
-
-.tabla-sobria td.num, .tabla-sobria th.num {
-  font-family: var(--mono);
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-  padding-right: 0;
-}
-
-/* fila de fuentes obligatoria al pie de la tabla */
-.tabla-fuentes td {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  color: var(--gris);
-  border-bottom: 0;
-  padding-top: 0.7rem;
-}
-
-/* ---------- 8 · Callouts vigente / propuesta del autor ---------- */
-
-.vigente,
-.propuesta-autor {
-  margin: 2rem 0;
-  padding: 1.1rem 1.35rem;
-}
-
-.vigente {
-  border-left: 3px solid var(--gris);
-  background: var(--nota);
-}
-
-.vigente-etiqueta {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--gris);
-  display: block;
-  margin-bottom: 0.4rem;
-}
-
-/* ÚNICO uso del terracota en el sitio: marca semántica de R29/P8 */
-.propuesta-autor {
-  border-left: 3px solid var(--propuesta);
-  background: var(--nota);
-}
-
-.propuesta-autor-etiqueta {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--propuesta);
-  display: block;
-  margin-bottom: 0.4rem;
-}
-
-.vigente > :last-child,
-.propuesta-autor > :last-child { margin-bottom: 0; }
-
-/* ---------- 9 · Checklist copiable ---------- */
-
-.checklist { margin: 2rem 0; }
-
-.checklist pre {
-  background: var(--nota);
-  border: 1px solid var(--regla);
-  padding: 1.1rem 1.25rem;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  user-select: all;
-  font-size: 0.85rem;
-  line-height: 1.55;
-  margin: 0;
-}
-
-.checklist-acciones {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.btn-copiar {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--acento);
-  background: transparent;
-  border: 1px solid var(--acento);
-  border-radius: 3px;
-  padding: 0.35rem 0.9rem;
-  cursor: pointer;
-}
-
-.btn-copiar:hover { background: var(--nota); }
-
-/* lista de verificación en prosa (ítems con checkbox tipográfico) */
-.checklist-items { list-style: none; padding-left: 0; }
-
-.checklist-items li {
-  padding-left: 1.6rem;
-  position: relative;
-  margin-bottom: 0.6rem;
-}
-
-.checklist-items li::before {
-  content: "☐";
-  position: absolute;
-  left: 0;
-  color: var(--acento);
-}
-
 /* ---------- 10 · Footnotes / fuentes ---------- */
 
 .fuentes {
@@ -861,211 +717,6 @@ sup.nota-ref a {
 /* resaltar la nota destino al llegar por ancla */
 .fuentes li:target { background: var(--nota); outline: 1px solid var(--regla); padding: 0.25rem 0.4rem; }
 
-/* ---------- 11 · Declaración de interés ---------- */
-
-.interes {
-  margin: 3.5rem 0 0;
-  padding: 1.25rem 1.5rem;
-  border: 1px solid var(--regla);
-  background: var(--nota);
-  font-size: 0.92rem;
-}
-
-.interes-titulo {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--tinta);
-  margin: 0 0 0.6rem;
-}
-
-.interes p:last-child { margin-bottom: 0; }
-
-.interes-costos {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--regla);
-}
-
-/* ---------- 12 · Changelog por pieza ---------- */
-
-.changelog {
-  margin: 2.5rem 0;
-  font-size: 0.88rem;
-}
-
-.changelog h2 {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--acento);
-  margin: 0 0 0.75rem;
-}
-
-.changelog dl { margin: 0; }
-
-.changelog dt {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--gris);
-  float: left;
-  clear: left;
-  width: 6.5rem;
-}
-
-.changelog dd { margin: 0 0 0.5rem 7.5rem; }
-
-@media (max-width: 34rem) {
-  .changelog dt { float: none; width: auto; }
-  .changelog dd { margin-left: 0; margin-bottom: 0.75rem; }
-}
-
-/* ---------- 13 · Estado beta (Pub D) ---------- */
-
-.beta {
-  margin: 2rem 0;
-  padding: 1.1rem 1.35rem;
-  border: 1px dashed var(--gris);
-  font-family: var(--sans);
-  font-size: 0.9rem;
-}
-
-.beta-etiqueta {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--papel);
-  background: var(--gris);
-  padding: 0.15rem 0.5rem;
-  border-radius: 2px;
-  margin-bottom: 0.6rem;
-}
-
-.beta p:last-child { margin-bottom: 0; }
-
-/* marca de ejemplo sintético */
-.sintetico {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-style: normal;
-  color: var(--gris);
-  border: 1px solid var(--regla);
-  padding: 0.05rem 0.4rem;
-  border-radius: 2px;
-  white-space: nowrap;
-}
-
-/* ---------- 14 · Cards del índice (home) ---------- */
-
-.cards {
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0;
-  display: grid;
-  gap: 1.25rem;
-}
-
-/* card completa táctil con estado discreto (D7, corrige M8/M9):
-   el link del título se proyecta sobre toda la card; el details queda
-   por encima para conservar su propio tap */
-.card-publicacion {
-  position: relative;
-  border: 1px solid var(--regla);
-  padding: 1.25rem 1.4rem;
-  margin: 0;
-  transition: border-color 0.18s ease, transform 0.18s ease;
-}
-
-@media (hover: hover) {
-  .card-publicacion:hover {
-    border-color: var(--acento);
-    transform: translateY(-2px);
-  }
-}
-
-.card-publicacion:active { transform: translateY(0); border-color: var(--acento); }
-
-.card-publicacion:focus-within { border-color: var(--acento); }
-
-.card-publicacion .kicker { display: block; margin-bottom: 0.45rem; }
-
-.card-titulo {
-  font-family: var(--serif);
-  font-size: 1.2rem;
-  font-weight: 700;
-  line-height: 1.3;
-  margin: 0 0 0.4rem;
-}
-
-.card-titulo a { color: var(--tinta); text-decoration: none; }
-.card-titulo a:hover { color: var(--acento); text-decoration: underline; }
-
-/* toda la card abre la pieza */
-.card-titulo a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-}
-
-.card-resumen { font-size: 0.95rem; margin: 0 0 0.25rem; }
-
-/* capa de profundidad de la card: se abre sin salir del índice (D7) */
-.card-mas {
-  position: relative;
-  z-index: 1;
-  margin: 0 0 0.35rem;
-}
-
-.card-mas[open] { padding-bottom: 0.35rem; }
-
-.card-llevas {
-  font-family: var(--sans);
-  font-size: 0.85rem;
-  color: var(--tinta);
-  margin: 0 0 0.6rem;
-}
-
-.card-meta {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  color: var(--gris);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1rem;
-}
-
-/* documento de referencia (memo) — distinto de las 4 cards */
-.doc-referencia {
-  border-top: 2px solid var(--acento);
-  border-bottom: 1px solid var(--regla);
-  padding: 1rem 0;
-  margin: 2rem 0;
-  font-family: var(--sans);
-  font-size: 0.95rem;
-}
-
-/* bloque «empieza aquí» del home */
-.empieza-aqui {
-  background: var(--nota);
-  border-left: 3px solid var(--acento);
-  padding: 1rem 1.25rem;
-  margin: 2rem 0;
-  font-family: var(--sans);
-  font-size: 0.92rem;
-}
-
-.empieza-aqui ul { list-style: none; padding: 0; margin: 0.5rem 0 0; }
-.empieza-aqui li { margin-bottom: 0.4rem; }
-
-/* bio de 3 líneas del home */
-.bio { margin: 2.5rem 0; font-size: 0.98rem; }
-
 /* ---------- 15 · Colofón ---------- */
 
 .colofon {
@@ -1109,165 +760,161 @@ sup.nota-ref a {
 
 /* ---------- 17.1 · Hero ---------- */
 
-.hero,
-.tira-estado,
-.quien-escribe {
-  width: min(52rem, calc(100vw - 2.5rem));
-  position: relative;
-  left: 50%;
-  translate: -50% 0;
-}
+.hero { margin: 2.6rem 0 1.6rem; }
 
-.hero { margin: 1.5rem 0 0; }
-
+/* kicker en mono versalitas: dice en qué sistema estamos parados */
 .hero-etiqueta {
-  font-family: var(--sans);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font: 600 0.7rem/1.5 var(--mono);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--acento);
+  margin: 0 0 1.1rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 0.5rem;
-  margin-bottom: 1rem;
+  gap: 0.45rem 0.9rem;
 }
 
-/* El separador viaja dentro del segmento que lo precede: no queda huérfano
-   al principio de una línea ni desaparece cuando la etiqueta se apila. */
-.hero-etiqueta > span:not(:last-child)::after {
-  content: "\00B7";
-  color: var(--regla);
-  margin-left: 0.5rem;
-}
-
-@media (max-width: 34rem) {
-  .hero-etiqueta { gap: 0.2rem 0.5rem; }
-}
-
-.hero h1 {
-  font-size: clamp(2.1rem, 1.35rem + 3.3vw, 3.4rem);
-  line-height: 1.12;
-  letter-spacing: -0.022em;
-  margin: 0 0 0.9rem;
-}
-
-.hero .pieza-bajada {
-  font-family: var(--serif);
-  font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem);
+.pieza-bajada {
+  font-size: clamp(1.05rem, 0.98rem + 0.36vw, 1.2rem);
   line-height: 1.5;
   color: var(--gris);
-  margin: 0 0 1.75rem;
-  max-width: 34rem;
+  margin: 0 0 1.6rem;
+  max-width: 40ch;
+  text-wrap: pretty;
 }
 
-.hero .pieza-bajada strong { color: var(--tinta); font-weight: 700; }
+.pieza-bajada strong { color: var(--tinta); font-weight: 600; }
 
-/* ---------- 17.2 · Tira de estado (los hechos antes del scroll) ---------- */
+/* ---------- 17.2 · Línea de estado (los hechos antes del scroll) ---------- */
 
-.tira-estado {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--regla);
-  border: 1px solid var(--regla);
-  margin: 2rem 0 2.5rem;
-  list-style: none;
-  padding: 0;
-}
+/* Antes eran tres tarjetas sueltas bajo el encabezado. Se veían como un panel
+   de control pegado a un ensayo y cortaban la lectura justo donde la tesis
+   recién había aterrizado. Los hechos siguen —en qué estado está la cosa es lo
+   que impide leer la página como lobby— pero ahora van en una sola línea,
+   dentro del encabezado, con un punto vivo que marca "esto está en curso". */
 
-.tira-estado li {
-  background: var(--papel);
-  padding: 0.9rem 1rem;
-  margin: 0;
-}
-
-.tira-estado dt,
-.tira-estado .valor {
-  font-family: var(--sans);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--tinta);
-  display: block;
-  line-height: 1.2;
-}
-
-.tira-estado .glosa {
-  font-family: var(--sans);
-  font-size: 0.78rem;
+.estado {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--gris);
-  display: block;
-  margin-top: 0.3rem;
-  line-height: 1.4;
+  margin: 0;
+  padding: 0.75rem 0 0;
+  border-top: 1px solid var(--regla-suave);
+  max-width: 62ch;
 }
 
-@media (max-width: 34rem) {
-  .tira-estado { grid-template-columns: 1fr; }
+.estado b { color: var(--tinta); font-weight: 650; }
+
+.estado-punto {
+  flex: 0 0 auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.42rem;
+  border-radius: 50%;
+  background: var(--propuesta);
+  box-shadow: 0 0 0 3px var(--propuesta-fondo);
 }
 
 /* ---------- 17.3 · Quién escribe (declaración, arriba y diseñada) ---------- */
 
+/* El interés declarado antes de que el lector pueda sospecharlo solo. Va sobre
+   fondo de acento: se ve que es del autor y no del proyecto. */
 .quien-escribe {
-  border: 1px solid var(--acento);
-  border-left-width: 4px;
-  padding: 1.15rem 1.35rem;
-  margin: 2.5rem 0;
-  font-size: 0.95rem;
+  background: var(--acento-fondo);
+  border-radius: var(--radio);
+  padding: 1.15rem 1.25rem;
+  margin: 0 0 2rem;
 }
 
 .quien-escribe-titulo {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--acento);
-  margin: 0 0 0.6rem;
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
+  font: 600 0.7rem/1 var(--mono);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin-bottom: 0.7rem;
 }
 
-.quien-escribe-titulo .logo-mark--mini { flex: none; }
+.quien-escribe p {
+  margin-bottom: 0.7rem;
+  max-width: 68ch;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
 
-/* La caja ocupa el ancho completo, pero su texto respeta la misma medida que
-   el ensayo: sin este tope, a 1440px la línea llegaba a 99 y 132 caracteres
-   contra los 68 del cuerpo, y la declaración de interés —lo primero que lee
-   quien sospecha— era lo más incómodo de leer de la página. */
-.quien-escribe p { margin-bottom: 0.7rem; max-width: 68ch; }
-.quien-escribe > :last-child { margin-bottom: 0; }
+.quien-escribe p:last-child { margin-bottom: 0; }
 
-/* ---------- 17.4 · Comparador antes / después ---------- */
+.logo-mark--mini { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; }
+.logo-mark--mini rect { fill: var(--acento-solido); }
+.logo-mark--mini text {
+  fill: var(--superficie);
+  font: 700 44px var(--sans);
+}
+
+/* ---------- 17.4 · El sistema, dibujado (comparador antes / después) ---------- */
+
+/* La tesis es el desacoplamiento, así que la figura tiene que MOSTRARLO: dos
+   perímetros, la misma triada de preguntas en los dos, y una frontera visible.
+   El panel propuesto es una zona rotulada —contorno punteado y rótulo montado
+   sobre la línea, como marca sus fronteras el diagrama oficial de Kubernetes—
+   porque el desacoplamiento se ve cuando hay un contorno que dice qué queda
+   adentro y qué afuera. */
 
 .comparador {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin: 1.5rem 0 2.5rem;
+  gap: 1.1rem;
+  margin: 1.75rem 0 2.5rem;
 }
 
 .comparador-panel {
-  border: 1px solid var(--regla);
-  padding: 1.15rem 1.25rem 1.35rem;
+  position: relative;
+  border-radius: var(--radio);
+  padding: 1.35rem 1.25rem 1.25rem;
   display: flex;
   flex-direction: column;
 }
 
-.comparador-panel.es-hoy { background: var(--nota); }
-.comparador-panel.es-propuesta { border-color: var(--acento); border-width: 2px; }
+/* hoy: superficie hundida, contorno sólido — un bloque cerrado */
+.comparador-panel.es-hoy {
+  background: var(--nota);
+  box-shadow: 0 0 0 1px var(--regla-suave);
+}
 
+/* con el proyecto: zona con frontera punteada, el perímetro que se abre */
+.comparador-panel.es-propuesta {
+  background: var(--superficie);
+  border: var(--linea) dashed var(--propuesta-regla);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+/* rótulo estructural en mono versalitas: el registro de "etiqueta de zona".
+   En el panel propuesto se monta sobre la línea del contorno. */
 .comparador-titulo {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 700;
+  font: 600 0.7rem/1 var(--mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gris);
-  margin: 0 0 0.9rem;
+  color: var(--tenue);
+  margin: 0 0 1rem;
   display: block;
 }
 
-.comparador-panel.es-propuesta .comparador-titulo { color: var(--acento); }
+.comparador-panel.es-propuesta .comparador-titulo {
+  position: absolute;
+  top: calc(var(--linea) * -1 - 0.42rem);
+  left: 1rem;
+  margin: 0;
+  padding: 0 0.5rem;
+  background: var(--papel);
+  color: var(--propuesta);
+}
+
+.comparador-panel.es-propuesta .tres-preguntas { margin-top: 0.35rem; }
 
 /* Las tres preguntas: el motivo de la página dentro de la figura.
    Los dos paneles contestan LAS MISMAS tres preguntas —misma estructura,
@@ -1277,15 +924,13 @@ sup.nota-ref a {
 .tres-preguntas { margin: 0 0 1rem; }
 
 .tres-preguntas dt {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font: 600 0.68rem/1 var(--mono);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--gris);
-  margin-top: 0.9rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid var(--regla);
+  color: var(--tenue);
+  margin-top: 0.95rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--regla-suave);
 }
 
 .tres-preguntas dt:first-of-type {
@@ -1295,102 +940,53 @@ sup.nota-ref a {
 }
 
 .tres-preguntas dd {
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
   color: var(--tinta);
-  margin: 0.3rem 0 0;
+  margin: 0.42rem 0 0;
 }
 
-.tres-preguntas dd b { font-weight: 700; }
+.tres-preguntas dd b { font-weight: 650; }
 
+/* el límite de cada componente: lo que NO hace. Es lo que convierte el
+   organigrama en argumento de separación de roles. */
 .tres-preguntas .matiz {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.4;
   color: var(--gris);
-  margin-top: 0.2rem;
+  margin-top: 0.4rem;
+  padding-left: 0.6rem;
+  border-left: 2px solid var(--regla);
 }
+
+.comparador-panel.es-propuesta .matiz { border-left-color: var(--propuesta-regla); }
 
 .comparador-cierre {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  line-height: 1.5;
+  font-size: 0.85rem;
+  line-height: 1.45;
   color: var(--gris);
   margin: auto 0 0;
-  padding-top: 0.8rem;
-  border-top: 1px solid var(--regla);
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--regla-suave);
 }
 
-.comparador-cierre strong { color: var(--tinta); }
+.comparador-cierre strong { color: var(--tinta); font-weight: 650; }
 
 @media (max-width: 46rem) {
-  .comparador { grid-template-columns: 1fr; gap: 0.85rem; }
+  .comparador { grid-template-columns: 1fr; gap: 1.15rem; }
 
   /* La figura es el argumento: en un teléfono tiene que entrar completa en
      una pantalla, o deja de leerse de un golpe y pasa a ser una lista que se
      recorre. Se aprieta el aire, no el contenido. */
-  .comparador-panel { padding: 1rem 1.1rem 1.1rem; }
-  .tres-preguntas dt { margin-top: 0.7rem; padding-top: 0.7rem; }
+  .comparador-panel { padding: 1.1rem 1rem 1rem; }
+  .comparador-panel.es-propuesta { padding-top: 1.25rem; }
+  .tres-preguntas dt { margin-top: 0.72rem; padding-top: 0.72rem; }
   .tres-preguntas { margin-bottom: 0.8rem; }
-  .comparador-cierre { padding-top: 0.7rem; }
-}
-
-/* ---------- 17.5 · Reglas numeradas (los tres artículos) ---------- */
-
-.reglas {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0 2rem;
-  display: grid;
-  gap: 0.9rem;
-}
-
-.regla {
-  display: grid;
-  grid-template-columns: 3.2rem 1fr;
-  gap: 0 1rem;
-  align-items: start;
-  border-top: 1px solid var(--regla);
-  padding-top: 0.9rem;
-  margin: 0;
-}
-
-.regla-num {
-  font-family: var(--mono);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--acento);
-  line-height: 1.1;
-}
-
-/* "Art." sobre el número: sin esto, 15/16/17 se leen como paso 1, 2, 3 */
-.regla-num::before {
-  content: "Art.";
-  display: block;
-  font-family: var(--sans);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gris);
-  margin-bottom: 0.1rem;
-}
-
-.regla-texto { margin: 0; font-size: 0.98rem; }
-
-.regla-efecto {
-  font-family: var(--sans);
-  font-size: 0.84rem;
-  color: var(--gris);
-  margin: 0.35rem 0 0;
-  grid-column: 2;
-}
-
-@media (max-width: 34rem) {
-  .regla { grid-template-columns: 2.4rem 1fr; }
-  .regla-num { font-size: 1.1rem; }
+  .tres-preguntas dd { font-size: 0.97rem; }
+  .comparador-cierre { padding-top: 0.72rem; }
 }
 
 /* ---------- 17.6 · Cita grande (la voz del Mensaje) ---------- */
@@ -1404,9 +1000,9 @@ sup.nota-ref a {
 }
 
 .cita-grande p {
-  font-family: var(--serif);
-  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
-  line-height: 1.45;
+  font-size: clamp(1.12rem, 1rem + 0.55vw, 1.4rem);
+  line-height: 1.38;
+  letter-spacing: -0.015em;
   color: var(--tinta);
   margin: 0 0 0.8rem;
 }
@@ -1423,154 +1019,78 @@ sup.nota-ref a {
   display: block;
 }
 
-/* ---------- 17.7 · Condiciones / límites en rejilla ---------- */
-
-.rejilla-fichas {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0 2rem;
-}
-
-.rejilla-fichas li {
-  border-left: 2px solid var(--acento);
-  padding: 0.15rem 0 0.15rem 0.9rem;
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-.rejilla-fichas.es-limite li { border-left-color: var(--gris); }
-
-.ficha-clave {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gris);
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-@media (max-width: 40rem) {
-  .rejilla-fichas { grid-template-columns: 1fr; gap: 0.9rem; }
-}
-
-/* ---------- 17.8 · Escenario concreto ---------- */
-
-.escenario {
-  border: 1px solid var(--regla);
-  background: var(--nota);
-  padding: 1.15rem 1.35rem;
-  margin: 2rem 0;
-  font-size: 0.95rem;
-}
-
-.escenario-titulo {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gris);
-  display: block;
-  margin-bottom: 0.6rem;
-}
-
-.escenario > :last-child { margin-bottom: 0; }
-
-
 /* ---------- 17.9 · Debate: la objeción con el mismo peso que la respuesta ---------- */
 
 /* La pieza responde una objeción pública. Si la objeción se ve mas chica que
    la respuesta, el lector que la comparte deja de leer antes de llegar al
    argumento. Mismo ancho, misma tipografia, mismo aire: el peso lo decide el
-   contenido, no el diseño. Gate: eval_steelman.py D03/D04. */
+   contenido, no el diseño. Gate: eval_steelman.py D03/D04.
+   En el registro v2 cada lado es una zona rotulada: la objeción es un bloque
+   cerrado y la respuesta una zona con frontera, la misma gramática que la
+   figura de la raíz. */
 
-.debate { margin: 1.5rem 0 2.5rem; }
+.debate { margin: 1.75rem 0 2.5rem; }
 
 .debate-lado {
-  border-top: 3px solid var(--regla);
-  padding-top: 1.1rem;
-  margin-bottom: 2rem;
+  position: relative;
+  border-radius: var(--radio);
+  padding: 1.5rem 1.25rem 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
-.debate-lado.es-objecion { border-top-color: var(--gris); }
-.debate-lado.es-respuesta { border-top-color: var(--acento); }
+.debate-lado.es-objecion {
+  background: var(--nota);
+  box-shadow: 0 0 0 1px var(--regla-suave);
+}
+
+.debate-lado.es-respuesta {
+  background: var(--superficie);
+  border: var(--linea) dashed var(--propuesta-regla);
+  box-shadow: var(--sombra-tarjeta);
+}
 
 .debate-quien {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 700;
+  position: absolute;
+  top: -0.42rem;
+  left: 1rem;
+  padding: 0 0.5rem;
+  background: var(--papel);
+  font: 600 0.7rem/1 var(--mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gris);
-  display: block;
-  margin-bottom: 0.7rem;
+  color: var(--tenue);
 }
 
-.debate-lado.es-respuesta .debate-quien { color: var(--acento); }
+.debate-lado.es-respuesta .debate-quien { color: var(--propuesta); }
 
 .debate-lado p { margin-bottom: 0.9rem; }
 .debate-lado > :last-child { margin-bottom: 0; }
 
 .debate-tesis {
-  font-size: 1.08rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.4;
   color: var(--tinta);
 }
 
-/* los tres golpes de la respuesta, numerados */
-.golpes { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+/* los veredictos de la respuesta: cada uno es una pieza con su rótulo */
+.golpes { list-style: none; padding: 0; margin: 1.3rem 0 0; }
 
 .golpes > li {
-  border-left: 2px solid var(--acento);
+  border-left: 2px solid var(--propuesta-regla);
   padding: 0 0 0 1rem;
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.2rem;
 }
 
 .golpe-clave {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font: 600 0.72rem/1.35 var(--mono);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--acento);
+  color: var(--propuesta);
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
 }
-
-/* ---------- 17.10 · Cuñas citables ---------- */
-
-.cunas {
-  list-style: none;
-  padding: 0;
-  margin: 2rem 0;
-  display: grid;
-  gap: 1px;
-  background: var(--regla);
-  border: 1px solid var(--regla);
-}
-
-.cunas > li {
-  background: var(--papel);
-  padding: 1rem 1.15rem;
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 1.02rem;
-  line-height: 1.45;
-}
-
-.cuna-fuente {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  color: var(--gris);
-  display: block;
-  margin-top: 0.45rem;
-}
-
 
 /* ---------- 17.11 · Qué cambia para cada uno ---------- */
 
@@ -1622,14 +1142,14 @@ sup.nota-ref a {
 /* Una sola línea, grande, que fija la idea antes de desarrollarla. Es el
    recurso que separa una explicación de alto nivel de un texto corrido. */
 .ancla-idea {
-  font-family: var(--serif);
-  font-size: clamp(1.25rem, 1.05rem + 0.85vw, 1.7rem);
-  line-height: 1.3;
-  font-weight: 700;
+  font-size: clamp(1.3rem, 1.05rem + 1vw, 1.85rem);
+  line-height: 1.18;
+  font-weight: 600;
+  letter-spacing: -0.028em;
   color: var(--tinta);
-  margin: 2.25rem 0 1.25rem;
-  padding-left: 1rem;
-  border-left: 3px solid var(--acento);
+  margin: 2.4rem 0 1.4rem;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--acento-solido);
   text-wrap: balance;
 }
 
@@ -1683,4 +1203,17 @@ sup.nota-ref a {
     color: #444;
     overflow-wrap: anywhere;
   }
+}
+
+/* ---------- 17.13 · Identificadores del sistema ---------- */
+
+/* Un articulo de ley ES un identificador: 15, 16, 17, 98, 99. En mono se lee
+   como lo que es —una referencia estable a una pieza del sistema— y de paso le
+   da al texto el registro de documentacion tecnica sin volverlo una terminal.
+   Regla de dosis: la mono marca identificadores, nunca parrafos. */
+.art {
+  font: 600 0.92em/1 var(--mono);
+  letter-spacing: -0.01em;
+  color: var(--acento);
+  white-space: nowrap;
 }
