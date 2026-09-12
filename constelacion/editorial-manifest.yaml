@@ -91,10 +91,18 @@ piezas:
   # reconstruiría el hombre de paja que D03 existe para impedir, así que se
   # recortó la grasa real (~16 palabras) y el resto sube el techo. Sigue muy
   # por debajo del techo por defecto de ensayo (2600).
+  # Sube de 1150 a 1165 el 12-sep-2026. El hallazgo N7 de la segunda corrida
+  # del adversario (runs/AG-SITIO-ADVERSARIO/2026-09-12-historia.md) cazó que
+  # esta era la única de las tres páginas con la declaración de interés
+  # incompleta: la regla 7 pide incentivo, beneficio Y costo, y acá faltaba el
+  # costo. Entra una frase de once palabras —que el mismo cambio abre la puerta
+  # a competidores mayores que el autor—. La otra mitad que el adversario pedía,
+  # "no recomienda aprobar ni rechazar", ya vivía en el Método de esta página y
+  # no se duplicó.
   - archivo: objeciones.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 1150
+    techo_palabras: 1165
   # Nace el 12-sep-2026 con techo 1300, y el techo se fija por el contenido,
   # no al revés. La pieza tiene dos partes que no se pueden comprimir sin
   # romperla: cuatro tramos normativos que hay que describir con su ley, su
