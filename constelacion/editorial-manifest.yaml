@@ -49,7 +49,15 @@
 # con el CEO, no recortando concesiones.
 
 piezas:
+  # 12-sep-2026, tercer encargo del CEO: "hazlo breve, fácil". La pieza se
+  # parte en dos. La raíz explica en cuatro minutos; las objeciones viven en
+  # su propia página, completas, para quien las quiera. Cada una con su techo:
+  # la explicación corta de verdad, el debate con espacio para ser justo.
   - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 2350
+    techo_palabras: 900
+  - archivo: objeciones.html
+    tipo: ensayo
+    modo: hard
+    techo_palabras: 1100

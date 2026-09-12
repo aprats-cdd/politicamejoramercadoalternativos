@@ -6,7 +6,7 @@
 # acusar a la página de hombre de paja. Gate: constelacion/eval_steelman.py
 # (lo corre el verificador o el harness, nunca el defensor — LEY-1).
 
-pieza: index.html
+pieza: objeciones.html
 fecha: 2026-09-12
 ancla_objecion: objecion
 ancla_respuesta: respuesta

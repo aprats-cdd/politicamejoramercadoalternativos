@@ -20,9 +20,13 @@ paginas:
 - archivo: index.html
   tipo: ensayo        # la raíz ES la pieza desde el rediseño de landing (12-sep-2026)
   nueva: true
-  responde_objecion: true   # enciende constelacion/eval_steelman.py (D01-D05)
   gate_pasado: true   # adversario NO-PASA → 15 fixes aplicados → PASA-CON-FIXES
                       # (run 2026-09-12, AG-SITIO-ADVERSARIO, agente aislado)
+- archivo: objeciones.html
+  tipo: ensayo
+  nueva: true
+  responde_objecion: true   # enciende constelacion/eval_steelman.py (D01-D05)
+  gate_pasado: true   # adversario + defensor, runs del 12-sep-2026
 - archivo: gestor-de-inversiones.html
   tipo: asset         # redirección a la raíz: conserva el link ya publicado
   nueva: false
