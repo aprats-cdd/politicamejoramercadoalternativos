@@ -127,7 +127,7 @@ sindical con formación económica y al académico crítico del sistema financie
 Terreno común genuino, que la página puede sostener con el texto del proyecto en la mano:
 desconcentración del poder económico · responsabilidad con nombre · fiscalización más
 amplia · protección del ahorro previsional · acceso al crédito para pymes y regiones fuera
-del banco · soberanía económica (la plomería se queda en Chile) · estándares y transparencia
+del banco · soberanía económica (los rieles se quedan en Chile) · estándares y transparencia
 (Luxemburgo como estándar, no como paraíso).
 
 Reglas duras de esta lente: (a) **no se cambia la tesis ni se inventan beneficios
