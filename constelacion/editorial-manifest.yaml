@@ -27,9 +27,16 @@
 # resolución citada. Ese bloque ES la pieza: recortarlo para calzar un número
 # que este manifest inventó reconstruiría el hombre de paja que el gate D03
 # existe para impedir. Sigue bajo el techo por defecto de ensayo (2600).
+#
+# Sube a 2100 en la misma jornada, tras el veredicto PLANTEADA CON PÉRDIDAS
+# del defensor. Obligó a agregar: la segunda frontera del artículo 17 (la
+# cláusula "salvo"), el bloque de lo que la respuesta NO responde, y la
+# asimetría de vigencia entre lo que se suelta y lo que se aprieta. Las tres
+# son concesiones contra el interés del autor; recortarlas para calzar el
+# número sería exactamente la pérdida que el defensor cazó.
 
 piezas:
   - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 1900
+    techo_palabras: 2100
