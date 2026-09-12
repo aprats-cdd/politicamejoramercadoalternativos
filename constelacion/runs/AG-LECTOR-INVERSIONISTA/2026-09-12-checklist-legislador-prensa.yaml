@@ -9,7 +9,7 @@
 # Objeto: gestor-de-inversiones.html · anclas verificadas por eval_lector.py
 # contra las páginas declaradas en sitio-manifest.yaml.
 
-pieza: gestor-de-inversiones.html
+pieza: index.html
 fecha: 2026-09-12
 
 preguntas:
@@ -23,19 +23,19 @@ preguntas:
   - pregunta: "¿Por qué hoy no llegan gestores de activos globales a invertir en Chile?"
     lector: legislador
     estado: respondida
-    donde: "#hoy"
+    donde: "#oficio"
     evidencia: "Para una firma extranjera que quiere administrar activos chilenos, el camino que queda es montar su propia administradora acá: sociedad, capital, gobierno corporativo, inscripción ante la CMF."
 
   - pregunta: "¿Ese diagnóstico es del autor o del Gobierno?"
     lector: periodista
     estado: respondida
-    donde: "#hoy"
+    donde: "#oficio"
     evidencia: "El diagnóstico es del propio Mensaje presidencial: «[...] lo que ha impedido en la práctica el surgimiento de un mercado de gestores de inversión especializados [...]»"
 
   - pregunta: "¿Esto es desregulación? ¿Quedan menos entidades bajo supervisión?"
     lector: legislador
     estado: respondida
-    donde: "#limites"
+    donde: "#respuesta"
     evidencia: "El gestor entra a un registro público y queda bajo fiscalización de la CMF: habrá más entidades supervisadas que hoy."
 
   - pregunta: "¿Quién responde ante los partícipes si el gestor toma una mala decisión de inversión?"
@@ -53,26 +53,26 @@ preguntas:
   - pregunta: "¿Qué pasa con la cartera si el gestor quiebra o pierde su inscripción?"
     lector: legislador
     estado: respondida
-    donde: "#limites"
+    donde: "#respuesta"
     evidencia: "Opera el mecanismo de sustitución del reglamento interno y, a falta de él, la administradora retoma la cartera, con aviso a la CMF y a los partícipes al día hábil siguiente."
 
   - pregunta: "¿Qué gana con esto una empresa chilena que busca financiamiento?"
-    lector: legislador
+    lector: gremio
     estado: respondida
-    donde: "#gana"
+    donde: "#respuesta"
     evidencia: "Hoy la banca concentra el 83% del financiamiento empresarial del país [...] Cada gestor nuevo que mira crédito privado chileno es un oferente más en esa mesa."
 
   - pregunta: "¿Esto ya es ley? ¿Desde cuándo rige?"
     lector: periodista
     estado: respondida
     donde: "#cuando"
-    evidencia: "El proyecto ingresó a la Cámara de Diputados el 9 de septiembre de 2026. Nada de lo descrito acá rige hoy, y el texto puede cambiar en el Congreso."
+    evidencia: "Tira de estado, sobre el fold: «9 sep 2026 — Ingresó a la Cámara de Diputados» y «No es ley — En tramitación. El texto puede cambiar»."
 
   - pregunta: "Si se aprueba, ¿cuánto se demora en aplicarse?"
     lector: periodista
     estado: respondida
     donde: "#cuando"
-    evidencia: "6 meses — plazo máximo que el proyecto le da a la CMF, desde la publicación de la ley, para dictar las normas que implementan estos artículos."
+    evidencia: "Tira de estado, sobre el fold: «6 meses — Plazo de la CMF para dictar las normas, desde que la ley se publique»."
 
   - pregunta: "¿Quién escribe esto y qué gana si el proyecto se aprueba?"
     lector: periodista
@@ -89,7 +89,7 @@ preguntas:
   - pregunta: "¿Hay evidencia de que efectivamente vayan a llegar gestores globales, o es una expectativa?"
     lector: periodista
     estado: gap-declarado
-    donde: "#gana"
+    donde: "#respuesta"
     evidencia: "El proyecto habilita la competencia; no la garantiza. Que lleguen gestores globales dependerá de cómo la CMF escriba las normas de detalle y de si el tamaño del mercado chileno justifica el viaje. [...] Puede fallar."
 
   - pregunta: "¿De qué tamaño sería el mercado de gestores externos en Chile?"
@@ -103,3 +103,21 @@ preguntas:
     estado: gap-declarado
     donde: "#metodo"
     evidencia: "Esta página cubre una sola materia de las 252 páginas del proyecto: la separación funcional de roles en la industria de fondos."
+
+  - pregunta: "¿Esto profundiza el mercado de capitales chileno o solo reacomoda a los que ya están?"
+    lector: banca-desarrollo
+    estado: respondida
+    donde: "#cadauno"
+    evidencia: "Sección «Qué cambia para cada uno»: una administradora chica podría ofrecer estrategias que hoy no sabe correr, y una firma global tendría una vía más liviana que montar administradora completa. Marcado como lectura del autor."
+
+  - pregunta: "¿Cómo le explico esto a un afiliado que no sabe qué es una AGF?"
+    lector: gremio
+    estado: respondida
+    donde: "#oficio"
+    evidencia: "«Un fondo de inversión necesita que alguien haga tres cosas distintas. Alguien tiene que decidir en qué se invierte. Alguien tiene que administrar el vehículo [...] Y alguien tiene que responder cuando algo sale mal.»"
+
+  - pregunta: "¿Qué riesgo corre el que ahorra si esto se aprueba?"
+    lector: aportante-final
+    estado: gap-declarado
+    donde: "#objecion"
+    evidencia: "El bloque de la objeción declara los tres puntos que la página no responde: costo del estándar sobre base menor, capacidad de fiscalización de la CMF y comparación de colateral antes y después."

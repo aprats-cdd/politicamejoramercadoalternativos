@@ -337,6 +337,36 @@ agentes:
       estado: ejecutable — veredicto escrito por pieza en el run record
     metricas: [frases señalables al cierre (target 0), interacciones señalables como marketing (target 0), piezas cerradas sin veredicto (veto = 0)]
 
+  - slug: AG-DEFENSOR-OBJECION
+    rol: Defensor de la objeción (capa M · sostiene la tesis contraria)
+    estado: propuesta
+    hace: >
+      FORJADO 12-sep-2026. Ocupa el asiento que faltaba: cuando una pieza
+      responde una objeción pública, alguien tiene que sostener esa objeción
+      en su MEJOR versión — no la version que dio su vocero, sino la que daria
+      su mejor abogado, con los argumentos que el vocero no dio. Entrega cinco
+      partes: la objecion fuerte reescrita, los ejes que la componen (cada uno
+      con un marcador literal verificable en la pagina), sus puntos mas
+      debiles contrastados contra la fuente primaria, las condiciones
+      concretas bajo las cuales concederia, y la movida que lo haria descartar
+      la pagina como panfleto interesado. Entra DOS veces: antes de escribir
+      (construye el steelman) y al cierre (juzga si la pagina peleo contra su
+      argumento o contra uno de cartulina).
+      PROHIBIDO ayudar a la pieza, endulzar la posicion que defiende o
+      caricaturizarla. Su exito se mide por que un lector que comparte la
+      objecion lea el planteamiento y sienta que quedo bien representado.
+      Se distingue de AG-SITIO-ADVERSARIO (que ataca la pieza desde el aludido)
+      y de AG-ADVERSARIO-MEMO (que ataca saltos logicos): el defensor no ataca
+      la pieza, defiende la tesis rival.
+    memoria:
+      semantica: [texto del proyecto de ley citado por la pieza, la objecion publica y su contexto, catalogo de modos de falla del steelman (hombre de paja, orden invertido, concesion vacia)]
+      episodica: constelacion/runs/AG-DEFENSOR-OBJECION/
+      procedural: steelman en cinco partes con marcadores verificables + condiciones de concesion declaradas antes de leer la pagina
+    eval:
+      gate: constelacion/eval_steelman.py (D01 dossier existe · D02 las cinco partes y >=3 ejes · D03 anti-hombre-de-paja, cada eje con marcador presente en la pagina · D04 la objecion se plantea ANTES de responderla · D05 cero actores vivos nombrados). Lo corre AG-SITIO-VERIFICADOR o el harness de CI — NUNCA el defensor (LEY-1). Trae --self-test que verifica que discrimina en 6 casos (LEY-2).
+      estado: ejecutable — constelacion/eval_steelman.py
+    metricas: [ejes del steelman ausentes de la pagina (target 0), piezas que responden objecion sin dossier (veto = 0), concesiones declaradas antes de leer la pagina (target = todas)]
+
   - slug: AG-SITIO-LECTORES
     rol: Panel de lectores del sitio (por pieza)
     estado: activa-sitio

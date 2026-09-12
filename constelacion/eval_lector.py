@@ -13,7 +13,8 @@ una pagina, el ancla de `donde` se resuelve contra el conjunto declarado.
 Contrato de la tabla (YAML, en constelacion/runs/AG-LECTOR-INVERSIONISTA/):
   preguntas:
     - pregunta: "..."
-      lector: cio-afp | aseguradora | mfo | aportante-final | legislador | periodista
+      lector: cio-afp | aseguradora | mfo | aportante-final | legislador |
+              periodista | gremio | banca-desarrollo
       estado: respondida | gap-declarado
       donde: "#ancla-en-index" o descripcion textual de la seccion
       evidencia: cita corta del texto de la pagina que responde/declara el gap
@@ -49,7 +50,7 @@ ESTADOS_OK = {"respondida", "gap-declarado"}
 # rediseno del 12-sep-2026: la pieza sobre el proyecto de ley se escribe
 # para quien legisla y para quien informa, no para el asesor institucional.
 LECTORES_OK = {"cio-afp", "aseguradora", "mfo", "aportante-final",
-               "legislador", "periodista"}
+               "legislador", "periodista", "gremio", "banca-desarrollo"}
 
 
 def paginas_del_sitio() -> list[str]:

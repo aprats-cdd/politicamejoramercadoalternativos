@@ -19,12 +19,45 @@
 # obligó a agregar tres bloques que la pieza no tenía: declaración de
 # interés con el beneficio directo del autor, sección "lo que el proyecto
 # no hace", y el tratamiento en dos direcciones del artículo 169. Subir el
-# techo a 1350 es la decisión declarada: recortar esos bloques para calzar
-# un número que este manifest inventó habría revertido los fixes del
-# adversario. Sigue muy por debajo del techo por defecto de ensayo (2600).
+# techo a 1350 fue la decisión declarada en esa vuelta.
+#
+# Sube a 1900 el 12-sep-2026 con el mismo criterio. La corrida del defensor
+# (AG-DEFENSOR-OBJECION) obligó a plantear la objeción rival COMPLETA —sus
+# cinco ejes— antes de responderla, y a responder los tres golpes con la
+# resolución citada. Ese bloque ES la pieza: recortarlo para calzar un número
+# que este manifest inventó reconstruiría el hombre de paja que el gate D03
+# existe para impedir. Sigue bajo el techo por defecto de ensayo (2600).
+#
+# Sube a 2100 en la misma jornada, tras el veredicto PLANTEADA CON PÉRDIDAS
+# del defensor. Obligó a agregar: la segunda frontera del artículo 17 (la
+# cláusula "salvo"), el bloque de lo que la respuesta NO responde, y la
+# asimetría de vigencia entre lo que se suelta y lo que se aprieta. Las tres
+# son concesiones contra el interés del autor; recortarlas para calzar el
+# número sería exactamente la pérdida que el defensor cazó.
+#
+# Sube a 2350 tras el veredicto NO-PASA del adversario (misma jornada, cuatro
+# lentes). Sus bloqueantes obligaron a precisar lo que no se podía afirmar del
+# artículo 98 vigente y del perímetro del gestor, y sus correcciones a pasar la
+# lista del balance a condicional y a atribuir el 169 al Mensaje en vez de
+# afirmarlo. Todo eso alarga.
+#
+# DEUDA DECLARADA, no resuelta: la pieza quedó en ~2.300 palabras (unos once
+# minutos). El encargo era un landing para un legislador que lee noventa
+# segundos. El bloque objeción+respuesta son 937 palabras y es el corazón; la
+# sección de las tres reglas (235) duplica en prosa lo que el comparador ya
+# muestra. La tensión largo/audiencia es real y está sin resolver: se decide
+# con el CEO, no recortando concesiones.
 
 piezas:
-  - archivo: gestor-de-inversiones.html
+  # 12-sep-2026, tercer encargo del CEO: "hazlo breve, fácil". La pieza se
+  # parte en dos. La raíz explica en cuatro minutos; las objeciones viven en
+  # su propia página, completas, para quien las quiera. Cada una con su techo:
+  # la explicación corta de verdad, el debate con espacio para ser justo.
+  - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 1350
+    techo_palabras: 900
+  - archivo: objeciones.html
+    tipo: ensayo
+    modo: hard
+    techo_palabras: 1100

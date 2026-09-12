@@ -1047,6 +1047,533 @@ sup.nota-ref a {
 
 .colofon .disclaimer { margin-top: 0.9rem; }
 
+/* ============================================================
+   17 · Capa landing (12-sep-2026)
+   ------------------------------------------------------------
+   La raíz del sitio dejó de ser un índice y pasó a ser la página
+   de la ley. Estos componentes existen para que un legislador o
+   un periodista entienda el cambio sin leer 1.300 palabras
+   seguidas: jerarquía fuerte arriba, el mecanismo como figura, y
+   los hechos duros a la vista antes del primer scroll.
+   Misma paleta, misma tipografía de sistema, cero requests.
+   ============================================================ */
+
+/* Escape de la columna angosta: el comparador necesita el ancho
+   que el ensayo no necesita. Se clampea al viewport con gutter. */
+.ancho {
+  width: min(64rem, calc(100vw - 2.5rem));
+  position: relative;
+  left: 50%;
+  translate: -50% 0;
+}
+
+/* ---------- 17.1 · Hero ---------- */
+
+.hero,
+.tira-estado,
+.quien-escribe {
+  width: min(52rem, calc(100vw - 2.5rem));
+  position: relative;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.hero { margin: 1.5rem 0 0; }
+
+.hero-etiqueta {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acento);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.hero-etiqueta .sep { color: var(--regla); }
+
+@media (max-width: 34rem) {
+  /* apilada, el "/" queda colgando al final de cada línea */
+  .hero-etiqueta .sep { display: none; }
+  .hero-etiqueta { gap: 0.2rem 0.8rem; }
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 1.35rem + 3.3vw, 3.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  margin: 0 0 0.9rem;
+}
+
+.hero .pieza-bajada {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--gris);
+  margin: 0 0 1.75rem;
+  max-width: 34rem;
+}
+
+.hero .pieza-bajada strong { color: var(--tinta); font-weight: 700; }
+
+/* ---------- 17.2 · Tira de estado (los hechos antes del scroll) ---------- */
+
+.tira-estado {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--regla);
+  border: 1px solid var(--regla);
+  margin: 2rem 0 2.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.tira-estado li {
+  background: var(--papel);
+  padding: 0.9rem 1rem;
+  margin: 0;
+}
+
+.tira-estado dt,
+.tira-estado .valor {
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--tinta);
+  display: block;
+  line-height: 1.2;
+}
+
+.tira-estado .glosa {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--gris);
+  display: block;
+  margin-top: 0.3rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 34rem) {
+  .tira-estado { grid-template-columns: 1fr; }
+}
+
+/* ---------- 17.3 · Quién escribe (declaración, arriba y diseñada) ---------- */
+
+.quien-escribe {
+  border: 1px solid var(--acento);
+  border-left-width: 4px;
+  padding: 1.15rem 1.35rem;
+  margin: 2.5rem 0;
+  font-size: 0.95rem;
+}
+
+.quien-escribe-titulo {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin: 0 0 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.quien-escribe-titulo .logo-mark--mini { flex: none; }
+
+.quien-escribe p { margin-bottom: 0.7rem; }
+.quien-escribe > :last-child { margin-bottom: 0; }
+
+/* ---------- 17.4 · Comparador antes / después ---------- */
+
+.comparador {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.comparador-panel {
+  border: 1px solid var(--regla);
+  padding: 1.15rem 1.25rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.comparador-panel.es-hoy { background: var(--nota); }
+.comparador-panel.es-propuesta { border-color: var(--acento); border-width: 2px; }
+
+.comparador-titulo {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin: 0 0 0.9rem;
+  display: block;
+}
+
+.comparador-panel.es-propuesta .comparador-titulo { color: var(--acento); }
+
+/* cada actor del vehículo, con lo que carga */
+.actor {
+  border: 1px solid var(--regla);
+  background: var(--papel);
+  padding: 0.7rem 0.85rem;
+  margin-bottom: 0.6rem;
+}
+
+.actor-nombre {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--tinta);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.actor-carga {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--gris);
+  margin: 0;
+  line-height: 1.45;
+  list-style: none;
+  padding: 0;
+}
+
+.actor-carga li {
+  margin: 0 0 0.15rem;
+  padding-left: 0.85rem;
+  position: relative;
+}
+
+.actor-carga li::before {
+  content: "·";
+  position: absolute;
+  left: 0.2rem;
+  color: var(--acento);
+  font-weight: 700;
+}
+
+.comparador-cierre {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--gris);
+  margin: auto 0 0;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--regla);
+}
+
+.comparador-cierre strong { color: var(--tinta); }
+
+@media (max-width: 46rem) {
+  .comparador { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* ---------- 17.5 · Reglas numeradas (los tres artículos) ---------- */
+
+.reglas {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.regla {
+  display: grid;
+  grid-template-columns: 3.2rem 1fr;
+  gap: 0 1rem;
+  align-items: start;
+  border-top: 1px solid var(--regla);
+  padding-top: 0.9rem;
+  margin: 0;
+}
+
+.regla-num {
+  font-family: var(--mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--acento);
+  line-height: 1.1;
+}
+
+/* "Art." sobre el número: sin esto, 15/16/17 se leen como paso 1, 2, 3 */
+.regla-num::before {
+  content: "Art.";
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gris);
+  margin-bottom: 0.1rem;
+}
+
+.regla-texto { margin: 0; font-size: 0.98rem; }
+
+.regla-efecto {
+  font-family: var(--sans);
+  font-size: 0.84rem;
+  color: var(--gris);
+  margin: 0.35rem 0 0;
+  grid-column: 2;
+}
+
+@media (max-width: 34rem) {
+  .regla { grid-template-columns: 2.4rem 1fr; }
+  .regla-num { font-size: 1.1rem; }
+}
+
+/* ---------- 17.6 · Cita grande (la voz del Mensaje) ---------- */
+
+.cita-grande {
+  margin: 2.5rem 0;
+  padding: 0;
+  border: 0;
+  border-top: 2px solid var(--acento);
+  padding-top: 1.25rem;
+}
+
+.cita-grande p {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  line-height: 1.45;
+  color: var(--tinta);
+  margin: 0 0 0.8rem;
+}
+
+.cita-grande .destaca {
+  background: linear-gradient(transparent 62%, color-mix(in srgb, var(--acento) 28%, transparent) 62%);
+}
+
+.cita-grande cite {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-style: normal;
+  color: var(--gris);
+  display: block;
+}
+
+/* ---------- 17.7 · Condiciones / límites en rejilla ---------- */
+
+.rejilla-fichas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 2rem;
+}
+
+.rejilla-fichas li {
+  border-left: 2px solid var(--acento);
+  padding: 0.15rem 0 0.15rem 0.9rem;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.rejilla-fichas.es-limite li { border-left-color: var(--gris); }
+
+.ficha-clave {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gris);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 40rem) {
+  .rejilla-fichas { grid-template-columns: 1fr; gap: 0.9rem; }
+}
+
+/* ---------- 17.8 · Escenario concreto ---------- */
+
+.escenario {
+  border: 1px solid var(--regla);
+  background: var(--nota);
+  padding: 1.15rem 1.35rem;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+}
+
+.escenario-titulo {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gris);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.escenario > :last-child { margin-bottom: 0; }
+
+
+/* ---------- 17.9 · Debate: la objeción con el mismo peso que la respuesta ---------- */
+
+/* La pieza responde una objeción pública. Si la objeción se ve mas chica que
+   la respuesta, el lector que la comparte deja de leer antes de llegar al
+   argumento. Mismo ancho, misma tipografia, mismo aire: el peso lo decide el
+   contenido, no el diseño. Gate: eval_steelman.py D03/D04. */
+
+.debate { margin: 1.5rem 0 2.5rem; }
+
+.debate-lado {
+  border-top: 3px solid var(--regla);
+  padding-top: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.debate-lado.es-objecion { border-top-color: var(--gris); }
+.debate-lado.es-respuesta { border-top-color: var(--acento); }
+
+.debate-quien {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gris);
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.debate-lado.es-respuesta .debate-quien { color: var(--acento); }
+
+.debate-lado p { margin-bottom: 0.9rem; }
+.debate-lado > :last-child { margin-bottom: 0; }
+
+.debate-tesis {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--tinta);
+}
+
+/* los tres golpes de la respuesta, numerados */
+.golpes { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+
+.golpes > li {
+  border-left: 2px solid var(--acento);
+  padding: 0 0 0 1rem;
+  margin: 0 0 1.1rem;
+}
+
+.golpe-clave {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acento);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- 17.10 · Cuñas citables ---------- */
+
+.cunas {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: grid;
+  gap: 1px;
+  background: var(--regla);
+  border: 1px solid var(--regla);
+}
+
+.cunas > li {
+  background: var(--papel);
+  padding: 1rem 1.15rem;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.cuna-fuente {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  color: var(--gris);
+  display: block;
+  margin-top: 0.45rem;
+}
+
+
+/* ---------- 17.11 · Qué cambia para cada uno ---------- */
+
+/* El encargo pasó de pieza defensiva a explicación masiva. Este bloque es la
+   pieza que hace masiva la explicación: el mismo cambio normativo traducido
+   al interés concreto de cada lector, uno por tarjeta. Sin él, la página
+   explica un artículo; con él, explica qué te pasa a ti. */
+
+.para-cada-uno {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.75rem 0 2.25rem;
+}
+
+.para-cada-uno > li {
+  border-top: 2px solid var(--acento);
+  padding: 0.85rem 0 0;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.pcu-quien {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acento);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.pcu-quien small {
+  display: block;
+  font-size: 0.92em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--gris);
+  margin-top: 0.15rem;
+}
+
+/* ---------- 17.12 · Frase-ancla de sección ---------- */
+
+/* Una sola línea, grande, que fija la idea antes de desarrollarla. Es el
+   recurso que separa una explicación de alto nivel de un texto corrido. */
+.ancla-idea {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 1.05rem + 0.85vw, 1.7rem);
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--tinta);
+  margin: 2.25rem 0 1.25rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--acento);
+  text-wrap: balance;
+}
+
 /* ---------- 16 · Print básico ---------- */
 
 @media print {

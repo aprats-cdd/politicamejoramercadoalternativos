@@ -22,4 +22,70 @@
 # creencia que la realidad puede tumbar es el estándar; esconder el falsador
 # para no quedar mal es lo prohibido.
 
-hipotesis: []   # ninguna hipótesis publicada todavía — el motor está propuesto.
+# ─────────────────────────────────────────────────────────────────────────
+# Capa 1 del eval de la pieza sobre el proyecto de ley (12-sep-2026).
+#
+# El encargo del CEO fue explícito: "el eval es clave". Los gates antes de
+# publicar (capa 0) miden la pieza; estas tres hipótesis miden si el MARCO
+# viajó, que es lo único que decide si la página sirvió. Se anotan ANTES de
+# publicar: un eval que se escribe después del resultado no es eval.
+#
+# Las mide AG-EDITORIAL-CALIBRADOR en la fecha de corte, no antes y no
+# "cuando se vea". Si el horizonte llega y nadie midió, la entrada queda
+# viva y eso también es un dato sobre el loop.
+# ─────────────────────────────────────────────────────────────────────────
+
+hipotesis:
+
+  - id: HIP-2026-01
+    pieza: index.html
+    asercion: >-
+      El marco "control por oposición" —que el riesgo de administrar plata
+      ajena se contiene separando quién decide de quién administra y valoriza,
+      no agrandando al que hace todo— es más persuasivo para un legislador,
+      un regulador o un dirigente gremial que el marco rival de "gestoras más
+      robustas, más grandes y más profesionales".
+    horizonte: 2026-10-12
+    falsador: >-
+      A 30 días de publicada, cero apariciones públicas del marco o de una de
+      las cuñas de la página en boca de un legislador, regulador o dirigente
+      gremial (sesión de comisión, columna, entrevista, declaración).
+      Si eso ocurre, el encuadre no sirvió: se reescribe el argumento o se
+      abandona la tesis. No se culpa al medio ni al diseño.
+    fecha_publicacion: 2026-09-12
+    estado: viva
+    evidencia: []
+    calibracion: ''
+
+  - id: HIP-2026-02
+    pieza: index.html
+    asercion: >-
+      Una página que plantea la objeción rival en su mejor versión antes de
+      responderla consigue cobertura de prensa que una página que solo
+      argumenta a favor no consigue, porque le da al periodista las dos
+      posiciones ya ordenadas.
+    horizonte: 2026-10-12
+    falsador: >-
+      A 30 días, cero notas de prensa que recojan el marco o citen una cuña
+      de la página.
+    fecha_publicacion: 2026-09-12
+    estado: viva
+    evidencia: []
+    calibracion: ''
+
+  - id: HIP-2026-03
+    pieza: index.html
+    asercion: >-
+      La distinción entre "más grande" y "más separado" es concedible en
+      público por alguien que partió de acuerdo con la objeción, porque el
+      caso sancionado que la objeción usa como evidencia es un fallo de
+      concentración de funciones y no de tamaño.
+    horizonte: 2026-10-27
+    falsador: >-
+      A 45 días, nadie que haya sostenido públicamente la posición rival
+      concede la distinción; o alguien la refuta mostrando que el caso
+      sancionado sí fue un fallo de escala.
+    fecha_publicacion: 2026-09-12
+    estado: viva
+    evidencia: []
+    calibracion: ''

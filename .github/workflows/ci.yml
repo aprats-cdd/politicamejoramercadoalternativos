@@ -34,3 +34,8 @@ jobs:
           python constelacion/eval_editorial.py
           python constelacion/eval_citabilidad.py
           python constelacion/eval_lector.py
+          python constelacion/eval_afilado.py
+      - name: Gate del steelman (AG-DEFENSOR-OBJECION · LEY-2 self-test primero)
+        run: |
+          python constelacion/eval_steelman.py --self-test
+          python constelacion/eval_steelman.py

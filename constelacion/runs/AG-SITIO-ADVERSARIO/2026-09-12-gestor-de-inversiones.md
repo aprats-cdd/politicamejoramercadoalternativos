@@ -121,3 +121,50 @@ CEO, no contra el PDF oficial de la Cámara de Diputados. Las páginas citadas
 (51-55, 174-186, 200-201, 221) vienen de esa transcripción. Antes de publicar a
 `main`, corresponde contrastar al menos las dos citas largas contra el documento
 oficial.
+
+---
+
+## Adenda · rediseño a landing (12-sep-2026, misma fecha, posterior al merge)
+
+El CEO pidió auditar el diseño: *"Necesito que sea un landing poderoso. Más
+entretenido y didáctico."* La pieza pasó de `gestor-de-inversiones.html` a la
+raíz del sitio; `gestor-de-inversiones.html` queda como redirección para no
+romper el link ya publicado.
+
+**Hallazgos de la auditoría de diseño** (hechos mirando la página renderizada
+en Chromium a 1280px y a 390px, no leyendo el HTML):
+
+1. Era un documento, no un landing: 7,6 pantallas en escritorio y 10,2 en
+   móvil de texto gris uniforme, con siete `h2` del mismo peso.
+2. La primera pantalla no vendía nada: título, bajada, metadata y una caja
+   gris de declaración de interés antes de la primera idea.
+3. Cero explicación visual sobre un tema que ES un diagrama (quién decide,
+   quién administra, quién responde, antes y después).
+4. El único dato duro ("6 meses") estaba en la pantalla 6.
+5. En escritorio se usaba el 47% del ancho disponible.
+6. Las cuatro condiciones y los cuatro resguardos eran el mismo objeto visual.
+
+**Lo que se hizo:** hero con jerarquía fuerte, tira de estado con los tres
+hechos duros sobre el fold, comparador antes/después a ancho completo como
+carga didáctica central, los tres artículos como fichas numeradas con su
+efecto en lenguaje llano, la cita del Mensaje en grande con el tramo clave
+destacado, condiciones y límites en rejillas distintas, y un escenario
+concreto de cómo se vería en la práctica.
+
+**Lo que NO se tocó, a propósito:** todos los fixes del adversario siguen en
+pie. La declaración de interés sigue antes de todo argumento y sigue
+declarando el beneficio directo primero (ahora mejor diseñada, no más suave).
+La tesis de los gestores globales sigue en bloque marcado como lectura del
+autor. El artículo 169 sigue en dos direcciones. No entró ninguna cifra de
+mercado.
+
+**Verificación posterior al rediseño:** las cuatro citas entre comillas y el
+tramo destacado de la cita larga calzan literal contra la fuente (comparación
+de cadenas, con las marcas de destacado removidas antes de comparar). Las
+siete notas al pie calzan ref por ref. Los siete evals en verde. Sin scroll
+horizontal a 390px, 768px ni 1280px. Modo oscuro revisado componente por
+componente.
+
+**Deuda que sigue abierta:** la del bloque anterior — las citas se
+verificaron contra la transcripción del Mensaje aportada por el CEO, no
+contra el PDF oficial de la Cámara.
