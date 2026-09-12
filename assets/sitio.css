@@ -825,9 +825,14 @@ details.indice-pieza[open]::details-content { block-size: auto; }
 
 sup.nota-ref { line-height: 0; }
 
-/* refs consecutivas: aire suficiente para que las áreas táctiles no se
-   solapen (T03 del smoke test — el tap jamás cae en la nota equivocada) */
-sup.nota-ref + sup.nota-ref { margin-left: 1.1em; }
+/* Dos llamadas PEGADAS (sin texto entre medio) necesitan aire para que las
+   áreas táctiles no se solapen: el tap jamás debe caer en la nota equivocada.
+   Va por clase explícita y no por `sup + sup`: el combinador de hermano
+   adyacente ignora el texto entre los dos <sup>, así que separaba con 1.1em
+   dos notas que estaban a una frase entera de distancia, abriendo un hueco en
+   mitad del párrafo. La clase la pone quien escribe, solo cuando de verdad
+   van pegadas. */
+sup.nota-ref.pegada { margin-left: 1.1em; }
 
 sup.nota-ref a {
   text-decoration: none;
@@ -1317,7 +1322,15 @@ sup.nota-ref a {
 .comparador-cierre strong { color: var(--tinta); }
 
 @media (max-width: 46rem) {
-  .comparador { grid-template-columns: 1fr; gap: 1rem; }
+  .comparador { grid-template-columns: 1fr; gap: 0.85rem; }
+
+  /* La figura es el argumento: en un teléfono tiene que entrar completa en
+     una pantalla, o deja de leerse de un golpe y pasa a ser una lista que se
+     recorre. Se aprieta el aire, no el contenido. */
+  .comparador-panel { padding: 1rem 1.1rem 1.1rem; }
+  .tres-preguntas dt { margin-top: 0.7rem; padding-top: 0.7rem; }
+  .tres-preguntas { margin-bottom: 0.8rem; }
+  .comparador-cierre { padding-top: 0.7rem; }
 }
 
 /* ---------- 17.5 · Reglas numeradas (los tres artículos) ---------- */
