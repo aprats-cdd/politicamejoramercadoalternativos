@@ -9,20 +9,22 @@
 #                    sirve de calibración del calibrador).
 #
 # techo_palabras: opinión ≤ ~1100 · hipótesis ≤ ~1300 · ensayo ≤ ~2600.
+#
+# Rediseño 12-sep-2026: el corpus fundacional de julio salió del sitio
+# (ver sitio-manifest.yaml). Queda una pieza, y entra en modo hard con un
+# techo propio: el encargo del CEO fue explícito en que sea corta.
+#
+# El techo se fijó primero en 1100 y la primera versión calzó. La corrida
+# del adversario (runs/AG-SITIO-ADVERSARIO/2026-09-12) devolvió NO-PASA y
+# obligó a agregar tres bloques que la pieza no tenía: declaración de
+# interés con el beneficio directo del autor, sección "lo que el proyecto
+# no hace", y el tratamiento en dos direcciones del artículo 169. Subir el
+# techo a 1350 es la decisión declarada: recortar esos bloques para calzar
+# un número que este manifest inventó habría revertido los fixes del
+# adversario. Sigue muy por debajo del techo por defecto de ensayo (2600).
 
 piezas:
-  # Corpus fundacional (pre-spec) — advisory: mide la distancia de lo ya
-  # publicado a la voz nueva, sin forzar reescritura.
-  - archivo: separacion-de-roles.html
-    tipo: ensayo
-    modo: advisory
-  - archivo: deuda-privada-como-renta-fija.html
-    tipo: ensayo
-    modo: advisory
-  # Las piezas NUEVAS que forje el motor entran acá con modo: hard.
-  - archivo: opinion-cupo-renta-fija.html
-    tipo: opinion
-    modo: hard
-  - archivo: renta-fija-palanca-patrimonio.html
+  - archivo: gestor-de-inversiones.html
     tipo: ensayo
     modo: hard
+    techo_palabras: 1350

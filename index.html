@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Andrés Prats · Inversiones en mercados privados</title>
-<meta name="description" content="Sitio personal de Andrés Prats: análisis, estándares y herramientas para quien decide cupos de inversión en deuda privada. Cada pieza declara para quién es, qué te llevas y cuánto tarda en leerse — y cada cifra muestra de dónde salió.">
+<meta name="description" content="Sitio personal de Andrés Prats. Escribo sobre mercados privados de capital en Chile para quien tiene que entenderlos y decidir: legisladores, prensa y asesores institucionales. Cada cifra muestra de dónde salió.">
 <meta name="author" content="Andrés Prats">
 <link rel="canonical" href="https://aprats-cdd.github.io/politicamejoramercadoalternativos/">
 <meta property="og:title" content="Andrés Prats · Inversiones en mercados privados">
-<meta property="og:description" content="Análisis, estándares y herramientas para quien decide cupos de inversión en deuda privada. Cada pieza declara para quién es, qué te llevas y cuánto tarda en leerse — y cada cifra muestra de dónde salió.">
+<meta property="og:description" content="Mercados privados de capital en Chile, explicados para quien tiene que entenderlos y decidir. Cada cifra muestra de dónde salió.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CL">
 <meta property="og:url" content="https://aprats-cdd.github.io/politicamejoramercadoalternativos/">
@@ -22,33 +22,14 @@
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Andrés Prats · Inversiones en mercados privados — índice de publicaciones",
-  "description": "Índice del sitio personal de Andrés Prats: análisis, estándares y herramientas para quien decide cupos de inversión en deuda privada.",
+  "description": "Índice del sitio personal de Andrés Prats: mercados privados de capital en Chile, explicados para legisladores, prensa y asesores institucionales.",
   "author": { "@type": "Person", "name": "Andrés Prats" },
   "mainEntity": { "@type": "Person", "name": "Andrés Prats" },
   "inLanguage": "es",
   "datePublished": "2026-07-03",
-  "dateModified": "2026-07-03",
+  "dateModified": "2026-09-12",
   "mainEntityOfPage": "https://aprats-cdd.github.io/politicamejoramercadoalternativos/"
 }
-</script>
-<script>
-/* Shim de anclas legadas (D1, triple red — capa a).
-   Esta URL sirvió el memorándum hasta el cambio de raíz: todo deep-link
-   antiguo (#acto1..#acto5, #objeciones, #hoja-de-ruta, #definiciones,
-   #fuentes, #contenido, #fn1..#fn21, #tab-*) se redirige a la página del
-   memorándum conservando el ancla. El home no define ninguno de esos ids.
-   Capa b (sin JS): el link visible al memorándum arriba del fold. */
-(function () {
-  var LEGADO = /^(acto[1-5]|objeciones|hoja-de-ruta|definiciones|fuentes|contenido|fn([1-9]|1[0-9]|2[01])|tab-[A-Za-z0-9_-]+)$/;
-  function redirigir() {
-    var h = window.location.hash.replace(/^#/, "");
-    if (h && LEGADO.test(h) && !document.getElementById(h)) {
-      window.location.replace("memorandum.html#" + h);
-    }
-  }
-  redirigir();
-  window.addEventListener("hashchange", redirigir);
-})();
 </script>
 </head>
 <body>
@@ -63,14 +44,13 @@
       </a>
       <div class="masthead-id">
         <h1 class="masthead-nombre"><a href="./">Andrés Prats</a></h1>
-        <p class="masthead-tagline">Análisis, estándares y herramientas para quien decide cupos de inversión en deuda privada.</p>
+        <p class="masthead-tagline">Mercados privados de capital en Chile, explicados para quien tiene que decidir sobre ellos.</p>
       </div>
     </div>
     <nav class="masthead-nav" aria-label="Secciones del sitio">
       <a href="#publicaciones">Publicaciones</a>
       <a href="#metodologia">Metodología</a>
       <a href="#declaracion">Declaración de interés</a>
-      <a href="memorandum.html">Memorándum</a>
       <button class="lupa" type="button" aria-expanded="false" aria-controls="buscador" hidden>
         <svg class="lupa-icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
         <span class="vh">Buscar publicaciones</span>
@@ -83,31 +63,7 @@
     </div>
   </header>
 
-  <p class="doc-referencia">
-    <span class="kicker">Documento de referencia</span><br>
-    <a href="memorandum.html">Memorándum de Política Pública · Mercados Privados de Capital · Chile — versión 2.0 →</a><br>
-    <span class="meta">El documento formal que origina este sitio, con sus fuentes numeradas al pie y sus anclas intactas. Incluye el análisis falla-por-falla de un caso público sancionado por la CMF (Sartor); las piezas del sitio comparan arquitecturas, jamás actores. Este sitio se lanza en julio de 2026 a partir de ese memorándum: las cuatro piezas iniciales se publican juntas, el 3 de julio de 2026, con esa fecha a la vista.</span>
-  </p>
-
-  <p>Acá publico lo que escribo sobre inversiones en mercados privados: ensayos, guías de trabajo y herramientas. Escribo para el asesor institucional —multi-family office o compañía de seguros— que llega con poco tiempo: cada pieza declara arriba del fold para quién es, qué te llevas y cuánto tarda en leerse. Y cada cifra muestra de dónde salió.</p>
-
-  <div class="dato">
-    <span class="dato-cifra">~USD 400.000M</span>
-    <span class="dato-contexto">Orden de magnitud del ahorro institucional chileno a 2025, consolidación propia del autor por componente: AFPs, seguros de vida, fondos mutuos, y fondos de inversión y alternativos.<sup class="nota-ref" id="ref-nota1"><a href="#nota1">1</a></sup></span>
-    <span class="dato-fuente">SP, Estadísticas dic. 2025 · CMF, Estados Financieros Consolidados 2025 · Banco Central, Fondos Mutuos dic. 2025 · ACAFI Q4 2025 — una fuente institucional por componente; el total se presenta como orden de magnitud, consolidación del autor (ver nota 1).</span>
-  </div>
-
-  <p>Sobre una fracción de ese ahorro decide, cada día, el asesor que lee este sitio. Las piezas de abajo existen para servir esa decisión: con qué información se evalúa un fondo de deuda privada, bajo qué condiciones el activo postula a un cupo, y cómo verificar por cuenta propia lo que el gestor informa.</p>
-
-  <aside class="empieza-aqui">
-    <span class="kicker">Empieza aquí</span>
-    <ul>
-      <li>¿Evalúas un fondo de deuda privada? → <a href="due-diligence-deuda-privada.html">La guía de due diligence</a>, con un cuestionario copiable para enviar tal cual.</li>
-      <li>¿Decides cupos de renta fija? → <a href="deuda-privada-como-renta-fija.html">El ensayo sobre deuda privada como renta fija (securitizada)</a>.</li>
-      <li>¿Quieres el criterio de arquitectura, aplicable mañana a cualquier fondo? → <a href="separacion-de-roles.html">El ensayo sobre separación de roles en asset management</a>.</li>
-      <li>¿Quieres verificar por tu cuenta lo que te informan? → <a href="buscador-causas-judiciales.html">El anuncio del buscador de causas judiciales</a>, con sus reglas publicadas antes que la herramienta.</li>
-    </ul>
-  </aside>
+  <p>Acá escribo sobre mercados privados de capital en Chile. Escribo para quien tiene que entenderlos y decidir sobre ellos: quien legisla, quien informa y quien asigna cupos de inversión. Cada página dice qué es hecho citado y qué es opinión mía, y cada cifra muestra de dónde salió.</p>
 
   <section id="publicaciones" aria-label="Publicaciones">
     <h2>Publicaciones</h2>
@@ -115,118 +71,48 @@
     <ul class="cards">
 
       <li class="card-publicacion">
-        <span class="kicker">Ensayo</span>
-        <p class="card-titulo"><a href="renta-fija-palanca-patrimonio.html">La palanca del patrimonio está en el bloque más grande de la cartera</a></p>
-        <p class="card-resumen">Un ensayo: mejorar el retorno de la renta fija —el bloque más grande de la cartera, y el que hoy rinde poco— mueve el patrimonio más que agrandar la deuda privada; la vía es admitir deuda privada verificable y garantizada dentro del cupo.</p>
+        <span class="kicker">Proyecto de ley</span>
+        <p class="card-titulo"><a href="gestor-de-inversiones.html">Qué crea el proyecto de ley, y por qué creo que traerá gestores globales</a></p>
+        <p class="card-resumen">El proyecto de reforma al mercado de capitales regula una figura que la Ley Única de Fondos hoy no tiene: el gestor de inversiones. El texto no menciona a firmas extranjeras; que la figura las traiga es lectura del autor, y va marcada como tal.</p>
         <details class="card-mas">
           <summary>Qué te llevas</summary>
-          <p class="card-llevas">Por qué el retorno de la renta fija manda sobre el patrimonio, cómo mejorarlo con deuda privada garantizada, y la pregunta que abre la conversación con tu cliente.</p>
+          <p class="card-llevas">Qué crea el proyecto, por qué el Gobierno sostiene que hoy ese mercado no existe, qué resguardos impone, qué no hace, y cuándo regiría. Con el texto del proyecto citado y la página al pie.</p>
         </details>
-        <p class="card-meta"><span>Publicado: 4 de julio de 2026</span><span>Ensayo</span><span>Lectura: seis minutos</span></p>
-      </li>
-
-      <li class="card-publicacion">
-        <span class="kicker">Opinión</span>
-        <p class="card-titulo"><a href="opinion-cupo-renta-fija.html">El cupo de renta fija tiene espacio para la deuda privada verificable</a></p>
-        <p class="card-resumen">Una opinión: la deuda privada securitizada y verificable puede ganarse una fracción mayor del cupo de renta fija institucional, y la llave para merecerla —quién administra, quién custodia, quién clasifica— es exigible hoy.</p>
-        <details class="card-mas">
-          <summary>Qué te llevas</summary>
-          <p class="card-llevas">El criterio para abrir el cupo de renta fija hacia la deuda privada verificable, y la pregunta que lo pone a prueba en tu próxima due diligence.</p>
-        </details>
-        <p class="card-meta"><span>Publicado: 4 de julio de 2026</span><span>Opinión</span><span>Lectura: cinco minutos</span></p>
-      </li>
-
-      <li class="card-publicacion">
-        <span class="kicker">Ensayo</span>
-        <p class="card-titulo"><a href="separacion-de-roles.html">Separación de roles en asset management</a></p>
-        <p class="card-resumen">Las cinco funciones de un vehículo de inversión —gestionar, administrar, custodiar, valorizar, fiscalizar—, por qué su concentración en un solo grupo fija el techo de cualquier due diligence, y qué parte de la corrección está disponible hoy por vía contractual.</p>
-        <details class="card-mas">
-          <summary>Qué te llevas</summary>
-          <p class="card-llevas">El criterio para distinguir arquitectura opaca de arquitectura verificada, aplicable mañana a cualquier fondo: identificar quién ejecuta cada función, contar cuántas concentra el mismo grupo que gestiona, y pedir por escrito el control que compensa cada concentración.</p>
-        </details>
-        <p class="card-meta"><span>Publicado: 3 de julio de 2026</span><span>Lectura: ocho minutos</span></p>
-      </li>
-
-      <li class="card-publicacion">
-        <span class="kicker">Ensayo</span>
-        <p class="card-titulo"><a href="deuda-privada-como-renta-fija.html">Deuda privada como renta fija (securitizada)</a></p>
-        <p class="card-resumen">Los primeros tres pasos de una tesis: el tamaño del cupo de renta fija en el portafolio institucional, la fracción que hoy captura la deuda privada, y las condiciones bajo las cuales el activo securitizado postula a ese cupo.</p>
-        <details class="card-mas">
-          <summary>Qué te llevas</summary>
-          <p class="card-llevas">Las condiciones de elegibilidad del activo securitizado para el cupo de renta fija — con lo vigente y lo propuesto marcados por separado, apoyado en el criterio de arquitectura del ensayo de separación de roles.</p>
-        </details>
-        <p class="card-meta"><span>Publicado: 3 de julio de 2026</span><span>Lectura: doce minutos</span></p>
-      </li>
-
-      <li class="card-publicacion">
-        <span class="kicker">Guía práctica · Documento vivo</span>
-        <p class="card-titulo"><a href="due-diligence-deuda-privada.html">Las preguntas relevantes en el due diligence de un fondo de deuda privada</a></p>
-        <p class="card-resumen">Dos niveles de preguntas —la arquitectura del vehículo y la cartera— formuladas neutras y universales: aplican a cualquier fondo de deuda privada, incluidos los míos.</p>
-        <details class="card-mas">
-          <summary>Qué te llevas</summary>
-          <p class="card-llevas">Un cuestionario accionable que puedes copiar del bloque final y enviar por escrito, tal cual, a cualquier gestor.</p>
-        </details>
-        <p class="card-meta"><span>Publicado: 3 de julio de 2026</span><span>Lectura: ocho minutos</span></p>
-      </li>
-
-      <li class="card-publicacion">
-        <span class="kicker">Herramienta · Beta en desarrollo</span>
-        <p class="card-titulo"><a href="buscador-causas-judiciales.html">Buscador de causas judiciales de los vehículos que subyacen a los fondos de deuda privada</a></p>
-        <p class="card-resumen">Un índice de acceso a información judicial pública, hoy en desarrollo interno. El diseño completo se publica antes que la herramienta: reglas editoriales, gates de lanzamiento y canal de corrección.</p>
-        <details class="card-mas">
-          <summary>Qué te llevas</summary>
-          <p class="card-llevas">Las reglas que gobernarán el índice, para juzgar el diseño hoy y auditar su cumplimiento cuando se publique. Sin datos publicados todavía.</p>
-        </details>
-        <p class="card-meta"><span>Publicado: 3 de julio de 2026</span><span>Lectura: ocho minutos</span><span>En desarrollo — sin datos publicados</span></p>
+        <p class="card-meta"><span>Publicado: 12 de septiembre de 2026</span><span>Lectura: seis minutos</span><span>Proyecto en tramitación</span></p>
       </li>
 
     </ul>
+
+    <p class="meta">Las piezas publicadas entre julio y septiembre de 2026 sobre due diligence, cupos de renta fija y arquitectura de vehículos se retiraron del sitio el 12 de septiembre de 2026. Siguen disponibles en el <a href="https://github.com/aprats-cdd/politicamejoramercadoalternativos/commits/main">historial público del repositorio</a>.</p>
   </section>
 
   <section id="metodologia" aria-label="Metodología">
     <h2>Cómo se verifica lo que publico</h2>
 
-    <p>El estándar de información que le pido al mercado me obliga primero a mí. Estas son las reglas con las que se produce cada pieza de este sitio:</p>
+    <p>El estándar de información que le pido al mercado me obliga primero a mí. Tres reglas gobiernan cada página de este sitio:</p>
 
     <ul>
-      <li><strong>Doble fuente o marca explícita.</strong> Toda cifra de mercado y todo claim normativo lleva dos fuentes independientes citadas al pie; la cifra que no alcanza ese estándar —una consolidación propia del autor, una cifra disponible en una sola fuente institucional— se publica solo como orden de magnitud, marcada así en el cuerpo, y la nota al pie declara con esas palabras qué grado de verificación tiene el lector delante. Las afirmaciones biográficas del autor se presentan como declaración propia, sin aparato de nota que simule verificación externa. Lo que queda a media verificación y sin declarar se elimina antes de publicar.</li>
-      <li><strong>Registro de evidencia.</strong> Las cifras salen de un <a href="https://github.com/aprats-cdd/politicamejoramercadoalternativos/blob/main/constelacion/evidencia/registro-sitio.yaml">registro de evidencia</a> versionado junto al sitio; las notas al pie de cada página citan desde ese registro, y ninguna pieza publica un número que el registro no respalde.</li>
-      <li><strong>Lectura adversarial.</strong> Antes de publicar, cada pieza pasa rondas de <a href="https://github.com/aprats-cdd/politicamejoramercadoalternativos/tree/main/constelacion/runs">revisión adversarial documentadas</a>, con su registro versionado en el repositorio público del sitio. Lo digo de frente: esa revisión forma parte del método de producción del propio autor —quien quiera auditarla tiene el registro, quien quiera algo más fuerte tiene las fuentes al pie—, y su encargo es buscar activamente pasajes donde un actor del mercado pudiera leerse aludido. La pieza se corrige hasta pasar esa prueba: acá se comparan arquitecturas, jamás actores.</li>
-      <li><strong>Registro de cambios.</strong> Los documentos vivos —hoy, la guía de due diligence— publican su changelog: qué cambió, cuándo y por qué. Lo vigente y lo propuesto van siempre marcados por separado, para que la descripción del presente nunca se confunda con la propuesta del autor.</li>
+      <li><strong>Hecho y opinión, separados.</strong> Lo que va entre comillas está transcrito de su fuente, con la página al pie. Lo que es lectura mía va marcado como tal, en su propio bloque. Una página que mezcle las dos cosas sin decirlo no se publica.</li>
+      <li><strong>Doble fuente o marca explícita.</strong> Toda cifra de mercado y todo claim normativo lleva dos fuentes independientes citadas al pie. La cifra que no alcanza ese estándar se publica solo como orden de magnitud, marcada así en el cuerpo, y la nota al pie declara qué grado de verificación tiene el lector delante. Las cifras salen de un <a href="https://github.com/aprats-cdd/politicamejoramercadoalternativos/blob/main/constelacion/evidencia/registro-sitio.yaml">registro de evidencia</a> versionado junto al sitio; ninguna página publica un número que el registro no respalde.</li>
+      <li><strong>Lectura adversarial antes de publicar.</strong> Cada página pasa rondas de <a href="https://github.com/aprats-cdd/politicamejoramercadoalternativos/tree/main/constelacion/runs">revisión adversarial documentadas</a> en el repositorio público del sitio. El encargo de esa revisión es buscar pasajes donde un actor del mercado pudiera leerse aludido. Acá se comparan arquitecturas y normas, jamás actores.</li>
     </ul>
-
-    <p>El memorándum lleva sus fuentes numeradas al pie. El estándar de este sitio se aplica primero al documento que lo origina.</p>
   </section>
 
   <section class="bio" id="bio" aria-label="Sobre el autor">
     <h2>Sobre el autor</h2>
-    <p>Llevo 15 años trabajando en mercados privados y alternativos, estructurando deuda privada. Escribo acá a título personal, para el asesor institucional que decide cupos de inversión en deuda privada y quiere revisar por su cuenta lo que el gestor le informa. Mi afiliación y mis incentivos están declarados abajo, de frente.</p>
+    <p>Llevo 15 años trabajando en mercados privados y alternativos, estructurando deuda privada. Escribo acá a título personal. Mi afiliación y mis incentivos están declarados abajo, de frente.</p>
   </section>
 
   <aside class="interes" id="declaracion">
     <h2 class="interes-titulo">Declaración de interés</h2>
-    <p>Soy socio fundador de Cordada, un gestor de deuda privada. Escribo a título personal; este sitio no representa a Cordada ni usa su marca. El beneficio va de frente: si el estándar de información que propongo se adopta, gano — mis vehículos competirían bajo ese estándar, y cuánto lo cumplen hoy lo mide cualquier asesor, cuestionario en mano, sin tomar mi palabra.</p>
-    <div class="interes-costos">
-      <p>Los costos concretos que lo publicado acá me impone, y que asumo:</p>
-      <ul>
-        <li>El cuestionario de due diligence que publico aplica también a mis vehículos: cualquier asesor puede enviármelo mañana y medir, ficha contra ficha, la distancia entre lo que propongo y lo que cumplo.</li>
-        <li>El buscador de causas judiciales indexará también los vehículos ligados a mí, con la misma regla y sin excepción; si la regla no los captura, la herramienta no se lanza.</li>
-        <li>La apertura de información que propongo tiene un costo operativo permanente, y mis vehículos lo cargan primero.</li>
-      </ul>
-    </div>
+    <p>Soy socio fundador de Cordada, un gestor de deuda privada que opera en Chile. Escribo a título personal; este sitio no representa a Cordada ni usa su marca, y no represento a ninguna entidad en la tramitación de los proyectos que comento.</p>
+    <p>El interés va de frente: escribo sobre normas que regulan el mercado en el que trabajo, y varias de ellas me afectan. Cuando una norma me beneficia, lo digo en la página. Cuando me expone a más competencia, también.</p>
   </aside>
-
-  <section class="fuentes" id="notas" aria-label="Notas y fuentes">
-    <h2>Notas y fuentes</h2>
-    <ol>
-      <li id="nota1">Ahorro institucional chileno del orden de USD 400.000 millones a 2025. <strong>Orden de magnitud, consolidación propia del autor</strong>, declarada como tal y marcada así en el cuerpo (~): el total no lleva segunda fuente independiente, y por eso se publica bajo la marca explícita que exige la metodología, sin precisión que la fuente no respalde. Cada componente lleva una fuente institucional —una, y solo una— y la suma es aritmética verificable. Componentes: Superintendencia de Pensiones, Estadísticas del Sistema de Pensiones, dic. 2025 (AFPs USD ~210.000M); CMF, Estados Financieros Consolidados 2025 (compañías de seguros de vida USD ~85.000M); Banco Central de Chile, Fondos Mutuos dic. 2025 (USD ~65.000M); ACAFI, Informe Trimestral de Inversiones Alternativas, Q4 2025 (fondos de inversión y alternativos USD ~40.000M). Verificación: 210.000 + 85.000 + 65.000 + 40.000 ≈ 400.000. Los componentes no se netean por cross-holdings (AFPs y aseguradoras invierten a su vez en fondos mutuos y de inversión locales), lo que puede implicar doble conteo — razón adicional por la que el total se publica solo como orden de magnitud. <a class="retorno" href="#ref-nota1">↩</a></li>
-    </ol>
-  </section>
 
   <footer class="colofon">
     <p>Escrito y mantenido por Andrés Prats, a título personal. <a href="https://www.linkedin.com/in/andres-prats-30904028/" rel="me">LinkedIn</a></p>
-    <p><a href="memorandum.html">Memorándum de Política Pública (versión 2.0)</a> · <a href="#metodologia">Cómo se verifica lo que publico</a> · <a href="#declaracion">Declaración de interés</a> · <a href="feed.xml">RSS</a></p>
-    <p class="disclaimer">Nada de lo publicado en este sitio constituye asesoría de inversión ni recomendación de instrumento alguno. Las comparaciones del sitio son entre arquitecturas de vehículos, jamás entre gestores, fondos o personas.</p>
+    <p><a href="#metodologia">Cómo se verifica lo que publico</a> · <a href="#declaracion">Declaración de interés</a> · <a href="feed.xml">RSS</a></p>
+    <p class="disclaimer">Nada de lo publicado en este sitio constituye asesoría legal ni de inversión, ni recomendación de instrumento alguno. Las comparaciones del sitio son entre arquitecturas y normas, jamás entre gestores, fondos o personas.</p>
   </footer>
 
 </main>

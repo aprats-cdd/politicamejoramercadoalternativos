@@ -373,3 +373,31 @@ claims:
       los use debe presentarlos como órdenes de magnitud del autor. El factor
       "dos a tres veces" que la pieza deriva (peso relativo de los bloques) es
       aritmético sobre estos rangos, no una medición independiente.
+
+  # ── Proyecto de Ley de Reforma al Mercado de Capitales (ingreso 9-sep-2026) ──
+  # (agregado 12-sep-2026 para la pieza "gestor-de-inversiones.html". Todos los
+  #  tokens de esta entrada son REFERENCIAS NORMATIVAS —números de ley, de
+  #  artículo, de mensaje y de página—, no cifras de mercado: se verifican
+  #  leyendo el documento citado, no estimando. Por eso el respaldo son las dos
+  #  fuentes documentales del propio proyecto y no una doble medición.)
+  - texto: >-
+      El Mensaje N° 166-374, de 9 de septiembre de 2026, con el que S.E. el
+      Presidente de la República inicia el Proyecto de Ley de Reforma al Mercado
+      de Capitales y Financiamiento de la Casa Propia ante la Cámara de
+      Diputados, tiene 252 páginas. Crea la figura del gestor de inversiones en
+      un nuevo artículo 16 de la Ley N° 20.712, modifica sus artículos 1, 13, 15,
+      17, 98, 99, 102 y 103, y reemplaza el artículo 169 de la Ley N° 18.045.
+      La Comisión para el Mercado Financiero dispone de un plazo de 6 meses
+      desde la publicación de la ley para dictar las normas de carácter general
+      que hacen entrar en vigor estas modificaciones. Tokens de referencia
+      normativa admitidos para esta pieza: 166-374, 374, 252, 16, 169, 20.712,
+      18.045, 6, 9, 12, 2026, 221. El Mensaje N° 166-374 se cita en la pieza
+      tanto con coma como sin ella. La regla de vigencia (artículo décimo
+      cuarto transitorio) está en la p. 221 del Mensaje.
+    fuente_1: "Mensaje N° 166-374, 9 de septiembre de 2026 — Fundamentos II.3 letras i y j (pp. 51-55) y Articulado, artículos noveno (N° 1, 4, 5, 6, 7, 24, 25, 26, 27), décimo quinto N° 6 y décimo cuarto transitorio (pp. 174-221)"
+    fuente_2: "Minuta del Ministerio de Hacienda sobre el mismo proyecto, sección C, numerales 21 y 22 — documento complementario independiente que sintetiza las mismas dos materias"
+    nota: >-
+      Transcripción literal verificada contra el memo informativo al Directorio
+      "Separación funcional de roles" (v1.0, 9-sep-2026), que cita el Mensaje
+      con página. Son referencias a un proyecto EN TRAMITACIÓN: no es ley
+      vigente, y toda pieza que las use debe decirlo.

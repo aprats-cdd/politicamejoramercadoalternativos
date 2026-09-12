@@ -1,0 +1,105 @@
+# Tabla del lector — pieza "gestor-de-inversiones.html" (12-sep-2026).
+#
+# Lector nuevo del sitio tras el rediseño: quien legisla y quien informa.
+# El encargo del CEO fue explícito: "explicar a políticos y periodistas las
+# ventajas de esta nueva ley". Cada pregunta que ese lector trae a la página
+# se responde en la página, o el gap se declara en la página. Sin terceras
+# opciones (L03, fail-closed).
+#
+# Objeto: gestor-de-inversiones.html · anclas verificadas por eval_lector.py
+# contra las páginas declaradas en sitio-manifest.yaml.
+
+pieza: gestor-de-inversiones.html
+fecha: 2026-09-12
+
+preguntas:
+
+  - pregunta: "¿Qué crea este proyecto que hoy no existe en Chile?"
+    lector: legislador
+    estado: respondida
+    donde: "#figura"
+    evidencia: "El proyecto reemplaza el artículo 16 por uno que permite a la administradora encomendar la cartera del fondo, toda o parte, a un gestor de inversiones designado en el reglamento interno."
+
+  - pregunta: "¿Por qué hoy no llegan gestores de activos globales a invertir en Chile?"
+    lector: legislador
+    estado: respondida
+    donde: "#hoy"
+    evidencia: "Para una firma extranjera que quiere administrar activos chilenos, el camino que queda es montar su propia administradora acá: sociedad, capital, gobierno corporativo, inscripción ante la CMF."
+
+  - pregunta: "¿Ese diagnóstico es del autor o del Gobierno?"
+    lector: periodista
+    estado: respondida
+    donde: "#hoy"
+    evidencia: "El diagnóstico es del propio Mensaje presidencial: «[...] lo que ha impedido en la práctica el surgimiento de un mercado de gestores de inversión especializados [...]»"
+
+  - pregunta: "¿Esto es desregulación? ¿Quedan menos entidades bajo supervisión?"
+    lector: legislador
+    estado: respondida
+    donde: "#limites"
+    evidencia: "El gestor entra a un registro público y queda bajo fiscalización de la CMF: habrá más entidades supervisadas que hoy."
+
+  - pregunta: "¿Quién responde ante los partícipes si el gestor toma una mala decisión de inversión?"
+    lector: legislador
+    estado: respondida
+    donde: "#figura"
+    evidencia: "La responsabilidad por las decisiones del gestor queda en el gestor. La administradora deja de responder por ellas, salvo por sus propios incumplimientos."
+
+  - pregunta: "¿Quién paga al gestor externo: el fondo o la administradora?"
+    lector: legislador
+    estado: respondida
+    donde: "#figura"
+    evidencia: "La remuneración del gestor puede pagarla el fondo, si el reglamento interno lo establece de forma expresa."
+
+  - pregunta: "¿Qué pasa con la cartera si el gestor quiebra o pierde su inscripción?"
+    lector: legislador
+    estado: respondida
+    donde: "#limites"
+    evidencia: "Opera el mecanismo de sustitución del reglamento interno y, a falta de él, la administradora retoma la cartera, con aviso a la CMF y a los partícipes al día hábil siguiente."
+
+  - pregunta: "¿Qué gana con esto una empresa chilena que busca financiamiento?"
+    lector: legislador
+    estado: respondida
+    donde: "#gana"
+    evidencia: "Hoy la banca concentra el 83% del financiamiento empresarial del país [...] Cada gestor nuevo que mira crédito privado chileno es un oferente más en esa mesa."
+
+  - pregunta: "¿Esto ya es ley? ¿Desde cuándo rige?"
+    lector: periodista
+    estado: respondida
+    donde: "#cuando"
+    evidencia: "El proyecto ingresó a la Cámara de Diputados el 9 de septiembre de 2026. Nada de lo descrito acá rige hoy, y el texto puede cambiar en el Congreso."
+
+  - pregunta: "Si se aprueba, ¿cuánto se demora en aplicarse?"
+    lector: periodista
+    estado: respondida
+    donde: "#cuando"
+    evidencia: "6 meses — plazo máximo que el proyecto le da a la CMF, desde la publicación de la ley, para dictar las normas que implementan estos artículos."
+
+  - pregunta: "¿Quién escribe esto y qué gana si el proyecto se aprueba?"
+    lector: periodista
+    estado: respondida
+    donde: "#declaracion"
+    evidencia: "Soy socio fundador de un gestor de deuda privada que opera en Chile. Si este proyecto se aprueba, el mercado en el que trabajo se abre a más competidores, varios más grandes que nosotros."
+
+  - pregunta: "¿Puedo verificar las citas por mi cuenta antes de publicarlas?"
+    lector: periodista
+    estado: respondida
+    donde: "#metodo"
+    evidencia: "Lo que va entre comillas está transcrito del Mensaje presidencial N° 166-374 y de la minuta del Ministerio de Hacienda, con la página al pie."
+
+  - pregunta: "¿Hay evidencia de que efectivamente vayan a llegar gestores globales, o es una expectativa?"
+    lector: periodista
+    estado: gap-declarado
+    donde: "#gana"
+    evidencia: "El proyecto habilita la competencia; no la garantiza. Que lleguen gestores globales dependerá de cómo la CMF escriba las normas de detalle y de si el tamaño del mercado chileno justifica el viaje. [...] Puede fallar."
+
+  - pregunta: "¿De qué tamaño sería el mercado de gestores externos en Chile?"
+    lector: periodista
+    estado: gap-declarado
+    donde: "#metodo"
+    evidencia: "No publico cifras del tamaño de ese mercado: el proyecto no las trae y no tengo fuente pública."
+
+  - pregunta: "¿Qué otras materias del proyecto quedan fuera de esta página?"
+    lector: periodista
+    estado: gap-declarado
+    donde: "#metodo"
+    evidencia: "Esta página cubre una sola materia de las 252 páginas del proyecto: la separación funcional de roles en la industria de fondos."

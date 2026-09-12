@@ -1,49 +1,26 @@
+# Manifest del sitio — lo mantiene AG-SITIO-VERIFICADOR.
+#
+# Rediseño 12-sep-2026 (decisión del CEO en sesión): el corpus fundacional
+# de julio (seis piezas + memorándum) se retiró del sitio. Razón declarada
+# por el dueño: "quedó muy pesada y muy Claude". El sitio queda en un home
+# y una pieza, dirigida a un lector nuevo (legislador y prensa), sobre el
+# proyecto de ley de reforma al mercado de capitales ingresado el
+# 9-sep-2026. Las piezas retiradas viven en el historial de git; el
+# memorándum sigue publicado en origin/main hasta que el CEO apruebe el
+# merge (continuidad P11 / S08).
 estado: cierre
 corpus_base: git:origin/main:memorandum.html
 umbral_similitud: 0.02
 paginas:
-- archivo: memorandum.html
-  tipo: memo-vigente
-  nueva: false
-  gate_pasado: true
 - archivo: index.html
   tipo: home
   nueva: true
   gate_pasado: true
-- archivo: due-diligence-deuda-privada.html
-  tipo: guia-dd
-  nueva: true
-  gate_pasado: true
-- archivo: deuda-privada-como-renta-fija.html
+- archivo: gestor-de-inversiones.html
   tipo: ensayo
   nueva: true
-  gate_pasado: true
-- archivo: separacion-de-roles.html
-  tipo: ensayo
-  nueva: true
-  gate_pasado: true
-- archivo: buscador-causas-judiciales.html
-  tipo: herramienta-anuncio
-  nueva: true
-  gate_pasado: true
-  lexico_prohibido:
-  - difíciles de encontrar
-  - lo que no muestran
-  - FIP
-  - red flag
-  - ranking
-  - semáforo
-  - único acto
-  - cero interpretación
-  - documento que acredita
-- archivo: opinion-cupo-renta-fija.html
-  tipo: opinion
-  nueva: true
-  gate_pasado: true   # adversario PASA-CON-FIXES → 3 fixes aplicados (run 2026-07-04)
-- archivo: renta-fija-palanca-patrimonio.html
-  tipo: ensayo
-  nueva: true
-  gate_pasado: true   # adversario PASA-CON-FIXES → 2 fixes aplicados + tripwire E11 (run 2026-07-04)
+  gate_pasado: true   # adversario NO-PASA → 15 fixes aplicados → PASA-CON-FIXES
+                      # (run 2026-09-12, AG-SITIO-ADVERSARIO, agente aislado)
 - archivo: og-cover.html
   tipo: asset
   nueva: false
