@@ -78,10 +78,29 @@ piezas:
   # anclarlo a la sección que lo declara, que cuesta unas palabras más y es la
   # diferencia entre un respaldo gremial afirmado y uno citado. Sigue muy por
   # debajo del techo por defecto de ensayo (2600).
+  # Sube de 1000 a 1090 el 12-sep-2026, por encargo del CEO en sesión. Es el
+  # alza mejor justificada del día y probablemente el cambio de mayor palanca
+  # que ha tenido la pieza: entran ~87 palabras que reencuadran de quién es la
+  # tesis.
+  #
+  # Hasta hoy la raíz argumentaba «esto le conviene a Chile», firmado por
+  # alguien que declara interés económico — la posición estructuralmente más
+  # débil que existe en política pública. Lo que entra es que en agosto de 2026
+  # Hacienda creó un grupo de trabajo público-privado para exportar servicios
+  # financieros, que esa agenda incluye conectar a Chile con estándares
+  # internacionales de custodia y liquidación, y que el gremio de
+  # administradoras declara el mismo objetivo. La pieza deja de proponer una
+  # idea y pasa a señalar la pieza legal que le falta a una agenda que el Estado
+  # ya declaró. Cambia la carga de la prueba, no el tono.
+  #
+  # Lo que NO entra, y por eso el alza es de 90 y no de 200: ninguna de las
+  # cifras de esas fuentes —exportaciones, empleos, participación extranjera—.
+  # La regla 8 prohíbe publicar de oído una cifra y el Método de esta pieza ya
+  # declara que no usa cifras de mercado. El argumento no las necesita.
   - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 1000
+    techo_palabras: 1090
   # Sube de 1100 a 1150 el 12-sep-2026, en el reencuadre a la tesis del
   # domicilio. El CEO pidió dos cosas que agregan objeción, no adorno: que la
   # tesis de Luxemburgo cargue con el ataque obvio —"Luxemburgo es un paraíso

@@ -553,3 +553,56 @@ claims:
       norma de carácter general que define los instrumentos no susceptibles de
       custodia, y el Boletín N° 1.170-05 en camara.cl. Con eso este claim sube
       de de_oido a doble fuente y la pieza puede entrecomillar.
+
+  # ── La agenda declarada del país (index.html, nota 11) ──
+  # Agregado 12-sep-2026, estado `de_oido`. Es el claim que reencuadra la tesis
+  # de la raíz: deja de ser una idea que propone alguien con interés económico y
+  # pasa a ser la pieza legal que le falta a una agenda que el Estado y el propio
+  # gremio ya declararon. Por eso importa que su `no_sostiene` sea estricto: la
+  # tentación acá es hacerle decir a Hacienda algo que Hacienda no dijo.
+  #
+  # NINGUNA de las cifras de estas fuentes entra —exportaciones, empleos,
+  # participación extranjera— y no por falta de espacio: la regla 8 de la voz de
+  # la casa prohíbe publicar de oído una cifra, y esta pieza además declara en su
+  # Método que no usa cifras de mercado. El único token que este claim habilita
+  # es el marcador de la nota al pie.
+  - texto: >-
+      Agosto de 2026: el Ministerio de Hacienda crea un Grupo de Trabajo para la
+      Exportación de Servicios Financieros, instancia público-privada orientada a
+      remover barreras regulatorias y operativas para que gestores de inversiones
+      y administradores de patrimonio puedan atender clientes extranjeros, dentro
+      de una agenda de mercado de capitales que incluye modernizar la
+      infraestructura financiera y conectar a Chile con estándares
+      internacionales de custodia, liquidación y operación. La Asociación Chilena
+      de Administradoras de Fondos de Inversión declara como objetivo estratégico
+      potenciar a Chile como plataforma de exportación de servicios financieros
+      para la región.
+      Token de referencia admitido para esta pieza: 11 (marcador de nota al pie).
+    de_oido: true
+    fuente_citada: >-
+      Cobertura de prensa del anuncio de agosto de 2026: Diario Financiero
+      ("Hacienda pone en marcha plan para convertir a Chile en exportador de
+      servicios financieros"), Ex-Ante ("Mercado de capitales: la apuesta que
+      prepara Hacienda") y Diario Estrategia / G5 Noticias sobre la creación del
+      Grupo de Trabajo · sitio institucional de ACAFI (acafi.cl) para el objetivo
+      estratégico del gremio.
+    via: >-
+      Buscador web. NINGÚN documento primario fue abierto: ni el acto
+      administrativo que crea el grupo de trabajo, ni sus actas, ni el documento
+      de objetivos del gremio. df.cl y acafi.cl devolvieron 403 EGRESS_BLOCKED en
+      esta sesión, igual que los dominios legales.
+    no_sostiene: >-
+      No sostiene NINGUNA cifra: ni los montos de exportación de servicios
+      financieros, ni el empleo actual o proyectado del rubro, ni la
+      participación extranjera en los fondos chilenos. Esas cifras existen en las
+      fuentes citadas y NO se publican: una cifra citada de oído no es dato.
+      No sostiene que el Grupo de Trabajo haya tomado posición sobre el proyecto
+      de ley que esta página discute. No sostiene que la agenda de Hacienda
+      incluya separar administración de gestión: que esa separación sea la pieza
+      que falta para cumplir esa agenda es lectura declarada del autor, y la
+      nota 11 lo dice con esas palabras. No sostiene la composición del grupo,
+      su mandato formal ni sus plazos.
+    nota: >-
+      Vía de ascenso: abrir desde una red sin bloqueo el comunicado de Hacienda y
+      el documento de objetivos de ACAFI. Con eso el claim sube a doble fuente y
+      la pieza puede entrecomillar el objetivo declarado en vez de parafrasearlo.
