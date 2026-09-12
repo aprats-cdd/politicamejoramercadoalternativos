@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#FCFBF7"/>
   <rect x="0" y="0" width="14" height="630" fill="#1C4B43"/>
-  <text x="90" y="112" font-family="ui-monospace, Consolas, monospace" font-size="19" letter-spacing="2" fill="#6B6B66">ANDRÉS PRATS</text>
-  <text x="90" y="212" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" fill="#1B1E24">Chile puede ser el Luxemburgo</text>
-  <text x="90" y="288" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" fill="#1C4B43">de América Latina</text>
-  <rect x="90" y="336" width="120" height="3" fill="#1C4B43"/>
-  <text x="90" y="404" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">Luxemburgo tiene menos habitantes que el Gran Santiago y es</text>
-  <text x="90" y="442" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">segundo domicilio de fondos del mundo. La regla legal que</text>
-  <text x="90" y="480" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">lo explica es la que este proyecto quiere crear en Chile.</text>
-  <text x="90" y="562" font-family="ui-monospace, Consolas, monospace" font-size="19" letter-spacing="2" fill="#1C4B43">PROYECTO DE LEY · MERCADO DE CAPITALES · CHILE 2026</text>
+  <text x="90" y="106" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" letter-spacing="2" fill="#6B6B66">ANDRÉS PRATS</text>
+  <text x="90" y="204" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" fill="#1B1E24">Chile puede ser el Luxemburgo</text>
+  <text x="90" y="280" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" fill="#1C4B43">de América Latina</text>
+  <rect x="90" y="326" width="120" height="3" fill="#1C4B43"/>
+  <text x="90" y="392" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">Luxemburgo es el segundo domicilio de fondos del mundo, y en</text>
+  <text x="90" y="430" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">su arquitectura hay una regla que Chile no tiene: administrar un</text>
+  <text x="90" y="468" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">fondo y decidir sus inversiones pueden estar en manos distintas.</text>
+  <text x="90" y="506" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">Este proyecto la crea. Es la tesis de esta página, y la firmo.</text>
+  <text x="90" y="570" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" letter-spacing="2" fill="#1C4B43">PROYECTO DE LEY · MERCADO DE CAPITALES · CHILE 2026</text>
 </svg>
