@@ -683,7 +683,7 @@ agentes:
 
   - slug: AG-SITIO-JUEZ-CLASE-MUNDIAL
     rol: Juez de clase mundial (diseño · narrativa · cuñas · audiencias)
-    estado: propuesta
+    estado: activa  # promovida 12-sep-2026: 1a corrida aislada (NO-PASA, V4) + accept del CEO sobre el veredicto
     hace: >
       FORJADO 12-sep-2026. Audita la pieza publicada con la vara que el equipo
       de diseño de Apple aplicaba bajo Steve Jobs, traducida al género (ensayo
@@ -723,5 +723,65 @@ agentes:
         con las varas y los vetos; AG-SITIO-ADVERSARIO audita severidad
         (deflación o inflación de hallazgos). Todo cierre que toque una pieza
         publicada es checkpoint del CEO. El run lo commitea el verificador.
-      estado: propuesta — juicio en la corrida, verificable post-hoc en el run record; sin harness determinista propio por diseño (lo que el código mide ya tiene dueño y poner un LLM sobre un check decidible es regresión)
+      estado: ejecutable — 1a corrida en constelacion/runs/AG-SITIO-JUEZ-CLASE-MUNDIAL/2026-09-12-index-objeciones.md (NO-PASA · Jobs 13/21 · Masiva 9/15 · veto V4), verificada post-hoc contra el sobre YAML, las nueve secciones, evidencia por puntaje y cero actores vivos; sin harness determinista propio por diseño (lo que el código mide ya tiene dueño y poner un LLM sobre un check decidible es regresión)
     metricas: [puntajes sin evidencia citada (veto = 0), actores vivos nombrados en el informe (veto = 0), vetos V1-V4 abiertos al cierre (target 0), cierres bloqueantes sin rol destino (target 0), cuñas que pasan los ocho tests por pieza (target ≥3)]
+
+  # ══════════════════════════════════════════════════════════════════
+  # ELEVADOR DE CLASE MUNDIAL — forja 12-sep-2026 (encargo del CEO en
+  # sesion: "Crea la prompt que lleva la pagina al estandar de
+  # creatividad, claridad y UX de clase mundial. Le gusta a la izquierda
+  # chilena."). Eslabon D del par juez → elevador: consume el informe de
+  # AG-SITIO-JUEZ-CLASE-MUNDIAL (output tipado) y produce la PROPUESTA de
+  # pagina; la publicacion es checkpoint del CEO. Sexta audiencia: el
+  # lector de izquierda chilena, a ganar sin perder a las otras cinco y
+  # sin volver la pagina partidista.
+  # Reusa (no re-crea): AG-SITIO-ESCRITOR (prosa), AG-SITIO-INGENIERO-UI
+  # (forma), AG-SITIO-CURADOR (decide que entra), AG-SITIO-VERIFICADOR
+  # (gates), AG-SITIO-JUEZ-CLASE-MUNDIAL (re-corrida ciega que mide la
+  # elevacion). Neto NUEVO: 1 rol + 1 prompt canonica. Estado: PROPUESTA
+  # hasta la primera corrida + accept del CEO.
+  # Forja: constelacion/runs/2026-09-12-forja-juez-clase-mundial.md
+  # ══════════════════════════════════════════════════════════════════
+
+  - slug: AG-SITIO-ELEVADOR
+    rol: Elevador de clase mundial (creatividad · claridad · UX · capa M+D)
+    estado: propuesta
+    hace: >
+      FORJADO 12-sep-2026. Toma el informe del juez (scorecard, vetos, cuñas,
+      audiencias, "los tres movimientos de Apple", cierres) y produce el
+      paquete que lleva la pieza al estándar de clase mundial en creatividad,
+      claridad y UX: spec de elevación (capa M, cada movimiento atado al
+      cierre del juez que resuelve y al rol que lo ejecuta), parche completo
+      (capa D: diff de index, objeciones, hoja única, tarjeta social),
+      evidencia (gates en verde, cuatro vistas, peso, palabras, anclas y
+      marcadores preservados), tabla de seis audiencias y cierre honesto.
+      Disciplina: sustracción antes que adición; UNA idea creativa por
+      página ejecutada completa dentro de la sobriedad; claridad párrafo por
+      párrafo con el test del estudiante de cuarto medio; UX móvil primero
+      con hoja de impresión. Sexta audiencia: el lector de izquierda chilena
+      (terreno común genuino: desconcentración, responsabilidad con nombre,
+      fiscalización, ahorro de las personas, pymes y regiones, plomería en
+      Chile, estándar y no paraíso) sin cambiar la tesis, sin inventar
+      beneficios, sin atacar actores y sin perder a las otras cinco. Sin
+      informe del juez no eleva a ciegas. No publica: propone; editar pieza
+      publicada es checkpoint del CEO. La elevación se mide con la
+      re-corrida ciega del juez sobre la página propuesta: si las varas no
+      suben, la movida se revierte.
+    memoria:
+      semantica: [constelacion/prompts/elevar-clase-mundial.md, constelacion/prompts/eval-juez-clase-mundial.md, constelacion/voz-de-la-casa.md, constelacion/evidencia/registro-sitio.yaml, index.html, objeciones.html, assets/sitio.css, "informe vigente del juez (runs/AG-SITIO-JUEZ-CLASE-MUNDIAL/)"]
+      episodica: constelacion/runs/AG-SITIO-ELEVADOR/
+      procedural: ocho pasos de la prompt (leer el informe → sustracción → única idea creativa → claridad por párrafo → lector de izquierda → UX → gates → autoevaluación y solicitud de re-corrida) + paquete de cinco partes
+    eval:
+      gate: >
+        Tres capas, ninguna suya (LEY-1). Determinista: la secuencia completa
+        de ci.yml + smoke test, corrida por el harness / AG-SITIO-VERIFICADOR
+        sobre la página propuesta (cero cifras nuevas fuera del registro,
+        anclas y marcadores del steelman preservados, techo de palabras, peso,
+        cero requests externos). Juicio: re-corrida CIEGA de
+        AG-SITIO-JUEZ-CLASE-MUNDIAL sobre la propuesta — la elevación existe
+        solo si ambas varas suben sin abrir vetos. Decisión: AG-SITIO-CURADOR
+        decide qué entra y el CEO da el checkpoint de publicación;
+        AG-SITIO-ADVERSARIO ataca el copy nuevo con la lente del aludido y la
+        lente "lector de izquierda como pandering".
+      estado: propuesta — gates deterministas existentes + re-corrida del juez como medida; sin harness propio por diseño
+    metricas: [varas del juez antes vs después (deben subir ambas), vetos abiertos tras la propuesta (veto = 0), cifras nuevas fuera del registro (veto = 0), anclas o marcadores perdidos (veto = 0), audiencias que se pierden para ganar otra (veto = 0), ideas creativas coladas más allá de una (target 0)]
