@@ -30,9 +30,21 @@ paginas:
 - archivo: historia.html
   tipo: ensayo        # 12-sep-2026: el registro histórico del desacoplamiento chileno.
   nueva: true         # Encargo del CEO ("lee las leyes, entiende que se desacopló, es una
-  gate_pasado: false  # evolución"). Toda su evidencia es de_oido declarada: los dominios
-                      # donde viven los textos están bloqueados desde esta red, y la pieza
-                      # lo dice en su Método y en cada nota al pie.
+  gate_pasado: true   # evolución"). Su evidencia es de_oido declarada en siete de ocho
+                      # notas: los dominios donde viven los textos están bloqueados desde
+                      # esta red, y la pieza lo dice en su Método y en cada nota al pie.
+                      #
+                      # gate_pasado se cierra sobre el PASA CONDICIONAL que el adversario
+                      # aislado dejó escrito en su tercera corrida, cuya condición —dos
+                      # ediciones mecánicas, N1 y N4-bis— está cumplida. Tres corridas,
+                      # 33 hallazgos aplicados. El accept, con su deuda declarada, vive
+                      # en runs/AG-SITIO-ADVERSARIO/2026-09-12-historia.md: el material
+                      # que entró DESPUÉS de esa tercera corrida (la sección #patron, el
+                      # cierre de §falta, la tira y las notas reescritas) no fue revisado
+                      # por el adversario, y hay una cuarta corrida en vuelo sobre él.
+                      # Decisión del dueño en sesión: "No esperes más, cierra el gate y
+                      # mergea". Queda escrito acá para que el pase no se lea como si
+                      # cubriera lo que no cubre.
 - archivo: gestor-de-inversiones.html
   tipo: asset         # redirección a la raíz: conserva el link ya publicado
   nueva: false

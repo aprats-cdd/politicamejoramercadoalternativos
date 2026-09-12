@@ -199,6 +199,11 @@ blockquote {
 code, pre {
   font-family: var(--mono);
   font-size: 0.88em;
+  /* Las notas de oído citan rutas completas de documento (dominio + path). En
+     390px una sola de esas rutas empujaba la página 13px hacia el costado: el
+     smoke de área táctil lo cazó. Un URL que no cabe se parte; la página no
+     se mueve. */
+  overflow-wrap: anywhere;
 }
 
 img, svg { max-width: 100%; height: auto; }
