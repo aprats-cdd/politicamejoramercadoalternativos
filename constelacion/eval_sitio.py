@@ -269,15 +269,23 @@ def main() -> int:
                               capture_output=True, text=True, check=True).stdout.strip()
         if rama == "main":
             fallos.append("S08 trabajando directo sobre main (prohibido: PR draft)")
-        # Pre-publicacion: la raiz de main sirve el memo. Post-publicacion
-        # (merge con sign-off del CEO): el memo vive integro en memorandum.html
-        # y la raiz es el home. Ambos estados son validos; lo invariante es que
-        # el memorandum exista publicado en main.
-        main_index = git_show("origin/main:index.html")
-        main_memo = git_show("origin/main:memorandum.html")
-        marca = "Memorándum de Política Pública"
-        if main_index and marca not in main_index and marca not in main_memo:
-            fallos.append("S08 el memorandum no existe en origin/main (ni raiz ni memorandum.html)")
+        # RETIRADA la clausula de continuidad del memorandum (12-sep-2026).
+        #
+        # Hasta hoy S08 exigia que "Memorándum de Política Pública" siguiera
+        # presente en origin/main (en la raiz o en memorandum.html). Esa
+        # clausula cubria el swap de julio —la raiz dejaba de servir el memo y
+        # pasaba a servir el home— y su invariante era que el documento no se
+        # perdiera en la transicion.
+        #
+        # El CEO retiro el memorandum del sitio el 12-sep-2026, junto con las
+        # seis piezas de julio (ver constelacion/sitio-manifest.yaml). Ya no hay
+        # transicion que cubrir: el documento vive en el historial de git, que
+        # es donde el manifest lo declara. Mantener la clausula dejaria el gate
+        # exigiendo un archivo que una decision del dueño borro, y un gate que
+        # no puede pasar deja de medir.
+        #
+        # S08 sigue custodiando lo unico que no cambio: que el trabajo no se
+        # haga directo sobre main.
     except subprocess.CalledProcessError:
         fallos.append("S08 no se pudo verificar la rama (git). Fail-closed.")
 

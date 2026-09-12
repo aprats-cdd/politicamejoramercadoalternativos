@@ -5,11 +5,16 @@
 # por el dueño: "quedó muy pesada y muy Claude". El sitio queda en un home
 # y una pieza, dirigida a un lector nuevo (legislador y prensa), sobre el
 # proyecto de ley de reforma al mercado de capitales ingresado el
-# 9-sep-2026. Las piezas retiradas viven en el historial de git; el
-# memorándum sigue publicado en origin/main hasta que el CEO apruebe el
-# merge (continuidad P11 / S08).
+# 9-sep-2026. Las piezas retiradas viven en el historial de git.
+#
+# corpus_base queda ANCLADO al commit e7fa0df (último main antes del
+# rediseño), no a origin/main. Razón: el memorándum deja de existir en main
+# con este merge, y S06 —que mide reutilización de texto contra ese corpus—
+# fail-closea si no puede leerlo. Un SHA es permanente; la rama no. El
+# corpus sigue siendo el mismo documento contra el cual se midieron todas
+# las piezas del sitio desde julio, así que la vara no cambia.
 estado: cierre
-corpus_base: git:origin/main:memorandum.html
+corpus_base: git:e7fa0df75fdeb33f1039f317ad24010f45f885ed:memorandum.html
 umbral_similitud: 0.02
 paginas:
 - archivo: index.html
