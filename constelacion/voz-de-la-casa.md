@@ -26,10 +26,17 @@ vara produjo una pieza sólida y cerrada sobre sí misma. El encargo de hoy es
 otro: la idea tiene que viajar, y viaja entre gente que construye cosas.
 
 **Lo que NO cambia** es todo lo que es honestidad y no estética: declaración de
-interés de frente, vigente y propuesto siempre separados, arquitecturas y jamás
-actores, la evidencia antes que la teoría, un número o nada, los límites
-declarados. Un registro más vivo no compra ni una licencia sobre la verdad.
-**Lo que cambia** es para quién se escribe y cómo suena.
+interés de frente, vigente y propuesto siempre separados, la evidencia antes que
+la teoría, un número o nada, los límites declarados. Un registro más vivo no
+compra ni una licencia sobre la verdad. **Lo que cambia** es para quién se
+escribe y cómo suena.
+
+**Enmienda del 12-sep-2026 a la regla 3**, ordenada por el CEO en la misma
+jornada: *«nombra a los que quieras, cita la fuente eso sí, sé explícito»*. El
+registro histórico de un debate de política pública se nombra, siempre con
+fuente y fecha. Lo que sigue fuera es nombrar personas en relación con fraudes
+o sanciones, y nombrar al interlocutor del debate vigente. El detalle, en la
+regla 3.
 
 ## Cliente primario (el norte de toda decisión de voz)
 
@@ -81,10 +88,32 @@ las fronteras se ven, y el conjunto tiene energía.**
    sostenga. *(v1 decía "autoridad por sobriedad"; la sobriedad era un medio, no
    el fin.)*
 
-3. **Arquitecturas, jamás actores.** Se comparan diseños de vehículos y de
-   normas, nunca gestores, fondos ni personas vivas — salvo casos con resolución
-   regulatoria pública, y aun ahí como análisis falla-por-falla, jamás como
-   ataque. *(check: tripwires del aludido; `D05` de `eval_steelman.py`.)*
+3. **Arquitecturas primero; actores solo con la fuente al lado.** Regla
+   modificada por el CEO el 12-sep-2026 en sesión: *«nombra a los que quieras,
+   cita la fuente eso sí, sé explícito»*. Lo que se compara sigue siendo el
+   diseño de un vehículo o de una norma, no una persona. Pero el registro
+   histórico se nombra:
+
+   - **Se puede nombrar** a quien tomó una posición **pública y atribuible** en
+     un debate de política pública: parlamentarios, autoridades, gremios,
+     ejecutivos que firmaron una columna o dieron una entrevista. **Cada nombre
+     va con su fuente y su fecha**, y con la posición textual cuando exista. Sin
+     fuente citable el nombre no entra: es preferible «la industria bancaria
+     argumentó» a un nombre que no se pueda respaldar.
+   - **Sigue fuera** nombrar personas naturales en relación con fraudes,
+     sanciones o responsabilidad penal, salvo resolución pública firme y
+     tratándolas exactamente como la resolución las trata. Ahí el límite no es
+     de estilo sino legal, en un sitio publicado bajo el nombre propio del
+     autor. Para esos casos se nombra la entidad sancionada y la resolución.
+   - **Sigue fuera el interlocutor del debate vigente.** Quien hoy objeta este
+     proyecto se plantea por su argumento, no por su nombre: nombrarlo convierte
+     la página en ajuste de cuentas y le regala al lector la única razón para
+     descartarla. `D05` de `eval_steelman.py` protege exactamente eso y se
+     mantiene sin cambios sobre `objeciones.html`.
+
+   *(checks: tripwires del aludido; `D05` sobre la página que responde la
+   objeción. El registro histórico con fuente queda fuera del alcance de D05
+   porque vive en la raíz, no en la pieza de objeciones.)*
 
 4. **Vigente vs propuesto, siempre separados.** Lo que la norma dice HOY nunca
    se confunde con lo que el autor PROPONE, ni en el texto ni en el color.
