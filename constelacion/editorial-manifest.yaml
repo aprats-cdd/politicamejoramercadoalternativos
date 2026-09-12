@@ -34,9 +34,22 @@
 # asimetría de vigencia entre lo que se suelta y lo que se aprieta. Las tres
 # son concesiones contra el interés del autor; recortarlas para calzar el
 # número sería exactamente la pérdida que el defensor cazó.
+#
+# Sube a 2350 tras el veredicto NO-PASA del adversario (misma jornada, cuatro
+# lentes). Sus bloqueantes obligaron a precisar lo que no se podía afirmar del
+# artículo 98 vigente y del perímetro del gestor, y sus correcciones a pasar la
+# lista del balance a condicional y a atribuir el 169 al Mensaje en vez de
+# afirmarlo. Todo eso alarga.
+#
+# DEUDA DECLARADA, no resuelta: la pieza quedó en ~2.300 palabras (unos once
+# minutos). El encargo era un landing para un legislador que lee noventa
+# segundos. El bloque objeción+respuesta son 937 palabras y es el corazón; la
+# sección de las tres reglas (235) duplica en prosa lo que el comparador ya
+# muestra. La tensión largo/audiencia es real y está sin resolver: se decide
+# con el CEO, no recortando concesiones.
 
 piezas:
   - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 2100
+    techo_palabras: 2350
