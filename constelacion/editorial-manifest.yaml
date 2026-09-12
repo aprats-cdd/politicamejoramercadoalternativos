@@ -24,7 +24,7 @@
 # adversario. Sigue muy por debajo del techo por defecto de ensayo (2600).
 
 piezas:
-  - archivo: gestor-de-inversiones.html
+  - archivo: index.html
     tipo: ensayo
     modo: hard
     techo_palabras: 1350
