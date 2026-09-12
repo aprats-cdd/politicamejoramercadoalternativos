@@ -1,0 +1,107 @@
+# Dossier del defensor — corrida 1 de AG-DEFENSOR-OBJECION (12-sep-2026).
+#
+# Producido por un agente AISLADO, sin el contexto de la sesión que escribe la
+# página y ANTES de que la página existiera. Su mandato no es ayudar a la
+# pieza: es sostener la tesis rival en su mejor versión, para que nadie pueda
+# acusar a la página de hombre de paja. Gate: constelacion/eval_steelman.py
+# (lo corre el verificador o el harness, nunca el defensor — LEY-1).
+
+pieza: index.html
+fecha: 2026-09-12
+ancla_objecion: objecion
+ancla_respuesta: respuesta
+
+# La objeción es pública y de un ejecutivo de una gestora grande. La página
+# NO lo nombra: se compara la arquitectura y la norma, jamás el actor. La
+# lista de nombres vetados no se escribe en este repo —es público, y
+# escribirla acá publicaría justo lo que la regla busca no decir. Vive fuera,
+# mismo patrón que R30/P9 en eval_sitio.py.
+no_nombrables: []
+no_nombrables_archivo: "~/.cordada/no-nombrables-sitio.txt"
+
+excepciones_sancionadas:
+  - caso: "Administradora sancionada por la CMF (Resolución Exenta N° 10.950, 2024)"
+    por_que_se_puede: >-
+      Caso público sancionado con resolución firme y auditorías independientes
+      encargadas por el regulador. Se analiza como arquitectura, no como
+      competidor vivo. Precedente ya usado por este sitio.
+
+objecion_fuerte: >-
+  Administrar dinero de terceros es la única actividad financiera donde quien
+  decide no arriesga patrimonio propio. Hoy una entidad decide, responde y
+  tiene capital detrás. El proyecto la parte en dos.
+  Primero, la frontera: la responsabilidad del gestor es exclusiva "en el
+  ámbito del encargo", y ese ámbito lo define un contrato cuyo contenido
+  mínimo fijará una norma futura. Todo daño empezará por disputar de qué lado
+  cayó.
+  Segundo, el capital: la garantía de la administradora excluye la porción
+  encomendada; la del gestor se calcula sobre patrimonio promedio diario del
+  trimestre anterior — a escala, retrospectiva y ciega al riesgo. El colateral
+  no aumenta: migra a un balance cuyo único capital puede ser esa garantía.
+  Tercero, el arbitraje: dos perímetros con exigencias distintas, y el gestor
+  puede ser persona relacionada con la administradora; basta indicarlo. El
+  grupo aloja la decisión donde la responsabilidad es más barata.
+  Añádase la escala: riesgo, control interno y compliance son costos fijos que
+  solo el tamaño amortiza; y una CMF de dotación constante con más entidades
+  que fiscalizar, fiscaliza peor cada una. El beneficio prometido es de la
+  industria; el costo lo lleva el partícipe. La carga de la prueba es de quien
+  propone.
+
+# Cada eje declara un marcador literal que DEBE aparecer en la página.
+# Si un eje falta, D03 enrojece: es la prueba de que no hubo hombre de paja.
+ejes:
+  - nombre: "La frontera del encargo la define una norma que aún no existe"
+    marcador: "ámbito del encargo"
+  - nombre: "El colateral no aumenta, migra a un balance más chico"
+    marcador: "garantía de la administradora"
+  - nombre: "Arbitraje entre dos perímetros, con gestor relacionado permitido"
+    marcador: "persona relacionada"
+  - nombre: "Compliance y control interno son costos fijos que solo la escala amortiza"
+    marcador: "costos fijos"
+  - nombre: "Una CMF de dotación constante fiscaliza peor a más entidades"
+    marcador: "más entidades que fiscalizar"
+
+puntos_debiles:
+  - >-
+    El caso que la objeción cita operó BAJO el régimen vigente que la objeción
+    defiende. La responsabilidad indelegable de la administradora no lo
+    impidió. Invocar una falla del régimen A para defender el régimen A exige
+    explicar por qué ocurrió igual, y la objeción no lo explica.
+  - >-
+    El mecanismo del caso fue concentración de roles en un mismo perímetro, no
+    falta de envergadura. El registro del sitio acredita que la misma
+    administradora reunió la decisión de inversión, la administración y la
+    condición de contraparte del crédito. El tamaño no aparece en ninguna
+    parte del expediente como variable.
+  - >-
+    "Reducir barreras de entrada" y "bajar el estándar" no son lo mismo bajo
+    este texto. El artículo 98 modificado aplica las exigencias al gestor
+    "cualquiera sea el monto de las carteras que administre, su volumen de
+    negocios o el número de mandantes": es la eliminación de un umbral de
+    minimis, lo contrario de una puerta de servicio.
+  - >-
+    El texto no diluye responsabilidad: la asigna, y con la palabra
+    "exclusiva". Hoy el partícipe demanda a quien no tomó la decisión. La
+    crítica honesta que sobrevive es más chica que la que hice: no es
+    dilución, es reasignación con una frontera todavía por definir.
+
+condiciones_concesion:
+  - "Cerrar la frontera con evidencia y no con promesa: mostrar cómo la norma de carácter general del artículo 16 cierra la brecha entre el ámbito del encargo y los deberes que la ley impone directamente a la administradora."
+  - "Números de colateral antes y después, dado que el artículo 13 excluye la porción encomendada del cómputo de la administradora. Si el número baja, decirlo."
+  - "Reproducir el artículo 13 vigente y las letras b), c) y d) del artículo 103. Sin eso, ni la página puede afirmar que la autocontratación queda cubierta ni yo puedo afirmar que la garantía es ciega al riesgo."
+  - "Una tabla de relacionados: qué conductas quedan prohibidas, cuáles exigen reglamento interno y cuáles solo divulgación."
+  - "Capacidad de fiscalización con cifras, o la declaración explícita de que no hay evidencia disponible."
+  - "Abordar el artículo décimo cuarto transitorio: decir qué resguardos están en la ley que se vota y cuáles quedan delegados a norma futura."
+  - "Mapear el caso sancionado mecanismo por mecanismo: qué habría quedado impedido, qué no, y frente a qué el proyecto es neutro. Si algo queda sin cubrir, nombrarlo."
+  - "Declarar el interés del autor al inicio."
+
+descarte_inmediato:
+  - "Responder al motivo y no al argumento ('los grandes defienden su feudo'). Aunque el motivo sea cierto, usarlo como respuesta admite que no hubo respuesta."
+  - "Citar la objeción recortada, o refutar una versión que no incluya capital, garantía y arbitraje."
+  - "Repetir los fundamentos del Mensaje como si fueran hallazgos neutrales: son la afirmación de una parte interesada."
+  - "Afirmar que la reforma habría evitado el caso sancionado. El contrafactual es inverificable y esa sola frase desacredita la página entera."
+  - "Tratar la cifra penal como hecho establecido, o nombrar contrapartes, fondos o personas más allá de lo público y atribuido."
+  - "Describir el régimen propuesto en presente de indicativo: el proyecto ingresó el 9 de septiembre de 2026 y no es ley vigente."
+  - "Cualquier cifra inventada: AUM, número de actores de la industria, dotación de la CMF."
+  - "Cita selectiva: el artículo 17 'responsabilidad exclusiva' sin su cláusula 'salvo', o el estándar del gestor sin la exclusión de garantía de la administradora."
+  - "Cerrar recomendando aprobar o rechazar el proyecto. En el momento en que recomienda, deja de ser análisis."

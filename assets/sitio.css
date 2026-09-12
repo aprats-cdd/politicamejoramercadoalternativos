@@ -1422,6 +1422,96 @@ sup.nota-ref a {
 
 .escenario > :last-child { margin-bottom: 0; }
 
+
+/* ---------- 17.9 · Debate: la objeción con el mismo peso que la respuesta ---------- */
+
+/* La pieza responde una objeción pública. Si la objeción se ve mas chica que
+   la respuesta, el lector que la comparte deja de leer antes de llegar al
+   argumento. Mismo ancho, misma tipografia, mismo aire: el peso lo decide el
+   contenido, no el diseño. Gate: eval_steelman.py D03/D04. */
+
+.debate { margin: 1.5rem 0 2.5rem; }
+
+.debate-lado {
+  border-top: 3px solid var(--regla);
+  padding-top: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.debate-lado.es-objecion { border-top-color: var(--gris); }
+.debate-lado.es-respuesta { border-top-color: var(--acento); }
+
+.debate-quien {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gris);
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.debate-lado.es-respuesta .debate-quien { color: var(--acento); }
+
+.debate-lado p { margin-bottom: 0.9rem; }
+.debate-lado > :last-child { margin-bottom: 0; }
+
+.debate-tesis {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--tinta);
+}
+
+/* los tres golpes de la respuesta, numerados */
+.golpes { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+
+.golpes > li {
+  border-left: 2px solid var(--acento);
+  padding: 0 0 0 1rem;
+  margin: 0 0 1.1rem;
+}
+
+.golpe-clave {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acento);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- 17.10 · Cuñas citables ---------- */
+
+.cunas {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: grid;
+  gap: 1px;
+  background: var(--regla);
+  border: 1px solid var(--regla);
+}
+
+.cunas > li {
+  background: var(--papel);
+  padding: 1rem 1.15rem;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+.cuna-fuente {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  color: var(--gris);
+  display: block;
+  margin-top: 0.45rem;
+}
+
 /* ---------- 16 · Print básico ---------- */
 
 @media print {

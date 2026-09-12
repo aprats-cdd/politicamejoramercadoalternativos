@@ -35,7 +35,7 @@ preguntas:
   - pregunta: "¿Esto es desregulación? ¿Quedan menos entidades bajo supervisión?"
     lector: legislador
     estado: respondida
-    donde: "#limites"
+    donde: "#balance"
     evidencia: "El gestor entra a un registro público y queda bajo fiscalización de la CMF: habrá más entidades supervisadas que hoy."
 
   - pregunta: "¿Quién responde ante los partícipes si el gestor toma una mala decisión de inversión?"
@@ -53,13 +53,13 @@ preguntas:
   - pregunta: "¿Qué pasa con la cartera si el gestor quiebra o pierde su inscripción?"
     lector: legislador
     estado: respondida
-    donde: "#limites"
+    donde: "#balance"
     evidencia: "Opera el mecanismo de sustitución del reglamento interno y, a falta de él, la administradora retoma la cartera, con aviso a la CMF y a los partícipes al día hábil siguiente."
 
   - pregunta: "¿Qué gana con esto una empresa chilena que busca financiamiento?"
     lector: legislador
     estado: respondida
-    donde: "#gana"
+    donde: "#respuesta"
     evidencia: "Hoy la banca concentra el 83% del financiamiento empresarial del país [...] Cada gestor nuevo que mira crédito privado chileno es un oferente más en esa mesa."
 
   - pregunta: "¿Esto ya es ley? ¿Desde cuándo rige?"
@@ -89,7 +89,7 @@ preguntas:
   - pregunta: "¿Hay evidencia de que efectivamente vayan a llegar gestores globales, o es una expectativa?"
     lector: periodista
     estado: gap-declarado
-    donde: "#gana"
+    donde: "#respuesta"
     evidencia: "El proyecto habilita la competencia; no la garantiza. Que lleguen gestores globales dependerá de cómo la CMF escriba las normas de detalle y de si el tamaño del mercado chileno justifica el viaje. [...] Puede fallar."
 
   - pregunta: "¿De qué tamaño sería el mercado de gestores externos en Chile?"

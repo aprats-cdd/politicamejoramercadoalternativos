@@ -391,7 +391,8 @@ claims:
       desde la publicación de la ley para dictar las normas de carácter general
       que hacen entrar en vigor estas modificaciones. Tokens de referencia
       normativa admitidos para esta pieza: 166-374, 374, 252, 16, 169, 20.712,
-      18.045, 6, 9, 12, 2026, 221. El Mensaje N° 166-374 se cita en la pieza
+      18.045, 6, 9, 12, 2026, 221, y 8 como marcador de nota al pie.
+      El Mensaje N° 166-374 se cita en la pieza
       tanto con coma como sin ella. La regla de vigencia (artículo décimo
       cuarto transitorio) está en la p. 221 del Mensaje.
     fuente_1: "Mensaje N° 166-374, 9 de septiembre de 2026 — Fundamentos II.3 letras i y j (pp. 51-55) y Articulado, artículos noveno (N° 1, 4, 5, 6, 7, 24, 25, 26, 27), décimo quinto N° 6 y décimo cuarto transitorio (pp. 174-221)"
@@ -401,3 +402,32 @@ claims:
       "Separación funcional de roles" (v1.0, 9-sep-2026), que cita el Mensaje
       con página. Son referencias a un proyecto EN TRAMITACIÓN: no es ley
       vigente, y toda pieza que las use debe decirlo.
+
+  # ── Concentración de roles en el caso sancionado (agregado 12-sep-2026) ──
+  # (Re-descripción en términos de ROLES de lo ya acreditado en los claims del
+  #  caso. No agrega hechos ni cifras nuevas: aporta la proposición estructural
+  #  que la página necesita y que hasta hoy no existía como claim, por lo que
+  #  no se podía afirmar. Propuesto por AG-SITIO-AUDITOR en la corrida del
+  #  12-sep-2026 tras bloquear la formulación de "cuatro roles".)
+  - texto: >-
+      En el caso sancionado por la CMF, una misma administradora reunió la
+      decisión de inversión del fondo, su administración y la condición de
+      contraparte del crédito: los créditos fueron canalizados a partes
+      relacionadas a través de fondos públicos, y el 80% del Fondo Sartor
+      Táctico estaba invertido en pagarés emitidos por personas vinculadas a
+      la administradora. La concentración de esos roles en un mismo perímetro
+      está acreditada en la resolución sancionatoria; no es una inferencia
+      sobre el tamaño de la entidad.
+    fuente_1: "CMF, Resolución Exenta N° 10.950, Procedimiento Sancionatorio Sartor AGF S.A., 2024, considerandos (fn5/fn10)"
+    fuente_2: "Auditorías independientes PwC Chile y Deloitte Chile encargadas por la CMF sobre fondos administrados por Sartor AGF, 2024 (fn7)"
+    nota: >-
+      Cubre TRES roles: decide, administra, es contraparte. NO cubre la función
+      de valorización. Ninguna pieza puede escribir "valorizaba" ni "cuatro
+      roles" apoyándose en este claim: el registro no contiene ningún claim que
+      atribuya la valorización a la propia administradora. Para habilitarlo hay
+      que leer los considerandos de la Resolución N° 10.950 y confirmarlo;
+      hasta entonces, fail-closed en tres roles.
+      Tampoco habilita afirmar que la separación de roles habría impedido el
+      caso: ese contrafactual es inverificable y el propio corpus del sitio ya
+      se desdijo de él. Lo máximo sostenible es detección más temprana y mayor
+      costo de ejecución, y eso es argumento del autor, no claim.

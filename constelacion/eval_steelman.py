@@ -28,9 +28,14 @@ Contrato (fail-closed):
   D04  ORDEN. El bloque que plantea la objecion aparece ANTES del bloque que
        la responde, en orden de documento. Responder antes de plantear es la
        forma elegante del hombre de paja.
-  D05  Cero actores vivos nombrados. Los nombres y firmas que la pagina no
-       puede mencionar viven en el dossier como `no_nombrables` (la regla de
-       la casa: se comparan arquitecturas y normas, jamas actores). Un caso
+  D05  Cero actores vivos nombrados (regla de la casa: se comparan
+       arquitecturas y normas, jamas actores). La lista de nombres y firmas
+       vetados NO se escribe en el repo — este repo es publico y escribirla
+       aqui publicaria exactamente lo que la regla busca no decir. Vive fuera,
+       en el archivo que el dossier declara en `no_nombrables_archivo` (mismo
+       patron que R30/P9 en eval_sitio.py). Si el archivo no esta disponible,
+       el check se declara omitido en vez de fingir que paso. `no_nombrables`
+       inline existe solo para nombres que YA son publicos sin costo. Un caso
        publico SANCIONADO no cuenta como actor vivo y se declara en
        `excepciones_sancionadas` con su resolucion.
 
@@ -86,8 +91,10 @@ def cargar_dossiers() -> list[tuple[str, dict]]:
 
 
 def revisar(paginas: list[dict], dossiers: list[tuple[str, dict]],
-            leer_html) -> list[str]:
+            leer_html) -> tuple[list[str], list[str]]:
+    """Devuelve (fallos, notas). Las notas no enrojecen: declaran lo omitido."""
     fallos: list[str] = []
+    notas: list[str] = []
     por_pieza: dict[str, tuple[str, dict]] = {}
     for rel, doc in dossiers:
         if "__error__" in doc:
@@ -155,12 +162,25 @@ def revisar(paginas: list[dict], dossiers: list[tuple[str, dict]],
                 f"(#{ancla_resp} precede a #{ancla_obj})")
 
         # D05 · cero actores vivos nombrados
-        for nombre in (doc.get("no_nombrables") or []):
+        vetados = list(doc.get("no_nombrables") or [])
+        externo = doc.get("no_nombrables_archivo")
+        if externo:
+            ruta_ext = os.path.expanduser(str(externo))
+            if os.path.exists(ruta_ext):
+                with open(ruta_ext, encoding="utf-8") as fh:
+                    vetados += [n.strip() for n in fh if n.strip()]
+            else:
+                notas.append(
+                    f"D05 [{arch}] lista privada de no-nombrables no disponible "
+                    f"({externo}) — check PARCIAL. Solo se verificaron los "
+                    f"nombres declarados inline; el barrido completo se corre "
+                    f"en la sesion del operador. No es un pase.")
+        for nombre in vetados:
             if norma(nombre) and norma(nombre) in cuerpo:
                 fallos.append(
                     f"D05 [{arch}] actor vivo nombrado en la pagina: \"{nombre}\" "
                     f"(regla de la casa: arquitecturas y normas, jamas actores)")
-    return fallos
+    return fallos, notas
 
 
 def self_test() -> int:
@@ -200,7 +220,7 @@ def self_test() -> int:
     ]
     malos = 0
     for nombre, doc, html, esperado in casos:
-        fallos = revisar(pag, [("d.yaml", doc)], lambda a, h=html: h)
+        fallos, _ = revisar(pag, [("d.yaml", doc)], lambda a, h=html: h)
         got = 1 if fallos else 0
         ok = got == esperado
         print(f"  {'ok  ' if ok else 'FALLA'} {nombre}")
@@ -237,8 +257,10 @@ def main() -> int:
         with open(ruta, encoding="utf-8") as fh:
             return fh.read()
 
-    fallos = revisar(paginas, cargar_dossiers(), leer)
+    fallos, notas = revisar(paginas, cargar_dossiers(), leer)
     print(f"eval_steelman - {len(con_objecion)} pagina(s) que responden objecion")
+    for n in notas:
+        print(f"  {n}")
     if fallos:
         print(f"\nROJO - {len(fallos)} hallazgo(s):")
         for f in fallos:
