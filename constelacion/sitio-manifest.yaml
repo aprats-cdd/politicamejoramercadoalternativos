@@ -32,14 +32,16 @@ paginas:
   nueva: false
   gate_pasado: true
 - archivo: og-cover.html
-  tipo: asset
-  nueva: false
-  gate_pasado: true
+  tipo: asset        # 12-sep-2026: reconvertida en redirección a la raíz. Traía la
+  nueva: false       # portada del memorándum (cifras retiradas + "sin Congreso"), que
+  gate_pasado: true  # contradecía la pieza vigente: es el veto V4 del juez. La URL se
+                     # conserva por los compartidos viejos; og-cover.svg quedó como copia
+                     # de la tarjeta vigente. No se borró nada.
 - archivo: feed.xml
   tipo: asset
   nueva: false
   gate_pasado: true
-- archivo: assets/og-sitio.svg
-  tipo: asset
-  nueva: false
-  gate_pasado: true
+- archivo: assets/og-sitio.svg   # fuente de la tarjeta social. Desde el 12-sep-2026
+  tipo: asset                    # og:image apunta a assets/og-sitio.png, exportado de
+  nueva: false                   # este SVG (1200x630): las redes no renderizan SVG. El
+  gate_pasado: true              # PNG no se declara acá porque el gate lee en UTF-8.

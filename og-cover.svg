@@ -1,17 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0E1117"/>
-  <rect width="1200" height="4" fill="#2E5FAA"/>
-  <text x="100" y="130" font-family="Helvetica Neue,Arial,sans-serif" font-size="13" letter-spacing="3" fill="rgba(255,255,255,0.35)">MEMORANDUM DE POLITICA PUBLICA · CHILE 2026</text>
-  <text x="100" y="230" font-family="Georgia,serif" font-size="72" font-weight="700" fill="#FFFFFF">500.000</text>
-  <text x="100" y="280" font-family="Georgia,serif" font-size="28" font-weight="400" fill="rgba(255,255,255,0.5)">empresas en Chile.</text>
-  <text x="100" y="360" font-family="Georgia,serif" font-size="28" font-weight="400" fill="rgba(255,255,255,0.5)">Tu pensión invierte en</text>
-  <text x="100" y="420" font-family="Georgia,serif" font-size="72" font-weight="700" fill="rgba(255,255,255,0.6)" font-style="italic">250.</text>
-  <line x1="100" y1="478" x2="1100" y2="478" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-  <text x="100" y="530" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#FFFFFF">83%</text>
-  <text x="100" y="552" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" fill="rgba(255,255,255,0.35)">Financiamiento concentrado en banca</text>
-  <text x="380" y="530" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#FFFFFF">0</text>
-  <text x="380" y="552" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" fill="rgba(255,255,255,0.35)">Fund Administrators independientes</text>
-  <text x="660" y="530" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#FFFFFF">9–15</text>
-  <text x="660" y="552" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" fill="rgba(255,255,255,0.35)">Meses para implementar sin Congreso</text>
-  <text x="1100" y="600" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" letter-spacing="2" fill="rgba(255,255,255,0.2)" text-anchor="end">ANDRES PRATS · MERCADOS PRIVADOS DE CAPITAL</text>
+  <rect width="1200" height="630" fill="#FCFBF7"/>
+  <rect x="0" y="0" width="14" height="630" fill="#1C4B43"/>
+  <text x="90" y="106" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" letter-spacing="2" fill="#6B6B66">ANDRÉS PRATS</text>
+  <text x="90" y="204" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" fill="#1B1E24">Chile puede ser el Luxemburgo</text>
+  <text x="90" y="280" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="700" fill="#1C4B43">de América Latina</text>
+  <rect x="90" y="326" width="120" height="3" fill="#1C4B43"/>
+  <text x="90" y="392" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">Luxemburgo es el segundo domicilio de fondos del mundo, y en</text>
+  <text x="90" y="430" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">su arquitectura hay una regla que Chile no tiene: administrar un</text>
+  <text x="90" y="468" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">fondo y decidir sus inversiones pueden estar en manos distintas.</text>
+  <text x="90" y="506" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="26" fill="#1B1E24">Este proyecto la crea. Es la tesis de esta página, y la firmo.</text>
+  <text x="90" y="570" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="19" letter-spacing="2" fill="#1C4B43">PROYECTO DE LEY · MERCADO DE CAPITALES · CHILE 2026</text>
 </svg>
