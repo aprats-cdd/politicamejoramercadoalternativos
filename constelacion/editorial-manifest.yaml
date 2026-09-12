@@ -53,10 +53,22 @@ piezas:
   # parte en dos. La raíz explica en cuatro minutos; las objeciones viven en
   # su propia página, completas, para quien las quiera. Cada una con su techo:
   # la explicación corta de verdad, el debate con espacio para ser justo.
+  # Sube de 900 a 960 el 12-sep-2026, en el cambio de registro a la voz v2.
+  # El CEO trajo en sesión las dos frases que le faltaban al argumento:
+  # «hoy el gato cuida la carnicería» —la formulación coloquial de que la misma
+  # entidad decide, valoriza y se controla— y el contraste con los mercados
+  # desarrollados: control por oposición y especialización por función, más
+  # eficiencia y más control a la vez. Son ~66 palabras y son el argumento
+  # central, no adorno: la primera hace que un lector no experto entienda el
+  # problema en una imagen, y la segunda dice qué se gana, que es lo único que
+  # la pieza no decía. Se recortó primero la grasa real (la tira de estado pasó
+  # de tres tarjetas a una línea, y se apretaron tres párrafos: ~20 palabras),
+  # y el resto sube el techo. Sigue muy por debajo del techo por defecto de
+  # ensayo (2600) y del tiempo de lectura declarado.
   - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 900
+    techo_palabras: 960
   # Sube de 1100 a 1150 el 12-sep-2026, en el reencuadre a la tesis del
   # domicilio. El CEO pidió dos cosas que agregan objeción, no adorno: que la
   # tesis de Luxemburgo cargue con el ataque obvio —"Luxemburgo es un paraíso

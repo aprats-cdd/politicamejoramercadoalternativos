@@ -785,48 +785,37 @@ sup.nota-ref a {
 
 .pieza-bajada strong { color: var(--tinta); font-weight: 600; }
 
-/* ---------- 17.2 · Tira de estado (los hechos antes del scroll) ---------- */
+/* ---------- 17.2 · Línea de estado (los hechos antes del scroll) ---------- */
 
-/* Orientación desde el primer segundo: en qué estado está la cosa. Tarjetas
-   con anillo de 1px antes que sombra — la elevación del sistema. */
-.tira-estado {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.9rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.7rem;
-}
+/* Antes eran tres tarjetas sueltas bajo el encabezado. Se veían como un panel
+   de control pegado a un ensayo y cortaban la lectura justo donde la tesis
+   recién había aterrizado. Los hechos siguen —en qué estado está la cosa es lo
+   que impide leer la página como lobby— pero ahora van en una sola línea,
+   dentro del encabezado, con un punto vivo que marca "esto está en curso". */
 
-.tira-estado li {
-  margin: 0;
-  padding: 0.85rem 0.9rem 0.9rem;
-  background: var(--superficie);
-  border-radius: var(--radio-chico);
-  box-shadow: var(--sombra-tarjeta);
-}
-
-.tira-estado .valor {
-  display: block;
-  font-size: 1.02rem;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: var(--tinta);
-  margin-bottom: 0.3rem;
-}
-
-.tira-estado .glosa {
-  display: block;
-  font-size: 0.82rem;
-  line-height: 1.4;
+.estado {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  font-size: 0.9rem;
+  line-height: 1.5;
   color: var(--gris);
+  margin: 0;
+  padding: 0.75rem 0 0;
+  border-top: 1px solid var(--regla-suave);
+  max-width: 62ch;
 }
 
-@media (max-width: 46rem) {
-  .tira-estado { grid-template-columns: 1fr; gap: 0.5rem; }
-  .tira-estado li { display: flex; gap: 0.7rem; align-items: baseline; }
-  .tira-estado .valor { flex: 0 0 auto; margin-bottom: 0; }
+.estado b { color: var(--tinta); font-weight: 650; }
+
+.estado-punto {
+  flex: 0 0 auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.42rem;
+  border-radius: 50%;
+  background: var(--propuesta);
+  box-shadow: 0 0 0 3px var(--propuesta-fondo);
 }
 
 /* ---------- 17.3 · Quién escribe (declaración, arriba y diseñada) ---------- */
