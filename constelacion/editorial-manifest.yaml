@@ -133,7 +133,21 @@ piezas:
   # Método en primera persona en vez de instalada y desmentida (C3).
   # Recortarlas para calzar 1300 sería devolver la pieza al estado que el
   # adversario reprobó. El techo por defecto de ensayo (2600) sigue arriba.
+  # Sube de 1500 a 1700 el 12-sep-2026, por encargo explícito del CEO en sesión:
+  # «potencia el relato y la lógica». Tres corridas del adversario dejaron la
+  # pieza técnicamente blindada y narrativamente floja — una cronología de
+  # cuatro leyes con sus reservas al lado, sin la frase que dice por qué la
+  # serie importa. Entra una sección nueva, «Lo que se repite» (~120 palabras),
+  # que es el único lugar del sitio donde se enuncia el mecanismo: las cuatro
+  # veces el remedio fue sacarle la función a quien tenía el conflicto, y eso
+  # es control por oposición — no depende de que alguien mire, depende de que
+  # dos partes no quieran lo mismo. Es la tesis del CEO («controles por
+  # oposición y especialización por función») y la pieza la tenía implícita en
+  # cuatro ejemplos sin decirla nunca. Sin ella la página es un dato; con ella
+  # es un argumento. El resto del alza es el cierre de §falta, que pasa de un
+  # ancla tibia («es el quinto tramo de una serie») a la que nombra el hueco.
+  # Sigue bajo el techo por defecto de ensayo (2600).
   - archivo: historia.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 1500
+    techo_palabras: 1700
