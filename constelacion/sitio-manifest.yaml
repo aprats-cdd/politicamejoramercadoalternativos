@@ -27,6 +27,12 @@ paginas:
   nueva: true
   responde_objecion: true   # enciende constelacion/eval_steelman.py (D01-D05)
   gate_pasado: true   # adversario + defensor, runs del 12-sep-2026
+- archivo: historia.html
+  tipo: ensayo        # 12-sep-2026: el registro histórico del desacoplamiento chileno.
+  nueva: true         # Encargo del CEO ("lee las leyes, entiende que se desacopló, es una
+  gate_pasado: false  # evolución"). Toda su evidencia es de_oido declarada: los dominios
+                      # donde viven los textos están bloqueados desde esta red, y la pieza
+                      # lo dice en su Método y en cada nota al pie.
 - archivo: gestor-de-inversiones.html
   tipo: asset         # redirección a la raíz: conserva el link ya publicado
   nueva: false

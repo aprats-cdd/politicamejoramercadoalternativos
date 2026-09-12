@@ -476,3 +476,75 @@ claims:
       en el gestor de inversiones— y escribir lo contrario sería un error
       verificable. Tampoco habilita decir que Chile sería el primero de la
       región: Brasil tiene la separación desde 2015, y la pieza lo dice.
+
+  # ── Registro histórico del desacoplamiento chileno (historia.html) ──
+  # Agregado 12-sep-2026. PRIMER CLAIM DEL REGISTRO EN EL TERCER ESTADO
+  # `de_oido`, canonizado el mismo día por orden del CEO ("cita de oído y sé
+  # explícito en la fuente"). Aquí no hay doble fuente porque no hay fuente
+  # abierta: el proxy de egress de la sesión bloqueó bcn.cl, leychile.cl,
+  # cmfchile.cl, camara.cl, oas.org y todos los repositorios donde viven
+  # estos textos. Lo que hay es transcripción devuelta por el buscador, que
+  # corre del otro lado del proxy.
+  #
+  # Los tokens de este claim son REFERENCIAS NORMATIVAS —números de ley, de
+  # artículo y años— y marcadores de nota al pie. NINGUNA cifra de mercado,
+  # de tamaño ni de participación entra por acá: esa línea no se movió con el
+  # cambio de doctrina (voz-de-la-casa.md, regla 8: una cifra citada de oído
+  # no se publica como dato).
+  - texto: >-
+      Referencias normativas del registro histórico: Ley de Mercado de Valores
+      de 1981 (intermediación de valores como industria separada, con registros
+      propios); Ley General de Bancos, giro exclusivo con lista taxativa y
+      filiales intermediarias de valores; Ley 18.876 de 1989 (entidades
+      privadas de depósito y custodia de valores, objeto exclusivo); artículo
+      179 de la Ley 18.045, incorporado por la Ley 19.301 de 1994 (registro
+      especial, anotación separada con individualización del dueño, depósito
+      obligatorio en empresa regulada por la Ley 18.876, cuenta individual a
+      solicitud); Ley 20.345 de 2009 (entidad de contraparte central, principio
+      de firmeza); artículo 53 de la Ley 20.712 de 2014 (depósito de los
+      instrumentos susceptibles de ser custodiados; el regulador define por
+      norma cuáles no lo son); caso Inverlink de 2003, usado solo para la
+      corrección cronológica. Propuesta del gremio de administradoras de fondos
+      de inversión de marzo de 2026 sobre separación de roles.
+      Tokens de referencia admitidos para esta pieza, con sus variantes de
+      puntuación tal como aparecen en el cuerpo:
+      1 2 3 4 5 6 7 53 179 18.876 19.301 20.345 20.712 18.045
+      1981 1981. 1989 1989, 1989. 1994 1994, 2003. 2009 2014 2026,
+    de_oido: true
+    fuente_citada: >-
+      Ley 18.876 (D.O. 21-dic-1989), ficha en repositorio jurídico comercial y
+      páginas normativas de la Superintendencia de Pensiones · artículo 179 de
+      la Ley 18.045 y Boletín N° 1.170-05 (Ley 19.301), fichas en camara.cl y
+      cmfchile.cl · Ley 20.345 (2009), descripciones secundarias del régimen de
+      compensación y liquidación · artículo 53 de la Ley 20.712, transcripción
+      devuelta por búsqueda y políticas de custodia publicadas por
+      administradoras chilenas · régimen de filiales bancarias de la Ley General
+      de Bancos (DFL 3 de 1997) y circular de la superintendencia bancaria de
+      diciembre de 1997 con la frase "absolutamente independientes" ·
+      Diario Financiero, "Administrador de fondos y gestor de inversiones: la
+      separación de roles que proponen las AGF para la industria", 30-mar-2026.
+    via: >-
+      Buscador web (corre fuera del proxy de egress y devuelve resúmenes con
+      cita). NINGÚN documento primario fue abierto por el autor ni por el
+      agente: bcn.cl, leychile.cl, cmfchile.cl, camara.cl, oas.org, scielo.cl y
+      df.cl devolvieron 403 EGRESS_BLOCKED en esta sesión, verificado.
+    no_sostiene: >-
+      No sostiene NINGUNA cifra de mercado, tamaño, participación ni número de
+      entidades — ninguna fue verificada y ninguna se publica. No sostiene
+      entrecomillar el texto de ningún artículo ni afirmar qué inciso agregó
+      cada reforma posterior: las dos frases entre comillas de la pieza van
+      marcadas como transcripción devuelta por búsqueda, y la de la normativa
+      bancaria se declara probablemente de circular y no de ley. No sostiene
+      qué hecho detonó cada ley ni quién se opuso a cada tramo: la historia de
+      la tramitación vive en bcn.cl y camara.cl, bloqueados. No sostiene
+      causalidad entre estas separaciones y el desarrollo del mercado chileno.
+      No sostiene que la Ley 20.345 trate de custodia (trata de riesgo de
+      contraparte). No sostiene que en fondos privados no exista obligación
+      alguna de custodia. No sostiene que el gremio respalde este proyecto de
+      ley: su propuesta es de marzo de 2026 y es anterior e independiente.
+    nota: >-
+      Vía de ascenso declarada: abrir desde una red sin bloqueo el artículo 179
+      en leychile.cl con sus notas al pie, el artículo 53 de la Ley 20.712 y la
+      norma de carácter general que define los instrumentos no susceptibles de
+      custodia, y el Boletín N° 1.170-05 en camara.cl. Con eso este claim sube
+      de de_oido a doble fuente y la pieza puede entrecomillar.

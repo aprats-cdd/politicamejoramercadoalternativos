@@ -65,10 +65,20 @@ piezas:
   # de tres tarjetas a una línea, y se apretaron tres párrafos: ~20 palabras),
   # y el resto sube el techo. Sigue muy por debajo del techo por defecto de
   # ensayo (2600) y del tiempo de lectura declarado.
+  # Sube de 960 a 995 el 12-sep-2026, al entrar historia.html. La raíz gana un
+  # párrafo de ~45 palabras que es el argumento que más le faltaba: que la
+  # separación propuesta es el quinto tramo de una serie chilena
+  # (intermediación, custodia, compensación, patrimonio del fondo), y que el
+  # gremio de administradoras pide ese tramo. Eso desarma de una línea la
+  # objeción más cómoda contra la pieza —"esto es copiar a Luxemburgo"— y por
+  # eso no es adorno. Se recortó primero grasa real: la segunda mitad del
+  # párrafo de la firma global duplicaba lo que el párrafo anterior ya decía
+  # (-14 palabras). El resto sube el techo. Sigue muy por debajo del techo por
+  # defecto de ensayo (2600).
   - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 960
+    techo_palabras: 995
   # Sube de 1100 a 1150 el 12-sep-2026, en el reencuadre a la tesis del
   # domicilio. El CEO pidió dos cosas que agregan objeción, no adorno: que la
   # tesis de Luxemburgo cargue con el ataque obvio —"Luxemburgo es un paraíso
@@ -82,3 +92,18 @@ piezas:
     tipo: ensayo
     modo: hard
     techo_palabras: 1150
+  # Nace el 12-sep-2026 con techo 1300, y el techo se fija por el contenido,
+  # no al revés. La pieza tiene dos partes que no se pueden comprimir sin
+  # romperla: cuatro tramos normativos que hay que describir con su ley, su
+  # año y qué quedó a cada lado (si se resume más, deja de ser verificable y
+  # pasa a ser una línea de tiempo decorativa), y un bloque de método que es
+  # el doble de largo de lo normal porque TODA la evidencia de esta pieza es
+  # de oído. La regla 8 de la voz de la casa exige declarar qué se afirma, de
+  # dónde viene, que no se leyó el original y qué NO sostiene: eso son siete
+  # notas al pie largas, y la sección de fuentes no cuenta para el techo, pero
+  # el Método sí. Recortar el Método para calzar un número sería recortar
+  # exactamente la parte que hace publicable una pieza citada de oído.
+  - archivo: historia.html
+    tipo: ensayo
+    modo: hard
+    techo_palabras: 1300
