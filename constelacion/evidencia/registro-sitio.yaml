@@ -606,3 +606,54 @@ claims:
       Vía de ascenso: abrir desde una red sin bloqueo el comunicado de Hacienda y
       el documento de objetivos de ACAFI. Con eso el claim sube a doble fuente y
       la pieza puede entrecomillar el objetivo declarado en vez de parafrasearlo.
+
+  # ── La brecha: la figura de dominios comparados (index.html, nota 12) ──
+  # Agregado 12-sep-2026. La figura mezcla A PROPOSITO tres niveles de evidencia
+  # distintos, y la nota 12 los distingue uno por uno en vez de promediarlos:
+  #   · 150+ / 0 / Colombia 3  → DOBLE FUENTE. Ya vive en este registro desde la
+  #     forja de julio (claim de "Cero Fund Administrators", CMF + CSSF + Central
+  #     Bank of Ireland + SFC). Es el unico dato duro de la figura.
+  #   · 292 · ~30              → de oido. El 292 es de la CSSF; el ~30 chileno es
+  #     "mas de 30" de fuente secundaria y es el numero mas blando de los seis.
+  #   · 75x / 0,5x / 672 mil   → aritmetica del autor sobre cifras de oido, con
+  #     dispersion real entre fuentes en el PIB luxemburgues (US$ 87,5-101 mil M).
+  # Por eso la figura dice "x" y no un monto: una razon comunica el orden de
+  # magnitud sin fingir precision que las fuentes no dan.
+  - texto: >-
+      Gestores de fondos autorizados en Luxemburgo al 30 de noviembre de 2025:
+      292. Gestores habilitados en Chile: del orden de 30 administradoras
+      generales de fondos. Activos netos en fondos domiciliados en Luxemburgo
+      medidos contra el PIB luxemburgues: del orden de 75 veces. Activos en
+      fondos chilenos medidos contra el PIB de Chile: del orden de 0,5 veces.
+      Poblacion de Luxemburgo: 672 mil habitantes. Colombia: 3 administradoras
+      de fondos independientes.
+      Tokens de referencia admitidos para esta pieza: 292 30 75 0,5 672 3 3. 12
+    de_oido: true
+    fuente_citada: >-
+      CSSF, newsletter N° 299 de diciembre de 2025 (gestores autorizados al
+      30-nov-2025) · cifras de PIB y poblacion de Luxemburgo: Worldometer,
+      Statista y World Economics, con dispersion declarada (US$ 87,5-101 mil
+      millones) · PIB de Chile: el claim de este mismo registro con doble fuente
+      (Banco Central, Cuentas Nacionales 2025 + FMI, WEO) · activos en fondos
+      chilenos: prensa financiera sobre el patrimonio de fondos mutuos a mayo de
+      2026 y el informe de la asociacion de administradoras para fondos de
+      inversion · el par 150+/0 y Colombia 3 vienen del claim de doble fuente ya
+      existente en este registro.
+    via: >-
+      Buscador web para todo lo anterior salvo el PIB de Chile. Ningun documento
+      primario fue abierto: cssf.lu, cmfchile.cl y los sitios de las firmas
+      devolvieron 403 EGRESS_BLOCKED en esta sesion.
+    no_sostiene: >-
+      No sostiene NINGUNA de estas cifras como dato exacto, salvo el par
+      150+/0/3 que tiene doble fuente propia. El "~30" chileno es el mas debil:
+      es "mas de 30" de fuente secundaria y el registro exacto vive en
+      cmfchile.cl. Las razones 75x y 0,5x son aritmetica del autor sobre cifras
+      de oido y la figura las presenta como ordenes de magnitud, no como
+      mediciones. No sostiene comparar el perimetro luxemburgues con el chileno
+      como si midieran exactamente lo mismo: son dos definiciones de "activos en
+      fondos del domicilio" que no se verificaron equivalentes. No sostiene
+      ninguna afirmacion sobre empleo, exportaciones ni recaudacion.
+    nota: >-
+      Via de ascenso: abrir el registro de entidades de la CMF para fijar el
+      numero chileno de AGF, y la estadistica de la CSSF para el luxemburgues.
+      Con eso los dos primeros paneles suben a doble fuente.
