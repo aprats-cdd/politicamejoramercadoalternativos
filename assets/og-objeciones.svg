@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FBFCFF"/>
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <rect x="80" y="74" width="44" height="44" rx="10" fill="#2248F7"/>
+    <text x="102" y="104" font-size="21" font-weight="600" letter-spacing="-1" fill="#FBFCFF" text-anchor="middle">AP</text>
+    <text x="140" y="103" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" letter-spacing="2.2" fill="#1C3FCC">PROYECTO DE LEY · LAS OBJECIONES</text>
+
+    <text x="80" y="222" font-size="66" font-weight="600" letter-spacing="-2.6" fill="#141822">Las objeciones,</text>
+    <text x="80" y="296" font-size="66" font-weight="600" letter-spacing="-2.6" fill="#141822">y qué les respondo</text>
+
+    <text x="80" y="366" font-size="25" fill="#585E69">La objeción más seria contra el gestor de inversiones, planteada</text>
+    <text x="80" y="402" font-size="25" fill="#585E69">completa en su versión más fuerte antes de responderla.</text>
+
+    <rect x="80" y="448" width="504" height="104" rx="10" fill="#F1F2F7"/>
+    <text x="104" y="482" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.6" fill="#828690">LA OBJECIÓN</text>
+    <text x="104" y="518" font-size="23" font-weight="600" letter-spacing="-0.6" fill="#141822">Seis frentes, completos</text>
+
+    <rect x="616" y="448" width="504" height="104" rx="10" fill="#FFFFFF" stroke="#2248F7" stroke-width="1.5"/>
+    <text x="640" y="482" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.6" fill="#1C3FCC">LA RESPUESTA</text>
+    <text x="640" y="518" font-size="23" font-weight="600" letter-spacing="-0.6" fill="#141822">Y lo que no puedo responder</text>
+
+    <text x="80" y="594" font-size="17" fill="#828690">Andrés Prats · El autor declara interés económico directo</text>
+  </g>
+</svg>
