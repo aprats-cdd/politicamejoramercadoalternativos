@@ -135,11 +135,37 @@ las fronteras se ven, y el conjunto tiene energía.**
    sin eufemismo, antes de que el lector pueda sospecharlo solo. *(check:
    `id="declaracion"` presente y sobre el fold.)*
 
-8. **Los límites, escritos.** Toda pieza declara qué no sabe: qué cifra es orden
-   de magnitud, qué claim es juicio y no dato, qué fuente es única o secundaria,
-   qué pregunta queda abierta. La sección de método cumple ese rol. Decir "esto
-   no lo sé" es parte del argumento, no una debilidad. *(check: sección de
-   método presente.)*
+8. **Los límites, escritos, y el nivel de cada fuente.** Toda pieza declara qué
+   no sabe: qué cifra es orden de magnitud, qué claim es juicio y no dato, qué
+   pregunta queda abierta. La sección de método cumple ese rol. Decir "esto no lo
+   sé" es parte del argumento, no una debilidad. *(check: sección de método
+   presente.)*
+
+   **Se puede citar de oído** —apoyarse en una fuente que no se abrió— por orden
+   del CEO del 12-sep-2026: *«cita de oído y sé explícito en la fuente»*. La
+   condición es que la declaración sea completa, y eso exige MÁS que la doble
+   fuente, no menos. Una cita de oído dice cuatro cosas:
+
+   1. **qué se afirma**;
+   2. **de dónde viene**, lo más identificable posible: ley y artículo, número de
+      resolución, título e institución del informe, medio y fecha;
+   3. **que no se leyó el original**, sin eufemismo;
+   4. **qué NO sostiene esa cita** — lo más importante: una fuente secundaria
+      puede bastar para describir una arquitectura y no para afirmar una cifra.
+
+   En el registro de evidencia esto es el estado `de_oido`, con los campos
+   `fuente_citada`, `via` y `no_sostiene` obligatorios; `S07` de `eval_sitio.py`
+   lo hace cumplir y rechaza la declaración incompleta. Los tres estados válidos
+   de un claim son entonces: **doble fuente**, **ilustrativo**, o **de oído
+   declarado**.
+
+   La línea dura que queda: **una cifra citada de oído no se publica como dato.**
+   Es lo primero que un periodista o un abogado verifica, y si falla arrastra
+   todo lo demás. Una arquitectura descrita de oído es defendible; un número, no.
+   Este patrón no es nuevo en el corpus: las notas sobre Luxemburgo y Brasil ya
+   declaran que son fuentes secundarias no verificadas contra el texto normativo,
+   y se citan por la arquitectura que describen. La v2 lo canoniza y le pone
+   estándar.
 
 9. **Orientación desde el primer segundo.** Arriba del fold, la pieza dice de
    qué va, en qué estado está la cosa y cuánto tarda leerla. El lector decide en

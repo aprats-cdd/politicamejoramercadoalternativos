@@ -247,9 +247,28 @@ def main() -> int:
             with open(REGISTRO, encoding="utf-8") as fh:
                 reg = yaml.safe_load(fh) or {}
             for i, c in enumerate(reg.get("claims") or [], 1):
-                respaldo = (c.get("fuente_1") and c.get("fuente_2")) or c.get("ilustrativo") is True
+                # Tercer estado, canonizado 12-sep-2026 por orden del CEO ("cita de
+                # oido y se explicito en la fuente"): un claim puede apoyarse en una
+                # fuente que NO se abrio, siempre que la declaracion sea completa.
+                # Exige MAS que la doble fuente, no menos: hay que decir de donde
+                # viene, por quien se cita, y que NO sostiene esa cita.
+                de_oido = (c.get("de_oido") is True
+                           and c.get("fuente_citada")
+                           and c.get("via")
+                           and c.get("no_sostiene"))
+                if c.get("de_oido") is True and not de_oido:
+                    faltan = [k for k in ("fuente_citada", "via", "no_sostiene") if not c.get(k)]
+                    fallos.append(
+                        f"S07 registro-sitio.yaml#c{i} claim de_oido sin declaracion completa "
+                        f"(faltan: {', '.join(faltan)}). Citar de oido exige decir de donde viene, "
+                        f"por quien se cita y que NO sostiene."
+                    )
+                    continue
+                respaldo = ((c.get("fuente_1") and c.get("fuente_2"))
+                            or c.get("ilustrativo") is True
+                            or de_oido)
                 if not respaldo:
-                    fallos.append(f"S07 registro-sitio.yaml#c{i} claim sin doble fuente ni marca ilustrativa")
+                    fallos.append(f"S07 registro-sitio.yaml#c{i} claim sin doble fuente, marca ilustrativa ni declaracion de_oido")
                     continue
                 tokens_ok.update(NUM_RE.findall(str(c.get("texto", ""))))
         else:
