@@ -75,6 +75,26 @@ Estado: **propuesta** hasta el accept del CEO + primera corrida O→M→D
 (dossier del post de Joe Briggs sobre el ecosistema de fund admin).
 Detalle en `runs/2026-07-10-forja-capa-afilado-exogeno.md`.
 
+## Juez de clase mundial (forja 12-sep-2026)
+
+Encargo del CEO: un eval de la pieza publicada con la vara del equipo de
+diseño de Apple bajo Steve Jobs, traducida al género (ensayo sobrio de
+política pública): sustracción, jerarquía, oficio en el detalle e
+inevitabilidad del orden, sin su lenguaje visual ni su tono comercial. Cubre
+lo que el código no mide y ningún rol juzgaba: diseño de clase mundial,
+comprensión de la tesis por un lector ajeno, cuñas como unidad viral y las
+cinco audiencias (político, think tank, profesor, equipo de inversiones,
+abogado). Un rol nuevo, `AG-SITIO-JUEZ-CLASE-MUNDIAL`, corre **aislado** con
+la prompt canónica `prompts/eval-juez-clase-mundial.md`: 12 dimensiones en
+dos varas que se cruzan (Jobs 21 · Masiva 15), cuatro vetos, tabla de cuñas
+(ocho tests), tabla de audiencias, «los tres movimientos de Apple» y cierres
+ruteados al rol que los cierra. No edita, propone; no duplica los gates
+deterministas (lo que uno debió atrapar lo reporta como fuga). Gate del
+informe: el verificador (sobre YAML, nueve secciones, evidencia por puntaje,
+cero actores) y el adversario (severidad). Estado: **propuesta** hasta la
+primera corrida aislada y el accept del CEO sobre el veredicto. Detalle en
+`runs/2026-09-12-forja-juez-clase-mundial.md`.
+
 ## Corridas
 
 Cada vez que el equipo trabaja, deja registro en `runs/`. Ver
