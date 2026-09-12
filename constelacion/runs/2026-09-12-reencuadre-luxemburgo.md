@@ -79,3 +79,49 @@ Los ocho en verde: `eval_constelacion`, `eval_sitio` (S01-S08),
 `eval_experiencia`, `eval_editorial` (E01-E08 · 900 palabras de techo, sin
 subirlo), `eval_citabilidad`, `eval_lector` (anclas repunteadas a `#falta`),
 `eval_afilado`, `eval_steelman` (D01-D05).
+
+---
+
+## Segunda vuelta: soldar las dos ideas (12-sep-2026, mismo día)
+
+El dueño trajo dos conversaciones privadas. Una de ellas aportó el hallazgo
+que faltaba (interlocutor no identificado: este repo es público y la regla de
+la casa vale también para la evidencia, no solo para las páginas):
+
+> «hoy día las ideas están separadas. Cuando alguien habla de Luxemburgo
+> significa que nos convirtamos en el hub financiero de latam… hay que
+> agarrarse de esa idea, pa decir que **la condición sine qua non** es que
+> existan también las condiciones de transparencia que ofrece lux»
+
+Es más filoso que la versión anterior. La primera vuelta decía que Luxemburgo
+creció *gracias a* la separación de roles. Esto lo convierte en una obligación
+lógica: **quien invoca Luxemburgo ya aceptó sus estándares**. Y el dato que lo
+vuelve operativo es que la pregunta «¿es factible convertirnos en el Luxemburgo
+de América Latina?» ya se hizo en prensa a un ejecutivo de la industria, que
+concedió la ambición en versión modesta —hub andino con Perú y Colombia, paso a
+paso—. La ambición no está en disputa; el estándar sí.
+
+Tres ediciones:
+
+1. **La soldadura**, cerrando `#figura`: «Lo que atrae la plata es lo mismo que
+   la cuida: no hay Luxemburgo sin los estándares de Luxemburgo.»
+2. **Chile como excepción, no como pionero.** «La rareza está de este lado […]
+   Los mercados profundos lo resolvieron; Chile es la excepción.» Positivo por
+   construcción: la solución está probada, no es experimento.
+3. **El realismo**, nuevo eje de la objeción en `objeciones.html` con su
+   respuesta: un hub andino es plata peruana y colombiana domiciliada en Chile,
+   y llega con el mismo requisito. Paso a paso es una cadencia, no una
+   alternativa a la regla. Sin nombrar a nadie, como manda la casa.
+
+Techo de `objeciones.html` de 1100 a 1150, justificado en el manifest: los dos
+ejes nuevos son objeción, no adorno, y recortarlos reconstruiría el hombre de
+paja que D03 existe para impedir. Se recortó la grasa real primero.
+
+### Advertencia levantada al dueño, fuera de la página
+
+Su mensaje a un tercero afirma que hoy el que invierte «auto valoriza» la
+cartera y que el proyecto «evita que pase un Sartor». Lo primero se sostiene
+como descripción general del régimen, pero el registro bloquea atribuir la
+valorización **en el caso sancionado** — es el cuarto rol, fail-closed. Lo
+segundo es el contrafactual que la página se niega a afirmar por inverificable.
+Ninguna de las dos entró al sitio.
