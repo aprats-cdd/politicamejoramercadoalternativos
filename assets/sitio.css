@@ -1024,59 +1024,72 @@ sup.nota-ref a {
 /* La pieza responde una objeción pública. Si la objeción se ve mas chica que
    la respuesta, el lector que la comparte deja de leer antes de llegar al
    argumento. Mismo ancho, misma tipografia, mismo aire: el peso lo decide el
-   contenido, no el diseño. Gate: eval_steelman.py D03/D04. */
+   contenido, no el diseño. Gate: eval_steelman.py D03/D04.
+   En el registro v2 cada lado es una zona rotulada: la objeción es un bloque
+   cerrado y la respuesta una zona con frontera, la misma gramática que la
+   figura de la raíz. */
 
-.debate { margin: 1.5rem 0 2.5rem; }
+.debate { margin: 1.75rem 0 2.5rem; }
 
 .debate-lado {
-  border-top: 3px solid var(--regla);
-  padding-top: 1.1rem;
-  margin-bottom: 2rem;
+  position: relative;
+  border-radius: var(--radio);
+  padding: 1.5rem 1.25rem 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
-.debate-lado.es-objecion { border-top-color: var(--gris); }
-.debate-lado.es-respuesta { border-top-color: var(--acento); }
+.debate-lado.es-objecion {
+  background: var(--nota);
+  box-shadow: 0 0 0 1px var(--regla-suave);
+}
+
+.debate-lado.es-respuesta {
+  background: var(--superficie);
+  border: var(--linea) dashed var(--propuesta-regla);
+  box-shadow: var(--sombra-tarjeta);
+}
 
 .debate-quien {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 700;
+  position: absolute;
+  top: -0.42rem;
+  left: 1rem;
+  padding: 0 0.5rem;
+  background: var(--papel);
+  font: 600 0.7rem/1 var(--mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gris);
-  display: block;
-  margin-bottom: 0.7rem;
+  color: var(--tenue);
 }
 
-.debate-lado.es-respuesta .debate-quien { color: var(--acento); }
+.debate-lado.es-respuesta .debate-quien { color: var(--propuesta); }
 
 .debate-lado p { margin-bottom: 0.9rem; }
 .debate-lado > :last-child { margin-bottom: 0; }
 
 .debate-tesis {
-  font-size: 1.08rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.4;
   color: var(--tinta);
 }
 
-/* los tres golpes de la respuesta, numerados */
-.golpes { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+/* los veredictos de la respuesta: cada uno es una pieza con su rótulo */
+.golpes { list-style: none; padding: 0; margin: 1.3rem 0 0; }
 
 .golpes > li {
-  border-left: 2px solid var(--acento);
+  border-left: 2px solid var(--propuesta-regla);
   padding: 0 0 0 1rem;
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.2rem;
 }
 
 .golpe-clave {
-  font-family: var(--sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font: 600 0.72rem/1.35 var(--mono);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--acento);
+  color: var(--propuesta);
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem;
 }
 
 /* ---------- 17.11 · Qué cambia para cada uno ---------- */
