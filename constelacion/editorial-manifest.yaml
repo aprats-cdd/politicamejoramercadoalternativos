@@ -97,10 +97,32 @@ piezas:
   # cifras de esas fuentes —exportaciones, empleos, participación extranjera—.
   # La regla 8 prohíbe publicar de oído una cifra y el Método de esta pieza ya
   # declara que no usa cifras de mercado. El argumento no las necesita.
+  # Sube de 1090 a 1150 el 12-sep-2026, al entrar la figura "La brecha".
+  #
+  # QUINTA ALZA DEL MISMO TECHO EN UN DÍA (960 → 995 → 1000 → 1090 → 1150). Hay
+  # que decirlo acá porque el adversario y el juez lo cazaron los dos: un tope
+  # que cede cada vez que entra algo bueno dejó de ser un tope. Cada alza tuvo
+  # su justificación escrita y ninguna fue frívola, y esa es precisamente la
+  # forma que toma el drift — nunca se ve frívolo desde adentro.
+  #
+  # Qué entra: tres comparaciones Chile/Luxemburgo (gestores autorizados,
+  # administradoras independientes, activos contra PIB) en ~66 palabras de
+  # rótulos y notas. Se pagó lo que se pudo: salió la línea "Luxemburgo
+  # administra fondos del mundo entero, su ahorro interno no explica eso",
+  # porque la figura la dice con el número al lado (−14). El resto sube el
+  # techo. La figura vale el costo: es la primera vez que el dominio se MIDE en
+  # vez de describirse, y el panel del cero —una categoría jurídica que no
+  # existe— es el dato más duro del sitio.
+  #
+  # DECISIÓN PENDIENTE, del CEO y no de esta rama: index está en 1150 palabras
+  # para un lector que la landing promete en cinco minutos. O la pieza acepta un
+  # presupuesto duro y algo sale para que algo entre, o el techo se declara
+  # indicativo y deja de gatear. Mantenerlo como "hard" y subirlo cada vez es la
+  # peor de las tres opciones, porque simula un control que no existe.
   - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 1090
+    techo_palabras: 1150
   # Sube de 1100 a 1150 el 12-sep-2026, en el reencuadre a la tesis del
   # domicilio. El CEO pidió dos cosas que agregan objeción, no adorno: que la
   # tesis de Luxemburgo cargue con el ataque obvio —"Luxemburgo es un paraíso

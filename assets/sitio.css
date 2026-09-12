@@ -224,16 +224,6 @@ figcaption {
   margin-top: 0.5rem;
 }
 
-/* kicker genérico: sans, mayúsculas con tracking, en acento */
-.kicker {
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--acento);
-}
-
 /* meta genérica (fechas, tiempos de lectura, etiquetas) */
 .meta {
   font-family: var(--sans);
@@ -360,21 +350,6 @@ details.indice-pieza[open]::details-content { block-size: auto; }
   white-space: nowrap; border: 0;
 }
 
-/* ---------- 4 · Masthead y navegación ---------- */
-
-.masthead {
-  padding: 4.5rem 0 1.75rem;   /* más aire arriba: calma editorial */
-  border-bottom: 1px solid var(--regla);
-  margin-bottom: 2.5rem;
-}
-
-/* marca: monograma AP + nombre, en una fila (logo a la izquierda) */
-.masthead-marca {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-}
-
 .logo {
   display: inline-flex;
   align-items: center;
@@ -405,107 +380,6 @@ details.indice-pieza[open]::details-content { block-size: auto; }
 
 /* marca mini para la cabecera de cada pieza */
 .logo-mark--mini { width: 24px; height: 24px; }
-
-.masthead-id { min-width: 0; }
-
-.masthead-nombre {
-  font-family: var(--serif);
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin: 0;
-}
-
-.masthead-nombre a {
-  color: var(--tinta);
-  text-decoration: none;
-}
-
-.masthead-nombre a:hover { color: var(--acento); }
-
-.masthead-tagline {
-  font-family: var(--sans);
-  font-size: 0.95rem;
-  color: var(--gris);
-  margin: 0.4rem 0 0;
-  max-width: 34rem;
-}
-
-.masthead-nav {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  margin-top: 0.75rem;
-  margin-left: -0.6rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 0.5rem;
-}
-
-/* área táctil del sistema (D2): el link crece hacia adentro del padding,
-   la mancha tipográfica no se mueve */
-.masthead-nav a {
-  color: var(--gris);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--tap-minimo);
-  padding: 0 0.6rem;
-}
-
-.masthead-nav a:hover { color: var(--acento); text-decoration: underline; }
-
-/* lupa: botón de búsqueda (solo aparece con JS — progressive enhancement) */
-.lupa {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: var(--tap-minimo);
-  min-height: var(--tap-minimo);
-  margin-left: auto;           /* empuja la lupa al extremo derecho de la nav */
-  padding: 0;
-  background: transparent;
-  border: 0;
-  color: var(--gris);
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.lupa:hover { color: var(--acento); }
-
-.lupa-icono {
-  width: 20px; height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-}
-
-/* caja de búsqueda: filtra las publicaciones en vivo */
-.buscador {
-  margin-top: 0.9rem;
-}
-
-.buscador-input {
-  width: 100%;
-  font-family: var(--sans);
-  font-size: 1rem;
-  color: var(--tinta);
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--acento);
-  padding: 0.6rem 0.2rem;
-  min-height: var(--tap-minimo);
-}
-
-.buscador-input::placeholder { color: var(--gris); }
-.buscador-input:focus { outline: none; border-bottom-width: 2px; }
-
-.buscador-vacio {
-  font-family: var(--sans);
-  font-size: 0.9rem;
-  color: var(--gris);
-  margin: 0.75rem 0 0;
-}
 
 /* nav mínima de retorno (cabecera de cada pieza) — link táctil al índice (D3) */
 .nav-retorno {
@@ -568,54 +442,11 @@ details.indice-pieza[open]::details-content { block-size: auto; }
 /* la nav de pie quedó en un solo paso: el enlace se ancla al borde derecho */
 .nav-pie .nav-pie-siguiente:only-child { margin-left: auto; margin-right: -0.5rem; }
 
-/* ---------- 5 · Header de pieza ---------- */
-
-.pieza-header {
-  margin: 0 0 2.5rem;
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid var(--regla);
-}
-
-.pieza-header .kicker { display: block; margin-bottom: 0.6rem; }
-
-.pieza-header h1 { margin-bottom: 0.75rem; }
-
 .pieza-bajada {
   font-size: 1.1rem;
   color: var(--gris);
   margin: 0 0 1rem;
 }
-
-.pieza-meta {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  color: var(--gris);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1.25rem;
-}
-
-/* caja para-quién: para quién es / qué te llevas / tiempo de lectura */
-.para-quien {
-  font-family: var(--sans);
-  font-size: 0.9rem;
-  background: var(--nota);
-  border-left: 3px solid var(--acento);
-  padding: 1rem 1.25rem;
-  margin: 0 0 2.5rem;
-}
-
-.para-quien dt {
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--acento);
-  margin-top: 0.6rem;
-}
-
-.para-quien dt:first-child { margin-top: 0; }
-.para-quien dd { margin: 0.15rem 0 0; }
 
 /* índice de pieza: "En esta pieza", plegado por defecto (D5, corrige M6) */
 .indice-pieza {
@@ -960,6 +791,11 @@ sup.nota-ref a {
 .comparador-titulo.es-propuesta { color: var(--propuesta); }
 
 .comparador-celda {
+  /* Un item de grid no baja por defecto del ancho de su palabra mas larga
+     (min-width: auto), asi que a 320px "administradora" empujaba la celda
+     fuera del viewport: 17px de scroll horizontal. */
+  min-width: 0;
+  overflow-wrap: break-word;
   border-radius: var(--radio);
   padding: 0.8rem 0.85rem;
   font-size: 0.97rem;
@@ -1032,7 +868,6 @@ sup.nota-ref a {
   .comparador-pregunta { margin-bottom: 0.5rem; }
   .comparador-cierre { margin-top: 0.75rem; padding-top: 0.7rem; font-size: 0.82rem; }
 }
-
 
 /* ---------- 17.6 · Cita grande (la voz del Mensaje) ---------- */
 
@@ -1317,3 +1152,136 @@ sup.nota-ref a {
 .difundir-item p:last-child { margin-bottom: 0; }
 
 .difundir code { font-size: 0.8rem; color: var(--acento); }
+
+/* ---------- 22 · La brecha · Chile frente al domicilio de referencia ----------
+
+   Nace el 12-sep-2026. Tres comparaciones, escala real dentro de cada una. No es
+   ilustracion: es el argumento del dominio medido. Decisiones que importan:
+
+   - Escala real, sin logaritmos. Chile es 10% de la barra en gestores y el 3er
+     panel no se dibuja como barra. Un eje logaritmico habria hecho "visible" a
+     Chile escondiendo justo lo que hay que mostrar.
+   - El cero NO se dibuja como barra de ancho cero —eso se lee como dato
+     faltante—. Se marca con un tick en el origen, que se lee como AUSENCIA.
+   - Chile lleva el acento y la referencia va en gris. Al reves de lo intuitivo:
+     el ojo va al color fuerte y descubre que casi no hay nada. Si el color
+     fuera de Luxemburgo, la lectura seria "que grande Luxemburgo"; asi es
+     "que poco Chile".
+   - Paleta de ENFASIS (un color + neutro), no categorica: validada con el
+     script de la skill de dataviz — separacion CVD 18.1 dE protan, contraste
+     sobre papel OK. El chroma floor marca el gris y es deliberado: la identidad
+     la lleva el nombre escrito en cada barra, no el color. Funciona impreso en
+     blanco y negro.
+   - El tercer panel es una razon, no una magnitud, y va como par de cifras:
+     una barra de 0,67% se lee como error de render, no como dato. */
+
+.brecha { margin: 1.5rem 0 0; }
+
+.brecha + .brecha {
+  margin-top: 1.4rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--regla-suave);
+}
+
+.brecha figcaption {
+  font: 600 0.72rem/1.3 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rotulo);
+}
+
+.brecha-fila {
+  display: grid;
+  grid-template-columns: 7.2rem 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 0.75rem;
+}
+
+.brecha-quien {
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--tinta);
+}
+
+/* el carril: hairline recesivo, nunca punteado */
+.brecha-carril {
+  position: relative;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--nota);
+  box-shadow: inset 0 0 0 1px var(--regla-suave);
+}
+
+.brecha-relleno { display: block; height: 100%; border-radius: 3px; }
+.brecha-relleno.es-chile { background: var(--acento); }
+.brecha-relleno.es-ref { background: var(--gris); }
+
+/* el cero: un tick en el origen, no una barra invisible */
+.brecha-cero {
+  position: absolute;
+  left: 0;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: var(--acento);
+}
+
+.brecha-valor {
+  font: 600 0.95rem/1 var(--mono);
+  letter-spacing: -0.02em;
+  color: var(--tinta);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.brecha-valor.es-cero { color: var(--acento); }
+
+.brecha-nota {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--gris);
+  margin: 0.6rem 0 0;
+}
+
+/* tercer panel: la razon, como par de cifras */
+.brecha-par {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+}
+
+.brecha-tarjeta {
+  border-radius: var(--radio);
+  padding: 0.85rem 0.9rem;
+  background: var(--nota);
+  box-shadow: 0 0 0 1px var(--regla-suave);
+}
+
+.brecha-tarjeta.es-chile {
+  background: var(--acento-fondo);
+  box-shadow: 0 0 0 1px var(--acento-regla);
+}
+
+.brecha-cifra {
+  display: block;
+  font: 600 2rem/1 var(--sans);
+  letter-spacing: -0.05em;
+  color: var(--tinta);
+  font-variant-numeric: tabular-nums;
+}
+
+.brecha-tarjeta.es-chile .brecha-cifra { color: var(--acento); }
+
+.brecha-tarjeta .brecha-quien { display: block; margin-top: 0.35rem; }
+
+/* En telefono el nombre no compite con la barra por el ancho: sube a su propia
+   linea con el valor al frente, y la barra toma el ancho completo. */
+@media (max-width: 30rem) {
+  .brecha-fila { grid-template-columns: 1fr auto; gap: 0.3rem 0.7rem; margin-top: 0.9rem; }
+  .brecha-carril { grid-column: 1 / -1; }
+  .brecha-valor { justify-self: end; }
+  .brecha-cifra { font-size: 1.75rem; }
+}
