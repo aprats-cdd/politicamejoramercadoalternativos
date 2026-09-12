@@ -26,10 +26,17 @@ vara produjo una pieza sólida y cerrada sobre sí misma. El encargo de hoy es
 otro: la idea tiene que viajar, y viaja entre gente que construye cosas.
 
 **Lo que NO cambia** es todo lo que es honestidad y no estética: declaración de
-interés de frente, vigente y propuesto siempre separados, arquitecturas y jamás
-actores, la evidencia antes que la teoría, un número o nada, los límites
-declarados. Un registro más vivo no compra ni una licencia sobre la verdad.
-**Lo que cambia** es para quién se escribe y cómo suena.
+interés de frente, vigente y propuesto siempre separados, la evidencia antes que
+la teoría, un número o nada, los límites declarados. Un registro más vivo no
+compra ni una licencia sobre la verdad. **Lo que cambia** es para quién se
+escribe y cómo suena.
+
+**Enmienda del 12-sep-2026 a la regla 3**, ordenada por el CEO en la misma
+jornada: *«nombra a los que quieras, cita la fuente eso sí, sé explícito»*. El
+registro histórico de un debate de política pública se nombra, siempre con
+fuente y fecha. Lo que sigue fuera es nombrar personas en relación con fraudes
+o sanciones, y nombrar al interlocutor del debate vigente. El detalle, en la
+regla 3.
 
 ## Cliente primario (el norte de toda decisión de voz)
 
@@ -81,10 +88,32 @@ las fronteras se ven, y el conjunto tiene energía.**
    sostenga. *(v1 decía "autoridad por sobriedad"; la sobriedad era un medio, no
    el fin.)*
 
-3. **Arquitecturas, jamás actores.** Se comparan diseños de vehículos y de
-   normas, nunca gestores, fondos ni personas vivas — salvo casos con resolución
-   regulatoria pública, y aun ahí como análisis falla-por-falla, jamás como
-   ataque. *(check: tripwires del aludido; `D05` de `eval_steelman.py`.)*
+3. **Arquitecturas primero; actores solo con la fuente al lado.** Regla
+   modificada por el CEO el 12-sep-2026 en sesión: *«nombra a los que quieras,
+   cita la fuente eso sí, sé explícito»*. Lo que se compara sigue siendo el
+   diseño de un vehículo o de una norma, no una persona. Pero el registro
+   histórico se nombra:
+
+   - **Se puede nombrar** a quien tomó una posición **pública y atribuible** en
+     un debate de política pública: parlamentarios, autoridades, gremios,
+     ejecutivos que firmaron una columna o dieron una entrevista. **Cada nombre
+     va con su fuente y su fecha**, y con la posición textual cuando exista. Sin
+     fuente citable el nombre no entra: es preferible «la industria bancaria
+     argumentó» a un nombre que no se pueda respaldar.
+   - **Sigue fuera** nombrar personas naturales en relación con fraudes,
+     sanciones o responsabilidad penal, salvo resolución pública firme y
+     tratándolas exactamente como la resolución las trata. Ahí el límite no es
+     de estilo sino legal, en un sitio publicado bajo el nombre propio del
+     autor. Para esos casos se nombra la entidad sancionada y la resolución.
+   - **Sigue fuera el interlocutor del debate vigente.** Quien hoy objeta este
+     proyecto se plantea por su argumento, no por su nombre: nombrarlo convierte
+     la página en ajuste de cuentas y le regala al lector la única razón para
+     descartarla. `D05` de `eval_steelman.py` protege exactamente eso y se
+     mantiene sin cambios sobre `objeciones.html`.
+
+   *(checks: tripwires del aludido; `D05` sobre la página que responde la
+   objeción. El registro histórico con fuente queda fuera del alcance de D05
+   porque vive en la raíz, no en la pieza de objeciones.)*
 
 4. **Vigente vs propuesto, siempre separados.** Lo que la norma dice HOY nunca
    se confunde con lo que el autor PROPONE, ni en el texto ni en el color.
@@ -106,11 +135,37 @@ las fronteras se ven, y el conjunto tiene energía.**
    sin eufemismo, antes de que el lector pueda sospecharlo solo. *(check:
    `id="declaracion"` presente y sobre el fold.)*
 
-8. **Los límites, escritos.** Toda pieza declara qué no sabe: qué cifra es orden
-   de magnitud, qué claim es juicio y no dato, qué fuente es única o secundaria,
-   qué pregunta queda abierta. La sección de método cumple ese rol. Decir "esto
-   no lo sé" es parte del argumento, no una debilidad. *(check: sección de
-   método presente.)*
+8. **Los límites, escritos, y el nivel de cada fuente.** Toda pieza declara qué
+   no sabe: qué cifra es orden de magnitud, qué claim es juicio y no dato, qué
+   pregunta queda abierta. La sección de método cumple ese rol. Decir "esto no lo
+   sé" es parte del argumento, no una debilidad. *(check: sección de método
+   presente.)*
+
+   **Se puede citar de oído** —apoyarse en una fuente que no se abrió— por orden
+   del CEO del 12-sep-2026: *«cita de oído y sé explícito en la fuente»*. La
+   condición es que la declaración sea completa, y eso exige MÁS que la doble
+   fuente, no menos. Una cita de oído dice cuatro cosas:
+
+   1. **qué se afirma**;
+   2. **de dónde viene**, lo más identificable posible: ley y artículo, número de
+      resolución, título e institución del informe, medio y fecha;
+   3. **que no se leyó el original**, sin eufemismo;
+   4. **qué NO sostiene esa cita** — lo más importante: una fuente secundaria
+      puede bastar para describir una arquitectura y no para afirmar una cifra.
+
+   En el registro de evidencia esto es el estado `de_oido`, con los campos
+   `fuente_citada`, `via` y `no_sostiene` obligatorios; `S07` de `eval_sitio.py`
+   lo hace cumplir y rechaza la declaración incompleta. Los tres estados válidos
+   de un claim son entonces: **doble fuente**, **ilustrativo**, o **de oído
+   declarado**.
+
+   La línea dura que queda: **una cifra citada de oído no se publica como dato.**
+   Es lo primero que un periodista o un abogado verifica, y si falla arrastra
+   todo lo demás. Una arquitectura descrita de oído es defendible; un número, no.
+   Este patrón no es nuevo en el corpus: las notas sobre Luxemburgo y Brasil ya
+   declaran que son fuentes secundarias no verificadas contra el texto normativo,
+   y se citan por la arquitectura que describen. La v2 lo canoniza y le pone
+   estándar.
 
 9. **Orientación desde el primer segundo.** Arriba del fold, la pieza dice de
    qué va, en qué estado está la cosa y cuánto tarda leerla. El lector decide en

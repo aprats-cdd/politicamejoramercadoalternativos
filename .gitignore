@@ -3,3 +3,7 @@
 # Respaldo en scratchpad de la sesión. Se commitea (o se mueve a repo privado)
 # cuando el CEO resuelva D16.
 constelacion/runs/AG-SITIO-CURADOR/2026-07-03-design-brief.md
+
+# Bytecode de Python: ruido en un repo publico. Se dejo de trackear el 12-sep-2026.
+__pycache__/
+*.pyc

@@ -199,6 +199,11 @@ blockquote {
 code, pre {
   font-family: var(--mono);
   font-size: 0.88em;
+  /* Las notas de oído citan rutas completas de documento (dominio + path). En
+     390px una sola de esas rutas empujaba la página 13px hacia el costado: el
+     smoke de área táctil lo cazó. Un URL que no cabe se parte; la página no
+     se mueve. */
+  overflow-wrap: anywhere;
 }
 
 img, svg { max-width: 100%; height: auto; }
@@ -654,6 +659,42 @@ details.indice-pieza[open]::details-content { block-size: auto; }
 
 .fuentes ol { list-style: none; padding-left: 2.3rem; margin-left: 0; }
 .fuentes li { margin-bottom: 0.6rem; }
+
+/* Advertencia de método al tope de las fuentes: cuando TODA la evidencia de una
+   pieza es citada de oído, el lector tiene que saberlo antes de leer la nota 1,
+   no después. */
+.fuentes-nota {
+  border-left: 2px solid var(--acento-solido);
+  padding-left: 0.9rem;
+  margin: 0 0 1.4rem;
+}
+
+/* ---------- Registro histórico · los tramos (historia.html) ----------
+   Cada tramo es un hito con año propio. La regla izquierda los encadena en
+   una línea de tiempo sin dibujar una: es el mismo recurso que usa el
+   comparador para marcar zona, y no cuesta un byte de imagen. */
+
+.tramo {
+  border-left: 2px solid var(--regla);
+  padding-left: 1.3rem;
+  margin: 2.4rem 0;
+}
+
+.tramo:last-of-type { border-left-color: var(--acento-regla); }
+
+.tramo h3 { margin-top: 0; }
+
+.tramo h3 .anio {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--acento);
+  margin-bottom: 0.35rem;
+}
+
+.tramo p:last-child { margin-bottom: 0; }
 
 /* El número visible de la nota es el marcador que el cuerpo anuncia, no la
    posición en la lista. Sin esto, el «7» del cuerpo aterriza en una nota

@@ -25,13 +25,14 @@ const path = require("path");
 const { chromium } = require("playwright");
 
 const REPO = path.resolve(__dirname, "..");
+/* 12-sep-2026: la lista apuntaba a las cinco piezas de julio que el rediseño
+   retiró del sitio, así que el smoke no podía correr (deuda declarada en la
+   bitácora del 12-sep). Queda alineada con sitio-manifest.yaml: las páginas
+   vivas, y solo ellas. */
 const PAGINAS = [
   "index.html",
-  "separacion-de-roles.html",
-  "deuda-privada-como-renta-fija.html",
-  "due-diligence-deuda-privada.html",
-  "buscador-causas-judiciales.html",
-  "renta-fija-palanca-patrimonio.html",
+  "objeciones.html",
+  "historia.html",
 ];
 
 const PRIMARIOS = ".masthead-nav a, .nav-retorno a, .nav-pie a, details.indice-pieza > summary, details.card-mas > summary, .logo, .lupa";

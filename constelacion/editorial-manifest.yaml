@@ -65,10 +65,23 @@ piezas:
   # de tres tarjetas a una línea, y se apretaron tres párrafos: ~20 palabras),
   # y el resto sube el techo. Sigue muy por debajo del techo por defecto de
   # ensayo (2600) y del tiempo de lectura declarado.
+  # Sube de 960 a 1000 el 12-sep-2026, al entrar historia.html. La raíz gana un
+  # párrafo de ~50 palabras que es el argumento que más le faltaba: que la
+  # separación propuesta es el quinto tramo de una serie chilena
+  # (intermediación, custodia, compensación, patrimonio del fondo), y que el
+  # gremio de administradoras pide ese tramo. Eso desarma de una línea la
+  # objeción más cómoda contra la pieza —"esto es copiar a Luxemburgo"— y por
+  # eso no es adorno. Se recortó primero grasa real: la segunda mitad del
+  # párrafo de la firma global duplicaba lo que el párrafo anterior ya decía
+  # (-14 palabras). El resto sube el techo. El hallazgo C9 del adversario
+  # obligó después a calificar ese claim —"propuso evaluar", no "pide"— y a
+  # anclarlo a la sección que lo declara, que cuesta unas palabras más y es la
+  # diferencia entre un respaldo gremial afirmado y uno citado. Sigue muy por
+  # debajo del techo por defecto de ensayo (2600).
   - archivo: index.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 960
+    techo_palabras: 1000
   # Sube de 1100 a 1150 el 12-sep-2026, en el reencuadre a la tesis del
   # domicilio. El CEO pidió dos cosas que agregan objeción, no adorno: que la
   # tesis de Luxemburgo cargue con el ataque obvio —"Luxemburgo es un paraíso
@@ -78,7 +91,63 @@ piezas:
   # reconstruiría el hombre de paja que D03 existe para impedir, así que se
   # recortó la grasa real (~16 palabras) y el resto sube el techo. Sigue muy
   # por debajo del techo por defecto de ensayo (2600).
+  # Sube de 1150 a 1165 el 12-sep-2026. El hallazgo N7 de la segunda corrida
+  # del adversario (runs/AG-SITIO-ADVERSARIO/2026-09-12-historia.md) cazó que
+  # esta era la única de las tres páginas con la declaración de interés
+  # incompleta: la regla 7 pide incentivo, beneficio Y costo, y acá faltaba el
+  # costo. Entra una frase de once palabras —que el mismo cambio abre la puerta
+  # a competidores mayores que el autor—. La otra mitad que el adversario pedía,
+  # "no recomienda aprobar ni rechazar", ya vivía en el Método de esta página y
+  # no se duplicó.
   - archivo: objeciones.html
     tipo: ensayo
     modo: hard
-    techo_palabras: 1150
+    techo_palabras: 1165
+  # Nace el 12-sep-2026 con techo 1300, y el techo se fija por el contenido,
+  # no al revés. La pieza tiene dos partes que no se pueden comprimir sin
+  # romperla: cuatro tramos normativos que hay que describir con su ley, su
+  # año y qué quedó a cada lado (si se resume más, deja de ser verificable y
+  # pasa a ser una línea de tiempo decorativa), y un bloque de método que es
+  # el doble de largo de lo normal porque TODA la evidencia de esta pieza es
+  # de oído. La regla 8 de la voz de la casa exige declarar qué se afirma, de
+  # dónde viene, que no se leyó el original y qué NO sostiene: eso son siete
+  # notas al pie largas, y la sección de fuentes no cuenta para el techo, pero
+  # el Método sí. Recortar el Método para calzar un número sería recortar
+  # exactamente la parte que hace publicable una pieza citada de oído.
+  #
+  # Sube de 1300 a 1500 en la misma jornada, tras el veredicto NO-PASA del
+  # adversario aislado (runs/AG-SITIO-ADVERSARIO/2026-09-12-historia.md:
+  # 9 bloqueantes, 9 corregibles, 6 menores). Sus hallazgos obligaron a agregar
+  # ~190 palabras, y las seis son concesiones contra el interés del autor:
+  # (1) el estado del derecho vigente —hoy sí se puede contratar a un tercero;
+  # lo que la ley hace es dejar la responsabilidad y el costo en la
+  # administradora— con su nota al pie, porque sin eso la pieza contradecía a
+  # index.html (B6); (2) la asimetría entre los cuatro movimientos anteriores,
+  # que fueron obligaciones, y el quinto, que es un permiso (B8); (3) la
+  # calificación del claim del gremio: "propuso evaluar", anterior al proyecto
+  # y sin posición conocida sobre él (B7); (4) el bloque "qué sí leí", que
+  # separa la única fuente primaria de las siete de oído y desarma la lectura
+  # de la declaración como coartada (B9); (5) la declaración de interés
+  # completa —beneficio Y costo— que la regla 7 exige y esta pieza tenía a
+  # medias (C8); (6) la creencia previa sobre la banca, movida del cuerpo al
+  # Método en primera persona en vez de instalada y desmentida (C3).
+  # Recortarlas para calzar 1300 sería devolver la pieza al estado que el
+  # adversario reprobó. El techo por defecto de ensayo (2600) sigue arriba.
+  # Sube de 1500 a 1700 el 12-sep-2026, por encargo explícito del CEO en sesión:
+  # «potencia el relato y la lógica». Tres corridas del adversario dejaron la
+  # pieza técnicamente blindada y narrativamente floja — una cronología de
+  # cuatro leyes con sus reservas al lado, sin la frase que dice por qué la
+  # serie importa. Entra una sección nueva, «Lo que se repite» (~120 palabras),
+  # que es el único lugar del sitio donde se enuncia el mecanismo: las cuatro
+  # veces el remedio fue sacarle la función a quien tenía el conflicto, y eso
+  # es control por oposición — no depende de que alguien mire, depende de que
+  # dos partes no quieran lo mismo. Es la tesis del CEO («controles por
+  # oposición y especialización por función») y la pieza la tenía implícita en
+  # cuatro ejemplos sin decirla nunca. Sin ella la página es un dato; con ella
+  # es un argumento. El resto del alza es el cierre de §falta, que pasa de un
+  # ancla tibia («es el quinto tramo de una serie») a la que nombra el hueco.
+  # Sigue bajo el techo por defecto de ensayo (2600).
+  - archivo: historia.html
+    tipo: ensayo
+    modo: hard
+    techo_palabras: 1700
