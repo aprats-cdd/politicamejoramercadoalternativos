@@ -113,3 +113,36 @@ hipotesis:
     estado: viva
     evidencia: []
     calibracion: ''
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Capa comparada Chile-Luxemburgo (13-sep-2026). Ver
+  # constelacion/runs/2026-09-13-capa-comparada.md y
+  # constelacion/evidencia/registro-comparado.yaml. Egress bloqueado (403
+  # en eur-lex, cmfchile, bcn, legilux) al momento de escribir: los diez
+  # nodos del registro son 'de_oido' o 'supuesto', cero 'leido'. Esta
+  # hipótesis nace directamente del hallazgo LU-F4/CL-F4 de ese registro.
+  # ─────────────────────────────────────────────────────────────────────
+
+  - id: HIP-2026-04
+    pieza: pendiente   # aun no entra a index.html ni objeciones.html — ver bitacora
+    asercion: >-
+      La asimetría real entre Chile y Luxemburgo no es que uno exija
+      separación de funciones y el otro no. Es que Luxemburgo pone la
+      exención bajo un umbral de minimis medido, y Chile la pone como
+      categoría de entrada (el FIP nace liviano, no baja a liviano desde
+      un régimen más exigente). Si esto se confirma, la frase correcta no
+      es "Chile no tiene la regla" sino "Chile no tiene el escalón".
+    horizonte: 2026-12-13   # o antes, apenas se destrabe el acceso a eur-lex/legilux/bcn/cmfchile
+    falsador: >-
+      Se lee AIFMD (texto primario, versión consolidada verificada) y la
+      Ley 20.712 en primario. Si el gestor de minimis luxemburgués IGUAL
+      queda obligado a designar depositario, el escalón liviano no es
+      comparable al FIP y esta hipótesis cae — la tesis del sitio queda
+      intacta. Si el gestor de minimis SÍ queda exento del depositario,
+      entonces la pieza compara el piso chileno contra el techo
+      luxemburgués y hay que reescribir el argumento antes de publicar
+      cualquier cifra de umbral.
+    fecha_publicacion: 2026-09-13
+    estado: viva
+    evidencia: []
+    calibracion: ''

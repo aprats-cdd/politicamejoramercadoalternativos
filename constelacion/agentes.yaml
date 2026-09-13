@@ -284,15 +284,29 @@ agentes:
       18.045, DL 3.500 art. 45/CCR, DFL 251/NCG 152, Compendio de Normas
       Contables CMF B-1/B-2, LUF 20.712) y hace cumplir la separacion
       vigente-vs-propuesto en cada pasaje (P8/R29): ninguna propuesta del autor
-      puede leerse como norma vigente.
+      puede leerse como norma vigente. EXTENDIDO 13-sep-2026 (capa comparada):
+      ademas de la norma chilena, cubre derecho comparado Chile-Luxemburgo/UE
+      para el perimetro de fondos alternativos (AIFMD, marco AIFM/RAIF
+      luxemburgues) bajo el mismo estandar de marca por dato — leido/de_oido/
+      supuesto — que exige constelacion/eval_comparado.py; jamas escribe un
+      dato comparado como 'leido' sin snapshot + sha256 + cita verificada.
     memoria:
-      semantica: [citas normativas del corpus commiteado, registro de evidencia del auditor]
+      semantica: [citas normativas del corpus commiteado, registro de evidencia del auditor, eur-lex.europa.eu, legilux.public.lu, cssf.lu, AIFMD Directiva 2011/61/UE, Directiva UE 2024/927, marco AIFM/RAIF de Luxemburgo, Ley 20.712]
       episodica: constelacion/runs/AG-SITIO-JURISTA/
-      procedural: tabla norma→pasaje→vigente-o-propuesto
+      procedural: >-
+        tabla norma→pasaje→vigente-o-propuesto; para derecho comparado,
+        marca obligatoria por dato (leido/de_oido/supuesto) con sus campos
+        segun constelacion/eval_comparado.py — un supuesto siempre ancla en
+        un nodo leido o de_oido, nunca en otro supuesto (K03)
     eval:
-      gate: el auditor cruza sus citas contra el registro (dos ojos independientes) y el adversario ataca todo pasaje que mezcle vigente con propuesto. Lo corren otros, no el.
-      estado: ejecutable — tabla verificable en el run record + cruce del auditor
-    metricas: [citas normativas sin cruce (target 0), pasajes vigente/propuesto mezclados (target 0)]
+      gate: >-
+        el auditor cruza sus citas contra el registro (dos ojos
+        independientes) y el adversario ataca todo pasaje que mezcle vigente
+        con propuesto. Para derecho comparado, lo corre
+        constelacion/eval_comparado.py (K01-K07) + el adversario. Lo corren
+        otros, nunca el.
+      estado: ejecutable — tabla verificable en el run record + cruce del auditor; capa comparada verificada por constelacion/eval_comparado.py
+    metricas: [citas normativas sin cruce (target 0), pasajes vigente/propuesto mezclados (target 0), datos comparados con marca mas alta de la que corresponde (target 0)]
 
   - slug: AG-SITIO-ADVERSARIO
     rol: Adversario del aludido del sitio (severidad maxima)
