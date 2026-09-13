@@ -1,0 +1,43 @@
+name: CI · plataforma (Next.js)
+
+# Segunda capa determinística del repo, hermana de ci.yml. Verifica el harness
+# de la plataforma interactiva (plataforma/) sin publicarlo: tipado estricto,
+# lint, pruebas de integridad del dato y build estático. No hay paso de deploy:
+# publicar es decisión explícita del dueño (CLAUDE.md).
+
+on:
+  push:
+    paths:
+      - "plataforma/**"
+      - ".github/workflows/plataforma.yml"
+  pull_request:
+    paths:
+      - "plataforma/**"
+      - ".github/workflows/plataforma.yml"
+  workflow_dispatch:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: plataforma
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: plataforma/package-lock.json
+      - name: Dependencias
+        run: npm ci
+      - name: Tipado estricto
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Integridad del dato (vitest)
+        run: npm test
+      - name: Build estático
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"

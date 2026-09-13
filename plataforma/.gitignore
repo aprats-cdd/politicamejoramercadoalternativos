@@ -1,0 +1,11 @@
+# dependencias y salidas de build de la plataforma Next.js
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+.eslintcache
+# entorno local
+.env*.local
+# diagnósticos
+npm-debug.log*

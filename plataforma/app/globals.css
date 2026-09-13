@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Tokens de la plataforma.
+   Portados de assets/sitio.css (sistema visual v2, 12-sep-2026) para que la
+   plataforma y el sitio se lean como la misma casa: hue 266, neutro teñido
+   hacia el acento, sólido y texto como tokens distintos, un solo radio,
+   tipografías de sistema (cero webfonts). Tres familias tipográficas en total
+   (sans, mono, serif), declaradas como tokens: cumple INV-TIPOGRAFIA-MODULAR.
+   ============================================================ */
+
+:root {
+  --hue: 266;
+
+  /* superficies */
+  --papel: oklch(99.2% 0.004 var(--hue));
+  --superficie: oklch(100% 0 0);
+  --nota: oklch(97% 0.008 var(--hue));
+
+  /* texto */
+  --tinta: oklch(21% 0.02 var(--hue));
+  --gris: oklch(48% 0.02 var(--hue));
+  --tenue: oklch(62% 0.015 var(--hue));
+  --rotulo: oklch(44% 0.03 var(--hue));
+
+  /* reglas */
+  --regla: oklch(88% 0.012 var(--hue));
+  --regla-suave: oklch(93% 0.008 var(--hue));
+
+  /* acento: Chile y lo vigente */
+  --acento: oklch(45% 0.22 var(--hue));
+  --acento-solido: oklch(51% 0.26 var(--hue));
+  --acento-fondo: oklch(96% 0.03 var(--hue));
+  --acento-regla: oklch(84% 0.09 var(--hue));
+
+  /* propuesta: lo que el proyecto crea */
+  --propuesta: oklch(52% 0.16 172);
+  --propuesta-solido: oklch(52% 0.16 172);
+  --propuesta-fondo: oklch(96% 0.04 172);
+  --propuesta-regla: oklch(82% 0.08 172);
+
+  /* referencia: Luxemburgo, el dominio contra el que se mide (des-énfasis) */
+  --referencia: oklch(48% 0.02 var(--hue));
+  --referencia-fondo: oklch(96.5% 0.006 var(--hue));
+  --referencia-regla: oklch(86% 0.01 var(--hue));
+
+  /* estado de evidencia: por verificar */
+  --alerta: oklch(70% 0.15 70);
+  --alerta-fondo: oklch(97% 0.04 80);
+  --alerta-regla: oklch(86% 0.09 78);
+
+  /* tipografía de sistema */
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+
+  --radio: 8px;
+  --radio-chico: 6px;
+  --linea: 1.5px;
+  --sombra-tarjeta: 0 0 0 1px var(--regla-suave), 0 1px 2px 0 rgb(2 4 9 / 0.05);
+  --tap-minimo: 44px;
+
+  /* tokens semánticos shadcn/ui, mapeados al sistema de la casa para que
+     `npx shadcn add` produzca componentes que ya se vean de la casa */
+  --background: var(--papel);
+  --foreground: var(--tinta);
+  --card: var(--superficie);
+  --card-foreground: var(--tinta);
+  --popover: var(--superficie);
+  --popover-foreground: var(--tinta);
+  --primary: var(--acento-solido);
+  --primary-foreground: oklch(99% 0.005 var(--hue));
+  --secondary: var(--nota);
+  --secondary-foreground: var(--tinta);
+  --muted: var(--nota);
+  --muted-foreground: var(--gris);
+  --accent: var(--acento-fondo);
+  --accent-foreground: var(--acento);
+  --destructive: oklch(55% 0.2 25);
+  --border: var(--regla);
+  --input: var(--regla);
+  --ring: var(--acento);
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --papel: oklch(19% 0.006 var(--hue));
+    --superficie: oklch(21.5% 0.008 var(--hue));
+    --nota: oklch(16.5% 0.006 var(--hue));
+
+    --tinta: oklch(93% 0.01 var(--hue));
+    --gris: oklch(76% 0.012 var(--hue));
+    --tenue: oklch(64% 0.012 var(--hue));
+    --rotulo: oklch(78% 0.03 var(--hue));
+
+    --regla: oklch(100% 0 0 / 0.2);
+    --regla-suave: oklch(100% 0 0 / 0.12);
+
+    --acento: oklch(80% 0.15 var(--hue));
+    --acento-solido: oklch(62% 0.22 var(--hue));
+    --acento-fondo: oklch(28% 0.06 var(--hue));
+    --acento-regla: oklch(42% 0.1 var(--hue));
+
+    --propuesta: oklch(78% 0.13 172);
+    --propuesta-solido: oklch(64% 0.13 172);
+    --propuesta-fondo: oklch(26% 0.05 172);
+    --propuesta-regla: oklch(40% 0.08 172);
+
+    --referencia: oklch(60% 0.012 var(--hue));
+    --referencia-fondo: oklch(24% 0.008 var(--hue));
+    --referencia-regla: oklch(100% 0 0 / 0.14);
+
+    --alerta: oklch(80% 0.14 70);
+    --alerta-fondo: oklch(27% 0.05 75);
+    --alerta-regla: oklch(45% 0.09 75);
+
+    --sombra-tarjeta: 0 0 0 1px oklch(100% 0 0 / 0.14), 0 1px 2px 0 rgb(1 4 9 / 0.6);
+    --primary-foreground: oklch(15% 0.02 var(--hue));
+  }
+}
+
+:root[data-theme="dark"] {
+  --papel: oklch(19% 0.006 var(--hue));
+  --superficie: oklch(21.5% 0.008 var(--hue));
+  --nota: oklch(16.5% 0.006 var(--hue));
+  --tinta: oklch(93% 0.01 var(--hue));
+  --gris: oklch(76% 0.012 var(--hue));
+  --tenue: oklch(64% 0.012 var(--hue));
+  --rotulo: oklch(78% 0.03 var(--hue));
+  --regla: oklch(100% 0 0 / 0.2);
+  --regla-suave: oklch(100% 0 0 / 0.12);
+  --acento: oklch(80% 0.15 var(--hue));
+  --acento-solido: oklch(62% 0.22 var(--hue));
+  --acento-fondo: oklch(28% 0.06 var(--hue));
+  --acento-regla: oklch(42% 0.1 var(--hue));
+  --propuesta: oklch(78% 0.13 172);
+  --propuesta-solido: oklch(64% 0.13 172);
+  --propuesta-fondo: oklch(26% 0.05 172);
+  --propuesta-regla: oklch(40% 0.08 172);
+  --referencia: oklch(60% 0.012 var(--hue));
+  --referencia-fondo: oklch(24% 0.008 var(--hue));
+  --referencia-regla: oklch(100% 0 0 / 0.14);
+  --alerta: oklch(80% 0.14 70);
+  --alerta-fondo: oklch(27% 0.05 75);
+  --alerta-regla: oklch(45% 0.09 75);
+  --sombra-tarjeta: 0 0 0 1px oklch(100% 0 0 / 0.14), 0 1px 2px 0 rgb(1 4 9 / 0.6);
+  --primary-foreground: oklch(15% 0.02 var(--hue));
+}
+
+/* Tailwind v4: expone los tokens como utilidades (bg-papel, text-tinta, …) */
+@theme inline {
+  --color-papel: var(--papel);
+  --color-superficie: var(--superficie);
+  --color-nota: var(--nota);
+  --color-tinta: var(--tinta);
+  --color-gris: var(--gris);
+  --color-tenue: var(--tenue);
+  --color-rotulo: var(--rotulo);
+  --color-regla: var(--regla);
+  --color-regla-suave: var(--regla-suave);
+  --color-acento: var(--acento);
+  --color-acento-solido: var(--acento-solido);
+  --color-acento-fondo: var(--acento-fondo);
+  --color-acento-regla: var(--acento-regla);
+  --color-propuesta: var(--propuesta);
+  --color-propuesta-solido: var(--propuesta-solido);
+  --color-propuesta-fondo: var(--propuesta-fondo);
+  --color-propuesta-regla: var(--propuesta-regla);
+  --color-referencia: var(--referencia);
+  --color-referencia-fondo: var(--referencia-fondo);
+  --color-referencia-regla: var(--referencia-regla);
+  --color-alerta: var(--alerta);
+  --color-alerta-fondo: var(--alerta-fondo);
+  --color-alerta-regla: var(--alerta-regla);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--sans);
+  --font-mono: var(--mono);
+  --font-serif: var(--serif);
+
+  --radius-sistema: var(--radio);
+  --radius-chico: var(--radio-chico);
+  --shadow-tarjeta: var(--sombra-tarjeta);
+}
+
+/* ---------- Base ---------- */
+
+@layer base {
+  * {
+    @apply border-regla;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-papel text-tinta font-sans antialiased;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.14;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+}
+
+/* ---------- Utilidades de la casa ---------- */
+
+@utility rotulo {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rotulo);
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility tarjeta {
+  background: var(--superficie);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-tarjeta);
+}
+
+/* Enlace accesible para saltar al contenido */
+.salto-contenido {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--tinta);
+  color: var(--papel);
+  padding: 0.5rem 1rem;
+  z-index: 50;
+}
+.salto-contenido:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+/* Recharts: la tipografía y el color de ejes usan tokens, no defaults */
+.recharts-wrapper,
+.recharts-surface {
+  font-family: var(--sans);
+}
+.recharts-cartesian-axis-tick-value {
+  fill: var(--gris);
+  font-size: 0.78rem;
+}
+.recharts-cartesian-grid line {
+  stroke: var(--regla-suave);
+}
+
+/* Al imprimir, todo bloque de aparición progresiva queda visible y en su lugar */
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
