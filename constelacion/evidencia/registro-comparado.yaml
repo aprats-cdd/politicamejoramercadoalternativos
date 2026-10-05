@@ -1,0 +1,270 @@
+# ─────────────────────────────────────────────────────────────────────────
+# Registro de evidencia de la capa comparada Chile-Luxemburgo.
+# Lo mantiene AG-SITIO-JURISTA. Gate: constelacion/eval_comparado.py.
+#
+# Contrato (mismo espiritu que registro-sitio.yaml, ontologia distinta):
+# todo dato trae una marca -- 'leido' (hay copia local + sha256 + cita
+# verificada), 'de_oido' (no se leyo, se declara de donde viene y que NO
+# sostiene) o 'supuesto' (deduccion del jurista, anclada en un nodo de
+# este mismo registro que NO sea a su vez un supuesto). Ninguna marca es
+# vergonzosa. Lo unico prohibido es que un dato diga ser mas solido de
+# lo que es -- ese es el unico delito que persigue eval_comparado.py.
+#
+# Estado del egress (13-sep-2026, re-verificado antes de escribir este
+# archivo): 403 en eur-lex.europa.eu, cmfchile.cl, bcn.cl y
+# legilux.public.lu. CERO datos 'leido' en todo este registro. Cuando el
+# acceso se destrabe, la primera tarea es releer cada nodo 'de_oido' de
+# abajo contra el texto primario y subirlo (o bajarlo) de categoria.
+# ─────────────────────────────────────────────────────────────────────────
+
+version: 1
+fecha: 2026-09-13
+autor: AG-SITIO-JURISTA
+egress: bloqueado
+nota: >-
+  CERO datos marcados 'leido' en este registro: sin acceso a los cuatro
+  origenes primarios, nada puede llevar esa marca. Todo lo de abajo es
+  'de_oido' (viene del entrenamiento del modelo, sin documento en mano) o
+  'supuesto' (deduccion del jurista, anclada siempre en un nodo 'de_oido'
+  de este mismo registro, nunca en otro supuesto -- K03 lo exige). La
+  marca es lo que el arbitro verifica; si el dato es CIERTO lo decide el
+  dueno al leer la pagina antes de publicar.
+
+datos:
+
+  # ── F1 · Si se pierde un activo: quien lo devuelve ──────────────────
+  - id: LU-F1
+    marca: de_oido
+    pais: LU
+    funcion: restitucion_por_perdida
+    espejo: CL-F1
+    marca_visible: true
+    afirmacion: >-
+      Todo fondo alternativo bajo AIFMD (version consolidada de
+      referencia 2024-03-26, de memoria) designa un depositario unico.
+      Si se pierde un instrumento financiero bajo su custodia, el
+      depositario debe restituir uno identico o su importe sin demora
+      indebida, y solo se libera si prueba que la perdida vino de un
+      hecho externo fuera de su control razonable. La carga de la prueba
+      es del que cuidaba, no del que perdio.
+    ley: >-
+      AIFMD (Directiva 2011/61/UE), version consolidada de referencia
+      2024-03-26 (de memoria, sin verificar contra texto primario; ver
+      no_sostiene).
+    fuente_citada: "Texto de AIFMD tal como se reproduce en literatura de practica y en el entrenamiento del modelo"
+    via: "Entrenamiento del modelo. NO hay documento en mano: eur-lex.europa.eu dio 403 el 13-sep-2026."
+    no_sostiene: >-
+      No sostiene el numero exacto de apartado (creo art. 21(12), sin
+      confirmar), ni si la Directiva (UE) 2024/927 lo modifico, ni el
+      alcance exacto de la exoneracion, ni la fecha de version
+      consolidada que anoto arriba (podria estar equivocada). Tampoco
+      sostiene si "restituir" admite pago en dinero en todos los casos.
+
+  - id: CL-F1
+    marca: supuesto
+    pais: CL
+    funcion: restitucion_por_perdida
+    espejo: LU-F1
+    ancla_ref: LU-F1
+    vector: punto_palanca
+    marca_visible: true
+    afirmacion: >-
+      En Chile no existe, para un FIP, una figura obligatoria que
+      responda con patrimonio propio por la restitucion de un activo
+      perdido. El participe tendria que perseguir a la administradora
+      por las reglas generales de la Ley 20.712, y probar la culpa el
+      mismo.
+    que_lo_destruye: >-
+      Se destruye si al leer la Ley 20.712 y sus reglamentos aparece una
+      figura de deposito/custodia con responsabilidad de restitucion y
+      carga de prueba invertida aplicable al FIP. Se destruye parcial y
+      distinto si esa figura existe solo para fondos publicos y el
+      argumento la extiende sin mas al FIP: ahi el supuesto esta mal
+      extrapolado, no la conclusion sobre el FIP en si. Es, ademas, la
+      deduccion mas debil de las cinco de este registro: es un argumento
+      por ausencia ("si existiera, deberia aparecer en el registro del
+      sitio, y no aparece"), y un argumento por ausencia es el tipo de
+      razonamiento mas facil de tumbar que hay.
+
+  # ── F2 · Quien le pone precio a los activos ─────────────────────────
+  - id: LU-F2
+    marca: de_oido
+    pais: LU
+    funcion: valorizacion
+    espejo: CL-F2
+    marca_visible: true
+    afirmacion: >-
+      AIFMD (version consolidada de referencia 2024-03-26, de memoria)
+      exige que quien valoriza los activos sea independiente de quien
+      gestiona la cartera: o un valorador externo, o una funcion interna
+      separada de verdad, con reglas propias para evitar el conflicto.
+      El que elige las inversiones no le pone el precio a lo que eligio.
+    ley: >-
+      AIFMD (Directiva 2011/61/UE), version consolidada de referencia
+      2024-03-26 (de memoria, sin verificar).
+    fuente_citada: "AIFMD segun literatura de practica y entrenamiento del modelo"
+    via: "Entrenamiento del modelo, sin documento en mano (eur-lex 403 el 13-sep-2026)"
+    no_sostiene: >-
+      No sostiene el numero de articulo (creo art. 19, sin confirmar) ni
+      que la separacion interna baste sin condiciones adicionales, ni el
+      detalle de cuando se exige valorador externo frente a funcion
+      interna.
+
+  - id: CL-F2
+    marca: supuesto
+    pais: CL
+    funcion: valorizacion
+    espejo: LU-F2
+    ancla_ref: LU-F2
+    vector: bucle_compensacion
+    marca_visible: true
+    afirmacion: >-
+      Para un FIP chileno no hay una exigencia equivalente de
+      valorizacion independiente de quien gestiona la cartera.
+    que_lo_destruye: >-
+      Se destruye si la normativa de la CMF sobre fondos de inversion
+      privados exige valorizador independiente en algun supuesto (por
+      ejemplo, activos no transados en mercados formales). El caso de
+      Sartor AGF ya documentado en objeciones.html (80% de un fondo en
+      pagares de partes relacionadas, estados financieros falsificados
+      cuatro periodos seguidos) es la razon para sospechar que esa
+      exigencia no existe con dientes, pero es un indicio, no una
+      lectura de la norma: no alcanza para sostener esto por si solo.
+
+  # ── F3 · Quien puede abrir la puerta del negocio ────────────────────
+  - id: LU-F3
+    marca: de_oido
+    pais: LU
+    funcion: autorizacion_del_gestor
+    espejo: CL-F3
+    marca_visible: true
+    afirmacion: >-
+      En Luxemburgo el gestor de fondos alternativos necesita
+      autorizacion previa del supervisor (CSSF). Incluso un vehiculo no
+      supervisado directamente, como el RAIF, esta obligado a tener por
+      encima un gestor autorizado: la supervision no desaparece, sube un
+      piso.
+    ley: >-
+      Marco AIFM luxemburgues (transposicion de AIFMD, version de
+      referencia 2024-03-26, de memoria, sin verificar) mas la ley del
+      RAIF de 23 de julio de 2016; fechas exactas sin confirmar contra
+      legilux.public.lu (403 el 13-sep-2026).
+    fuente_citada: "Marco AIFM/RAIF de Luxemburgo segun literatura de practica y entrenamiento del modelo"
+    via: "Entrenamiento del modelo. legilux.public.lu dio 403 el 13-sep-2026."
+    no_sostiene: >-
+      No sostiene articulos especificos, ni si existen excepciones al
+      requisito de gestor autorizado para el RAIF, ni las fechas exactas
+      de las leyes citadas arriba (las anoto de memoria y podrian estar
+      equivocadas).
+
+  - id: CL-F3
+    marca: supuesto
+    pais: CL
+    funcion: autorizacion_del_gestor
+    espejo: LU-F3
+    ancla_ref: LU-F3
+    vector: retardo_estructural
+    marca_visible: true
+    afirmacion: >-
+      La administradora de un FIP chileno no requiere autorizacion
+      previa de la CMF para operar, a diferencia de una AGF.
+    que_lo_destruye: >-
+      Se destruye si la Ley 20.712 exige algun tipo de autorizacion o
+      registro previo ante la CMF para administrar un FIP (no solo
+      reglas especiales para ofrecerlo a fondos de pensiones u otros
+      inversionistas calificados).
+
+  # ── F4 · EL FALSADOR: Luxemburgo tambien tiene un escalon liviano ───
+  - id: LU-F4
+    marca: de_oido
+    pais: LU
+    funcion: umbral_de_exencion
+    espejo: CL-F4
+    marca_visible: true
+    afirmacion: >-
+      OJO -- esto puede tumbar la tesis. AIFMD (version consolidada de
+      referencia 2024-03-26, de memoria) trae un piso de minimis: por
+      debajo de cierto tamano de activos bajo gestion, el gestor queda
+      en un regimen de simple registro y no en el de autorizacion plena.
+      Luxemburgo tambien tiene un escalon liviano, igual que Chile. La
+      cifra exacta del umbral NO se registra aqui: no esta verificada
+      contra texto primario y no corresponde publicarla sin serlo.
+    ley: >-
+      AIFMD (Directiva 2011/61/UE), version consolidada de referencia
+      2024-03-26 (de memoria, sin verificar) -- articulo 3 segun mi
+      memoria, sin confirmar.
+    fuente_citada: "Regimen de minimis de AIFMD segun literatura de practica y entrenamiento del modelo"
+    via: "Entrenamiento del modelo, sin documento en mano (eur-lex 403 el 13-sep-2026)"
+    no_sostiene: >-
+      NO sostiene las cifras del umbral (tengo ordenes de magnitud en la
+      cabeza; no las escribo aqui por no estar verificadas). Tampoco
+      sostiene la pregunta que decide todo: si un gestor de minimis
+      luxemburgues queda o no exento de designar depositario. Sin esa
+      respuesta, este nodo no dice si el escalon liviano de Luxemburgo
+      es comparable al FIP chileno o no.
+
+  - id: CL-F4
+    marca: supuesto
+    pais: CL
+    funcion: umbral_de_exencion
+    espejo: LU-F4
+    ancla_ref: LU-F4
+    vector: bucle_compensacion
+    marca_visible: true
+    afirmacion: >-
+      Chile no tiene un umbral de minimis para el FIP porque no hay un
+      regimen pleno del cual eximirse: el FIP nace liviano, no baja a
+      liviano desde un piso mas exigente.
+    que_lo_destruye: >-
+      Se destruye -- y con ella la tesis central de la pieza -- si el
+      texto de AIFMD muestra que el gestor de minimis luxemburgues SIGUE
+      obligado a designar depositario (ahi el escalon liviano no libera
+      de la funcion que mas importa, y la comparacion FIP-vs-Luxemburgo
+      vuelve a sostenerse). Se destruye tambien, de otra forma, si
+      aparece un umbral chileno equivalente que hoy no esta registrado
+      en el sitio.
+
+  # ── F5 · Delegar sin desaparecer ─────────────────────────────────────
+  - id: LU-F5
+    marca: de_oido
+    pais: LU
+    funcion: limites_a_la_delegacion
+    espejo: CL-F5
+    marca_visible: true
+    afirmacion: >-
+      AIFMD (version consolidada de referencia 2024-03-26, de memoria)
+      permite delegar la gestion de cartera afuera, pero el gestor sigue
+      respondiendo y no puede vaciarse hasta quedar como un buzon vacio.
+      Es la regla que deja que Luxemburgo sea domicilio sin ser el lugar
+      donde trabaja todo el mundo.
+    ley: >-
+      AIFMD (Directiva 2011/61/UE), version consolidada de referencia
+      2024-03-26 (de memoria, sin verificar) -- articulo 20, ya citado en
+      constelacion/runs/2026-09-12-reencuadre-luxemburgo.md.
+    fuente_citada: "AIFMD art. 20 segun registro previo del sitio + entrenamiento del modelo"
+    via: "Registro del sitio (run 2026-09-12) + entrenamiento del modelo. Texto primario aun sin abrir."
+    no_sostiene: >-
+      No sostiene DONDE esta el limite real del vaciamiento: si en la
+      practica se puede delegar casi toda la gestion de cartera, la
+      separacion es de papel. Este es el segundo vector, junto al
+      minimis de LU-F4, que puede tumbar la tesis.
+
+  - id: CL-F5
+    marca: supuesto
+    pais: CL
+    funcion: limites_a_la_delegacion
+    espejo: LU-F5
+    ancla_ref: LU-F5
+    vector: bucle_refuerzo
+    marca_visible: true
+    afirmacion: >-
+      Para el FIP chileno no hay un limite de delegacion equivalente
+      porque no hay, de partida, una funcion obligatoria (valorizacion
+      independiente, depositario) que delegar o no delegar.
+    que_lo_destruye: >-
+      Se destruye si aparece en la Ley 20.712 alguna funcion obligatoria
+      del FIP con limites propios de delegacion, aunque sea distinta de
+      las que describen LU-F1/LU-F2. Se debilita tambien si el limite
+      real de AIFMD (LU-F5) resulta tan angosto en la practica que la
+      comparacion deja de ser "hay limite vs. no hay limite" y pasa a
+      ser "cuanto limite hay".

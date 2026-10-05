@@ -39,3 +39,7 @@ jobs:
         run: |
           python constelacion/eval_steelman.py --self-test
           python constelacion/eval_steelman.py
+      - name: Gate de la capa comparada Chile-Luxemburgo (K01-K07 · self-test primero)
+        run: |
+          python3 constelacion/eval_comparado.py --self-test
+          python3 constelacion/eval_comparado.py
