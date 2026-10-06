@@ -4,8 +4,8 @@
 hipótesis, ensayos— en el mismo estilo y tono, con **loop de mejora**. El CEO
 pidió declarar equipo, evals, contexto y orquestación.
 
-**Cliente primario:** el banquero de un **multi-family office chileno (perfil
-Lakpa)** — sobrio, breve, sin jerga, sin vaguedades. Es el norte de la voz.
+**Cliente primario:** el banquero de un **multi-family office chileno**
+— sobrio, breve, sin jerga, sin vaguedades. Es el norte de la voz.
 
 **Cuello (E0, Goldratt):** la **consistencia de voz + la disciplina de
 tesis/hipótesis a escala**. Las 4 piezas fundacionales se forjaron una vez con
@@ -68,7 +68,7 @@ IDEA del CEO
 ## Contexto / memoria (qué carga cada agente)
 
 - **voz-de-la-casa.md** (NUEVO) — spec del registro, dueño AG-SITIO-ESCRITOR;
-  12 reglas + cliente Lakpa + convención juicio/hecho.
+  12 reglas + cliente MFO + convención juicio/hecho.
 - **hipotesis-publicadas.yaml** (NUEVO) — ledger falsable, público append-only.
 - **calibracion-editorial.yaml** (NUEVO) — ledger del loop (objeción → tripwire).
 - El corpus (4 piezas + memo) como exemplars · registro-sitio.yaml (evidencia).

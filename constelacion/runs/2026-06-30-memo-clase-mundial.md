@@ -4,7 +4,7 @@
 seguros, AGFs y políticos; integrar la tesis que faltaba (deuda privada con el
 estándar de la renta fija). Sin tocar el diseño. Todo auditado dos veces.
 
-**Cuello de botella.** La página era buena pero 80% defensiva (Sartor, "nadie
+**Cuello de botella.** La página era buena pero 80% defensiva (la AGF sancionada, "nadie
 verifica"). Le faltaba la mitad constructiva y el blindaje contra la lectura
 hostil de un experto. Un regulador aplaude lo que crea mercado, no solo lo que
 previene fraude.
@@ -76,10 +76,10 @@ Inversión de las AFP (vía CCR) y la norma de seguros de la CMF, no el Título 
 3. 4º resguardo anti-2008: clasificación por tercero independiente + límites de
    concentración (cierra correlación oculta + rating inflado).
 4. Custodio con independencia económica nombrada (fee no atado al NAV) + actores
-   concretos (EF Securitizadora, Apex). Nueva objeción del salto de cupo.
+   concretos (una securitizadora y un administrador de fondos independientes). Nueva objeción del salto de cupo.
 
 ### Aplicado por decisión del CEO (30-jun) — doctrina: "el gestor es responsable final; el Fund Admin y el Custodio son controles por oposición"
-- **Sartor reencuadrado** (resumen ejecutivo + Acto III): se quita el "sin
+- **Caso de la AGF sancionada reencuadrado** (resumen ejecutivo + Acto III): se quita el "sin
   excepción". Prestar a relacionados fue falla fiduciaria del GP —indelegable,
   suya—; lo que faltó fueron los controles por oposición que detectan su
   manifestación operacional (NAV inflado, existencia no verificada, descalce).
@@ -94,7 +94,7 @@ Inversión de las AFP (vía CCR) y la norma de seguros de la CMF, no el Título 
 
 ## Ronda final de verificación (6 verificadores sobre el texto publicado)
 
-Cerrados en firme: Sartor honesto, coherencia de doctrina, reserva legal.
+Cerrados en firme: caso de la AGF sancionada honesto, coherencia de doctrina, reserva legal.
 **Residuos cazados y corregidos** (el rigor se había perdido en superficies de
 alta visibilidad):
 - El "70×" es global (universo RF vs private credit); estaba mal aplicado al
@@ -103,7 +103,7 @@ alta visibilidad):
 - El resumen 05 y el pull-quote habían revertido el hedge (migración como
   automática) → restaurado: "puede migrar… no es automático… si la CCR / Régimen
   / CMF reconocen la imputación"; "la verificación que la habilita a entrar".
-- Sartor resumen 02: "antes de consumarse" → "elevando la fricción" (sin rozar
+- AGF sancionada, resumen 02: "antes de consumarse" → "elevando la fricción" (sin rozar
   promesa de prevención).
 - Medida 1: carve-out explícito de la Ley 18.876 (la NCG no impone custodia de
   valores; esa queda para Capa A2).

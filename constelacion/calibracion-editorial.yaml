@@ -36,7 +36,7 @@ entradas:
       familia muletilla en orden afirmación-primero ("X, no Y"). El check S04 de
       eval_sitio solo mira la forma negación-primero ("no es X, es Y") y la dejó
       pasar. La pieza se corrigió a "verificable sin permiso especial".
-    fuente: AG-SITIO-ADVERSARIO (lente voz Lakpa), corrida 1
+    fuente: AG-SITIO-ADVERSARIO (lente voz MFO), corrida 1
     objecion_no_anticipada: true
     tripwire_ref: "constelacion/eval_editorial.py :: E10 (advisory) — commiteado en esta misma corrida, DESPUÉS de la objeción"
     propuesta_voz: >-

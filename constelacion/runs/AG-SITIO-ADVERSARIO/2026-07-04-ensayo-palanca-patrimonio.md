@@ -32,7 +32,7 @@ dentro del cupo, con la estructura de capital dicha sin disfraz.
 
 ## Overclaim / disfraz de riesgo: **evitado + un fix aritmético**
 
-- Disfraz tipo Sartor: evitado. El tramo subordinado va marcado ("mayor riesgo
+- Disfraz tipo AGF sancionada: evitado. El tramo subordinado va marcado ("mayor riesgo
   de crédito que el senior, y sin marca a mercado diaria, lo que no es lo mismo
   que sin riesgo"). "el riesgo baja" va como juicio ("A mi juicio").
 - Cifras contra el registro: todas respaldadas (55%, USD 400.000M, USD 5.000M,
