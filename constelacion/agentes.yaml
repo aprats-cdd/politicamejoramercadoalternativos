@@ -235,7 +235,7 @@ agentes:
       ENRIQUECIDO 03-jul (motor editorial): DUEÑO de la voz de la casa
       (constelacion/voz-de-la-casa.md) — escribe cada publicacion nueva
       (opinion, hipotesis, ensayo) en ese registro, para el banquero de un MFO
-      chileno (perfil Lakpa): sobrio, breve, sin jerga, sin vaguedades, sin la
+      chileno: sobrio, breve, sin jerga, sin vaguedades, sin la
       muletilla "no es X — es Y". Marca todo juicio en primera persona
       ("Sostengo", "Mi lectura es") para que quede etiquetado como juicio y
       exento del gate de doble-fuente; toda cifra no marcada cae en S07. El DD
@@ -544,7 +544,7 @@ agentes:
   # MOTOR EDITORIAL — forja 03-jul-2026 (WF-FORJAR-EQUIPO, modo mixto).
   # Encargo del CEO: el equipo que produce publicaciones NUEVAS (opiniones,
   # hipotesis, ensayos) en el mismo estilo y tono, con LOOP DE MEJORA.
-  # Cliente primario: el banquero de un MFO chileno (perfil Lakpa) — sobrio,
+  # Cliente primario: el banquero de un MFO chileno — sobrio,
   # breve, sin jerga, sin vaguedades (voz-de-la-casa.md).
   # Cuello: consistencia de voz + disciplina de tesis/hipotesis a escala (nadie
   # ownea la voz como spec eval-able ni la hipotesis falsable para publicar).

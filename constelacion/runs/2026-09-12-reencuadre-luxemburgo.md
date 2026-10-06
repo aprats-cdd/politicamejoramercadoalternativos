@@ -120,7 +120,7 @@ paja que D03 existe para impedir. Se recortó la grasa real primero.
 ### Advertencia levantada al dueño, fuera de la página
 
 Su mensaje a un tercero afirma que hoy el que invierte «auto valoriza» la
-cartera y que el proyecto «evita que pase un Sartor». Lo primero se sostiene
+cartera y que el proyecto «evita que pase un caso como el de la AGF sancionada». Lo primero se sostiene
 como descripción general del régimen, pero el registro bloquea atribuir la
 valorización **en el caso sancionado** — es el cuarto rol, fail-closed. Lo
 segundo es el contrafactual que la página se niega a afirmar por inverificable.
