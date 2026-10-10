@@ -76,7 +76,17 @@
       "mcp__a9e044bd-8021-47e2-aab4-9c0e57cd6b06__notion-restore-pages",
       "mcp__BigQuery__execute_sql",
       "mcp__9cf4a67c-f811-471f-8dfe-9a57fafe4e53__execute_sql",
-      "mcp__Google_Cloud_BigQuery__execute_sql"
+      "mcp__Google_Cloud_BigQuery__execute_sql",
+      "mcp__Notion__notion-convert-page-to-skill",
+      "mcp__Notion__notion-upload-skill",
+      "mcp__Notion__notion-update-enabled-skills",
+      "mcp__Notion__notion-spawn-session",
+      "mcp__Notion__notion-send-message-to-session",
+      "mcp__a9e044bd-8021-47e2-aab4-9c0e57cd6b06__notion-convert-page-to-skill",
+      "mcp__a9e044bd-8021-47e2-aab4-9c0e57cd6b06__notion-upload-skill",
+      "mcp__a9e044bd-8021-47e2-aab4-9c0e57cd6b06__notion-update-enabled-skills",
+      "mcp__a9e044bd-8021-47e2-aab4-9c0e57cd6b06__notion-spawn-session",
+      "mcp__a9e044bd-8021-47e2-aab4-9c0e57cd6b06__notion-send-message-to-session"
     ]
   },
   "askUserQuestionTimeout": "10m"
